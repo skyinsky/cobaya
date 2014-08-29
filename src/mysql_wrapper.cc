@@ -10,18 +10,18 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <sys/types.h>
-#include "encapsulation_mysql.h"
+#include "mysql_wrapper.h"
 
 namespace cobaya {
 
-MysqlWrapper::CEncapMysql() {
+MysqlWrapper::MysqlWrapper() {
 	SetConnected(false);
 	//把结果集置为空
 	m_result = NULL;
 	//初始化连接
 	mysql_init(&m_connection);
 }
-MysqlWrapper::~CEncapMysql() {
+MysqlWrapper::~MysqlWrapper() {
 	//释放上一次的结果集
 	FreePreResult();
 	//关闭数据库连接
@@ -40,7 +40,7 @@ int MysqlWrapper::Connect(const char* szDbIp, const char* szUser,
 		ERRMSG2("%s", mysql_error(&m_connection));
 		return -1;
 	}
-	printf("[mysql] conn to %s [user:%s] succ!\r\n", szDbIp, szUser);
+	printf("[mysql] conn to %s [user:%s] success!\r\n", szDbIp, szUser);
 	//设置连接标志为 true
 	SetConnected(true);
 	return 0;

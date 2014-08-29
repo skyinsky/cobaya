@@ -1,3 +1,6 @@
+Mysql安装
+=========
+
 1.首先安装Mysql服务器
 sudo apt-get install mysql-server
 
@@ -11,20 +14,27 @@ sudo /etc/init.d/mysql restart
 sudo netstat -tap | grep mysql
 
 5.既然服务器已经启动了,我们登录进去看看吧
-mysql -u root -p
 其中,root为默认的Mysql数据库管理员账户,回车之后应该输入密码,相信密码在安装时你已经设置过了,如果你没设置的话,默认密码为空,因此直接敲回车就可以了,或者还有一个默认密码是db_user_password.
+mysql -u root -p
+
 6.下面的命令是用来修改密码的
 sudo mysqladmin -u root password newpassword
-进了Mysql之后,你可以拿本诸如Mysql宝典之类的书练练手了.
-在Linux下使用C/C++链接Mysql
+
+Linux下使用C/C++链接Mysql
+=========================
+
 1.安装必需的开发包
 sudo apt-get install gcc g++ libgcc1 libg++ make gdb
+
 2.安装Mysql的C语言开发包(放心,C++一样用的)
 sudo apt-get install libmysql++2c2a libmysqlclient15-dev libmysqlclient15off libmysql++-dev
-你也可以到新立得里去找
+sudo apt-get install libmysql++-dev libmysql++-doc libmysqlclient-dev
+
 3.把lib文件复制到库里
 sudo cp /usr/lib/mysql/* /usr/lib/
+
 现在,你已经可以使用C/C++链接Mysql了,但是,接下来你必须接受一个残酷的事实,以后编写C/C++程序时,你必须包含mysql.h文件
 #include “mysql/mysql.h”
+
 4.而且,要编译文件,你只能在命令行下敲下如下代码
 g++ src.cc -o src.out -L/usr/lib/mysql -lmysqlclient -lz
