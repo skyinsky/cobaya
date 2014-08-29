@@ -1,10 +1,3 @@
-/*
- * encapsulation_mysql.cpp
- *
- *  Created on: 2013-3-28
- *      Author: holy
- */
-
 #include <stdio.h>
 #include <string>
 #include <string.h>
@@ -19,24 +12,23 @@
 #include <sys/types.h>
 #include "encapsulation_mysql.h"
 
-using namespace std;
-using namespace EncapMysql;
+namespace cobaya {
 
-CEncapMysql::CEncapMysql() {
+MysqlWrapper::CEncapMysql() {
 	SetConnected(false);
 	//把结果集置为空
 	m_result = NULL;
 	//初始化连接
 	mysql_init(&m_connection);
 }
-CEncapMysql::~CEncapMysql() {
+MysqlWrapper::~CEncapMysql() {
 	//释放上一次的结果集
 	FreePreResult();
 	//关闭数据库连接
 	CloseConnect();
 }
 
-int CEncapMysql::Connect(const char* szDbIp, const char* szUser,
+int MysqlWrapper::Connect(const char* szDbIp, const char* szUser,
 		const char* szPassword) {
 	SaveParam(szDbIp, szUser, szPassword);
 	//先判断是否已经连接了, 防止重复连接
@@ -54,13 +46,13 @@ int CEncapMysql::Connect(const char* szDbIp, const char* szUser,
 	return 0;
 }
 
-void CEncapMysql::CloseConnect() {
+void MysqlWrapper::CloseConnect() {
 	//不论m_connection曾经是否连接过， 这样关闭都不会有问题
 	mysql_close(&m_connection);
 	SetConnected(false);
 }
 
-int CEncapMysql::SelectQuery(const char* szSQL) {
+int MysqlWrapper::SelectQuery(const char* szSQL) {
 	//如果查询串是空指针,则返回
 	if (szSQL == NULL) {
 		ERRMSG2("%s", "szSQL==NULL");
@@ -112,7 +104,7 @@ int CEncapMysql::SelectQuery(const char* szSQL) {
 	return 0;
 }
 
-int CEncapMysql::ModifyQuery(const char* szSQL) {
+int MysqlWrapper::ModifyQuery(const char* szSQL) {
 	//如果查询串是空指针,则返回
 	if (szSQL == NULL) {
 		ERRMSG2("%s", "szSQL==NULL");
@@ -138,7 +130,7 @@ int CEncapMysql::ModifyQuery(const char* szSQL) {
 	return 0;
 }
 
-char** CEncapMysql::FetchRow() {
+char** MysqlWrapper::FetchRow() {
 	//如果结果集为空,则直接返回空; 调用FetchRow之前, 必须先调用 SelectQuery(...)
 	if (m_result == NULL)
 		return NULL;
@@ -147,18 +139,18 @@ char** CEncapMysql::FetchRow() {
 	return m_row;
 }
 
-char* CEncapMysql::GetField(const char* szFieldName) {
+char* MysqlWrapper::GetField(const char* szFieldName) {
 	return GetField(m_mapFieldNameIndex[szFieldName]);
 }
 
-char* CEncapMysql::GetField(unsigned int iFieldIndex) {
+char* MysqlWrapper::GetField(unsigned int iFieldIndex) {
 	//防止索引超出范围
 	if (iFieldIndex >= m_iFields)
 		return NULL;
 	return m_row[iFieldIndex];
 }
 
-void CEncapMysql::FreePreResult() {
+void MysqlWrapper::FreePreResult() {
 
 	if (m_result != NULL) {
 		mysql_free_result(m_result);
@@ -166,26 +158,26 @@ void CEncapMysql::FreePreResult() {
 	}
 }
 
-const char* CEncapMysql::GetErrMsg() {
+const char* MysqlWrapper::GetErrMsg() {
 	return m_szErrMsg;
 }
 
-bool CEncapMysql::IsConnected() {
+bool MysqlWrapper::IsConnected() {
 	return m_bConnected;
 }
 
-void CEncapMysql::SetConnected(bool bTrueFalse) {
+void MysqlWrapper::SetConnected(bool bTrueFalse) {
 	m_bConnected = bTrueFalse;
 }
 
-void CEncapMysql::SaveParam(const char* szDbIp, const char* szUser,
+void MysqlWrapper::SaveParam(const char* szDbIp, const char* szUser,
 		const char* szPassword) {
 	m_sDbIp = szDbIp; //数据库服务器IP
 	m_sUser = szUser; //用户名
 	m_sPassword = szPassword; //口令
 }
 
-int CEncapMysql::ReConnect() {
+int MysqlWrapper::ReConnect() {
 	CloseConnect();
 	//连接数据库
 	if (mysql_real_connect(&m_connection, m_sDbIp.c_str(), m_sUser.c_str(),
@@ -198,13 +190,16 @@ int CEncapMysql::ReConnect() {
 	return 0;
 }
 /////////////////////////  连接池那个类需要用到这3个函数。
-void CEncapMysql::SetUsed() {
+void MysqlWrapper::SetUsed() {
 	m_bUseIdle = true;
 }
-void CEncapMysql::SetIdle() {
+void MysqlWrapper::SetIdle() {
 	m_bUseIdle = false;
 }
+
 //如果空闲，返回true
-bool CEncapMysql::IsIdle() {
+bool MysqlWrapper::IsIdle() {
 	return !m_bUseIdle;
 }
+
+} // namespace cobaya

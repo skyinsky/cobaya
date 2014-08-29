@@ -1,17 +1,13 @@
-/*
- * main.cpp
- *
- *  Created on: 2013-3-26
- *      Author: holy
- */
+#include <stdlib.h>
+#include <stdio.h>
 
-#include "encapsulation_mysql.h"
+#include "mysql_wapper.h"
 
-using EncapMysql::CEncapMysql;
+using namespace cobaya;
 
 int main(int argc, char *argv[]) {
-	CEncapMysql *con;
-	con = new CEncapMysql;
+	MysqlWrapper *con;
+	con = new MysqlWrapper;
 	con->Connect("127.0.0.1", "root", "123456");
 	con->SelectQuery("select * from holy.student");
 	while (char** r = con->FetchRow())

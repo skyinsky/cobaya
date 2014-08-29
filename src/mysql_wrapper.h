@@ -1,12 +1,5 @@
-/*
- * encapsulation_mysql.h
- *
- *  Created on: 2013-3-28
- *      Author: holy
- */
-
-#ifndef ENCAPSULATION_MYSQL_H_
-#define ENCAPSULATION_MYSQL_H_
+#ifndef _MYSQL_WRAPPER_H
+#define _MYSQL_WRAPPER_H
 
 #include <iostream>
 #include <cassert>
@@ -25,20 +18,23 @@
 #include <dlfcn.h>
 #include <mysql/mysql.h>
 
+namespace cobaya {
+
 using namespace std;
 
-#define ERRMSG1(fmt,...)  ; sprintf(m_szErrMsg, fmt, __VA_ARGS__);
-#define ERRMSG2(fmt,args...)  ; sprintf(m_szErrMsg, "[%s 第 %d 行 ]; "fmt"\r\n" , __FILE__, __LINE__, ##args);
-namespace EncapMysql {
+#define ERRMSG1(fmt,...) \
+	sprintf(m_szErrMsg, fmt, __VA_ARGS__)
+#define ERRMSG2(fmt, args...) \
+	sprintf(m_szErrMsg, "[%s 第 %d 行 ]; "fmt"\r\n" , __FILE__, __LINE__, ##args)
 
-class CEncapMysql {
+class MysqlWrapper {
 	typedef map<string, int> MapFieldNameIndex;
 public:
-	CEncapMysql();
-	~CEncapMysql();
+	MysqlWrapper();
+	~MysqlWrapper();
 public:
 
-	int Connect(const char* szDbIp, const char* szUser, const char* szPassword);
+	int Connect(const char *ip, const char *user, const char *passwd);
 
 	void CloseConnect();
 
@@ -90,6 +86,7 @@ private:
 	string m_sUser; //用户名
 	string m_sPassword; //口令
 };
-} //end of namespace  EncapMysql
 
-#endif /* ENCAPSULATION_MYSQL_H_ */
+} // namespace cobaya
+
+#endif /* _MYSQL_WRAPPER_H */
