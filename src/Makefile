@@ -17,7 +17,7 @@ OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
 
 # Variables for specific target
 cobaya_SOURCES = $(wildcard *.cc) $(wildcard $(DST_PROTO_DIR)/*.cc)
-cobaya_CXXFLAGS= -I../../../ -Wno-pointer-arith -fpermissive
+cobaya_CXXFLAGS= -I../ -Wno-pointer-arith -fpermissive
 #cobaya_LDFLAGS = -L../util
 cobaya_LDLIBS  = -lprotobuf
 #cobaya_RPATHS  = ../util
