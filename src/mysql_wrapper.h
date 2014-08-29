@@ -72,19 +72,27 @@ private:
 			const char* szPassword);
 
 public:
-	bool m_bConnected;    //数据库连接了吗?   true--已经连接;  false--还没有连接
-	char m_szErrMsg[1024]; //函数出错后, 错误信息放在此处
-	int m_iFields; //字段个数
-	MapFieldNameIndex m_mapFieldNameIndex; //是一个map,  key是字段名,  value是字段索引
+	/* 数据库连接了吗?   true--已经连接;  false--还没有连接 */
+	bool m_bConnected;
+
+	/* 函数出错后, 错误信息放在此处 */
+	char m_szErrMsg[1024];
+
+	/* 字段个数 */
+	int m_iFields;
+
+	/* 是一个map,  key是字段名,  value是字段索引 */
+	MapFieldNameIndex m_mapFieldNameIndex;
+
 public:
-	MYSQL m_connection; //连接
-	MYSQL_RES* m_result; //结果集指针
-	MYSQL_ROW m_row; //一行,  typedef char **MYSQL_ROW;
+	MYSQL m_connection;	//连接
+	MYSQL_RES* m_result;	//结果集指针
+	MYSQL_ROW m_row;	//一行,  typedef char **MYSQL_ROW;
 
 private:
-	string m_sDbIp; //数据库服务器IP
-	string m_sUser; //用户名
-	string m_sPassword; //口令
+	string m_sDbIp;		//数据库服务器IP
+	string m_sUser;		//用户名
+	string m_sPassword;	//口令
 };
 
 } // namespace cobaya
