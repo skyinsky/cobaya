@@ -18,6 +18,45 @@ extern "C" {
 
 #define ARRAY_SIZE(x) (sizeof(x) / sizeof(*(x)))
 
+/**
+ * Check if a branch is likely to be taken.
+ *
+ * This compiler builtin allows the developer to indicate
+ * if a branch is likely to be taken. Example:
+ *
+ *   if (likely(x > 1))
+ *      do_stuff();
+ */
+#ifndef likely
+#define likely(x)  __builtin_expect((x),1)
+#endif
+
+/**
+ * Check if a branch is unlikely to be taken.
+ *
+ * This compiler builtin allows the developer to indicate
+ * if a branch is unlikely to be taken. Example:
+ *
+ *   if (unlikely(x < 1))
+ *      do_stuff();
+ */
+#ifndef unlikely
+#define unlikely(x)  __builtin_expect((x),0)
+#endif
+
+#ifdef __SSE2__
+#include <emmintrin.h>
+/**
+ * PAUSE instruction for tight loops (avoid busy waiting)
+ */
+static inline void mm_pause (void)
+{
+	_mm_pause();
+}
+#else
+static inline void mm_pause(void) { }
+#endif
+
 #ifdef __cplusplus
 }
 #endif
