@@ -1,5 +1,5 @@
-#ifndef _LIBTOOLKIT___ALL_H
-#define _LIBTOOLKIT___ALL_H
+#ifndef _LIBTOOLKIT_ALL_H
+#define _LIBTOOLKIT_ALL_H
 
 #include "asm/config.h"
 #include "asm/barrier.h"
@@ -14,5 +14,6 @@
 #include "spinlock.h"
 #include "rwlock.h"
 #include "list.h"
+#include "daemon.h"
 
-#endif /* _LIBTOOLKIT___ALL_H */
+#endif /* _LIBTOOLKIT_ALL_H */
