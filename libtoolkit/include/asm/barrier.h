@@ -60,6 +60,24 @@ extern "C" {
 		asm volatile ("" : : : "memory");	\
 	} while(0)
 
+#ifdef CONFIG_SMP
+#define smp_mb()	mb()
+#ifdef CONFIG_X86_PPRO_FENCE
+# define smp_rmb()	rmb()
+#else
+# define smp_rmb()	barrier()
+#endif
+#ifdef CONFIG_X86_OOSTORE
+# define smp_wmb() 	wmb()
+#else
+# define smp_wmb()	barrier()
+#endif
+#else
+#define smp_mb()	barrier()
+#define smp_rmb()	barrier()
+#define smp_wmb()	barrier()
+#endif
+
 #ifdef __cplusplus
 }
 #endif
