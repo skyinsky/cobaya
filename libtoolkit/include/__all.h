@@ -15,5 +15,6 @@
 #include "rwlock.h"
 #include "list.h"
 #include "daemon.h"
+#include "log2.h"
 
 #endif /* _LIBTOOLKIT_ALL_H */
