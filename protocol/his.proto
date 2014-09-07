@@ -1,0 +1,11 @@
+package cobaya.proto;
+
+import "common.proto";
+
+message StartFlow {
+	required OpType type = 1;
+
+	/* 病人检查流程唯一号 */
+	required uint64 num = 2;
+
+}
