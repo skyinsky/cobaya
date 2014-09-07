@@ -38,3 +38,14 @@ sudo cp /usr/lib/mysql/* /usr/lib/
 
 4.而且,要编译文件,你只能在命令行下敲下如下代码
 g++ src.cc -o src.out -L/usr/lib/mysql -lmysqlclient -lz
+
+mysql字符集设置
+==============
+且现在建立的表默认字符集都是latin1. 和5.0/5.1版本不一样, 早期版本编译时指定默认字符集是起作用的.
+为了解决这个问题, 一定要在my.cnf配置文件里指定如下参数才行:
+[client]
+default-character-set = gbk
+[mysqld]
+character-set-server = gbk
+然后重启mysqld, 此时默认字符集才正确:
+mysql>show variables like 'character%';
