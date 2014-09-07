@@ -1,19 +1,27 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
 #include "mysql_wrapper.h"
+#include "rpc.h"
 
 int main(int argc, char *argv[])
 {
 	using namespace cobaya;
 
-	MysqlWrapper *con;
+	int res;
 
-	con = new MysqlWrapper;
-	con->Connect("127.0.0.1", "root", "123456");
-	con->SelectQuery("select * from holy.student");
+	RpcServer server;
+	
+	res = server.Init();
+	res = server.AddEndpoint("127.0.0.1", 44333);
+	res = server.CreateThreadPool(4);
+	res = server.StartServer();
+	
+	// Wait for clients.
+	std::cout << "Press Enter to exit." << std::endl;
+	std::cin.get();
 
-	while (char** r = con->FetchRow())
-		printf("%s\t%s\t%s\n", r[0], r[1], r[2]);
+	server.StopServer();
 
 	return 0;
 }

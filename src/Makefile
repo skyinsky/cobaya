@@ -17,7 +17,7 @@ OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
 
 # Variables for specific target
 cobaya_SOURCES = $(wildcard *.cc) $(wildcard $(DST_PROTO_DIR)/*.cc)
-cobaya_CXXFLAGS= -I../ -Wno-pointer-arith -fpermissive
+cobaya_CXXFLAGS= -I../ -I../librcfproto/RCF/include -Wno-pointer-arith -fpermissive
 cobaya_LDFLAGS = -L/usr/lib/mysql -L../librcfproto
 cobaya_LDLIBS  = -lprotobuf -lmysqlclient -lrcfproto
 #cobaya_RPATHS  = ../util
@@ -34,8 +34,7 @@ include /home/s/share/topmk/topmk.all
 # Do not place any rules or targets above this line
 
 # protocol files
-PROTOCOL_SRC = $(SRC_PROTO_DIR)/cobaya_client.proto \
-	       $(SRC_PROTO_DIR)/cobaya_external.proto
+PROTOCOL_SRC = $(SRC_PROTO_DIR)/test.proto
 
 # temporary protocol
 $(DST_PROTO_DIR): $(PROTOCOL_SRC)

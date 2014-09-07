@@ -4,6 +4,8 @@
 
 #include "cache.h"
 
+namespace cobaya {
+
 const int initial_pool_size = 64;
 
 cache_t* cache_create(const char *name, size_t bufsize, size_t align,
@@ -94,4 +96,6 @@ void cache_free(cache_t *cache, void *ptr) {
     }
     pthread_mutex_unlock(&cache->mutex);
 }
+
+} // namespace cobaya
 

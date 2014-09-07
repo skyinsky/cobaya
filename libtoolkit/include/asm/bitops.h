@@ -389,17 +389,17 @@ static inline unsigned long __fls(unsigned long word)
 }
 
 /**
- * ffs - find first set bit in word
+ * kffs - find first set bit in word
  * @x: the word to search
  *
  * This is defined the same way as the libc and compiler builtin ffs
  * routines, therefore differs in spirit from the other bitops.
  *
- * ffs(value) returns 0 if value is 0 or the position of the first
+ * kffs(value) returns 0 if value is 0 or the position of the first
  * set bit if value is nonzero. The first (least significant) bit
  * is at position 1.
  */
-static inline int ffs(int x)
+static inline int ffs32(int x)
 {
 	int r;
 #ifdef CONFIG_X86_CMOV
@@ -426,7 +426,7 @@ static inline int ffs(int x)
  * set bit if value is nonzero. The last (most significant) bit is
  * at position 32.
  */
-static inline int fls(int x)
+static inline int fls32(int x)
 {
 	int r;
 #ifdef CONFIG_X86_CMOV

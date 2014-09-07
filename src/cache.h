@@ -1,6 +1,9 @@
 #ifndef _CACHE_H
 #define _CACHE_H
+
 #include <pthread.h>
+
+namespace cobaya {
 
 /**
  * Constructor used to initialize allocated objects
@@ -95,5 +98,7 @@ void* cache_alloc(cache_t* handle);
  * @param ptr pointer to the object to return.
  */
 void cache_free(cache_t* handle, void* ptr);
+
+} // namesapce cobaya
 
 #endif /* _CACHE_H */

@@ -24,7 +24,7 @@ static inline int get_bitmask_order(unsigned int count)
 {
 	int order;
 
-	order = fls(count);
+	order = fls32(count);
 	return order;	/* We could be slightly more clever with -1 here... */
 }
 
@@ -32,7 +32,7 @@ static inline int get_count_order(unsigned int count)
 {
 	int order;
 
-	order = fls(count) - 1;
+	order = fls32(count) - 1;
 	if (count & (count - 1))
 		order++;
 	return order;
@@ -101,7 +101,7 @@ static inline __u8 ror8(__u8 word, unsigned int shift)
 static inline unsigned fls_long(unsigned long l)
 {
 	if (sizeof(l) == 4)
-		return fls(l);
+		return fls32(l);
 	return fls64(l);
 }
 
