@@ -18,8 +18,8 @@ OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
 # Variables for specific target
 cobaya_SOURCES = $(wildcard *.cc) $(wildcard $(DST_PROTO_DIR)/*.cc)
 cobaya_CXXFLAGS= -I../ -I../librcfproto/RCF/include -Wno-pointer-arith -fpermissive
-cobaya_LDFLAGS = -L/usr/lib/mysql -L../librcfproto
-cobaya_LDLIBS  = -lprotobuf -lmysqlclient -lrcfproto
+cobaya_LDFLAGS = -L/usr/lib/mysql -L../librcfproto -L../libiniparser
+cobaya_LDLIBS  = -lprotobuf -lmysqlclient -lrcfproto -liniparser
 #cobaya_RPATHS  = ../util
 
 # Optional local files to be removed when making 'clean'
