@@ -34,14 +34,16 @@ int prepare_config(const char *path)
 	ini = config._ini;
 
 	config.daemon = iniparser_getboolean(ini, "cobaya:daemon", -1);
+	config.worker = iniparser_getint(ini, "cobaya:worker", -1);
 
 	config.rpc_ip = iniparser_getstring(ini, "rpc:ip", NULL);
 	config.rpc_port = iniparser_getint(ini, "rpc:port", -1);
-	config.rpc_worker = iniparser_getint(ini, "rpc:worker", -1);
 
 	config.mysql_ip = iniparser_getstring(ini, "mysql:ip", NULL);
 	config.mysql_user = iniparser_getstring(ini, "mysql:user", NULL);
 	config.mysql_passwd = iniparser_getstring(ini, "mysql:passwd", NULL);
+
+	config.client_timeout = iniparser_getint(ini, "client:timeout", -1);
 
 	return 0;
 }
@@ -50,7 +52,7 @@ int prepare_server(Config *conf)
 {
 	DUMP_CALL(server.Init());
 	DUMP_CALL(server.AddEndpoint(conf->rpc_ip, conf->rpc_port));
-	DUMP_CALL(server.CreateThreadPool(conf->rpc_worker));
+	DUMP_CALL(server.CreateThreadPool(conf->worker));
 	DUMP_CALL(server.StartServer());
 
 	return 0;
