@@ -18,8 +18,7 @@ namespace cobaya {
 		kref_put(&this->ref,	\
 			 release);	\
 	}				\
-	kref ref			\
-};
+	kref ref
 
 #define DEV_CODE	10
 #define DEV_NAME	20
