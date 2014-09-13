@@ -13,6 +13,7 @@
 #define _LIBTOOLKIT_LOG2_H
 
 #include <linux/types.h>
+#include <stdbool.h>
 #include "bitops.h"
 
 #ifdef __cplusplus
@@ -26,13 +27,13 @@ extern __attribute__((const, noreturn))
 int ____ilog2_NaN(void);
 
 static inline __attribute__((const))
-int __ilog2_u32(u32 n)
+int __ilog2_u32(__u32 n)
 {
-	return fls(n) - 1;
+	return fls32(n) - 1;
 }
 
 static inline __attribute__((const))
-int __ilog2_u64(u64 n)
+int __ilog2_u64(__u64 n)
 {
 	return fls64(n) - 1;
 }

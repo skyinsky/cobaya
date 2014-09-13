@@ -3,8 +3,8 @@
 
 #include "asm/config.h"
 #include "asm/barrier.h"
-#include "common.h"
 #include "poison.h"
+#include "common.h"
 #include "byteorder.h"
 #include "cache.h"
 #include "prefetch.h"
@@ -16,5 +16,7 @@
 #include "list.h"
 #include "daemon.h"
 #include "log2.h"
+#include "bug.h"
+#include "kfifo.h"
 
 #endif /* _LIBTOOLKIT_ALL_H */

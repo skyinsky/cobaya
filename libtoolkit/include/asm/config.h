@@ -15,6 +15,9 @@ extern "C" {
 /* defined for using intrinsics implementation */
 #undef	CONFIG_FORCE_INTRINSICS
 
+/* debug log config */
+#undef  CONFIG_DEBUG
+
 #ifdef __cplusplus
 }
 #endif

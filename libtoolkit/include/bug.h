@@ -3,12 +3,37 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "common.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/*
+#ifdef __GNUC__
+#define _CHECK_FMT(a,b) __attribute__((format(printf, a, b)))
+#else
+#define _CHECK_FMT(a,b)
+#endif
+
+#define _LOG_DEBUG	0
+#define _LOG_ERR	1
+#define _LOG_MSG	2	
+#define _LOG_WARN	3	
+
+void log_err(int eval, const char *fmt, ...) _CHECK_FMT(2,3);
+void log_warn(const char *fmt, ...) _CHECK_FMT(1,2);
+
+void log_errx(int eval, const char *fmt, ...) _CHECK_FMT(2,3);
+void log_msgx(const char *fmt, ...) _CHECK_FMT(1,2);
+void log_warnx(const char *fmt, ...) _CHECK_FMT(1,2);
+
+#ifdef CONFIG_DEBUG
+void log_debug(const char *fmt, ...) _CHECK_FMT(1,2);
+#else
+#define log_debug(x) do { } while (0)
+#endif
+
+/**
  * Don't use BUG() or BUG_ON() unless there's really no way out; one
  * example might be detecting data structure corruption in the middle
  * of an operation that can't be backed out of.  If the (sub)system
@@ -19,150 +44,47 @@ extern "C" {
  * really the *only* solution?  There are usually better options, where
  * users don't need to reboot ASAP and can mostly shut down cleanly.
  */
-#define BUG()							\
-do { 								\
-	perror("BUG: failure at %s:%d/%s()!\n", __FILE__, __LINE__, __func__); \
-	exit(EXIT_FAILURE);
+#define BUG()					\
+do { 						\
+	log_errx(_LOG_ERR, "%s:%d/%s()!\n",	\
+		__FILE__, __LINE__, __func__); 	\
 } while (0)
-#endif
 
-#ifndef HAVE_ARCH_BUG_ON
 #define BUG_ON(condition) do { if (unlikely(condition)) BUG(); } while(0)
-#endif
 
-#define __WARN_RATELIMIT(condition, state, format...)		\
-({								\
-	int rtn = 0;						\
-	if (unlikely(__ratelimit(state)))			\
-		rtn = WARN(condition, format);			\
-	rtn;							\
-})
-
-#define WARN_RATELIMIT(condition, format...)			\
-({								\
-	static DEFINE_RATELIMIT_STATE(_rs,			\
-				      DEFAULT_RATELIMIT_INTERVAL,	\
-				      DEFAULT_RATELIMIT_BURST);	\
-	__WARN_RATELIMIT(condition, &_rs, format);		\
-})
-
-/*
- * WARN(), WARN_ON(), WARN_ON_ONCE, and so on can be used to report
- * significant issues that need prompt attention if they should ever
- * appear at runtime.  Use the versions with printk format strings
- * to provide better diagnostics.
+/**
+ * Callback function used to intercept internal's log messages.
+ * @param level
+ * 	refer to _LOG_XXX
+ * @param msg
+ * 	log msg
+ * @see
+ * 	set_log_callback
  */
-#ifndef __WARN_TAINT
-#ifndef __ASSEMBLY__
-extern void warn_slowpath_fmt(const char *file, const int line,
-		const char *fmt, ...) __attribute__((format(printf, 3, 4)));
-extern void warn_slowpath_fmt_taint(const char *file, const int line,
-				    unsigned taint, const char *fmt, ...)
-	__attribute__((format(printf, 4, 5)));
-extern void warn_slowpath_null(const char *file, const int line);
-#define WANT_WARN_ON_SLOWPATH
-#endif
-#define __WARN()		warn_slowpath_null(__FILE__, __LINE__)
-#define __WARN_printf(arg...)	warn_slowpath_fmt(__FILE__, __LINE__, arg)
-#define __WARN_printf_taint(taint, arg...)				\
-	warn_slowpath_fmt_taint(__FILE__, __LINE__, taint, arg)
-#else
-#define __WARN()		__WARN_TAINT(TAINT_WARN)
-#define __WARN_printf(arg...)	do { printk(arg); __WARN(); } while (0)
-#define __WARN_printf_taint(taint, arg...)				\
-	do { printk(arg); __WARN_TAINT(taint); } while (0)
-#endif
+typedef void (*log_callback)(int level, const char *msg);
 
-#ifndef WARN_ON
-#define WARN_ON(condition) ({						\
-	int __ret_warn_on = !!(condition);				\
-	if (unlikely(__ret_warn_on))					\
-		__WARN();						\
-	unlikely(__ret_warn_on);					\
-})
-#endif
+/** Redirect internal's log messages */
+void set_log_callback(log_callback cb);
 
-#ifndef WARN
-#define WARN(condition, format...) ({						\
-	int __ret_warn_on = !!(condition);				\
-	if (unlikely(__ret_warn_on))					\
-		__WARN_printf(format);					\
-	unlikely(__ret_warn_on);					\
-})
-#endif
+/**
+ * Function to be called when occur a fatal error.
+ * @param status
+ * 	refer to 'exit()'
+ * @see
+ * 	set_fatal_callback
+ */
+typedef void (*exit_callback)(int status);
 
-#define WARN_TAINT(condition, taint, format...) ({			\
-	int __ret_warn_on = !!(condition);				\
-	if (unlikely(__ret_warn_on))					\
-		__WARN_printf_taint(taint, format);			\
-	unlikely(__ret_warn_on);					\
-})
+/**
+ * Override the internal fatal behavior.
+ *
+ * By default, call exit(EXIT_FAILURE) if a error makes it impossible
+ * to continue correct operation.  This function allows you to supply
+ * another callback instead.
+ */
+void set_exit_callback(exit_callback cb);
 
-#else /* !CONFIG_BUG */
-#ifndef HAVE_ARCH_BUG
-#define BUG() do {} while(0)
-#endif
-
-#ifndef HAVE_ARCH_BUG_ON
-#define BUG_ON(condition) do { if (condition) ; } while(0)
-#endif
-
-#ifndef HAVE_ARCH_WARN_ON
-#define WARN_ON(condition) ({						\
-	int __ret_warn_on = !!(condition);				\
-	unlikely(__ret_warn_on);					\
-})
-#endif
-
-#ifndef WARN
-#define WARN(condition, format...) ({					\
-	int __ret_warn_on = !!(condition);				\
-	unlikely(__ret_warn_on);					\
-})
-#endif
-
-#define WARN_TAINT(condition, taint, format...) WARN_ON(condition)
-
-#endif
-
-#define WARN_ON_ONCE(condition)	({				\
-	static bool __warned;					\
-	int __ret_warn_once = !!(condition);			\
-								\
-	if (unlikely(__ret_warn_once))				\
-		if (WARN_ON(!__warned)) 			\
-			__warned = true;			\
-	unlikely(__ret_warn_once);				\
-})
-
-#define WARN_ONCE(condition, format...)	({			\
-	static bool __warned;					\
-	int __ret_warn_once = !!(condition);			\
-								\
-	if (unlikely(__ret_warn_once))				\
-		if (WARN(!__warned, format)) 			\
-			__warned = true;			\
-	unlikely(__ret_warn_once);				\
-})
-
-#define WARN_TAINT_ONCE(condition, taint, format...)	({	\
-	static bool __warned;					\
-	int __ret_warn_once = !!(condition);			\
-								\
-	if (unlikely(__ret_warn_once))				\
-		if (WARN_TAINT(!__warned, taint, format))	\
-			__warned = true;			\
-	unlikely(__ret_warn_once);				\
-})
-
-#define WARN_ON_RATELIMIT(condition, state)			\
-		WARN_ON((condition) && __ratelimit(state))
-
-#ifdef CONFIG_SMP
-# define WARN_ON_SMP(x)			WARN_ON(x)
-#else
-# define WARN_ON_SMP(x)			do { } while (0)
-#endif
+#undef _CHECK_FMT
 
 #ifdef __cplusplus
 }
