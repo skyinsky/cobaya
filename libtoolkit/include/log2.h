@@ -201,4 +201,8 @@ unsigned long __rounddown_pow_of_two(unsigned long n)
 
 #define order_base_2(n) ilog2(roundup_pow_of_two(n))
 
+#ifdef __cplusplus
+}
+#endif
+
 #endif /* _LIBTOOLKIT_LOG2_H */

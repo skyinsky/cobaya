@@ -18,5 +18,7 @@
 #include "log2.h"
 #include "bug.h"
 #include "kfifo.h"
+#include "wait.h"
+#include "completion.h"
 
 #endif /* _LIBTOOLKIT_ALL_H */

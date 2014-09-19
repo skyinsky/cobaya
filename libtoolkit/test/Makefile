@@ -1,22 +1,18 @@
 include /home/s/share/topmk/topmk.def
+# List of target files to be build
+TARGETS = wait
 
-# Root directory
-ROOT = .
-
-# List of targets to be build
-TARGETS = libtoolkit.a
+# Target specific variables
+wait_SOURCES = $(wildcard *.cc)
+wait_CXXFLAGS= -I../include -Wno-pointer-arith -fpermissive
+wait_LDFLAGS = -L../src
+wait_LDLIBS  = -ltoolkit
+wait_RPATHS  = 
 
 # Variables affecting global compiler flags
 DEBUGING = -g # Comment this line for non-debugging code
 OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
-WARNINGS+= -Werror # Comment this line if warning is a problem
-
-# Variables for specific target
-libtoolkit.a_SOURCES = $(wildcard *.c)
-libtoolkit.a_CFLAGS  = -I../include -fPIC
-#libtoolkit.a_LDFLAGS = -L../util
-libtoolkit.a_LDLIBS  = -pthread -lrt -lm
-#libtoolkit.a_RPATHS  = ../libtoolkit
+WARNINGS= #-Werror # Comment this line if warning is a problem
 
 # Optional local files to be removed when making 'clean'
 # Objects and libraries are taken care of, they do *not* need to be set here
@@ -28,4 +24,3 @@ SUBDIRS =
 # Do not add any build rules until *after* the include of topmk.all
 include /home/s/share/topmk/topmk.all
 # Do not place any rules or targets above this line
-

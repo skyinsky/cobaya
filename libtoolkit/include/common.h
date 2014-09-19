@@ -1,6 +1,8 @@
 #ifndef _LIBTOOLKIT_COMMON_H
 #define _LIBTOOLKIT_COMMON_H
 
+#include <stddef.h>
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -10,12 +12,18 @@ extern "C" {
  * strict type-checking.. See the
  * "unnecessary" pointer comparison.
  */
+#ifdef min
+#undef min
+#endif
 #define min(x, y) ({				\
 	typeof(x) _min1 = (x);			\
 	typeof(y) _min2 = (y);			\
 	(void) (&_min1 == &_min2);		\
 	_min1 < _min2 ? _min1 : _min2; })
 
+#ifdef max
+#undef max
+#endif
 #define max(x, y) ({				\
 	typeof(x) _max1 = (x);			\
 	typeof(y) _max2 = (y);			\
@@ -94,6 +102,9 @@ extern "C" {
 /*
  * swap - swap value of @a and @b
  */
+#ifdef swap
+#undef swap
+#endif
 #define swap(a, b) \
 	do { typeof(a) __tmp = (a); (a) = (b); (b) = __tmp; } while (0)
 

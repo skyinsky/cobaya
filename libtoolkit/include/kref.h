@@ -37,9 +37,9 @@ struct kref {
  * kref_init - initialize object.
  * @kref: object in question.
  */
-void kref_init(struct kref *kref)
+inline void kref_init(struct kref *kref)
 {
-	atomic_set(&kref->refcount, 1);
+	atomic32_set(&kref->refcount, 1);
 	smp_mb();
 }
 
@@ -50,9 +50,9 @@ void kref_init(struct kref *kref)
  * NOTE: If refcount was 0 before incrementing then we have a race
  * condition when this kref is freeing by some other thread right now.
  */
-void kref_get(struct kref *kref)
+inline void kref_get(struct kref *kref)
 {
-	atomic_inc(&kref->refcount);
+	atomic32_inc(&kref->refcount);
 	smp_mb__after_atomic_inc();
 }
 
@@ -70,7 +70,7 @@ void kref_get(struct kref *kref)
  * memory.  Only use the return value if you want to see if the kref is now
  * gone, not present.
  */
-int kref_put(struct kref *kref, void (*release)(struct kref *kref))
+inline int kref_put(struct kref *kref, void (*release)(struct kref *kref))
 {
 	assert(release != NULL);
 

@@ -18,6 +18,9 @@ extern "C" {
 /* debug log config */
 #undef  CONFIG_DEBUG
 
+/* gcc */
+#define CONFIG_GCC_4_4
+
 #ifdef __cplusplus
 }
 #endif
