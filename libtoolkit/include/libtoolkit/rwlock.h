@@ -46,9 +46,9 @@
  *
  */
 
-#include "asm/config.h"
-#include "common.h"
-#include "atomic.h"
+#include <libtoolkit/asm/config.h>
+#include <libtoolkit/common.h>
+#include <libtoolkit/atomic.h>
 
 #ifdef __cplusplus
 extern "C" {

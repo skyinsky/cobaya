@@ -22,10 +22,10 @@
 
 #include <stdlib.h>
 #include <errno.h>
-#include "kfifo.h"
-#include "log2.h"
-#include "bug.h"
-#include "memcpy.h"
+#include <string.h>
+#include <libtoolkit/kfifo.h>
+#include <libtoolkit/log2.h>
+#include <libtoolkit/bug.h>
 
 static void _kfifo_init(struct kfifo *fifo, void *buffer,
 			unsigned int size)
@@ -125,11 +125,11 @@ static inline void __kfifo_in_data(struct kfifo *fifo,
 	off = __kfifo_off(fifo, fifo->in + off);
 
 	/* first put the data starting from fifo->in to buffer end */
-	l = min(len, fifo->size - off);
-	sse_memcpy(fifo->buffer + off, from, l);
+	l = kit_min(len, fifo->size - off);
+	memcpy(fifo->buffer + off, from, l);
 
 	/* then put the rest (if any) at the beginning of the buffer */
-	sse_memcpy(fifo->buffer, from + l, len - l);
+	memcpy(fifo->buffer, from + l, len - l);
 }
 
 static inline void __kfifo_out_data(struct kfifo *fifo,
@@ -147,11 +147,11 @@ static inline void __kfifo_out_data(struct kfifo *fifo,
 	off = __kfifo_off(fifo, fifo->out + off);
 
 	/* first get the data from fifo->out until the end of the buffer */
-	l = min(len, fifo->size - off);
-	sse_memcpy(to, fifo->buffer + off, l);
+	l = kit_min(len, fifo->size - off);
+	memcpy(to, fifo->buffer + off, l);
 
 	/* then get the rest (if any) from the beginning of the buffer */
-	sse_memcpy(to + l, fifo->buffer, len - l);
+	memcpy(to + l, fifo->buffer, len - l);
 }
 
 unsigned int __kfifo_in_n(struct kfifo *fifo,
@@ -179,7 +179,7 @@ unsigned int __kfifo_in_n(struct kfifo *fifo,
  */
 unsigned int kfifo_in(struct kfifo *fifo, const void *from, unsigned int len)
 {
-	len = min(kfifo_avail(fifo), len);
+	len = kit_min(kfifo_avail(fifo), len);
 
 	__kfifo_in_data(fifo, from, len, 0);
 	__kfifo_add_in(fifo, len);
@@ -217,7 +217,7 @@ unsigned int __kfifo_out_n(struct kfifo *fifo,
  */
 unsigned int kfifo_out(struct kfifo *fifo, void *to, unsigned int len)
 {
-	len = min(kfifo_len(fifo), len);
+	len = kit_min(kfifo_len(fifo), len);
 
 	__kfifo_out_data(fifo, to, len, 0);
 	__kfifo_add_out(fifo, len);
@@ -239,7 +239,7 @@ unsigned int kfifo_out(struct kfifo *fifo, void *to, unsigned int len)
 unsigned int kfifo_out_peek(struct kfifo *fifo, void *to, unsigned int len,
 			    unsigned offset)
 {
-	len = min(kfifo_len(fifo), len + offset);
+	len = kit_min(kfifo_len(fifo), len + offset);
 
 	__kfifo_out_data(fifo, to, len, offset);
 	return len;

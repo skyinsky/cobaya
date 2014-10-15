@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <string.h>
 #include <errno.h>
-#include "bug.h"
+#include <libtoolkit/bug.h>
 
 static exit_callback exit_fn = NULL;
 static log_callback log_fn = NULL;
@@ -77,6 +77,15 @@ void log_err(int eval, const char *fmt, ...)
 	log_exit(eval);
 }
 
+void log_msg(const char *fmt, ...)
+{
+	va_list args;
+
+	va_start(args, fmt);
+	log_helper(_LOG_MSG, strerror(errno), fmt, args);
+	va_end(args);
+}
+
 void log_warn(const char *fmt, ...)
 {
 	va_list args;
@@ -115,7 +124,16 @@ void log_warnx(const char *fmt, ...)
 }
 
 #ifdef CONFIG_DEBUG
-void _log_debugx(const char *fmt, ...)
+void log_debug(const char *fmt, ...)
+{
+	va_list args;
+
+	va_start(args, fmt);
+	log_helper(_LOG_DEBUG, strerror(errno), fmt, args);
+	va_end(args);
+}
+
+void log_debugx(const char *fmt, ...)
 {
 	va_list args;
 

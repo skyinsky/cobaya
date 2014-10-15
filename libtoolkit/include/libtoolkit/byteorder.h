@@ -48,8 +48,8 @@ extern "C" {
 #endif
 
 #include <stdint.h>
-#include "asm/config.h"
-#include "asm/byteorder.h"
+#include <libtoolkit/asm/config.h>
+#include <libtoolkit/asm/byteorder.h>
 
 #ifndef CONFIG_FORCE_INTRINSICS
 /**

@@ -75,8 +75,8 @@
 //	return 0;
 //}
 
-#include <linux/types.h>
-#include "list.h"
+#include <libtoolkit/types.h>
+#include <libtoolkit/list.h>
 
 #ifdef __cplusplus
 extern "C" {

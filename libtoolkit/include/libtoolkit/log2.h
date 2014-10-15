@@ -12,9 +12,9 @@
 #ifndef _LIBTOOLKIT_LOG2_H
 #define _LIBTOOLKIT_LOG2_H
 
-#include <linux/types.h>
 #include <stdbool.h>
-#include "bitops.h"
+#include <libtoolkit/bitops.h>
+#include <libtoolkit/types.h>
 
 #ifdef __cplusplus
 extern "C" {

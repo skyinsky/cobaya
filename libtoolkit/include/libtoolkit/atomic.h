@@ -47,8 +47,8 @@
 
 #include <stdint.h>
 #include <emmintrin.h>
-#include "asm/config.h"
-#include "asm/barrier.h"
+#include <libtoolkit/asm/config.h>
+#include <libtoolkit/asm/barrier.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -637,9 +637,9 @@ static inline void atomic32_clear(atomic32_t *v)
 
 #ifndef CONFIG_FORCE_INTRINSICS
 #ifdef __x86_64__
-#include "asm/atomic64_64.h"
+#include <libtoolkit/asm/atomic64_64.h>
 #else
-#include "asm/atomic64_32.h"
+#include <libtoolkit/asm/atomic64_32.h>
 #endif
 
 

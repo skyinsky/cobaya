@@ -1,7 +1,7 @@
 #ifndef _LIBTOOLKIT_CACHE_H
 #define _LIBTOOLKIT_CACHE_H
 
-#include "asm/config.h"
+#include <libtoolkit/asm/config.h>
 
 #ifdef __cplusplus
 extern "C" {

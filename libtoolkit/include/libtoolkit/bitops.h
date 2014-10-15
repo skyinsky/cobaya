@@ -1,9 +1,9 @@
 #ifndef _LIBTOOLKIT_BITOPS_H
 #define _LIBTOOLKIT_BITOPS_H
 
-#include <linux/types.h>
-#include "asm/config.h"
-#include "asm/bitops.h"
+#include <libtoolkit/asm/config.h>
+#include <libtoolkit/asm/bitops.h>
+#include <libtoolkit/types.h>
 
 #ifdef __cplusplus
 extern "C" {

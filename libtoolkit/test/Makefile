@@ -1,18 +1,21 @@
 include /home/s/share/topmk/topmk.def
 # List of target files to be build
-TARGETS = wait
+TARGETS = memcpy
 
 # Target specific variables
-wait_SOURCES = $(wildcard *.cc)
-wait_CXXFLAGS= -I../include -Wno-pointer-arith -fpermissive
-wait_LDFLAGS = -L../src
-wait_LDLIBS  = -ltoolkit
-wait_RPATHS  = 
+memcpy_SOURCES = t_memcpy.cc
+memcpy_CXXFLAGS= -I../include -Wno-pointer-arith -fpermissive
+memcpy_LDFLAGS = -L../
+memcpy_LDLIBS  = -ltoolkit
+memcpy_RPATHS  =  ../
 
 # Variables affecting global compiler flags
 DEBUGING = -g # Comment this line for non-debugging code
 OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
 WARNINGS= #-Werror # Comment this line if warning is a problem
+
+CPPFLAGS += -Wno-pointer-arith -fpermissive \
+	    -Wno-invalid-offsetof
 
 # Optional local files to be removed when making 'clean'
 # Objects and libraries are taken care of, they do *not* need to be set here

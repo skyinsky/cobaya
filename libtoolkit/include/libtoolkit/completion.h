@@ -9,7 +9,7 @@
  */
 
 #include <stdbool.h>
-#include "wait.h"
+#include <libtoolkit/wait.h>
 
 #ifdef __cplusplus
 extern "C" {

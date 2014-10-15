@@ -3,7 +3,8 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "common.h"
+#include <libtoolkit/asm/config.h>
+#include <libtoolkit/common.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -21,6 +22,7 @@ extern "C" {
 #define _LOG_WARN	3	
 
 void log_err(int eval, const char *fmt, ...) _CHECK_FMT(2,3);
+void log_msg(const char *fmt, ...) _CHECK_FMT(1,2);
 void log_warn(const char *fmt, ...) _CHECK_FMT(1,2);
 
 void log_errx(int eval, const char *fmt, ...) _CHECK_FMT(2,3);
@@ -29,8 +31,10 @@ void log_warnx(const char *fmt, ...) _CHECK_FMT(1,2);
 
 #ifdef CONFIG_DEBUG
 void log_debug(const char *fmt, ...) _CHECK_FMT(1,2);
+void log_debugx(const char *fmt, ...) _CHECK_FMT(1,2);
 #else
-#define log_debug(x) do { } while (0)
+#define log_debug(x, ...) do { } while (0)
+#define log_debugx(x, ...) do { } while (0)
 #endif
 
 /**

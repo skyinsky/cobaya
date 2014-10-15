@@ -1,7 +1,7 @@
 #ifndef _LIBTOOLKIT_ASM_FLS64_T
 #define _LIBTOOLKIT_ASM_FLS64_T
 
-#include <linux/types.h>
+#include <libtoolkit/types.h>
 
 #ifdef __cplusplus
 extern "C" {

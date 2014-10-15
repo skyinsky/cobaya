@@ -10,7 +10,7 @@
  * 2 of the License, or (at your option) any later version.
  */
 
-#include "bitops.h"
+#include <libtoolkit/bitops.h>
 
 unsigned long find_last_bit(const unsigned long *addr, unsigned long size)
 {

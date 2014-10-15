@@ -12,19 +12,13 @@ extern "C" {
  * strict type-checking.. See the
  * "unnecessary" pointer comparison.
  */
-#ifdef min
-#undef min
-#endif
-#define min(x, y) ({				\
+#define kit_min(x, y) ({			\
 	typeof(x) _min1 = (x);			\
 	typeof(y) _min2 = (y);			\
 	(void) (&_min1 == &_min2);		\
 	_min1 < _min2 ? _min1 : _min2; })
 
-#ifdef max
-#undef max
-#endif
-#define max(x, y) ({				\
+#define kit_max(x, y) ({			\
 	typeof(x) _max1 = (x);			\
 	typeof(y) _max2 = (y);			\
 	(void) (&_max1 == &_max2);		\
@@ -39,7 +33,7 @@ extern "C" {
  * This macro does strict typechecking of min/max to make sure they are of the
  * same type as val.  See the unnecessary pointer comparisons.
  */
-#define clamp(val, min, max) ({			\
+#define kit_clamp(val, min, max) ({		\
 	typeof(val) __val = (val);		\
 	typeof(min) __min = (min);		\
 	typeof(max) __max = (max);		\
@@ -54,12 +48,12 @@ extern "C" {
  *
  * Or not use min/max/clamp at all, of course.
  */
-#define min_t(type, x, y) ({			\
+#define kit_min_t(type, x, y) ({		\
 	type __min1 = (x);			\
 	type __min2 = (y);			\
 	__min1 < __min2 ? __min1: __min2; })
 
-#define max_t(type, x, y) ({			\
+#define kit_max_t(type, x, y) ({		\
 	type __max1 = (x);			\
 	type __max2 = (y);			\
 	__max1 > __max2 ? __max1: __max2; })
@@ -74,7 +68,7 @@ extern "C" {
  * This macro does no typechecking and uses temporary variables of type
  * 'type' to make all the comparisons.
  */
-#define clamp_t(type, val, min, max) ({		\
+#define kit_clamp_t(type, val, min, max) ({	\
 	type __val = (val);			\
 	type __min = (min);			\
 	type __max = (max);			\
@@ -92,7 +86,7 @@ extern "C" {
  * type and min and max are literals that will otherwise be assigned a signed
  * integer type.
  */
-#define clamp_val(val, min, max) ({		\
+#define kit_clamp_val(val, min, max) ({		\
 	typeof(val) __val = (val);		\
 	typeof(val) __min = (min);		\
 	typeof(val) __max = (max);		\
@@ -102,10 +96,7 @@ extern "C" {
 /*
  * swap - swap value of @a and @b
  */
-#ifdef swap
-#undef swap
-#endif
-#define swap(a, b) \
+#define kit_swap(a, b) \
 	do { typeof(a) __tmp = (a); (a) = (b); (b) = __tmp; } while (0)
 
 /**

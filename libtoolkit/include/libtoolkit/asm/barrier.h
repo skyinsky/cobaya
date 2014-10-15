@@ -1,7 +1,7 @@
 #ifndef _LIBTOOLKIT_ASM_BARRIER_H
 #define _LIBTOOLKIT_ASM_BARRIER_H
 
-#include "config.h"
+#include <libtoolkit/asm/config.h>
 
 #ifdef __cplusplus
 extern "C" {

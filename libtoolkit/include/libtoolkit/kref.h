@@ -22,8 +22,8 @@
  */
 
 #include <assert.h>
-#include "asm/barrier.h"
-#include "atomic.h"
+#include <libtoolkit/asm/barrier.h>
+#include <libtoolkit/atomic.h>
 
 #ifdef __cplusplus
 extern "C" {

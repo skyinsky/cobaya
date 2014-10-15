@@ -48,9 +48,9 @@
  * to lock the reader.
  */
 
-#include "asm/barrier.h"
-#include "spinlock.h"
-#include "log2.h"
+#include <libtoolkit/asm/barrier.h>
+#include <libtoolkit/spinlock.h>
+#include <libtoolkit/log2.h>
 
 #ifdef __cplusplus
 extern "C" {

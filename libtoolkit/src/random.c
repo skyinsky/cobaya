@@ -6,9 +6,9 @@
 #include <limits.h>
 #include <math.h>
 
-#include "common.h"
-#include "random.h"
-#include "bug.h"
+#include <libtoolkit/common.h>
+#include <libtoolkit/random.h>
+#include <libtoolkit/bug.h>
 
 // Internal scratch state used by random_r 128 is the same size as
 // initstate() uses for regular random(), see manpages for details.
@@ -61,8 +61,8 @@ static void init_random()
 								\
 	while (offset < sizeof(buf)) {				\
 		uint64_t r = random64();			\
-		size_t copy = min(sizeof(r),			\
-				  sizeof(buf) - offset);	\
+		size_t copy =kit_min(sizeof(r),			\
+				     sizeof(buf) - offset);	\
 		memcpy((char *)&buf + offset, &r, copy);	\
 		offset += copy;					\
 	}							\

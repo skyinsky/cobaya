@@ -4,8 +4,8 @@
 #include <errno.h>
 #include <time.h>
 #include <pthread.h>
-#include "list.h"
-#include "bitops.h"
+#include <libtoolkit/list.h>
+#include <libtoolkit/bitops.h>
 
 #ifdef __cplusplus
 extern "C" {

@@ -47,8 +47,8 @@
  *
  */
 
-#include "asm/config.h"
-#include "common.h"
+#include <libtoolkit/asm/config.h>
+#include <libtoolkit/common.h>
 
 #ifdef __cplusplus
 extern "C" {

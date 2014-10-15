@@ -9,9 +9,9 @@
 #error "only <include/bitops.h> can be included directly"
 #endif
 
-#include <linux/types.h>
-#include "config.h"
-#include "barrier.h"
+#include <libtoolkit/asm/config.h>
+#include <libtoolkit/asm/barrier.h>
+#include <libtoolkit/types.h>
 
 #ifdef __cplusplus
 extern "C" {
@@ -444,7 +444,7 @@ static inline int fls32(int x)
 
 #undef ADDR
 
-#include "fls64.h"
+#include <libtoolkit/asm/fls64.h>
 
 #ifdef __cplusplus
 }

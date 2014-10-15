@@ -39,7 +39,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include "daemon.h"
+#include <libtoolkit/daemon.h>
 
 int daemonize(int nochdir, int noclose)
 {

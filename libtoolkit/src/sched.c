@@ -1,9 +1,9 @@
 #include <limits.h>
 #include <pthread.h>
-#include "common.h"
-#include "bitops.h"
-#include "wait.h"
-#include "completion.h"
+#include <libtoolkit/common.h>
+#include <libtoolkit/bitops.h>
+#include <libtoolkit/wait.h>
+#include <libtoolkit/completion.h>
 
 void add_wait_queue(wait_queue_head_t *q, wait_queue_t *wait)
 {

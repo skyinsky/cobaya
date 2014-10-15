@@ -16,7 +16,7 @@ extern "C" {
 #undef	CONFIG_FORCE_INTRINSICS
 
 /* debug log config */
-#undef  CONFIG_DEBUG
+#define CONFIG_DEBUG
 
 /* gcc */
 #define CONFIG_GCC_4_4

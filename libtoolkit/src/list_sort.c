@@ -1,7 +1,7 @@
 #include <string.h>
-#include "common.h"
-#include "bug.h"
-#include "list_sort.h"
+#include <libtoolkit/common.h>
+#include <libtoolkit/bug.h>
+#include <libtoolkit/list_sort.h>
 
 #define MAX_LIST_LENGTH_BITS 20
 
