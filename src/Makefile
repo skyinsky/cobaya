@@ -16,11 +16,12 @@ OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
 #WARNINGS+= -Werror # Comment this line if warning is a problem
 
 # Variables for specific target
-cobaya_SOURCES = $(wildcard *.cc) $(wildcard $(DST_PROTO_DIR)/*.cc)
-cobaya_CXXFLAGS= -I../ -I../librcfproto/RCF/include -Wno-pointer-arith -fpermissive
-cobaya_LDFLAGS = -L/usr/lib/mysql -L../librcfproto -L../libiniparser
-cobaya_LDLIBS  = -lprotobuf -lmysqlclient -lrcfproto -liniparser
-#cobaya_RPATHS  = ../util
+cobaya_SOURCES  = $(wildcard *.cc) $(wildcard $(DST_PROTO_DIR)/*.cc)
+cobaya_CXXFLAGS = -I../ -I../librcfproto/RCF/include -Wno-pointer-arith -fpermissive
+cobaya_CXXFLAGS+= -I../libtoolkit/include
+cobaya_LDFLAGS = -L/usr/lib/mysql -L../librcfproto -L../libiniparser -L../libtoolkit
+cobaya_LDLIBS  = -lprotobuf -lmysqlclient -lrcfproto -liniparser -ltoolkit
+cobaya_RPATHS  = ../libtoolkit ../libiniparser ../librcfproto
 
 # Optional local files to be removed when making 'clean'
 # Objects and libraries are taken care of, they do *not* need to be set here

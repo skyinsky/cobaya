@@ -1,1 +1,16 @@
-package cobaya.proto;
+package cobaya;
+
+enum OpType {
+	/* 系统确认开启病人检查流程 */
+	REQ_START_FLOW	= 1;
+	RES_START_FLOW	= 2;
+
+	/* 系统结束病人检查流程 */
+	REQ_END_FLOW	= 3;
+	RES_END_FLOW	= 4;
+}
+
+message MsgKeepalive {
+	required string host;
+	required bool person;
+}

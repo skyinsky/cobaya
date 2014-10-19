@@ -4,7 +4,7 @@ include /home/s/share/topmk/topmk.def
 ROOT = .
 
 # List of targets to be build
-TARGETS = libiniparser.a
+TARGETS = libiniparser.so
 
 # Variables affecting global compiler flags
 DEBUGING = -g # Comment this line for non-debugging code
@@ -12,7 +12,7 @@ OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
 WARNINGS+= -Werror # Comment this line if warning is a problem
 
 # Variables for specific target
-libiniparser.a_SOURCES  = $(wildcard *.c)
+libiniparser.so_SOURCES  = $(wildcard *.c)
 #libiniparser.a_CFLAGS  =
 #libiniparser.a_LDFLAGS = 
 #libiniparser.a_LDLIBS  = 

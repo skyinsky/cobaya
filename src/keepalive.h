@@ -2,23 +2,13 @@
 #define _KEEPALIVE_H
 
 #include <time.h>
-#include <event2/event.h>
-#include "libtoolkit/include/list.h"
-#include "libtoolkit/include/rwlock.h"
-#include "libtoolkit/include/kref.h"
+#include <event.h>
+#include <libtoolkit/list.h>
+#include <libtoolkit/rwlock.h>
+#include <libtoolkit/kref.h>
 
 namespace cobaya {
 
-#define OBJ_GET_PUT(type, release)	\
-	type* Get() {			\
-		kref(&this->ref); 	\
-		return this;		\
-	}				\
-	void Put() {			\
-		kref_put(&this->ref,	\
-			 release);	\
-	}				\
-	kref ref
 
 #define DEV_CODE	10
 #define DEV_NAME	20
@@ -39,7 +29,7 @@ struct DevDesc {
 	char endpoint[DEV_ENDPOINT];
 	char owner[DEV_OWNER];
 
-	OBJ_GET_PUT(DevDesc, free);
+//	OBJ_GET_PUT(DevDesc, free);
 };
 
 class KeepAlive {
@@ -48,7 +38,7 @@ public:
 	~KeepAlive();
 
 	/* init medical dev from mysql */
-	int LoadDevices(Config *conf);
+//	int LoadDevices(Config *conf);
 
 private:
 	/* medical dev list */

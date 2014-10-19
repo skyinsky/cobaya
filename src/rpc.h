@@ -1,8 +1,8 @@
 #ifndef _RPC_H
 #define _RPC_H
 
-#include "libtoolkit/include/bitops.h"
-#include "librcfproto/RCFProto.hpp"
+#include <libtoolkit/bitops.h>
+#include <librcfproto/RCFProto.hpp>
 #include "test.h"
 
 namespace cobaya {
