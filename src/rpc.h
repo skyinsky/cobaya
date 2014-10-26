@@ -3,7 +3,7 @@
 
 #include <libtoolkit/bitops.h>
 #include <librcfproto/RCFProto.hpp>
-#include "test.h"
+#include "rpc_service.h"
 
 namespace cobaya {
 
@@ -42,7 +42,7 @@ private:
 	RcfProtoServer *server;
 
 	/* define rpc service implimentation */
-	SearchServiceImpl impl;
+	RpcServiceImpl impl;
 };
 
 } // namespace cobaya

@@ -35,7 +35,7 @@ include /home/s/share/topmk/topmk.all
 # Do not place any rules or targets above this line
 
 # protocol files
-PROTOCOL_SRC = $(SRC_PROTO_DIR)/test.proto
+PROTOCOL_SRC = $(SRC_PROTO_DIR)/cobaya.proto
 
 # temporary protocol
 $(DST_PROTO_DIR): $(PROTOCOL_SRC)

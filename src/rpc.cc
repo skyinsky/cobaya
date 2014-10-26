@@ -1,7 +1,9 @@
 #include <string.h>
-#include <iostream>
-#include "rpc.h"
+#include <libtoolkit/bug.h>
+#include <libtoolkit/bitops.h>
 #include "common.h"
+#include "rpc.h"
+#include "rpc_service.h"
 
 namespace cobaya {
 
@@ -42,7 +44,8 @@ int RpcServer::Init()
 		}
 
 	} catch (const RCF::Exception &e) {
-		std::cout << COBAYA_PREFIX << e.getErrorString() << std::endl;
+		log_warnx("RpcServer::Init, %s",
+			  e.getErrorString().c_str());
 		res = -1;
 	}
 
@@ -62,7 +65,8 @@ int RpcServer::AddEndpoint(const char *ip, uint16_t port)
 		this->server->addEndpoint(*ptr);
 
 	} catch (const RCF::Exception &e) {
-		std::cout << COBAYA_PREFIX << e.getErrorString() << std::endl;
+		log_warnx("RpcServer::AddEndpoint, %s",
+			  e.getErrorString().c_str());
 		res = -1;
 	}
 
@@ -86,7 +90,8 @@ int RpcServer::CreateThreadPool(int workers)
 		this->server->setThreadPool(ptr);
 
 	} catch (const RCF::Exception &e) {
-		std::cout << COBAYA_PREFIX << e.getErrorString() << std::endl;
+		log_warnx("RpcServer::CreateThreadPool, %s",
+			  e.getErrorString().c_str());
 		res = -1;
 	}
 
@@ -104,7 +109,8 @@ int RpcServer::StartServer()
 		this->server->start();
 
 	} catch (const RCF::Exception &e) {
-		std::cout << COBAYA_PREFIX << e.getErrorString() << std::endl;
+		log_warnx("RpcServer::StartServer, %s",
+			  e.getErrorString().c_str());
 		res = -1;
 	}
 
@@ -120,10 +126,9 @@ void RpcServer::StopServer()
 		this->server->stop();
 
 	} catch (const RCF::Exception &e) {
-		std::cout << COBAYA_PREFIX << e.getErrorString() << std::endl;
+		log_warnx("RpcServer::StopServer, %s",
+			  e.getErrorString().c_str());
 	}
-
-	_exit();
 }
 
 void RpcServer::_exit()
@@ -143,26 +148,12 @@ int RpcServer::BindService()
 		this->server->bindService(this->impl);
 
 	} catch (const RCF::Exception &e) {
-		std::cout << COBAYA_PREFIX << e.getErrorString() << std::endl;
+		log_warnx("RpcServer::BindService, %s",
+			  e.getErrorString().c_str());
 		res = -1;
 	}
 
 	return res;
-
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-}
+} // namespace cobaya
