@@ -1,25 +1,29 @@
 #ifndef _CONFIG_H
 #define _CONFIG_H
 
-#include "libiniparser/iniparser.h"
+#include <stdint.h>
 
 namespace cobaya {
 
 struct Config {
-	int daemon;
+	bool daemon;
 	int worker;
 
 	char *rpc_ip;
-	int rpc_port;
+	uint16_t rpc_port;
 
 	char *mysql_ip;
 	char *mysql_user;
 	char *mysql_passwd;
+	char *mysql_db;
 
 	int client_timeout;
-
-	dictionary *_ini;
+	int client_heartbeat;
+	int client_sensor;
 };
+
+extern Config g_config;
+int load_config(const char *path);
 
 } // namespace cobaya
 

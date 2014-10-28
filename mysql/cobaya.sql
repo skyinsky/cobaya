@@ -10,10 +10,34 @@ Target Server Type    : MYSQL
 Target Server Version : 50538
 File Encoding         : 65001
 
-Date: 2014-10-27 00:44:03
+Date: 2014-10-28 22:05:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for 异常
+-- ----------------------------
+DROP TABLE IF EXISTS `异常`;
+CREATE TABLE `异常` (
+  `器械编码` varchar(10) NOT NULL,
+  `器械名称` varchar(20) NOT NULL,
+  `管理终端` varchar(20) NOT NULL,
+  `所属科室` varchar(10) NOT NULL,
+  `异常时间` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of 异常
+-- ----------------------------
+INSERT INTO `异常` VALUES ('DR_001', 'DR机', '192.168.122.5', '放射科', '2014-10-28 22:03:02');
+INSERT INTO `异常` VALUES ('BC_001', 'B超机', '192.168.122.2', 'B超室', '2014-10-28 22:03:02');
+INSERT INTO `异常` VALUES ('BC_002', 'B超机', '192.168.122.4', 'CT室', '2014-10-28 22:03:02');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '192.168.122.3', 'CT室', '2014-10-28 22:03:02');
+INSERT INTO `异常` VALUES ('DR_001', 'DR机', '192.168.122.5', '放射科', '2014-10-28 22:04:02');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '192.168.122.3', 'CT室', '2014-10-28 22:04:02');
+INSERT INTO `异常` VALUES ('BC_002', 'B超机', '192.168.122.4', 'CT室', '2014-10-28 22:04:02');
+INSERT INTO `异常` VALUES ('BC_001', 'B超机', '192.168.122.2', 'B超室', '2014-10-28 22:04:02');
 
 -- ----------------------------
 -- Table structure for 日志

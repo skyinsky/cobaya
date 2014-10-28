@@ -7,8 +7,9 @@ namespace cobaya {
 
 #define COBAYA_PREFIX	"cobaya: "
 
-#define DUMP_LOG(fmt, ...) \
-	printf(COBAYA_PREFIX "%s:%d: " fmt "\n",  __func__, __LINE__, ##__VA_ARGS__)
+#define DUMP_LOG(fmt, ...) 					\
+	printf("%s:%d, %s(): " fmt "\n",			\
+	       __FILE__,  __LINE__, __func__, ##__VA_ARGS__)
 
 } // namespace cobaya
 

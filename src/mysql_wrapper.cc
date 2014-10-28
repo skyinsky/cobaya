@@ -10,7 +10,10 @@
 #include <stdio.h>
 #include <dirent.h>
 #include <sys/types.h>
+#include <libtoolkit/bug.h>
 #include "mysql_wrapper.h"
+#include "common.h"
+#include "config.h"
 
 namespace cobaya {
 
@@ -20,6 +23,8 @@ MysqlWrapper::MysqlWrapper() {
 	m_result = NULL;
 	//初始化连接
 	mysql_init(&m_connection);
+	//mysql_options(&m_connection, MYSQL_SET_CHARSET_NAME, "gbk");
+	mysql_options(&m_connection, MYSQL_SET_CHARSET_NAME, "utf8");
 }
 MysqlWrapper::~MysqlWrapper() {
 	//释放上一次的结果集
@@ -29,18 +34,19 @@ MysqlWrapper::~MysqlWrapper() {
 }
 
 int MysqlWrapper::Connect(const char* szDbIp, const char* szUser,
-		const char* szPassword) {
-	SaveParam(szDbIp, szUser, szPassword);
+		const char* szPassword, const char *db) {
+	SaveParam(szDbIp, szUser, szPassword, db);
 	//先判断是否已经连接了, 防止重复连接
 	if (IsConnected())
 		return 0;
 	//连接数据库
-	if (mysql_real_connect(&m_connection, szDbIp, szUser, szPassword, NULL, 0,
-			NULL, 0) == NULL) {
+	if (mysql_real_connect(&m_connection, szDbIp, szUser, szPassword,
+			       db, 0, NULL, 0) == NULL) {
 		ERRMSG2("%s", mysql_error(&m_connection));
+		DUMP_LOG("%s", mysql_error(&m_connection));
 		return -1;
 	}
-	printf("[mysql] conn to %s [user:%s] success!\r\n", szDbIp, szUser);
+//	printf("[mysql] conn to %s [user:%s] success!\r\n", szDbIp, szUser);
 	//设置连接标志为 true
 	SetConnected(true);
 	return 0;
@@ -61,6 +67,7 @@ int MysqlWrapper::SelectQuery(const char* szSQL) {
 	//如果还没有连接,则返回
 	if (!IsConnected()) {
 		ERRMSG2("%s", "还没有建立连接");
+		DUMP_LOG("%s", "还没有建立连接");
 		return -2;
 	}
 	try //这些语句与连接有关，出异常时就重连
@@ -68,8 +75,9 @@ int MysqlWrapper::SelectQuery(const char* szSQL) {
 		//查询
 		if (mysql_real_query(&m_connection, szSQL, strlen(szSQL)) != 0) {
 			ERRMSG2("%s", mysql_error(&m_connection));
-			printf("%s", mysql_error(&m_connection));
-			printf("ReConnect()  is called, select111  !!!***\r\n");
+			//printf("%s", mysql_error(&m_connection));
+			//printf("ReConnect()  is called, select111  !!!***\r\n");
+			DUMP_LOG("%s", mysql_error(&m_connection));
 			int nRet = ReConnect();
 			if (nRet != 0)
 				return -3;
@@ -84,10 +92,11 @@ int MysqlWrapper::SelectQuery(const char* szSQL) {
 		m_result = mysql_store_result(&m_connection);
 		if (m_result == NULL) {
 			ERRMSG2("%s", mysql_error(&m_connection));
+			DUMP_LOG("%s", mysql_error(&m_connection));
 			return -4;
 		}
 	} catch (...) {
-		printf("ReConnect()  is called, select  !!!***\r\n");
+		DUMP_LOG("%s", "ReConnect()  is called, select  !!!***");
 		ReConnect();
 		return -5;
 	}
@@ -113,6 +122,7 @@ int MysqlWrapper::ModifyQuery(const char* szSQL) {
 	//如果还没有连接,则返回
 	if (!IsConnected()) {
 		ERRMSG2("%s", "还没有建立连接");
+		DUMP_LOG("%s", "还没有建立连接");
 		return -2;
 	}
 	try //这些语句与连接有关，出异常时就重连
@@ -120,10 +130,11 @@ int MysqlWrapper::ModifyQuery(const char* szSQL) {
 		//查询, 实际上开始真正地修改数据库
 		if (mysql_real_query(&m_connection, szSQL, strlen(szSQL)) != 0) {
 			ERRMSG2("%s", mysql_error(&m_connection));
+			DUMP_LOG("%s", mysql_error(&m_connection));
 			return -3;
 		}
 	} catch (...) {
-		printf("ReConnect()  is called  ,modify!!!***\r\n");
+		DUMP_LOG("%s", "ReConnect()  is called  ,modify!!!***");
 		ReConnect();
 		return -5;
 	}
@@ -171,18 +182,20 @@ void MysqlWrapper::SetConnected(bool bTrueFalse) {
 }
 
 void MysqlWrapper::SaveParam(const char* szDbIp, const char* szUser,
-		const char* szPassword) {
+		const char* szPassword, const char *db) {
 	m_sDbIp = szDbIp; //数据库服务器IP
 	m_sUser = szUser; //用户名
 	m_sPassword = szPassword; //口令
+	m_db = db;
 }
 
 int MysqlWrapper::ReConnect() {
 	CloseConnect();
 	//连接数据库
 	if (mysql_real_connect(&m_connection, m_sDbIp.c_str(), m_sUser.c_str(),
-			m_sPassword.c_str(), NULL, 0, NULL, 0) == NULL) {
+			m_sPassword.c_str(), m_db.c_str(), 0, NULL, 0) == NULL) {
 		ERRMSG2("%s", mysql_error(&m_connection));
+		DUMP_LOG("%s", mysql_error(&m_connection));
 		return -1;
 	}
 	//设置连接标志为 true

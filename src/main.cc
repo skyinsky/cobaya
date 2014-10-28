@@ -1,91 +1,54 @@
+#include <signal.h>
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
+#include <libtoolkit/daemon.h>
 #include "mysql_wrapper.h"
 #include "common.h"
 #include "config.h"
 #include "rpc.h"
+#include "dev.h"
+#include "keepalive.h"
 
 using namespace cobaya;
 
-namespace {
-
-static Config config;
-static RpcServer server;
-
-#define DUMP_CALL(x)		\
-do {				\
-	int res = (x);		\
-	if (res != 0) {		\
-		DUMP_LOG();	\
-		return res;	\
-	}			\
-} while(0)
-
-int prepare_config(const char *path)
+static void sig_handler(const int sig)
 {
-	dictionary *ini;
-
-	config._ini = iniparser_load(path);
-	if (config._ini == NULL) {
-		DUMP_LOG();
-		return -1;
-	}
-	ini = config._ini;
-
-	config.daemon = iniparser_getboolean(ini, "cobaya:daemon", -1);
-	config.worker = iniparser_getint(ini, "cobaya:worker", -1);
-
-	config.rpc_ip = iniparser_getstring(ini, "rpc:ip", NULL);
-	config.rpc_port = iniparser_getint(ini, "rpc:port", -1);
-
-	config.mysql_ip = iniparser_getstring(ini, "mysql:ip", NULL);
-	config.mysql_user = iniparser_getstring(ini, "mysql:user", NULL);
-	config.mysql_passwd = iniparser_getstring(ini, "mysql:passwd", NULL);
-
-	config.client_timeout = iniparser_getint(ini, "client:timeout", -1);
-
-	return 0;
+	DUMP_LOG("SIGINT handled");
+	exit(EXIT_SUCCESS);
 }
-
-int prepare_server(Config *conf)
-{
-	DUMP_CALL(server.Init());
-	DUMP_CALL(server.AddEndpoint(conf->rpc_ip, conf->rpc_port));
-	DUMP_CALL(server.CreateThreadPool(conf->worker));
-	DUMP_CALL(server.StartServer());
-
-	return 0;
-}
-
-inline void release_config()
-{
-	iniparser_freedict(config._ini);
-	memset(&config, 0, sizeof(config));
-}
-
-inline void release_server()
-{
-	server.StopServer();
-}
-
-} // anonymous namespace
 
 int main(int argc, char *argv[])
 {
-	int res;
+	/* handle SIGINT */
+	signal(SIGINT, sig_handler);
 
-	DUMP_CALL(prepare_config("cobaya.ini"));
-	DUMP_CALL(prepare_server(&config));
+	if (load_config("cobaya.ini")) {
+		DUMP_LOG("init config error");
+		return -1;
+	}
+	if (g_config.daemon && sigignore(SIGHUP)) {
+		DUMP_LOG("ignore signal SIGHUP error");
+		return -1;
+	}
+	if (g_config.daemon && daemonize(1, 1)) {
+		DUMP_LOG("daemon error");
+		return -1;
+	}
+	if (load_dev_list()) {
+		DUMP_LOG("load dev error");
+		return -1;
+	}
+	if (start_rpc_server()) {
+		DUMP_LOG("start rpc error");
+		return -1;
+	}
+	if (run_keepalive()) {
+		DUMP_LOG("run keepalive error");
+		return -1;
+	}
 
-not_used:
-	release_config();
-
-	/* wait */
-	getchar();
-
-exit_free:	
-	release_server();
+	stop_rpc_server();
 
 	return 0;
 }

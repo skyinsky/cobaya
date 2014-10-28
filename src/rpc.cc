@@ -4,11 +4,48 @@
 #include "common.h"
 #include "rpc.h"
 #include "rpc_service.h"
+#include "config.h"
 
 namespace cobaya {
 
 using namespace RCF;
 using namespace google::protobuf;
+
+class RpcServer {
+public:
+	RpcServer();
+	~RpcServer();
+
+	/* init RCF library & create RcfProtoServer object */
+	int Init();
+
+	/* Configuring server endpoints */
+	int AddEndpoint(const char *ip, uint16_t port);
+
+	/* Configuring server-side threading */
+	int CreateThreadPool(int workers);
+
+	int StartServer();
+	void StopServer();
+
+protected:
+	/* bind protobuf service */
+	int BindService();
+
+	/* free RcfProtoServer object */
+	void _exit();
+
+private:
+#define FLAG_INIT	(0x1 << 0)
+#define FLAG_SERVER	(0x1 << 1)
+#define FLAG_THREAD	(0x1 << 2)
+	unsigned long flags;
+
+	RcfProtoServer *server;
+
+	/* define rpc service implimentation */
+	RpcServiceImpl impl;
+};
 
 RpcServer::RpcServer() : impl()
 {
@@ -44,8 +81,7 @@ int RpcServer::Init()
 		}
 
 	} catch (const RCF::Exception &e) {
-		log_warnx("RpcServer::Init, %s",
-			  e.getErrorString().c_str());
+		DUMP_LOG("%s", e.getErrorString().c_str());
 		res = -1;
 	}
 
@@ -65,8 +101,7 @@ int RpcServer::AddEndpoint(const char *ip, uint16_t port)
 		this->server->addEndpoint(*ptr);
 
 	} catch (const RCF::Exception &e) {
-		log_warnx("RpcServer::AddEndpoint, %s",
-			  e.getErrorString().c_str());
+		DUMP_LOG("%s", e.getErrorString().c_str());
 		res = -1;
 	}
 
@@ -90,8 +125,7 @@ int RpcServer::CreateThreadPool(int workers)
 		this->server->setThreadPool(ptr);
 
 	} catch (const RCF::Exception &e) {
-		log_warnx("RpcServer::CreateThreadPool, %s",
-			  e.getErrorString().c_str());
+		DUMP_LOG("%s", e.getErrorString().c_str());
 		res = -1;
 	}
 
@@ -109,8 +143,7 @@ int RpcServer::StartServer()
 		this->server->start();
 
 	} catch (const RCF::Exception &e) {
-		log_warnx("RpcServer::StartServer, %s",
-			  e.getErrorString().c_str());
+		DUMP_LOG("%s", e.getErrorString().c_str());
 		res = -1;
 	}
 
@@ -126,8 +159,7 @@ void RpcServer::StopServer()
 		this->server->stop();
 
 	} catch (const RCF::Exception &e) {
-		log_warnx("RpcServer::StopServer, %s",
-			  e.getErrorString().c_str());
+		DUMP_LOG("%s", e.getErrorString().c_str());
 	}
 }
 
@@ -148,12 +180,42 @@ int RpcServer::BindService()
 		this->server->bindService(this->impl);
 
 	} catch (const RCF::Exception &e) {
-		log_warnx("RpcServer::BindService, %s",
-			  e.getErrorString().c_str());
+		DUMP_LOG("%s", e.getErrorString().c_str());
 		res = -1;
 	}
 
 	return res;
+}
+
+static RpcServer g_server;
+
+int start_rpc_server()
+{
+	if (g_server.Init()) {
+		DUMP_LOG("init rpc error");
+		return -1;
+	}
+	if (g_server.AddEndpoint(g_config.rpc_ip,
+				 g_config.rpc_port)) {
+		DUMP_LOG("listen %s:%d error",
+			 g_config.rpc_ip, g_config.rpc_port);
+		return -1;
+	}
+	if (g_server.CreateThreadPool(g_config.worker)) {
+		DUMP_LOG("create slaves error");
+		return -1;
+	}
+	if (g_server.StartServer()) {
+		DUMP_LOG("start rpc error");
+		return -1;
+	}
+
+	return 0;
+}
+
+void stop_rpc_server()
+{
+	g_server.StopServer();
 }
 
 } // namespace cobaya

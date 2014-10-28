@@ -34,7 +34,7 @@ public:
 	~MysqlWrapper();
 public:
 
-	int Connect(const char *ip, const char *user, const char *passwd);
+	int Connect(const char *ip, const char *user, const char *passwd, const char *db);
 
 	void CloseConnect();
 
@@ -69,7 +69,7 @@ private:
 	int ReConnect();
 
 	void SaveParam(const char* szDbIp, const char* szUser,
-			const char* szPassword);
+			const char* szPassword, const char *db);
 
 public:
 	/* 数据库连接了吗?   true--已经连接;  false--还没有连接 */
@@ -79,7 +79,7 @@ public:
 	char m_szErrMsg[1024];
 
 	/* 字段个数 */
-	int m_iFields;
+	unsigned int m_iFields;
 
 	/* 是一个map,  key是字段名,  value是字段索引 */
 	MapFieldNameIndex m_mapFieldNameIndex;
@@ -93,6 +93,7 @@ private:
 	string m_sDbIp;		//数据库服务器IP
 	string m_sUser;		//用户名
 	string m_sPassword;	//口令
+	string m_db;		//数据库
 };
 
 } // namespace cobaya
