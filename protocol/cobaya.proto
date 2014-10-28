@@ -15,7 +15,7 @@ message MsgAdminRsp {
 
 message MsgMonitorReq {
 	required string key = 1;
-	required bool monitor = 2;	
+	required bool start = 2;	
 }
 
 message MsgMonitorRsp {

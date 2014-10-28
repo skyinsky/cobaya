@@ -1,7 +1,11 @@
 #include <stdlib.h>
+#include <string.h>
+#include "common.h"
 #include "rpc_service.h"
 
 namespace cobaya {
+
+bool g_start_monitor = false;
 
 void RpcServiceImpl::GetAdminInfo(RpcController *ctl,
 				  const MsgAdminReq *req,
@@ -14,7 +18,14 @@ void RpcServiceImpl::ControlSystem(RpcController *ctl,
 				   const MsgMonitorReq *req,
 				   MsgMonitorRsp *rsp, Closure *done)
 {
+	if (!strcmp(AUTH_KEY, req->key().c_str())) {
+		g_start_monitor = req->start();
+	}
 
+	rsp->set_status(true);
+
+	/* Send response back to the client */
+	done->Run();
 }
 
 void RpcServiceImpl::GetClientInfo(RpcController *ctl,
