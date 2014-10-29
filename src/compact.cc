@@ -34,6 +34,9 @@ static inline void erase_exception_table()
 
 static void handle_compact(void *arg)
 {
+	DUMP_LOG("truncate tables after %d days from start",
+		 g_config.compact_interval);
+
 	erase_log_table();
 	erase_exception_table();
 }
