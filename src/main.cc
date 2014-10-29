@@ -1,7 +1,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include <iostream>
+#include <event.h>
 #include <libtoolkit/daemon.h>
 #include "mysql_wrapper.h"
 #include "common.h"
@@ -11,6 +11,15 @@
 #include "office.h"
 #include "flow.h"
 #include "keepalive.h"
+#include "compact.h"
+#include "main.h"
+
+namespace cobaya {
+
+event_base *main_base;
+MysqlWrapper main_mysql;
+
+} // namespace cobaya
 
 using namespace cobaya;
 
@@ -18,6 +27,27 @@ static void sig_handler(const int sig)
 {
 	DUMP_LOG("SIGINT handled");
 	exit(EXIT_SUCCESS);
+}
+
+static int load_main_context()
+{
+	/* init event base */
+	main_base = event_base_new();
+	if (main_base == NULL) {
+		DUMP_LOG("new event base error");
+		return -1;
+	}
+
+	/* init mysql conn */
+	if (main_mysql.Connect(g_config.mysql_ip,
+			       g_config.mysql_user,
+			       g_config.mysql_passwd,
+			       g_config.mysql_db)) {
+		DUMP_LOG("connect mysql error");
+		return -1;
+	}
+
+	return 0;
 }
 
 int main(int argc, char *argv[])
@@ -37,6 +67,10 @@ int main(int argc, char *argv[])
 		DUMP_LOG("daemon error");
 		return -1;
 	}
+	if (load_main_context()) {
+		DUMP_LOG("load main thread context error");
+		return -1;
+	}
 	if (load_flow_manager()) {
 		DUMP_LOG("load flow manager error");
 		return -1;
@@ -53,10 +87,16 @@ int main(int argc, char *argv[])
 		DUMP_LOG("start rpc error");
 		return -1;
 	}
-	if (run_keepalive()) {
-		DUMP_LOG("run keepalive error");
+	if (load_compaction()) {
+		DUMP_LOG("load compaction error");
 		return -1;
 	}
+	if (load_keepalive()) {
+		DUMP_LOG("load keepalive error");
+		return -1;
+	}
+
+	event_base_loop(main_base, 0);
 
 	stop_rpc_server();
 

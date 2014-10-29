@@ -13,8 +13,6 @@ namespace cobaya {
 	printf("%s:%d, %s(): " fmt "\n",			\
 	       __FILE__,  __LINE__, __func__, ##__VA_ARGS__)
 
-extern bool g_start_monitor;
-
 } // namespace cobaya
 
 #endif /* _COMMON_H */

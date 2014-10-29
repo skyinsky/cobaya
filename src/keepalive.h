@@ -3,7 +3,7 @@
 
 namespace cobaya {
 
-int run_keepalive();
+int load_keepalive();
 
 } // namespace cobaya
 

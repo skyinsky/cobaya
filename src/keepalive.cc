@@ -8,11 +8,9 @@
 #include "dev.h"
 #include "config.h"
 #include "mysql_wrapper.h"
+#include "main.h"
 
 namespace cobaya {
-
-static event_base *g_base;
-static MysqlWrapper g_mysql;
 
 static void store_timeout_exception(DevDesc *dev)
 {
@@ -35,7 +33,7 @@ static void store_timeout_exception(DevDesc *dev)
 
 	sprintf(tmp, "INSERT INTO `异常` VALUES ('%s', '%s', '%s', '%s', '%s')",
 		dev->code, dev->name, dev->host, dev->office, datetmp);
-	if (g_mysql.ModifyQuery(tmp)) {
+	if (main_mysql.ModifyQuery(tmp)) {
 		DUMP_LOG("insert value error");
 	}
 }
@@ -56,7 +54,7 @@ static void handle_dev_timeout(void *arg)
 
 static int init_dev_timer(DevDesc *dev)
 {
-	dev->timer.Set(g_base, g_config.client_timeout * 1000,
+	dev->timer.Set(main_base, g_config.client_timeout * 1000,
 		       handle_dev_timeout, dev);
 
 	if (Timer::SchedPersist(&dev->timer)) {
@@ -71,44 +69,18 @@ static int init_dev_timer(DevDesc *dev)
 	return 0;
 }
 
-int run_keepalive()
+int load_keepalive()
 {
-	int err = 0;
-
-	/* init event base */
-	g_base = event_base_new();
-	if (g_base == NULL) {
-		DUMP_LOG("new event base error");
-		err = -1;
-		goto err;
-	}
-
-	/* init mysql conn */
-	if (g_mysql.Connect(g_config.mysql_ip,
-			    g_config.mysql_user,
-			    g_config.mysql_passwd,
-			    g_config.mysql_db)) {
-		DUMP_LOG("connect mysql error");
-		err = -1;
-		goto close_base;
-	}
-
 	/* init dev timer */
 	for (DevDesc *desc = dev_head.next;
 	     desc != &dev_head; desc = desc->next) {
 		if (init_dev_timer(desc)) {
 			DUMP_LOG("init dev timer error");
-			err = -1;
-			goto err;
+			return -1;
 		}
 	}
 
-	return event_base_loop(g_base, 0);
-
-close_base:
-	event_base_free(g_base);
-err:	
-	return err;
+	return 0;
 }
 
 } // namespace cobaya

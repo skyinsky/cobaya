@@ -20,6 +20,9 @@ struct Config {
 	int client_timeout;
 	int client_heartbeat;
 	int client_sensor;
+
+	bool compact_allow;
+	int compact_interval;
 };
 
 extern Config g_config;

@@ -19,7 +19,7 @@ int load_config(const char *path)
 		return -1;
 	}
 
-	config.daemon = iniparser_getboolean(ini, "cobaya:daemon", -1);
+	config.daemon = iniparser_getboolean(ini, "cobaya:daemon", true);
 	config.worker = iniparser_getint(ini, "cobaya:worker", -1);
 
 	config.rpc_ip = iniparser_getstring(ini, "rpc:ip", NULL);
@@ -32,7 +32,10 @@ int load_config(const char *path)
 
 	config.client_timeout = iniparser_getint(ini, "client:timeout", -1);
 	config.client_heartbeat = iniparser_getint(ini, "client:heartbeat", -1);
-	config.client_sensor = iniparser_getint(ini, "client::sensor", -1);
+	config.client_sensor = iniparser_getint(ini, "client:sensor", -1);
+
+	config.compact_allow = iniparser_getboolean(ini, "compact:allow", true);
+	config.compact_interval = iniparser_getint(ini, "compact:interval", 30);
 
 	g_config = config;
 	g_config.rpc_ip = strdup(config.rpc_ip);
