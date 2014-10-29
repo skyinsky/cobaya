@@ -32,6 +32,12 @@ void send_start_msg()
 		RcfProtoChannel channel(TcpEndpoint(g_config.rpc_ip,
 					g_config.rpc_port));
 
+		/* Set 5s connect timeout */
+		channel.setConnectTimeoutMs(5 * 1000);
+
+		/* Set 10s remote call timeout */
+		channel.setRemoteCallTimeoutMs(10 * 1000);
+
 		/* Create service stub */
 		RpcService::Stub stub(&channel);
 
@@ -95,7 +101,7 @@ run_loop:
 	} else {
 		int status;
 
-		//start_cobaya_sys();
+		start_cobaya_sys();
 		waitpid(pid, &status, 0);
 
 		DUMP_LOG("child process exit");

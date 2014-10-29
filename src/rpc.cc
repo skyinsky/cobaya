@@ -1,15 +1,21 @@
 #include <string.h>
+#include <pthread.h>
 #include <libtoolkit/bug.h>
 #include <libtoolkit/bitops.h>
+#include <boost/function.hpp>
 #include "common.h"
 #include "rpc.h"
 #include "rpc_service.h"
 #include "config.h"
+#include "mysql_wrapper.h"
 
 namespace cobaya {
 
 using namespace RCF;
+using namespace boost;
 using namespace google::protobuf;
+
+__thread MysqlWrapper *mysql;
 
 class RpcServer {
 public:
@@ -29,6 +35,10 @@ public:
 	void StopServer();
 
 protected:
+	/* thread function */
+	static void SlaveInit();
+	static void SlaveExit();
+
 	/* bind protobuf service */
 	int BindService();
 
@@ -108,6 +118,29 @@ int RpcServer::AddEndpoint(const char *ip, uint16_t port)
 	return res;
 }
 
+void RpcServer::SlaveInit()
+{
+	mysql = new MysqlWrapper();
+	if (mysql == NULL) {
+		DUMP_LOG("no memory");
+		exit(EXIT_FAILURE);
+	}
+	if (mysql->Connect(g_config.mysql_ip,
+			   g_config.mysql_user,
+			   g_config.mysql_passwd,
+			   g_config.mysql_db)) {
+		DUMP_LOG("connect mysql error");
+		exit(EXIT_FAILURE);
+	}
+}
+
+void RpcServer::SlaveExit()
+{
+	if (mysql == NULL)
+		return;
+	mysql->CloseConnect();
+}
+
 int RpcServer::CreateThreadPool(int workers)
 {
 	int res = 0;
@@ -121,6 +154,8 @@ int RpcServer::CreateThreadPool(int workers)
 		ThreadPoolPtr ptr(new ThreadPool(workers));
 
 		ptr->setThreadName("cobaya_slave");
+		ptr->addThreadInitFunctor(bind(&RpcServer::SlaveInit));
+		ptr->addThreadDeinitFunctor(bind(&RpcServer::SlaveExit));
 
 		this->server->setThreadPool(ptr);
 

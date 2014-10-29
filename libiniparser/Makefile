@@ -7,8 +7,8 @@ ROOT = .
 TARGETS = libiniparser.so
 
 # Variables affecting global compiler flags
-DEBUGING = -g # Comment this line for non-debugging code
-OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
+DEBUGING = #-g # Comment this line for non-debugging code
+#OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
 WARNINGS+= -Werror # Comment this line if warning is a problem
 
 # Variables for specific target

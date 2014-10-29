@@ -10,7 +10,7 @@ namespace cobaya {
 
 DevDesc dev_head;
 
-DevDesc* parser_rows(char **row)
+static DevDesc* parser_rows(char **row)
 {
 	DevDesc *desc;
 
@@ -23,7 +23,7 @@ DevDesc* parser_rows(char **row)
 
 	strcpy(desc->code, row[0]);
 	strcpy(desc->name, row[1]);
-	strcpy(desc->endpoint, row[2]);
+	strcpy(desc->host, row[2]);
 	strcpy(desc->office, row[3]);
 
 out:	return desc;
@@ -44,7 +44,7 @@ int load_dev_list()
 		goto out;
 	}
 	if (con.SelectQuery("SELECT * FROM `设备`")) {
-		DUMP_LOG("connect mysql error");
+		DUMP_LOG("query mysql error");
 		err = -1;
 		goto close;
 	}
@@ -69,6 +69,36 @@ close:
 	con.CloseConnect();
 out:
 	return err;
+}
+
+DevDesc* find_dev_by_host(const char *host)
+{
+	DevDesc * dev = NULL;
+
+	for (DevDesc *desc = dev_head.next;
+	     desc != &dev_head; desc = desc->next) {
+		if (!strcmp(desc->host, host)) {
+			dev = desc;
+			break;
+		}
+	}
+
+	return dev;
+}
+
+DevDesc* find_dev_by_code(const char *code)
+{
+	DevDesc * dev = NULL;
+
+	for (DevDesc *desc = dev_head.next;
+	     desc != &dev_head; desc = desc->next) {
+		if (!strcmp(desc->code, code)) {
+			dev = desc;
+			break;
+		}
+	}
+
+	return dev;
 }
 
 } // namespace cobaya
