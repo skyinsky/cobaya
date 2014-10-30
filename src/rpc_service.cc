@@ -36,7 +36,7 @@ void RpcServiceImpl::GetAdminInfo(RpcController *ctl,
 
 		rcfctl->SetFailed("not allowed");
 	} else {
-		rsp->set_ip(g_config.mysql_ip);
+		rsp->set_ip(g_config.mysql_remote_ip);
 		rsp->set_user(g_config.mysql_user);
 		rsp->set_passwd(g_config.mysql_passwd);
 		rsp->set_db(g_config.mysql_db);

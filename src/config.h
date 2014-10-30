@@ -12,7 +12,8 @@ struct Config {
 	char *rpc_ip;
 	uint16_t rpc_port;
 
-	char *mysql_ip;
+	char *mysql_cobaya_ip;
+	char *mysql_remote_ip;
 	char *mysql_user;
 	char *mysql_passwd;
 	char *mysql_db;

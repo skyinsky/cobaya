@@ -125,7 +125,7 @@ void RpcServer::SlaveInit()
 		DUMP_LOG("no memory");
 		exit(EXIT_FAILURE);
 	}
-	if (mysql->Connect(g_config.mysql_ip,
+	if (mysql->Connect(g_config.mysql_cobaya_ip,
 			   g_config.mysql_user,
 			   g_config.mysql_passwd,
 			   g_config.mysql_db)) {

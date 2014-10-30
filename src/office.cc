@@ -31,7 +31,7 @@ int load_office_list()
 	char **row;
 	MysqlWrapper con;
 
-	if (con.Connect(g_config.mysql_ip,
+	if (con.Connect(g_config.mysql_cobaya_ip,
 			g_config.mysql_user,
 			g_config.mysql_passwd,
 			g_config.mysql_db)) {
