@@ -10,30 +10,12 @@ namespace cobaya {
 
 DevDesc dev_head;
 
-static DevDesc* parser_rows(char **row)
-{
-	DevDesc *desc;
-
-	desc = (DevDesc *)malloc(sizeof(*desc));
-	if (desc == NULL) {
-		DUMP_LOG("no memory");
-		goto out;
-	}
-	memset(desc, 0, sizeof(*desc));
-
-	strcpy(desc->code, row[0]);
-	strcpy(desc->name, row[1]);
-	strcpy(desc->host, row[2]);
-	strcpy(desc->office, row[3]);
-
-out:	return desc;
-}
-
 int load_dev_list()
 {
 	int err = 0;
 	char **row;
 	MysqlWrapper con;
+	DevDesc *desc, *dev;
 
 	if (con.Connect(g_config.mysql_cobaya_ip,
 			g_config.mysql_user,
@@ -52,17 +34,22 @@ int load_dev_list()
 	/* point to self */
 	dev_head.next = &dev_head;
 
-	for (; (row = con.FetchRow()) != NULL;) {
-		DevDesc *res = NULL;
+	desc = (DevDesc *)malloc(sizeof(*desc) * con.m_iFields);
+	if (desc == NULL) {
+		DUMP_LOG("no memory");
+		err = -1;
+		goto close;
+	}
+	memset(desc, 0, sizeof(*desc) * con.m_iFields);
 
-		if ((res = parser_rows(row)) == NULL) {
-			DUMP_LOG("parser mysql row error");
-			err = -1;
-			goto close;
-		}
+	for (dev = desc; (row = con.FetchRow()) != NULL; dev++) {
+		strcpy(dev->code, row[0]);
+		strcpy(dev->name, row[1]);
+		strcpy(dev->host, row[2]);
+		strcpy(dev->office, row[3]);
 
-		res->next = dev_head.next;
-		dev_head.next = res;
+		dev->next = dev_head.next;
+		dev_head.next = dev;
 	}
 
 close:
