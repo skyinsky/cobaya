@@ -1,4 +1,7 @@
+#include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <libiniparser/iniparser.h>
 #include "common.h"
 #include "config.h"
@@ -21,6 +24,7 @@ int load_config(const char *path)
 
 	config.daemon = iniparser_getboolean(ini, "cobaya:daemon", true);
 	config.worker = iniparser_getint(ini, "cobaya:worker", -1);
+	config.dir = iniparser_getstring(ini, "cobaya:dir", NULL);
 
 	config.rpc_ip = iniparser_getstring(ini, "rpc:ip", NULL);
 	config.rpc_port = iniparser_getint(ini, "rpc:port", -1);
@@ -39,6 +43,7 @@ int load_config(const char *path)
 	config.compact_interval = iniparser_getint(ini, "compact:interval", 30);
 
 	g_config = config;
+	g_config.dir = strdup(config.dir);
 	g_config.rpc_ip = strdup(config.rpc_ip);
 	g_config.mysql_cobaya_ip = strdup(config.mysql_cobaya_ip);
 	g_config.mysql_remote_ip = strdup(config.mysql_remote_ip);
@@ -48,7 +53,8 @@ int load_config(const char *path)
 
 	if (!g_config.rpc_ip || !g_config.mysql_cobaya_ip ||
 	    !g_config.mysql_remote_ip || !g_config.mysql_user ||
-	    !g_config.mysql_passwd || !g_config.mysql_db) {
+	    !g_config.mysql_passwd || !g_config.mysql_db ||
+	    !g_config.dir) {
 		DUMP_LOG("no memory");
 		ret = -1;
 	}

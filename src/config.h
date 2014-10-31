@@ -8,6 +8,7 @@ namespace cobaya {
 struct Config {
 	bool daemon;
 	int worker;
+	char *dir;
 
 	char *rpc_ip;
 	uint16_t rpc_port;
@@ -27,6 +28,7 @@ struct Config {
 };
 
 extern Config g_config;
+
 int load_config(const char *path);
 
 } // namespace cobaya

@@ -1,6 +1,7 @@
 #include <signal.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 #include <event.h>
 #include <libtoolkit/daemon.h>
 #include "mysql_wrapper.h"
@@ -67,6 +68,10 @@ int main(int argc, char *argv[])
 		DUMP_LOG("daemon error");
 		return -1;
 	}
+	if (load_log_manager()) {
+		DUMP_LOG("load log manager error");
+		return -1;
+	}
 	if (load_main_context()) {
 		DUMP_LOG("load main thread context error");
 		return -1;
@@ -95,6 +100,7 @@ int main(int argc, char *argv[])
 		DUMP_LOG("load keepalive error");
 		return -1;
 	}
+	DUMP_LOG("fuck");
 
 	event_base_loop(main_base, 0);
 

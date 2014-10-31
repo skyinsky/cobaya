@@ -1,4 +1,7 @@
+#include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
 #include <libiniparser/iniparser.h>
 #include "common.h"
 #include "config.h"

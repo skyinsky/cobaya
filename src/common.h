@@ -2,6 +2,7 @@
 #define _COMMON_H
 
 #include <stdio.h>
+#include "log.h"
 
 namespace cobaya {
 
@@ -10,8 +11,8 @@ namespace cobaya {
 #define COBAYA_PREFIX	"cobaya: "
 
 #define DUMP_LOG(fmt, ...) 					\
-	printf("%s:%d, %s(): " fmt "\n",			\
-	       __FILE__,  __LINE__, __func__, ##__VA_ARGS__)
+	log_msg("%s:%d, %s(): " fmt "\n",			\
+		__FILE__,  __LINE__, __func__, ##__VA_ARGS__)
 
 } // namespace cobaya
 

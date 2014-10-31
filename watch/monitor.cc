@@ -94,14 +94,15 @@ run_loop:
 		exit(EXIT_FAILURE);
 	} else if (pid == 0) {
 		char *const argv[] = { "cobaya", NULL };
-		char *const envp[] = { NULL };
+		//char *const envp[] = { NULL };
 		
-		execve("cobaya", argv, envp);
+		//execve("cobaya", argv, envp);
+		execve("cobaya", argv, environ);
 		DUMP_LOG("execve() error");
 	} else {
 		int status;
 
-		start_cobaya_sys();
+		//start_cobaya_sys();
 		waitpid(pid, &status, 0);
 
 		DUMP_LOG("child process exit");
