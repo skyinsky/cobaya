@@ -15,9 +15,9 @@ namespace cobaya
     public partial class MainFrame : DevExpress.XtraEditors.XtraForm
     {
         public MainFrame mframe;
-
+    
+        //UI 图像管理定时器
         private bool mfram_show;
-
         private System.Timers.Timer timer;
         public delegate void timer_hide();
         public timer_hide hide_delegate;
@@ -36,7 +36,7 @@ namespace cobaya
             hide_delegate = this.Hide;
             timer = new System.Timers.Timer();
             timer.Elapsed += new ElapsedEventHandler(timer_hide_main_frame);
-            timer.Interval = 3000;
+            timer.Interval = 5000;
             timer.Enabled = true;
         }
 
@@ -88,13 +88,9 @@ namespace cobaya
             MessageBox.Show("您已经安全退出服务！");
         }
 
-        private void 查询记录_Click(object sender, EventArgs e)
+        private void 修改密码_Click(object sender, EventArgs e)
         {
-            if (login_yes == false)
-            {
-                MessageBox.Show("请先登录服务！");
-                return;
-            }
+
         }
 
     }

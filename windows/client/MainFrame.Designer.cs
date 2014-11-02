@@ -88,9 +88,9 @@
             this.查询记录.Image = ((System.Drawing.Image)(resources.GetObject("查询记录.Image")));
             this.查询记录.Name = "查询记录";
             this.查询记录.Size = new System.Drawing.Size(152, 22);
-            this.查询记录.Text = "查询记录";
+            this.查询记录.Text = "修改密码";
             this.查询记录.ToolTipText = "查询历史记录";
-            this.查询记录.Click += new System.EventHandler(this.查询记录_Click);
+            this.查询记录.Click += new System.EventHandler(this.修改密码_Click);
             // 
             // labelControl1
             // 
