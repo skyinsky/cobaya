@@ -35,7 +35,7 @@
             this.登录服务 = new System.Windows.Forms.ToolStripMenuItem();
             this.注销服务 = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.查询记录 = new System.Windows.Forms.ToolStripMenuItem();
+            this.修改密码 = new System.Windows.Forms.ToolStripMenuItem();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -43,12 +43,11 @@
             // notifyIcon
             // 
             this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.notifyIcon.BalloonTipText = "香河县人民医院医疗设备监控服务";
             this.notifyIcon.ContextMenuStrip = this.contextMenuStrip;
             this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "香河县人民医院医疗设备监控服务";
             this.notifyIcon.Visible = true;
             this.notifyIcon.MouseClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseClick);
+            this.notifyIcon.MouseMove += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseMove);
             // 
             // contextMenuStrip
             // 
@@ -56,15 +55,15 @@
             this.登录服务,
             this.注销服务,
             this.toolStripSeparator1,
-            this.查询记录});
+            this.修改密码});
             this.contextMenuStrip.Name = "contextMenuStrip";
-            this.contextMenuStrip.Size = new System.Drawing.Size(153, 98);
+            this.contextMenuStrip.Size = new System.Drawing.Size(125, 76);
             // 
             // 登录服务
             // 
             this.登录服务.Image = ((System.Drawing.Image)(resources.GetObject("登录服务.Image")));
             this.登录服务.Name = "登录服务";
-            this.登录服务.Size = new System.Drawing.Size(152, 22);
+            this.登录服务.Size = new System.Drawing.Size(124, 22);
             this.登录服务.Text = "登录服务";
             this.登录服务.ToolTipText = "亲，工作辛苦了！";
             this.登录服务.Click += new System.EventHandler(this.登录服务_Click);
@@ -73,7 +72,7 @@
             // 
             this.注销服务.Image = ((System.Drawing.Image)(resources.GetObject("注销服务.Image")));
             this.注销服务.Name = "注销服务";
-            this.注销服务.Size = new System.Drawing.Size(152, 22);
+            this.注销服务.Size = new System.Drawing.Size(124, 22);
             this.注销服务.Text = "注销服务";
             this.注销服务.ToolTipText = "亲，下班了，记得注销哦！";
             this.注销服务.Click += new System.EventHandler(this.注销服务_Click);
@@ -81,27 +80,26 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(121, 6);
             // 
-            // 查询记录
+            // 修改密码
             // 
-            this.查询记录.Image = ((System.Drawing.Image)(resources.GetObject("查询记录.Image")));
-            this.查询记录.Name = "查询记录";
-            this.查询记录.Size = new System.Drawing.Size(152, 22);
-            this.查询记录.Text = "修改密码";
-            this.查询记录.ToolTipText = "查询历史记录";
-            this.查询记录.Click += new System.EventHandler(this.修改密码_Click);
+            this.修改密码.Image = ((System.Drawing.Image)(resources.GetObject("修改密码.Image")));
+            this.修改密码.Name = "修改密码";
+            this.修改密码.Size = new System.Drawing.Size(124, 22);
+            this.修改密码.Text = "修改密码";
+            this.修改密码.ToolTipText = "修改密码信息";
+            this.修改密码.Click += new System.EventHandler(this.修改密码_Click);
             // 
             // labelControl1
             // 
-            this.labelControl1.Appearance.Font = new System.Drawing.Font("隶书", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.AntiqueWhite;
-            this.labelControl1.LineVisible = true;
-            this.labelControl1.Location = new System.Drawing.Point(197, 229);
+            this.labelControl1.Appearance.Font = new System.Drawing.Font("隶书", 15F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(128)))));
+            this.labelControl1.Location = new System.Drawing.Point(200, 227);
             this.labelControl1.Name = "labelControl1";
-            this.labelControl1.Size = new System.Drawing.Size(240, 16);
+            this.labelControl1.Size = new System.Drawing.Size(222, 20);
             this.labelControl1.TabIndex = 1;
-            this.labelControl1.Text = "香河县人民医院医疗设备监控服务";
+            this.labelControl1.Text = "香河县医疗设备监控服务";
             // 
             // MainFrame
             // 
@@ -133,7 +131,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip;
         private System.Windows.Forms.ToolStripMenuItem 登录服务;
         private System.Windows.Forms.ToolStripMenuItem 注销服务;
-        private System.Windows.Forms.ToolStripMenuItem 查询记录;
+        private System.Windows.Forms.ToolStripMenuItem 修改密码;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
     }

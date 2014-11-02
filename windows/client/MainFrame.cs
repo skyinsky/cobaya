@@ -77,20 +77,40 @@ namespace cobaya
         {
             if (login_yes == true)
             {
-                MessageBox.Show("您已经登录，如果不是您本人，请注销服务后再登录！");
+                MessageBox.Show("你已经登录，如果不是本人，请注销服务后再登录！");
                 return;
             }
         }
 
         private void 注销服务_Click(object sender, EventArgs e)
         {
+            if (login_yes == false)
+            {
+                MessageBox.Show("你还没有登录系统！");
+                return;
+            }
+
             login_yes = false;
+            Info.user = "未知";
+
             MessageBox.Show("您已经安全退出服务！");
         }
 
         private void 修改密码_Click(object sender, EventArgs e)
         {
+            if (login_yes == false)
+            {
+                MessageBox.Show("你还没有登录系统！");
+                return;
+            }
+        }
 
+        private void notifyIcon_MouseMove(object sender, MouseEventArgs e)
+        {
+            string show = "当前登录用户： " + Info.user;
+
+            this.notifyIcon.BalloonTipText = show;
+            this.notifyIcon.Text = show;
         }
 
     }
