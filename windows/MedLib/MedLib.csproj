@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConfigInfo.cs" />
     <Compile Include="iniconfig.cs" />
     <Compile Include="libMySQL.cs" />
     <Compile Include="login.cs">

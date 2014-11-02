@@ -4,20 +4,20 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("cobaya")]
-[assembly: AssemblyDescription("香河县医疗设备监控服务")]
+[assembly: AssemblyTitle("MedBook")]
+[assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("香河县人民医院")]
-[assembly: AssemblyProduct("cobaya")]
-[assembly: AssemblyCopyright("Copyright © 香河县人民医院 2014")]
+[assembly: AssemblyCompany("香河人民医院")]
+[assembly: AssemblyProduct("MedBook")]
+[assembly: AssemblyCopyright("Copyright © 香河人民医院 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 // Setting ComVisible to false makes the types in this assembly not visible 
 // to COM components.  If you need to access a type in this assembly from 
 // COM, set the ComVisible attribute to true on that type.
-[assembly: ComVisible(true)]
+[assembly: ComVisible(false)]
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("427e2fcd-63ac-42aa-9bc0-9b4bfc119395")]
+[assembly: Guid("617f6060-2396-47f9-9def-899dff657185")]
 // Version information for an assembly consists of the following four values:
 //
 //      Major Version
