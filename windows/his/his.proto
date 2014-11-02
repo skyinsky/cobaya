@@ -1,0 +1,30 @@
+package cobaya;
+
+option cc_generic_services = true;
+
+/* his 系统对接通讯协议 */
+message MsgStartReq {
+	required string check_host = 1;
+	required uint32 unique_num = 2;
+	optional string guest_name = 3;
+	optional string register_items = 4;
+}
+
+message MsgStartRsp {
+	optional uint32 status = 1;
+}
+
+message MsgStopReq {
+	required uint32 unique_num = 1;
+}
+
+message MsgStopRsp {
+	optional uint32 status = 1;
+}
+
+/* rpc 服务 */
+service RpcService {
+	/* his operation */
+	rpc StartFlow (MsgStartReq) returns (MsgStartRsp);
+	rpc StopFlow (MsgStopReq) returns (MsgStopRsp);
+}
