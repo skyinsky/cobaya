@@ -11,6 +11,22 @@
 
 namespace cobaya {
 
+#ifdef COBAYA_DEBUG
+static void dump_user()
+{
+	char **row;
+
+	for (; (row = mysql->FetchRow()) != NULL; ) {
+		DUMP_LOG("user: %s\n", row[0]);
+		DUMP_LOG("passwd: %s\n", row[1]);
+		DUMP_LOG("logon: %s\n", row[2]);
+		DUMP_LOG("time: %s\n", row[3]);
+	}
+}
+#else
+#define dump_user()
+#endif
+
 /* 
  *  1 : exist
  *  0 : not exist
@@ -26,7 +42,7 @@ static inline int user_exist(const char *user)
 		DUMP_LOG("query mysql error");
 		return -1;
 	}
-	return mysql->m_iFields;
+	return (mysql->GetNumRows() == 1);
 }
 
 /* 
@@ -45,7 +61,7 @@ static inline int user_exist(const char *user, const char *passwd)
 		DUMP_LOG("query mysql error");
 		return -1;
 	}
-	return mysql->m_iFields;
+	return (mysql->GetNumRows() == 1);
 }
 
 int logon_client(const char *user, const char *passwd, const char *host)

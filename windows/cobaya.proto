@@ -1,0 +1,124 @@
+package cobaya;
+
+option cc_generic_services = true;
+
+/* 管理员工具通讯协议 */
+message MsgAdminReq {
+	required string key = 1;
+}
+
+message MsgAdminRsp {
+	/* mysql info */
+	required string ip = 1;
+	required string user = 2;
+	required string passwd = 3;
+	required string db = 4;
+}
+
+message MsgMonitorReq {
+	required string key = 1;
+	required bool start = 2;	
+}
+
+message MsgMonitorRsp {
+	required bool status = 1;
+}
+
+/* 客户端通信协议 */
+message MsgUpdateUserReq {
+	required string host = 1;
+	required string user = 2;
+	required string passwd = 3;
+	//required string office = 4;
+}
+
+message MsgUpdateUserRsp {
+	required bool grant = 1;
+}
+
+message MsgLoginReq {
+	required string host = 1;
+	required string user = 2;
+	required string passwd = 3;
+}
+
+message MsgLoginRsp {
+	required bool grant = 1;
+}
+
+message MsgLogoutReq {
+	required string host = 1;
+	required string user = 2;
+}
+
+message MsgLogoutRsp {
+	optional bool grant = 1;
+}
+
+message MsgClientReq {
+	/* 主机ip地址列表 */
+	repeated string hosts = 1;
+}
+
+message MsgClientRsp {
+	/* 管理医疗设备的注册ip */
+	required string host = 1;
+	required string dev_code = 2;
+
+	required uint32 heartbeat = 3;
+	required uint32 sensor = 4;
+
+	/* 科室列表 */
+	//repeated string office = 5;
+}
+
+message MsgDiscoveryReq {
+	required string host = 1;
+	required string user = 2;
+
+	/* 传感器是否检测到人 */
+	required bool person = 3;
+}
+
+message MsgDiscoveryRsp {
+	/* 这台仪器是否登记使用权限 */
+	optional bool grant = 1;
+}
+
+/* his 系统对接通讯协议 */
+message MsgStartReq {
+	required string check_host = 1;
+	required uint32 unique_num = 2;
+	optional string guest_name = 3;
+	optional string register_items = 4;
+}
+
+message MsgStartRsp {
+	optional uint32 status = 1;
+}
+
+message MsgStopReq {
+	required uint32 unique_num = 1;
+}
+
+message MsgStopRsp {
+	optional uint32 status = 1;
+}
+
+/* rpc 服务 */
+service RpcService {
+	/* admin operation */
+	rpc GetAdminInfo (MsgAdminReq) returns (MsgAdminRsp);
+	rpc ControlSystem (MsgMonitorReq) returns (MsgMonitorRsp);
+
+	/* client operation */
+	rpc GetClientInfo (MsgClientReq) returns (MsgClientRsp);
+	rpc UpdateUser (MsgUpdateUserReq) returns (MsgUpdateUserRsp);
+	rpc LoginSystem (MsgLoginReq) returns (MsgLoginRsp);
+	rpc LogoutSystem (MsgLogoutReq) returns (MsgLogoutRsp);
+	rpc AppendInfo (MsgDiscoveryReq) returns (MsgDiscoveryRsp);
+
+	/* his operation */
+	rpc StartFlow (MsgStartReq) returns (MsgStartRsp);
+	rpc StopFlow (MsgStopReq) returns (MsgStopRsp);
+}

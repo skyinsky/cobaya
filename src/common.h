@@ -6,6 +6,8 @@
 
 namespace cobaya {
 
+#define COBAYA_DEBUG	1
+
 #define AUTH_KEY	"admin_*%$~!@#(*&^+_)_cobaya_58932145672103"
 
 #define COBAYA_PREFIX	"cobaya: "

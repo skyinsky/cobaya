@@ -14,6 +14,13 @@ namespace cobaya
         [STAThread]
         static void Main()
         {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+
+            DevExpress.Skins.SkinManager.EnableFormSkins();
+            DevExpress.UserSkins.BonusSkins.Register();
+            UserLookAndFeel.Default.SetSkinStyle("Caramel");
+
             //确保只有一份运行实例
             bool enable_run;
             Mutex mtx = new Mutex(false, "cobaya_client", out enable_run);
@@ -29,13 +36,21 @@ namespace cobaya
                 MessageBox.Show("读取配置文件错误，请联系管理员！");
                 return;
             }
+            
+            //global LoginForm
+            Info.login_form = new LoginForm();
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-
-            DevExpress.Skins.SkinManager.EnableFormSkins();
-            DevExpress.UserSkins.BonusSkins.Register();
-            UserLookAndFeel.Default.SetSkinStyle("Caramel");
+            //rpc: dev config
+            Info.login_form.splashScreenManager1.ShowWaitForm();
+            if (!RpcClient.Init())
+            {
+                return ;
+            }
+            if (!RpcClient.GetClientInfo())
+            {
+                return;
+            }
+            Info.login_form.splashScreenManager1.CloseWaitForm();
 
             Application.Run(new MainFrame());
         }

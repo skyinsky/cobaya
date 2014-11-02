@@ -23,8 +23,6 @@ namespace cobaya
         public timer_hide hide_delegate;
 
         public bool login_yes;
-        public string login_user;
-        public string login_pass;
 
         public MainFrame()
         {
@@ -36,7 +34,7 @@ namespace cobaya
             hide_delegate = this.Hide;
             timer = new System.Timers.Timer();
             timer.Elapsed += new ElapsedEventHandler(timer_hide_main_frame);
-            timer.Interval = 5000;
+            timer.Interval = 3000;
             timer.Enabled = true;
         }
 
@@ -80,10 +78,16 @@ namespace cobaya
                 MessageBox.Show("你已经登录，如果不是本人，请注销服务后再登录！");
                 return;
             }
+
+            Info.login_form.ShowDialog();
+            login_yes = Info.login_form.grant;
         }
 
         private void 注销服务_Click(object sender, EventArgs e)
         {
+            bool grant;
+            string user = Info.user;
+
             if (login_yes == false)
             {
                 MessageBox.Show("你还没有登录系统！");
@@ -93,7 +97,17 @@ namespace cobaya
             login_yes = false;
             Info.user = "未知";
 
-            MessageBox.Show("您已经安全退出服务！");
+            Info.login_form.splashScreenManager1.ShowWaitForm();
+            grant = RpcClient.LogoutSystem(user);
+            Info.login_form.splashScreenManager1.CloseWaitForm();
+            if (grant)
+            {
+                MessageBox.Show("你已经安全注销服务！");
+            }
+            else
+            {
+                MessageBox.Show("不正常退出服务，请联系管理员！");
+            }
         }
 
         private void 修改密码_Click(object sender, EventArgs e)
@@ -103,6 +117,9 @@ namespace cobaya
                 MessageBox.Show("你还没有登录系统！");
                 return;
             }
+
+            UpdateForm form = new UpdateForm();
+            form.ShowDialog();
         }
 
         private void notifyIcon_MouseMove(object sender, MouseEventArgs e)

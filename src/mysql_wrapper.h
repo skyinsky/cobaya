@@ -5,6 +5,7 @@
 #include <cassert>
 #include <set>
 #include <sys/shm.h>
+#include <stdint.h>
 #include <string>
 #include <vector>
 #include <stdio.h>
@@ -47,6 +48,8 @@ public:
 	char** FetchRow();
 
 	char* GetField(const char* szFieldName);
+
+	uint64_t GetNumRows();
 
 ////////连接池那个类需要用到这3个函数。  2011-01-20
 public:

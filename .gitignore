@@ -22,3 +22,9 @@
 
 deps
 bin
+log
+
+windows/bin
+windows/admin/obj
+windows/client/obj
+windows/MedLib

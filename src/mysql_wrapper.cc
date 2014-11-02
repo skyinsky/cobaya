@@ -150,6 +150,15 @@ char** MysqlWrapper::FetchRow() {
 	return m_row;
 }
 
+uint64_t MysqlWrapper::GetNumRows()
+{
+	//如果结果集为空,则直接返回空; 调用FetchRow之前, 必须先调用 SelectQuery(...)
+	if (m_result == NULL)
+		return 0;
+	//从结果集中取出一行
+	return mysql_num_rows(m_result);
+}
+
 char* MysqlWrapper::GetField(const char* szFieldName) {
 	return GetField(m_mapFieldNameIndex[szFieldName]);
 }
