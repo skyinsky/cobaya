@@ -13,9 +13,8 @@ using DevExpress.XtraBars;
 using DevExpress.XtraBars.Ribbon;
 using DevExpress.XtraBars.Helpers;
 using DevExpress.Utils;
-using MedLib;
 
-namespace MedBook
+namespace cobaya
 {
     public partial class MainFrame : RibbonForm
     {
@@ -29,19 +28,11 @@ namespace MedBook
             InitTreeList();
 
             //关闭数据库连接等待窗口
-            setting.dlg_login.splashScreenManager1.CloseWaitForm();
+            //setting.dlg_login.splashScreenManager1.CloseWaitForm();
         }
         void InitDB()
         {
-            try
-            {
-                setting.db_conn = libMySQL.db_conn(setting.db_server, setting.db_database, setting.login_user, setting.login_pass);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Application.Exit();
-            }
+
         }
 
         void InitDataTable()

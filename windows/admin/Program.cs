@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using System.Threading;
 using DevExpress.LookAndFeel;
-using MedLib;
 
-namespace MedBook
+namespace cobaya
 {
     static class Program
     {
@@ -15,17 +14,7 @@ namespace MedBook
         [STAThread]
         static void Main()
         {
-            bool enable_run;
-            Mutex mtx = new Mutex(false, "香河县人民医院_DoctorEye", out enable_run);
-            if (!enable_run)
-            {
-                MessageBox.Show("已经有一个程序的实例在运行！");
-                return;
-            }
-
-            bool ini_config = setting.read_ini_config();
-            if (ini_config == false)
-                return;
+            MainFrame frame;
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -34,14 +23,42 @@ namespace MedBook
             DevExpress.UserSkins.BonusSkins.Register();
             UserLookAndFeel.Default.SetSkinStyle("Xmas 2008 Blue");
 
-            setting.dlg_login = new login(true);
-            Application.Run(setting.dlg_login);
-            if (!setting.dlg_login.enable_enter())
+            //确保只有一份运行实例
+            bool enable_run;
+            Mutex mtx = new Mutex(false, "cobaya_client", out enable_run);
+            if (!enable_run)
+            {
+                MessageBox.Show("已经有一个程序的实例在运行，请查看系统任务栏！");
                 return;
-            //开启数据库连接等待窗口
-            setting.dlg_login.splashScreenManager1.ShowWaitForm();
+            }
 
-            Application.Run(new MainFrame());
+            //config
+            if (!Config.Init("cobaya.ini"))
+            {
+                MessageBox.Show("读取配置文件错误，请联系管理员！");
+                return;
+            }
+
+            frame = new MainFrame();
+
+            //rpc: mysql config
+            //frame.splashScreenManager1.ShowWaitForm();
+            if (!RpcClient.Init())
+            {
+                return;
+            }
+            if (!RpcClient.GetAdminInfo())
+            {
+                return;
+            }
+            //Info.login_form.splashScreenManager1.CloseWaitForm();
+
+
+
+            //开启数据库连接等待窗口
+            //setting.dlg_login.splashScreenManager1.ShowWaitForm();
+
+            Application.Run(frame);
         }
     }
 }

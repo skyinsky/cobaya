@@ -27,8 +27,11 @@ namespace cobaya
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                string err = "请联系管理员\n" + e.ToString();
+
+                MessageBox.Show(err);
                 return false;
             }
 
@@ -52,6 +55,12 @@ namespace cobaya
 
                 // Create channel.
                 RcfProtoChannel channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
+
+                // 5s connect timeout.
+                channel.SetConnectTimeoutMs(5 * 1000);
+
+                // 10s remote call timeout.
+                channel.SetRemoteCallTimeoutMs(10 * 1000);
 
                 // Create service stub.
                 RpcService.Stub stub = new RpcService.Stub(channel);
@@ -92,6 +101,12 @@ namespace cobaya
                 // Create channel.
                 RcfProtoChannel channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
 
+                // 5s connect timeout.
+                channel.SetConnectTimeoutMs(5 * 1000);
+
+                // 10s remote call timeout.
+                channel.SetRemoteCallTimeoutMs(10 * 1000);
+
                 // Create service stub.
                 RpcService.Stub stub = new RpcService.Stub(channel);
 
@@ -121,6 +136,12 @@ namespace cobaya
 
                 // Create channel.
                 RcfProtoChannel channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
+
+                // 5s connect timeout.
+                channel.SetConnectTimeoutMs(5 * 1000);
+
+                // 10s remote call timeout.
+                channel.SetRemoteCallTimeoutMs(10 * 1000);
 
                 // Create service stub.
                 RpcService.Stub stub = new RpcService.Stub(channel);
@@ -152,6 +173,12 @@ namespace cobaya
 
                 // Create channel.
                 RcfProtoChannel channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
+
+                // 5s connect timeout.
+                channel.SetConnectTimeoutMs(5 * 1000);
+
+                // 10s remote call timeout.
+                channel.SetRemoteCallTimeoutMs(10 * 1000);
 
                 // Create service stub.
                 RpcService.Stub stub = new RpcService.Stub(channel);
