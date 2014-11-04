@@ -3,6 +3,8 @@
 
 namespace cobaya {
 
+extern timespec old_flow;
+
 int load_compaction();
 
 } // namespace cobaya

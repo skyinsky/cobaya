@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 #include <pthread.h>
 #include <libtoolkit/list.h>
 #include <libtoolkit/spinlock.h>
@@ -8,16 +9,17 @@
 #include "common.h"
 #include "dev.h"
 #include "cache.h"
+#include "compact.h"
 
 namespace cobaya {
 
 #define ULEN	11
 
-using namespace std;
-
 struct FlowDesc {
 	list_head list;
 	char id[ULEN + 1];
+
+	timespec start;
 };
 
 struct FlowHead {
@@ -103,8 +105,15 @@ bool new_flow(const char *host, const char *id)
 		goto out;
 	}
 	memset(desc, 0, sizeof(*desc));
+
 	INIT_LIST_HEAD(&desc->list);
 	memcpy(desc->id, id, ULEN);
+	if (clock_gettime(CLOCK_MONOTONIC, &desc->start)) {
+		cache_free(flow_cache, desc);
+		res = false;
+		DUMP_LOG("clock_gettime() error");
+		goto out;
+	}
 
 	spin_lock(&head->lock);
 	list_add_tail(&desc->list, &head->list);
@@ -161,6 +170,29 @@ bool hit_flow(const char *host, const char *id)
 	spin_unlock(&head->lock);
 
 	return res;
+}
+
+void remove_expire_flow()
+{
+	FlowHead *head;
+
+	list_for_each_entry(head, &flow_head, head) {
+		FlowDesc *pos, *n;
+		DEFINE_LIST_HEAD(del);
+
+		spin_lock(&head->lock);
+		list_for_each_entry_safe(pos, n, &head->list, list) {
+			if (pos->start.tv_sec <= old_flow.tv_sec) {
+				list_move(&pos->list, &del);
+			}
+		}
+		spin_unlock(&head->lock);
+
+		list_for_each_entry_safe(pos, n, &del, list) {
+			list_del(&pos->list);
+			cache_free(flow_cache, pos);
+		}
+	}
 }
 
 } // namespace cobaya

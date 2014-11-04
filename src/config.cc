@@ -22,12 +22,12 @@ int load_config(const char *path)
 		return -1;
 	}
 
-	config.daemon = iniparser_getboolean(ini, "cobaya:daemon", true);
-	config.worker = iniparser_getint(ini, "cobaya:worker", -1);
+	config.daemon = iniparser_getboolean(ini, "cobaya:daemon", false);
+	config.worker = iniparser_getint(ini, "cobaya:worker", 4);
 	config.dir = iniparser_getstring(ini, "cobaya:dir", NULL);
 
 	config.rpc_ip = iniparser_getstring(ini, "rpc:ip", NULL);
-	config.rpc_port = iniparser_getint(ini, "rpc:port", -1);
+	config.rpc_port = iniparser_getint(ini, "rpc:port", 11611);
 
 	config.mysql_cobaya_ip = iniparser_getstring(ini, "mysql:cobaya_ip", NULL);
 	config.mysql_remote_ip = iniparser_getstring(ini, "mysql:remote_ip", NULL);
@@ -35,12 +35,14 @@ int load_config(const char *path)
 	config.mysql_passwd = iniparser_getstring(ini, "mysql:passwd", NULL);
 	config.mysql_db = iniparser_getstring(ini, "mysql:db", NULL);
 
-	config.client_timeout = iniparser_getint(ini, "client:timeout", -1);
-	config.client_heartbeat = iniparser_getint(ini, "client:heartbeat", -1);
-	config.client_sensor = iniparser_getint(ini, "client:sensor", -1);
+	config.client_timeout = iniparser_getint(ini, "client:timeout", 60);
+	config.client_heartbeat = iniparser_getint(ini, "client:heartbeat", 5);
+	config.client_sensor = iniparser_getint(ini, "client:sensor", 5);
+	config.client_flow = iniparser_getint(ini, "client:flow", 10);
 
 	config.compact_allow = iniparser_getboolean(ini, "compact:allow", true);
-	config.compact_interval = iniparser_getint(ini, "compact:interval", 30);
+	config.compact_mysql = iniparser_getint(ini, "compact:mysql", 90);
+	config.compact_flow = iniparser_getint(ini, "compact:flow", 2);
 
 	g_config = config;
 	g_config.dir = strdup(config.dir);

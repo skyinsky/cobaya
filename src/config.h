@@ -22,9 +22,11 @@ struct Config {
 	int client_timeout;
 	int client_heartbeat;
 	int client_sensor;
+	int client_flow;
 
 	bool compact_allow;
-	int compact_interval;
+	int compact_mysql;
+	int compact_flow;
 };
 
 extern Config g_config;
