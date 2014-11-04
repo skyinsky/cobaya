@@ -1,12 +1,10 @@
 ﻿using System;
 using System.IO;
 using System.IO.Pipes;
-using System.Threading;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.SqlTypes;
 using Microsoft.SqlServer.Server;
-
 
 public partial class StoredProcedures
 {
@@ -28,7 +26,7 @@ public partial class StoredProcedures
             {
                 if (!pipe.IsConnected)
                 {
-                    pipe.Connect();
+                    pipe.Connect(1000);
                     writer.AutoFlush = true;
                 }
 
