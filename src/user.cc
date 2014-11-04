@@ -11,22 +11,6 @@
 
 namespace cobaya {
 
-#ifdef COBAYA_DEBUG
-static void dump_user()
-{
-	char **row;
-
-	for (; (row = mysql->FetchRow()) != NULL; ) {
-		DUMP_LOG("user: %s\n", row[0]);
-		DUMP_LOG("passwd: %s\n", row[1]);
-		DUMP_LOG("logon: %s\n", row[2]);
-		DUMP_LOG("time: %s\n", row[3]);
-	}
-}
-#else
-#define dump_user()
-#endif
-
 /* 
  *  1 : exist
  *  0 : not exist

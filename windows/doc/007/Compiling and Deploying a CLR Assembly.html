@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx -->
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="WT.seg_1" content="en-us"><link rel="canonical" href="http://msdn.microsoft.com/en-us/library/ms254956(v=vs.90).aspx">
+        <title>Compiling and Deploying a CLR Assembly</title>
+        
+        
+
+
+
+
+
+
+<meta name="DCS.dcsuri" content="/en-us/library/ms254956(d=default,l=en-us,v=vs.80).aspx">
+
+<meta name="NormalizedUrl" content="http://msdn.microsoft.com/en-us/library/ms254956(d=default,l=en-us,v=vs.80).aspx">
+
+<meta name="ms.normalizedurl" content="http://msdn.microsoft.com/en-us/library/ms254956(d=default,l=en-us,v=vs.80).aspx">
+
+<meta name="VotingContextUrl" content="http://msdn.microsoft.com/en-us/library/ms254956(d=default,l=en-us,v=vs.80).aspx">
+
+<meta name="MN" content="4B9B1F29-7:52:09 AM">
+
+<meta name="Search.ShortId" content="ms254956">
+
+<meta name="ms.shortidmsdn" content="ms254956">
+
+<meta name="Ms.Locale" content="en-us">
+
+<meta name="ms.prodver" content="VS.80">
+
+<meta name="ms.contentlang" content="EN">
+
+<meta name="ms.lang" content="EN">
+
+<meta name="ms.loc" content="US">
+
+<meta name="ms.sitever" content="2014.10.24.3">
+
+<meta name="ms.assetid" content="df802b6d-b447-434f-ad4b-d5e3c8e44cc4">
+
+<meta name="ms.auth" content="0">
+
+
+
+
+
+
+
+
+        
+    <link rel="stylesheet" type="text/css" href="./Compiling and Deploying a CLR Assembly_files/Combined.css"><style type="text/css"></style><script type="text/javascript" async="" src="./Compiling and Deploying a CLR Assembly_files/ms2.js"></script><script type="text/javascript" src="./Compiling and Deploying a CLR Assembly_files/ai.js" async=""></script><script class="mtps-injected">try {
+/**/
+(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { 
+	"image": "http://i.msdn.microsoft.com", 
+	"js": "http://i2.msdn.microsoft.com", 
+	"css": "http://i3.msdn.microsoft.com", 
+	"xap": "http://207.46.99.206"
+});
+/**/
+} finally { MTPS._injectNextScript_0 && MTPS._injectNextScript_0(); }</script><script class="mtps-injected" src="./Compiling and Deploying a CLR Assembly_files/jquery-1.8.2.min.js"></script><script class="mtps-injected">try {
+//
+  var literalNormalizedUrl = '/en-us/library/ms254956(l=en-us,v=vs.80).aspx';
+  var wt_nvr_ru = 'WT_NVR_RU';
+  var wt_fpcdom = '.microsoft.com';
+  var wt_domlist = 'msdn.microsoft.com';
+  var wt_pathlist = '';
+  var wt_paramlist = 'DCSext.mtps_devcenter';
+  var wt_siteid = 'MSDN';
+  var gDomain = 'm.webtrends.com';
+  var gDcsId = 'dcsmgru7m99k7mqmgrhudo0k8_8c6m';
+  var gFpc = 'WT_FPC';
+
+
+
+  if (document.cookie.indexOf(gFpc + "=") == -1) {
+    var wtidJs = document.createElement("script");
+    wtidJs.src = "//" + gDomain + "/" + gDcsId + "/wtid.js";
+    document.getElementsByTagName("head")[0].appendChild(wtidJs);
+  }
+
+
+
+  var detectedLocale = 'en-US';
+  var wtsp = 'msdnlib_devtools_lang';
+  var gTrackEvents = '0';
+/**/
+} finally { MTPS._injectNextScript_2 && MTPS._injectNextScript_2(); }</script><script class="mtps-injected">try {
+/**/
+  var omni_guid = "02242a4d-03a3-4964-b68f-a03b4dd15814";
+/**/
+} finally { MTPS._injectNextScript_3 && MTPS._injectNextScript_3(); }</script><script class="mtps-injected">try {
+//
+
+            window.appInsightsId = '60854590-027a-4ae4-98be-2741a40f355f';
+            //
+} finally { MTPS._injectNextScript_4 && MTPS._injectNextScript_4(); }</script><script class="mtps-injected" src="./Compiling and Deploying a CLR Assembly_files/Combined.js"></script><script class="mtps-injected" src="./Compiling and Deploying a CLR Assembly_files/SearchBox.jss"></script><script class="mtps-injected" src="./Compiling and Deploying a CLR Assembly_files/Combined(1).js"></script><script class="mtps-injected" src="./Compiling and Deploying a CLR Assembly_files/jquery.tmpl.min.js"></script><script class="mtps-injected" src="./Compiling and Deploying a CLR Assembly_files/Combined(2).js"></script><script src="./Compiling and Deploying a CLR Assembly_files/broker.js"></script><script class="mtps-injected">try {
+$(document).ready(function() {
+        try {
+            var token = $("#globalRequestVerification input[name='__RequestVerificationToken']").clone();
+            $("#siteFeedbackForm").append(token);
+        } catch(err) {
+            
+        }
+    });
+} finally { MTPS._injectNextScript_10 && MTPS._injectNextScript_10(); }</script><link href="./Compiling and Deploying a CLR Assembly_files/PrintView.css" rel="stylesheet" type="text/css" media="print"></head>
+    <body class="library Chrome">
+        <div id="page">
+            
+            
+            
+            
+    
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+    <input type="hidden" id="isHeaderBleeding" value="true">
+    <div id="ux-header" dir="ltr" class="ltr msdn">
+        
+
+        <header>
+            <div class="row">
+                <div class="top mobile"></div>
+                <div class="left">
+                    <div class="siteLogo">  
+                        
+                            <a class="msdnLogoImg" href="http://msdn.microsoft.com/en-US">
+                               <img src="./Compiling and Deploying a CLR Assembly_files/microsoftLogoForHeader.png">
+                            </a>
+                                                             
+                        <div data-fragmentname="SiteLogo" id="Fragment_SiteLogo" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="LinkWithImage topImage">
+    <a id="SiteLogo_2152_1" href="http://msdn.microsoft.com/">
+      <img id="msdnLogo-black" src="./Compiling and Deploying a CLR Assembly_files/dn610975.msdnLogo-black.jpg" xmlns="">
+      <span></span>
+    </a>
+  </div>
+</div>    
+
+                    </div>
+                    <div id="grip"></div>
+                </div>
+                
+                <div class="right desktop">
+                    <div class="auxNav">
+                        <div id="signIn">
+
+<a class="scarabLink" href="https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=12&ct=1415029929&rver=6.0.5276.0&wp=MCLBI&wlcxt=MSDN%24MSDN%24MSDN&wreply=http%3a%2f%2fmsdn.microsoft.com%2fen-US%2flibrary%2fms254956%2528v%3dvs.80%2529.aspx&lc=1033&id=254354&mkt=en-US" title="Sign in">Sign in</a></div>
+
+    
+
+                        <div data-fragmentname="Subscriptions" id="Fragment_Subscriptions" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="https://msdn.microsoft.com/subscriptions/manage/hh442900" id="Subscriptions_2153_1" xmlns="http://www.w3.org/1999/xhtml">MSDN subscriptions</a>
+</div>   
+                        <div data-fragmentname="GetTools" id="Fragment_GetTools" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="http://go.microsoft.com/fwlink/?LinkId=309297&clcid=0x409&slcid=0x409" id="GetTools_2153_3" xmlns="http://www.w3.org/1999/xhtml">Get tools</a>
+</div>
+                        <div data-fragmentname="SocialLinks" id="Fragment_SocialLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="http://www.facebook.com/microsoftdeveloper" target="_blank" id="SocialLinks_2152_4" class="facebook" xmlns="http://www.w3.org/1999/xhtml">http://www.facebook.com/microsoftdeveloper</a>
+      </li>
+      <li>
+        <a href="https://twitter.com/msdev" target="_blank" id="SocialLinks_2152_5" class="twitter" xmlns="http://www.w3.org/1999/xhtml">https://twitter.com/msdev</a>
+      </li>
+      <li>
+        <a href="http://plus.google.com/111221966647232053570/" target="_blank" id="SocialLinks_2152_6" class="googlePlus" xmlns="http://www.w3.org/1999/xhtml">http://plus.google.com/111221966647232053570/</a>
+      </li>
+    </ul>
+  </div>
+</div> 
+                    </div>
+                    <div data-fragmentname="SearchBox" id="Fragment_SearchBox" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="SearchBox">
+    <form id="HeaderSearchForm" name="HeaderSearchForm" method="get" onsubmit="return Epx.Controls.SearchBox.searchBoxOnSubmit(this);">
+      <input id="HeaderSearchTextBox" name="query" type="text" maxlength="200" onfocus="Epx.Controls.SearchBox.watermarkFocus(event, this.title)" onblur="Epx.Controls.SearchBox.watermarkBlur(event, this.title)" autocomplete="off">
+      <button id="HeaderSearchButton" value="" type="submit" class="header-search-button" title="Search MSDN"></button>
+    <div id="SearchFlyoutContainer" style="display: none; text-align: left; border: 1px solid buttonshadow; position: absolute; z-index: 1000; padding: 2px; color: rgb(59, 59, 59); font-family: Arial; font-size: 13px; background-color: rgb(255, 255, 255);"><div id="SuggestionContainer"><ul style="list-style: none; padding: 4px 2px 0px 1px; cursor: pointer; margin: 1px; white-space: nowrap;"></ul></div></div></form>
+    
+    
+  </div>
+</div> 
+                </div>
+            </div>
+       
+             <div class="row" id="droor" style="display: block;">
+                <div class="left toc">
+                            <nav>
+            <ul>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/microsoft-platform-technologies-tools-msdn" title="Technologies">Technologies</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="http://msdn.microsoft.com/cloud-app-development-msdn" title="Cloud">Cloud</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/mobile-app-development-msdn" title="Mobile">Mobile</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/web-app-development-msdn" title="Web">Web</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/business-and-productivity-app-development-msdn" title="Business">Business</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/big-data-development-msdn" title="Data">Data</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/games-development-msdn" title="Gaming">Gaming</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/developer-resource-downloads-msdn" title="Downloads">Downloads</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="http://go.microsoft.com/fwlink/?linkid=307137&clcid=0x409" title="Visual Studio">Visual Studio</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/subscriptions/" title="MSDN subscriptions">MSDN subscriptions</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/microsoft-sdks-msdn" title="SDKs">SDKs</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/developer-programs" title="Programs">Programs</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="http://www.microsoft.com/bizspark" title="BizSpark">BizSpark</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/students-overview-msdn" title="Students">Students</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/architects-overview-msdn" title="Architects">Architects</a></li>
+                                                 <li><a href="http://events.msdn.microsoft.com/en-us" title="Events">Events</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/developer-communities-msdn" title="Community">Community</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="https://social.msdn.microsoft.com/forums/" title="Forums">Forums</a></li>
+                                                 <li><a href="http://blogs.msdn.com/b/developer-tools/" title="Blogs">Blogs</a></li>
+                                                 <li><a href="http://tech-advisors.msdn.microsoft.com/en-us" title="Tech Advisors">Tech Advisors</a></li>
+                                                 <li><a href="http://channel9.msdn.com/" title="Channel 9">Channel 9</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="current active">
+
+                         <a href="http://msdn.microsoft.com/library/" title="Documentation">Documentation</a>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="https://code.msdn.microsoft.com/" title="Samples">Samples</a>
+
+                     </li>
+            </ul>
+          
+        </nav>        
+
+                </div>
+                <div class="right mobile"></div>
+                
+                <span id="singleCol"></span>
+                <span id="doubleCol"></span>
+             </div>
+        </header>
+    </div>
+    
+    
+
+        
+    <div class="printExportMenus ltr">
+        <a id="isd_printABook" href="http://msdn.microsoft.com/en-US/library/export/help/?returnUrl=%2fen-US%2flibrary%2fms254956(v%3dvs.80).aspx" style="display: inline;">
+            Export (<span class="count">0</span>)
+        </a>
+        <a id="isd_print" href="http://msdn.microsoft.com/en-US/library/ms254956(d=printer,v=vs.80).aspx" rel="nofollow">
+            Print 
+        </a>
+    </div>
+    
+
+        <div class="printExportMenus ltr">
+        <a id="expandCollapseAll" accesskey="e" href="javascript:void(0)" title="Expand/Collapse all sections by pressing Ctrl + Shift + e" style="display: none;">Expand All</a>
+    </div>
+
+    
+
+
+            <div id="body">
+                
+
+
+
+
+
+
+
+
+    <div id="leftNav" style="width: 280px; max-width: 480px; min-height: 3933px; height: 362px;">
+
+
+
+<div id="tocnav" style="width: 280px; position: fixed; top: 60px;">
+
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms123401.aspx" id="ms310241_MSDN.10_en-us" mtpsaliasid="" mtpsassetid="5DDC0A78-6B2C-43E3-9C56-55F45C0DFFA5_MSDN.10_en-us" mtpsshortid="ms123401_MSDN.10_en-us" title="MSDN Library">MSDN Library</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/aa187916.aspx" id="aa187916_MSDN.10_en-us" mtpsaliasid="" mtpsassetid="MSDN|devtoolslang|$\devtoolslang.hxt@0,0_MSDN.10_en-us" mtpsshortid="aa187916_MSDN.10_en-us" title="Development Tools and Languages">Development Tools and Languages</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms950416.aspx" id="aa139594_MSDN.10_en-us" mtpsaliasid="" mtpsassetid="MSDN|dnanchor|~\html\vs2005anchor.htm_MSDN.10_en-us" mtpsshortid="ms950416_MSDN.10_en-us" title="Visual Studio 2005">Visual Studio 2005</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms269115(v=vs.80).aspx" id="ms269115_VS.80_en-us" mtpsaliasid="" mtpsassetid="VS|_vs80|$\_vs80.hxt@0,0_VS.80_en-us" mtpsshortid="ms269115_VS.80_en-us" title="Visual Studio">Visual Studio</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/k1s94fta(v=vs.80).aspx" id="ms299703_VS.80_en-us" mtpsaliasid="" mtpsassetid="f3f63195-82c6-48e8-a4a0-612810e7d093_VS.80_en-us" mtpsshortid="k1s94fta_VS.80_en-us" title=".NET Framework Programming in Visual Studio">.NET Framework Programming in Visual Studio</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/wzabh8c4(v=vs.80).aspx" id="ms299744_VS.80_en-us" mtpsaliasid="" mtpsassetid="9812a6d5-23d2-4427-8b98-70a2abfec3bc_VS.80_en-us" mtpsshortid="wzabh8c4_VS.80_en-us" title="Accessing Data">Accessing Data</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/e80y5yhx(v=vs.80).aspx" id="ms308558_VS.80_en-us" mtpsaliasid="" mtpsassetid="5b96ed06-9759-4966-a797-a1d5f6ee50ca_VS.80_en-us" mtpsshortid="e80y5yhx_VS.80_en-us" title="ADO.NET">ADO.NET</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms254963(v=vs.80).aspx" id="ms308599_VS.80_en-us" mtpsaliasid="" mtpsassetid="c7a324c4-160d-44c2-b593-641af06eca61_VS.80_en-us" mtpsshortid="ms254963_VS.80_en-us" title="Using SQL Server Common Language Runtime Integration">Using SQL Server Common Language Runtime Integration</a>            </div>
+            <div class="toclevel1" data-toclevel="1" data-childrenloaded="true" style="padding-left: 17px;">
+<a class="toc_expanded" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms254498(v=vs.80).aspx" id="ms308600_VS.80_en-us" mtpsaliasid="" mtpsassetid="551d2290-ed80-49be-b377-44b32444da1c_VS.80_en-us" mtpsshortid="ms254498_VS.80_en-us" title="Introduction to SQL Server CLR Integration">Introduction to SQL Server CLR Integration</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/en-US/library/ms254506(v=vs.80).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Enabling CLR Integration">Enabling CLR Integration</a>            </div>
+            <div class="toclevel2 current" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="./Compiling and Deploying a CLR Assembly_files/Compiling and Deploying a CLR Assembly.html" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Compiling and Deploying a CLR Assembly">Compiling and Deploying a CLR Assembly</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/en-US/library/ms254940(v=vs.80).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="CLR Integration Security">CLR Integration Security</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/en-US/library/ms254966(v=vs.80).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Debugging a CLR Assembly">Debugging a CLR Assembly</a>            </div>
+</div>
+        
+
+        
+
+        
+        
+        <div id="toc-resizable-ew" class="toc-resizable-ew"></div>
+        
+
+<a id="NavigationResize" href="javascript:void(0)" style="left: 280px; display: inline-block;">
+    <img class="cl_nav_resize_open" src="./Compiling and Deploying a CLR Assembly_files/ImageSprite.png" title="Expand" alt="Expand">
+    <img class="cl_nav_resize_close" src="./Compiling and Deploying a CLR Assembly_files/ImageSprite.png" title="Minimize" alt="Minimize" style="display: none;">
+</a>
+
+
+
+    </div>
+<div id="content" class="content" style="margin-left: 280px; width: auto;">
+
+
+
+
+
+    
+    <div id="FeedbackCounterUrl" data-url="/en-US/library/feedbackcounterasync/ms254956(v=vs.80).aspx"></div>
+    <div id="FeedbackCounterPlaceHolder"><link rel="stylesheet" type="text/css" href="./Compiling and Deploying a CLR Assembly_files/FeedbackCounter.css" xmlns="http://www.w3.org/1999/xhtml">
+    
+    
+
+    
+
+    
+</div>
+
+
+        
+<div class="topic" xmlns:mtps="http://msdn2.microsoft.com/mtps" xmlns="http://www.w3.org/1999/xhtml">
+  <h1 class="title">Compiling and Deploying a CLR Assembly&nbsp;
+        </h1>
+  
+  <div class="lw_vs">
+    <div id="curversion">
+      <strong>
+            .NET Framework 2.0
+        </strong>
+    </div>
+  <div id="ratingCounterSeperator" class="cl_lw_vs_seperator" style="display: block;" xmlns="http://www.w3.org/1999/xhtml"></div><div id="ratingCounter" xmlns="http://www.w3.org/1999/xhtml" style="margin: 0px 0px 0px 13px; display: block;">
+        <span id="rcA" class="ratingText">
+            30 out of 42 rated this helpful <span id="rateThisPrefix">- </span><a id="rateThisTopic" href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#feedback" title="Rate this topic">Rate this topic</a>
+            
+        </span>
+    </div></div>
+  <div style="clear:both;"></div>
+  
+  <div id="mainSection"> <div id="mainBody">  <p> </p><p>This topic provides an overview of the namespaces and libraries required to compile database objects using the Microsoft SQL Server integration with the Microsoft .NET Framework common language runtime (CLR). The topic also shows you how to write, compile, and run a simple CLR stored procedure written in Microsoft Visual C#.</p> <h1 class="heading">Required Namespaces</h1><div id="sectionSection0" class="seeAlsoNoToggleSection"> <p>The components required to develop basic CLR database objects are installed with SQL Server 2005. CLR integration functionality is exposed in an assembly called system.data.dll, which is part of the .NET Framework. This assembly can be found in the Global Assembly Cache (GAC) as well as in the .NET Framework directory. A reference to this assembly is typically added automatically by both command line tools and Microsoft Visual Studio, so there is no need to add it manually. </p> <p>The system.data.dll assembly contains the following namespaces, which are required for compiling CLR database objects:</p> <p> <tt xmlns:asp="http://msdn2.microsoft.com/asp">System.Data</tt> </p> <p> <tt xmlns:asp="http://msdn2.microsoft.com/asp">System.Data.Sql</tt> </p> <p> <tt xmlns:asp="http://msdn2.microsoft.com/asp">Microsoft.SqlServer.Server</tt> </p> <p> <tt xmlns:asp="http://msdn2.microsoft.com/asp">System.Data.SqlTypes</tt> </p> </div><h1 class="heading">Writing A Simple "Hello World" Stored Procedure</h1><div id="sectionSection1" class="seeAlsoNoToggleSection"> <p>Copy and paste the following Visual C# code into a text editor, and save it in a file named "helloworld.cs" or "helloworld.vb".</p> 
+<div id="code-snippet-1" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        <div class="codeSnippetContainerTabActive" dir="ltr"><a>C#</a></div><div class="codeSnippetContainerTab" dir="ltr"><a href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx?cs-save-lang=1&cs-lang=vb#code-snippet-1">VB</a></div>
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_e7b7675c-d21e-48bd-946a-7f59033188ad');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_e7b7675c-d21e-48bd-946a-7f59033188ad" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre><span style="color:Blue;">using</span> System;
+<span style="color:Blue;">using</span> System.Data;
+<span style="color:Blue;">using</span> Microsoft.SqlServer.Server;
+<span style="color:Blue;">using</span> System.Data.SqlTypes;
+
+<span style="color:Blue;">public</span> <span style="color:Blue;">class</span> HelloWorldProc
+{
+    [Microsoft.SqlServer.Server.SqlProcedure]
+    <span style="color:Blue;">public</span> <span style="color:Blue;">static</span> <span style="color:Blue;">void</span> HelloWorld()
+    {
+        SqlContext.Pipe.Send(<span style="color:#A31515;">"Hello world!\n"</span>);
+    }
+}
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+  <p>This simple program contains a single static method on a public class. This method uses two new classes, <b>SqlContext</b> and <b>SqlPipe</b>, for creating managed database objects to output a simple text message. This method can be declared as a stored procedure in SQL Server, and then run in the same manner as a Transact-SQL stored procedure.</p> <p>We will now compile this program as a library, load it into SQL Server, and run it as a stored procedure.</p> </div><h1 class="heading">Compiling the "Hello World" Stored Procedure</h1><div id="sectionSection2" class="seeAlsoNoToggleSection"> <p>SQL Server installs the .NET Framework redistribution files by default. These files include csc.exe and vbc.exe, the command-line compilers for Visual C# and Visual Basic programs. To compile our sample, modify your path variable to point to the directory containing csc.exe or vbc.exe. The following is the default installation path of the .NET Framework.</p> 
+<div id="code-snippet-2" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_5d898eb1-d358-4bfc-be66-4e7a4eb74330');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_5d898eb1-d358-4bfc-be66-4e7a4eb74330" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>C:\Windows\Microsoft.NET\Framework\(version)
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ <p>Version contains the version number of the installed .NET Framework redistributable. For example:</p> 
+<div id="code-snippet-3" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_407b9821-6956-4128-9e68-2f431aae0458');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_407b9821-6956-4128-9e68-2f431aae0458" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>C:\Windows\Microsoft.NET\Framework\v2.0.31113
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ <p>Once you have added the .NET Framework directory to your path, you can compile the sample stored procedure into an assembly with the following command.  </p> <p>For Visual C# source files:</p> 
+<div id="code-snippet-4" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_e00ea8ef-4ef5-4ca5-a62d-5e82386399fc');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_e00ea8ef-4ef5-4ca5-a62d-5e82386399fc" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>csc /target:library helloworld.cs 
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ <p>For Visual Basic source files:</p> 
+<div id="code-snippet-5" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_30b1b430-baf1-4338-a925-6f8c22a909d6');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_30b1b430-baf1-4338-a925-6f8c22a909d6" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>vbc /target:library helloworld.vb
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ <p>The <b>/target</b> option allows you to compile it into an assembly.</p> <p>These commands launch the Visual C# or Visual Basic compiler using the <b>/target</b> option to specify building a library DLL.</p> </div><h1 class="heading">Loading and Running the "Hello World" Stored Procedure in SQL Server</h1><div id="sectionSection3" class="seeAlsoNoToggleSection"> <p>Once the sample procedure has successfully compiled, you can test it in SQL Server. To do this, open SQL Server Management Studio and create a new query, connecting to a suitable test database (for example, the AdventureWorks sample database).</p> <p>We will need to create the assembly so we can access the stored procedure. For this example, we will assume that you have created the helloworld.dll assembly in the C:\ directory. Add the following Transact-SQL statement to your query.</p> 
+<div id="code-snippet-6" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_b16dfd92-a6ce-4120-8e7f-f5f447553df5');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_b16dfd92-a6ce-4120-8e7f-f5f447553df5" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>CREATE ASSEMBLY helloworld from 'c:\helloworld.dll' WITH PERMISSION_SET = SAFE
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ <p>Once the assembly has been created, we can now access our HelloWorld method by using the create procedure statement. We will call our stored procedure "hello":</p> 
+<div id="code-snippet-7" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_a512bce7-8ae5-41d9-870a-69c664d7edb7');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_a512bce7-8ae5-41d9-870a-69c664d7edb7" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>
+CREATE PROCEDURE hello
+AS
+EXTERNAL NAME helloworld.HelloWorldProc.HelloWorld
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ <p>Once the procedure has been created, it can be run just like a normal stored procedure written in Transact-SQL. Execute the following command:</p> 
+<div id="code-snippet-8" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_1c5e933f-28bb-4843-a425-e24a4a2da410');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_1c5e933f-28bb-4843-a425-e24a4a2da410" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>EXEC hello
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ <p>This should result in the following output in the SQL Server Management Studio messages window.</p> 
+<div id="code-snippet-9" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_08d1de27-5a4a-4a24-bd22-327a6f6698fc');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_08d1de27-5a4a-4a24-bd22-327a6f6698fc" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>
+Hello world!
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ </div><h1 class="heading">Removing the "Hello World" Stored Procedure Sample</h1><div id="sectionSection4" class="seeAlsoNoToggleSection"> <p>When you are finished running the sample stored procedure, you can remove the procedure and the assembly from your test database.</p> <p>First, remove the procedure using the drop procedure command.</p> 
+<div id="code-snippet-10" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_473d8792-fc78-4f72-b731-430ae9ca83f0');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_473d8792-fc78-4f72-b731-430ae9ca83f0" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>drop procedure hello
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ <p>Once the procedure has been dropped, you can remove the assembly containing your sample code.</p> 
+<div id="code-snippet-11" class="codeSnippetContainer" xmlns="">
+    <div class="codeSnippetContainerTabs">
+        
+    </div>
+    <div class="codeSnippetContainerCodeContainer">
+        <div class="codeSnippetToolBar">
+            <div class="codeSnippetToolBarText">
+                <a name="CodeSnippetCopyLink" style="display: none;" title="Copy to clipboard." href="javascript:if (window.epx.codeSnippet)window.epx.codeSnippet.copyCode('CodeSnippetContainerCode_c3018b38-6182-481f-a4ba-3d82a53cf54d');">Copy</a>
+            </div>
+        </div>
+        <div id="CodeSnippetContainerCode_c3018b38-6182-481f-a4ba-3d82a53cf54d" class="codeSnippetContainerCode" dir="ltr">
+            <div style="color:Black;"><pre>drop assembly helloworld
+</pre></div>
+            
+        </div>
+    </div>
+</div>
+ </div></div>  </div>
+</div>
+
+    
+
+
+
+<script id="CommentTemplate" type="text/x-jquery-tmpl">
+    <div class="communityContentAnnotation">
+        <a name="${Index}"></a>
+        <h3>
+            ${Title}
+        </h3>
+        <div class="communityContentAnnotationBody">
+            {{html Body}}
+        </div>
+        <div class="communityContentAnnotationInfo">
+            <div class="communityContentAnnotationAvatarContainer">
+                <a href="${UserAvatar.Href}" title="${UserAvatar.ToolTip}" class="communityContentAnnotationAvatar"><img src="${UserAvatar.ImageUrl}" alt="${UserAvatar.ImageAltText}" width="34" height="34" /></a>
+            </div>
+            <div class="communityContentAnnotationUserDateContainer">
+                <div class="communityContentAnnotationUserContainer">
+                    <a href="${UserAvatar.Href}">
+                        ${User}
+                    </a>
+                </div>
+                <div class="communityContentAnnotationDateContainer">
+                    <span>${Date}</span>
+                    
+                    {{if EditLink}}
+                        <span>
+                            <a href="${EditLink.Href}" title="${EditLink.ToolTip}" class="communityContentCommentEditLink">${EditLink.Title}</a>
+                        </span>
+                    {{/if}}
+
+                    {{if DeleteLink}}
+                        <span>
+                            <a href="${DeleteLink.Href}" title="${DeleteLink.ToolTip}" class="communityContentDeleteLink">${DeleteLink.Title}</a>
+                        </span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="communityContentContainer">
+    <div id="CommunityContentHeader" class="communityContentHeader">
+        <div class="communityContentHeaderTitleContainer">
+            <h2>Community Additions</h2>
+                <a class="communityContentAddLink" href="http://msdn.microsoft.com/en-US/library/community/add/ms254956(v=vs.80).aspx">
+                    <span class="communityContentAddButton" title="Add">
+                        ADD
+                    </span>
+                </a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    
+    <div id="CommunityComments" data-url="/en-US/library/community/comments/ms254956(v=vs.80).aspx"><div class="communityContentAnnotation">         <a name="4"></a>         <h3>             Error         </h3>         <div class="communityContentAnnotationBody">             <p>What this mean:<br>Msg 10314, Level 16, State 11, Line 1<br>An error occurred in the Microsoft .NET Framework while trying to load assembly id 65542. The server may be running out of resources, or the assembly may not be trusted with PERMISSION_SET = EXTERNAL_ACCESS or UNSAFE. Run the query again, or check documentation to see how to solve the assembly trust issues. For more information about this error: <br>System.IO.FileLoadException: Nie można załadować pliku lub zestawu 'helloworld, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null' lub jednej z jego zależności. Podana nazwa zestawu lub ścieżka bazowa kodu jest niepoprawna. (Wyjątek od HRESULT: 0x80131047)<br>System.IO.FileLoadException: <br>&nbsp;&nbsp; w System.Reflection.RuntimeAssembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, RuntimeAssembly locationHint, StackCrawlMark&amp; stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)<br>&nbsp;&nbsp; w System.Reflection.RuntimeAssembly.InternalLoadAssemblyName(AssemblyName assemblyRef, Evidence assemblySecurity, RuntimeAssembly reqAssembly, StackCrawlMark&amp; stackMark, IntPtr pPrivHostBinder, Boolean throwOnFileNotFound, Boolean forIntrospection, Boolean suppressSecurityChecks)<br>&nbsp;&nbsp; w System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark&amp; stackMark, IntPtr pPrivHostBinder, Boolean forIntrospection)<br>&nbsp;&nbsp; w System.Reflection.RuntimeAssembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark&amp; stackMark, Boolean forIntrospection)<br>&nbsp;&nbsp; w System.Reflection.Assembly.Load(String assemblyString)<br></p><br><p>Of couse SQL Server translate some of this error into my native language, but the meaning is still the same as in English</p>         </div>         <div class="communityContentAnnotationInfo">             <div class="communityContentAnnotationAvatarContainer">                 <a href="http://social.msdn.microsoft.com/profile/animisiewaz/" title="" class="communityContentAnnotationAvatar"><img src="./Compiling and Deploying a CLR Assembly_files/avatar.jpg" alt="" width="34" height="34"></a>             </div>             <div class="communityContentAnnotationUserDateContainer">                 <div class="communityContentAnnotationUserContainer">                     <a href="http://social.msdn.microsoft.com/profile/animisiewaz/">                         animisiewaz                     </a>                 </div>                 <div class="communityContentAnnotationDateContainer">                     <span>2/17/2013</span>                                                                                 </div>             </div>         </div>     </div><div class="communityContentAnnotation">         <a name="3"></a>         <h3>             Unmentioned gotchas         </h3>         <div class="communityContentAnnotationBody">             <!--[if gte mso 9]><xml _tmplitem="2" ><br _tmplitem="2"  /> <w:WordDocument><br _tmplitem="2"  />  <w:View>Normal</w:View><br _tmplitem="2"  />  <w:Zoom>0</w:Zoom><br _tmplitem="2"  />  <w:PunctuationKerning></w:PunctuationKerning><br _tmplitem="2"  />  <w:ValidateAgainstSchemas></w:ValidateAgainstSchemas><br _tmplitem="2"  />  <w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid><br _tmplitem="2"  />  <w:IgnoreMixedContent>false</w:IgnoreMixedContent><br _tmplitem="2"  />  <w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText><br _tmplitem="2"  />  <w:Compatibility><br _tmplitem="2"  />   <w:BreakWrappedTables></w:BreakWrappedTables><br _tmplitem="2"  />   <w:SnapToGridInCell></w:SnapToGridInCell><br _tmplitem="2"  />   <w:WrapTextWithPunct></w:WrapTextWithPunct><br _tmplitem="2"  />   <w:UseAsianBreakRules></w:UseAsianBreakRules><br _tmplitem="2"  />   <w:DontGrowAutofit></w:DontGrowAutofit><br _tmplitem="2"  />  </w:Compatibility><br _tmplitem="2"  />  <w:DoNotOptimizeForBrowser></w:DoNotOptimizeForBrowser><br _tmplitem="2"  /> </w:WordDocument><br _tmplitem="2"  /></xml><![endif]--><br><!--[if gte mso 9]><xml _tmplitem="2" ><br _tmplitem="2"  /> <w:LatentStyles DefLockedState="false" LatentStyleCount="156"><br _tmplitem="2"  /> </w:LatentStyles><br _tmplitem="2"  /></xml><![endif]--><br><!--[if gte mso 10]><br _tmplitem="2"  /><style _tmplitem="2" ><br _tmplitem="2"  /> /* Style Definitions */<br _tmplitem="2"  /> table.MsoNormalTable<br _tmplitem="2"  />	{mso-style-name:"Table Normal";<br _tmplitem="2"  />	mso-tstyle-rowband-size:0;<br _tmplitem="2"  />	mso-tstyle-colband-size:0;<br _tmplitem="2"  />	mso-style-noshow:yes;<br _tmplitem="2"  />	mso-style-parent:"";<br _tmplitem="2"  />	mso-padding-alt:0in 5.4pt 0in 5.4pt;<br _tmplitem="2"  />	mso-para-margin:0in;<br _tmplitem="2"  />	mso-para-margin-bottom:.0001pt;<br _tmplitem="2"  />	mso-pagination:widow-orphan;<br _tmplitem="2"  />	font-size:10.0pt;<br _tmplitem="2"  />	font-family:"Times New Roman";<br _tmplitem="2"  />	mso-ansi-language:#0400;<br _tmplitem="2"  />	mso-fareast-language:#0400;<br _tmplitem="2"  />	mso-bidi-language:#0400;}<br _tmplitem="2"  /></style><br _tmplitem="2"  /><![endif]--><br><p><br>  <span><br>    <br><br>The command:<br></span><br></p><br><p><br>  <em><br>    <span>CREATE ASSEMBLY helloworld from<br>'C:\Hello.dll' WITH<br>PERMISSION_SET = SAFE</span><br>  </em><br></p><br><p><br>  <span>Is the path on the server.&nbsp; My develop machine failed with:</span><br></p><br>CREATE ASSEMBLY failed because it could not open the physical file<br>'C:\Temp\Hello.dll': 3(The system cannot find the path specified.).<br><br>CREATE ASSEMBLY failed because it could not open the physical file<br>'C:\Hello.dll': 3(The system cannot find the file specified.).<br><pre>I got it to work when I copied the dll to the server.<br>Also the reserved word 'EXTERNAL' fails if the compatability level is lower than 90.</pre><br>         </div>         <div class="communityContentAnnotationInfo">             <div class="communityContentAnnotationAvatarContainer">                 <a href="http://social.msdn.microsoft.com/profile/mardude/" title="" class="communityContentAnnotationAvatar"><img src="./Compiling and Deploying a CLR Assembly_files/avatar(1).jpg" alt="" width="34" height="34"></a>             </div>             <div class="communityContentAnnotationUserDateContainer">                 <div class="communityContentAnnotationUserContainer">                     <a href="http://social.msdn.microsoft.com/profile/mardude/">                         MarDude                     </a>                 </div>                 <div class="communityContentAnnotationDateContainer">                     <span>1/5/2011</span>                                                                                 </div>             </div>         </div>     </div><div class="communityContentAnnotation">         <a name="2"></a>         <h3>             CLR Assembly Deployment         </h3>         <div class="communityContentAnnotationBody">             My understanding is that CREATE ASSEMBLY actually copies the dll into the database itself, and the file location of the dll is no longer relevant.  This way, the database can be backed up and restored to another machine without any concern for external CLR assemblies.<code><br><br><br>SELECT * FROM sys.assembly_files</code><br><br>It is safe to delete the dll after deployment.<br>         </div>         <div class="communityContentAnnotationInfo">             <div class="communityContentAnnotationAvatarContainer">                 <a href="http://social.msdn.microsoft.com/profile/ryan6491/" title="" class="communityContentAnnotationAvatar"><img src="./Compiling and Deploying a CLR Assembly_files/avatar(2).jpg" alt="" width="34" height="34"></a>             </div>             <div class="communityContentAnnotationUserDateContainer">                 <div class="communityContentAnnotationUserContainer">                     <a href="http://social.msdn.microsoft.com/profile/ryan6491/">                         Ryan6491                     </a>                 </div>                 <div class="communityContentAnnotationDateContainer">                     <span>11/25/2009</span>                                                                                 </div>             </div>         </div>     </div><div class="communityContentAnnotation">         <a name="1"></a>         <h3>             Default Deployment Location         </h3>         <div class="communityContentAnnotationBody">             I'm wondering where to deploy assembly dll's on the database server.  I tried to find out where Visual Studio puts things, but I can't find it.  So where is the most "appropriate" place to put the dlls?<br><br>M@<br>         </div>         <div class="communityContentAnnotationInfo">             <div class="communityContentAnnotationAvatarContainer">                 <a href="http://social.msdn.microsoft.com/profile/mattinnhtryagain/" title="" class="communityContentAnnotationAvatar"><img src="./Compiling and Deploying a CLR Assembly_files/avatar(3).jpg" alt="" width="34" height="34"></a>             </div>             <div class="communityContentAnnotationUserDateContainer">                 <div class="communityContentAnnotationUserContainer">                     <a href="http://social.msdn.microsoft.com/profile/mattinnhtryagain/">                         MAttinNHTryAgain                     </a>                 </div>                 <div class="communityContentAnnotationDateContainer">                     <span>6/21/2007</span>                                                                                 </div>             </div>         </div>     </div></div>
+</div>
+
+
+
+
+<div class="libraryMemberFilter">
+    <div class="filterContainer">
+        <span>Show:</span>
+        <label>
+            <input type="checkbox" class="libraryFilterInherited" checked="checked" value="Inherit">Inherited
+        </label>
+        <label>
+            <input type="checkbox" class="libraryFilterProtected" checked="checked" value="Protected">Protected
+        </label>
+    </div>
+</div>
+    
+<input type="hidden" id="libraryMemberFilterEmptyWarning" value="There are no members available with your current filter settings.">
+
+
+ 
+</div>
+
+
+            </div>
+            <div class="clear"></div>
+
+            
+    
+<input name="__RequestVerificationToken" type="hidden" value="LJemcnMXJALVV2ezKxLrzURdD8ENIDWcxYKVEDw7HApP46zsQ_OIcqyfdTnpWJryk5Z9iIb4R2ANuURbTS5MCGcEp041">
+<input id="ratingSubmitUrl" type="hidden" value="http://msdn.microsoft.com/en-US/library/feedback/add/ms254956(v=vs.80).aspx">
+<input id="isTopicRated" type="hidden" value="false">
+
+
+
+
+    
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+    <div id="ux-footer" class="" style="" dir="ltr">
+            
+            <div id="footerSock" class="librarySock both">
+                <div id="footerSockInner">
+                        <a name="feedback"></a>
+
+<div class="rating" style="display: block;">
+    <div id="ratingSection1">
+        <div class="title">
+            Was this page helpful?
+        </div>
+        <div class="description">
+            Your feedback about this content is important.<br>Let us know what you think.
+        </div>
+        <div class="buttons">
+            <button class="button" id="ratingYes">Yes</button>
+            <button class="button" id="ratingNo">No</button>
+        </div>
+        <input id="ratingValue" type="hidden" value="">
+    </div>
+    <div id="ratingSection2">
+        <div class="title">
+            Additional feedback?
+        </div>
+        <textarea id="ratingText" rows="6" cols="" maxlength="1500"></textarea>
+        <div class="counter right">
+            <span id="feedbackTextCounter">1500</span> characters remaining
+        </div>
+        <div class="buttons left">
+            <button class="button" id="ratingSubmit">Submit</button>
+            <button class="button" id="ratingSkipThis">Skip this</button>
+        </div>
+    </div>
+    <div id="ratingSection3">
+        <div class="title">
+            Thank you!
+        </div>
+        <div class="description">
+            We appreciate your feedback.
+        </div>
+    </div>
+    
+    
+    <div id="contentFeedbackQAContainer" style="display: none;"></div>
+</div>
+    
+                    <div class="userVoice">
+    <div class="title">
+        Have a suggestion to improve MSDN Library?
+    </div>
+        <div class="description">
+            Visit our UserVoice Page to submit and vote on ideas!
+        </div>
+    <div class="buttons">
+        <a class="button" id="userVoiceButton" href="http://feedback.msdn.com/forums/257782-msdn-feature-suggestions/category/83975" target="_blank">Make a suggestion</a>
+    </div>
+</div>  
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+        <footer class="top">
+            <div data-fragmentname="LeftLinks" id="Fragment_LeftLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Dev centers</div>
+    <ul class="links">
+      <li>
+        <a href="http://dev.windows.com/" id="LeftLinks_2148_1" class="windowsBlue" xmlns="http://www.w3.org/1999/xhtml">Windows</a>
+      </li>
+      <li>
+        <a href="http://dev.office.com/" id="LeftLinks_2148_3" class="office" xmlns="http://www.w3.org/1999/xhtml">Office</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/vstudio" id="LeftLinks_2148_4" class="visualStudio" xmlns="http://www.w3.org/1999/xhtml">Visual Studio</a>
+      </li>
+      <li>
+        <a href="http://developer.nokia.com/" title="Nokia" id="LeftLinks_2148_15" class="nokia" xmlns="http://www.w3.org/1999/xhtml">Nokia</a>
+      </li>
+      <li>
+        <a href="http://azure.microsoft.com/en-us/documentation/" target="_blank" id="LeftLinks_2148_12" xmlns="http://www.w3.org/1999/xhtml">Microsoft Azure</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/aa937802" id="LeftLinks_2148_5" xmlns="http://www.w3.org/1999/xhtml">More...</a>
+      </li>
+    </ul>
+  </div>
+</div>    
+            <div id="rightLinks">
+                <div data-fragmentname="CenterLinks1" id="Fragment_CenterLinks1" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Learning resources</div>
+    <ul class="links">
+      <li>
+        <a href="http://www.microsoftvirtualacademy.com/" id="CenterLinks1_2151_4" xmlns="http://www.w3.org/1999/xhtml">Microsoft Virtual Academy</a>
+      </li>
+      <li>
+        <a href="http://channel9.msdn.com/" id="CenterLinks1_2151_5" xmlns="http://www.w3.org/1999/xhtml">Channel 9</a>
+      </li>
+      <li>
+        <a href="http://www.interoperabilitybridges.com/" id="CenterLinks1_2151_6" xmlns="http://www.w3.org/1999/xhtml">Interoperability Bridges</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/magazine/" id="CenterLinks1_2151_7" xmlns="http://www.w3.org/1999/xhtml">MSDN Magazine</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks2" id="Fragment_CenterLinks2" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Community</div>
+    <ul class="links">
+      <li>
+        <a href="https://social.msdn.microsoft.com/forums/en-us/home" id="CenterLinks2_2151_8" xmlns="http://www.w3.org/1999/xhtml">Forums</a>
+      </li>
+      <li>
+        <a href="http://blogs.msdn.com/b/developer-tools/" id="CenterLinks2_2151_9" xmlns="http://www.w3.org/1999/xhtml">Blogs</a>
+      </li>
+      <li>
+        <a href="http://www.codeplex.com/" id="CenterLinks2_2151_10" xmlns="http://www.w3.org/1999/xhtml">Codeplex</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks3" id="Fragment_CenterLinks3" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Support</div>
+    <ul class="links">
+      <li>
+        <a href="http://msdn.microsoft.com/hh361695" id="CenterLinks3_2151_11" xmlns="http://www.w3.org/1999/xhtml">Self support</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks4" id="Fragment_CenterLinks4" xmlns="http://www.w3.org/1999/xhtml" class="nth-child-4n">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Programs</div>
+    <ul class="links">
+      <li>
+        <a href="http://www.microsoft.com/bizspark/" id="CenterLinks4_2151_13" xmlns="http://www.w3.org/1999/xhtml">BizSpark (for startups)</a>
+      </li>
+      <li>
+        <a href="https://www.dreamspark.com/" id="CenterLinks4_2151_14" xmlns="http://www.w3.org/1999/xhtml">DreamSpark</a>
+      </li>
+      <li>
+        <a href="http://www.imaginecup.com/" id="CenterLinks4_2151_17" xmlns="http://www.w3.org/1999/xhtml">Imagine Cup</a>
+      </li>
+    </ul>
+  </div>
+</div>                
+            </div>
+        </footer>
+    
+        <footer class="bottom">
+            <span class="localeContainer">
+                
+    <form class="selectLocale" id="selectLocaleForm" action="http://msdn.microsoft.com/en-US/selectlocale-dmc">
+        <input type="hidden" name="fromPage" value="http%3a%2f%2fmsdn.microsoft.com%2fen-US%2flibrary%2fms254956(v%3dvs.80).aspx">
+        <a href="http://msdn.microsoft.com/en-US/library/ms254956(v=vs.80).aspx#" onclick="$(&#39;#selectLocaleForm&#39;).submit();return false;" title="Change your language">United States (English)</a>
+    </form>
+
+
+            </span>
+        
+            <div data-fragmentname="BottomLinks" id="Fragment_BottomLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="http://msdn.microsoft.com/newsletter.aspx" id="BottomLinks_2148_7" xmlns="http://www.w3.org/1999/xhtml">Newsletter</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/dn529288" id="BottomLinks_2148_8" xmlns="http://www.w3.org/1999/xhtml">Privacy &amp; cookies</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/cc300389" id="BottomLinks_2148_9" xmlns="http://www.w3.org/1999/xhtml">Terms of use</a>
+      </li>
+      <li>
+        <a href="http://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" id="BottomLinks_2148_10" xmlns="http://www.w3.org/1999/xhtml">Trademarks</a>
+      </li>
+    </ul>
+  </div>
+</div>    
+            <span class="logoLegal">
+                <span class="logo"></span>
+                <span class="copyright">© 2014 Microsoft</span>
+            </span>
+        </footer>
+    </div>
+    
+
+
+            <div class="footerPrintView">
+                <div class="footerCopyrightPrintView">© 2014 Microsoft</div>
+            </div>
+
+            
+            
+    
+    
+    <input id="tocPaddingPerLevel" type="hidden" value="17">
+
+
+
+            <input id="MtpsDevice" type="hidden" value="Default">
+
+
+<!--[CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]-->
+
+            
+            
+            
+            
+            
+
+
+
+
+
+
+
+<noscript>&lt;div&gt;&lt;img alt="DCSIMG" id="Img1" width="1" height="1" src="http://m.webtrends.com/dcsmgru7m99k7mqmgrhudo0k8_8c6m/njs.gif?dcsuri=/nojavascript&amp;amp;WT.js=No" /&gt;&lt;/div&gt;</noscript>
+
+
+
+
+
+
+
+
+
+<noscript>
+  &lt;a href="http://www.omniture.com" title="Web Analytics"&gt;
+    &lt;img src="//msstonojsmsdn.112.2o7.net/b/ss/msstonojsmsdn/1/H.20.2--NS/0" height="1" width="1" border="0" alt="" /&gt;
+  &lt;/a&gt;
+</noscript>
+
+
+
+
+<div id="globalRequestVerification">
+    <input name="__RequestVerificationToken" type="hidden" value="jTExAUKr3Fnz21-0GSrn0cSg17XdxZh-XPzO9jvrg57MMfSZlWPnWoO5wPbG1T6otDYb9k7VbXPDOw4bdC8tEb1_iSE1">
+</div>
+
+
+        </div>
+
+        
+        
+        
+        
+    <script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index];elem=document.createElement("script");elem.className="mtps-injected";elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext;script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }");parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"http://i.msdn.microsoft.com\", \r\n\t\"js\": \"http://i2.msdn.microsoft.com\", \r\n\t\"css\": \"http://i3.msdn.microsoft.com\", \r\n\t\"xap\": \"http://207.46.99.206\"\r\n});\r\n/**/" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js" },
+	{ txt: "//\n  var literalNormalizedUrl = \u0027/en-us/library/ms254956(l=en-us,v=vs.80).aspx\u0027;\n  var wt_nvr_ru = \u0027WT_NVR_RU\u0027;\n  var wt_fpcdom = \u0027.microsoft.com\u0027;\n  var wt_domlist = \u0027msdn.microsoft.com\u0027;\n  var wt_pathlist = \u0027\u0027;\n  var wt_paramlist = \u0027DCSext.mtps_devcenter\u0027;\n  var wt_siteid = \u0027MSDN\u0027;\n  var gDomain = \u0027m.webtrends.com\u0027;\n  var gDcsId = \u0027dcsmgru7m99k7mqmgrhudo0k8_8c6m\u0027;\n  var gFpc = \u0027WT_FPC\u0027;\n\n\n\n  if (document.cookie.indexOf(gFpc + \"=\") == -1) {\n    var wtidJs = document.createElement(\"script\");\n    wtidJs.src = \"//\" + gDomain + \"/\" + gDcsId + \"/wtid.js\";\n    document.getElementsByTagName(\"head\")[0].appendChild(wtidJs);\n  }\n\n\n\n  var detectedLocale = \u0027en-US\u0027;\n  var wtsp = \u0027msdnlib_devtools_lang\u0027;\n  var gTrackEvents = \u00270\u0027;\n/**/" },
+	{ txt: "/**/\n  var omni_guid = \"02242a4d-03a3-4964-b68f-a03b4dd15814\";\n/**/" },
+	{ txt: "//\n\n            window.appInsightsId = \u002760854590-027a-4ae4-98be-2741a40f355f\u0027;\n            //" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:Utilities,1:Layout,2:Header,3:FeedbackCounterAsync,1:Rating,2:Footer,0:Topic,4:webtrendsscript,5:omni_rsid_MSDN,0:AppInsightsPerf,6:Toc,1:SearchBox;/Areas/Epx/Content/Scripts:0,/Areas/Epx/Themes/Base/Content:1,/Areas/Centers/Themes/StandardDevCenter/Content:2,/Areas/Epx/Shared/Content:3,/Areas/Global/Content/Webtrends/resources:4,/Areas/Global/Content/Omniture/resources/MSDN:5,/Areas/Library/Content:6\u0026amp;hashKey=E51EE2CB09B3D21FAA182257289298FF" },
+	{ url: "http://i1.services.social.microsoft.com/search/Widgets/SearchBox.jss?boxid=HeaderSearchTextBox\u0026btnid=HeaderSearchButton\u0026brand=Msdn\u0026loc=en-US\u0026focusOnInit=false\u0026emptyWatermark=true\u0026searchButtonTooltip=Search MSDN" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:PrintExportButton,1:NavigationResize;/Areas/Library/Themes/Base/Content:0,/Areas/Library/Content:1\u0026amp;hashKey=72684789A0F98A77C33C1AC3470E9ECF" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:CommunityContent,0:LibraryMemberFilter,1:Toc_Fixed,1:CodeSnippet,1:TopicNotInScope,1:CollapsibleArea,1:VersionSelector,1:SurveyBroker;/Areas/Library/Content:0,/Areas/Epx/Content/Scripts:1\u0026amp;hashKey=EB298C838117D9E7008C7CC11E7732E3" },
+	{ txt: "$(document).ready(function() {\n        try {\n            var token = $(\"#globalRequestVerification input[name=\u0027__RequestVerificationToken\u0027]\").clone();\n            $(\"#siteFeedbackForm\").append(token);\n        } catch(err) {\n            \n        }\n    });" }
+]);
+
+/*]]>*/
+</script>
+<script src="./Compiling and Deploying a CLR Assembly_files/broker-config.js"></script><div id="_WEDCSInsertedData" style="display: none;"><iframe id="_msnFrame" src="./Compiling and Deploying a CLR Assembly_files/c.gif" style="z-index:-1;height:1px;width:1px;display:none;visibility:hidden;" onload="javascript:MscomBeacon();"></iframe></div></body></html>

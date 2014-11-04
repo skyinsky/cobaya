@@ -2,12 +2,13 @@
 #define _FLOW_H
 
 #include <stdint.h>
+#include <string>
 
 namespace cobaya {
 
-bool new_flow(const char *host, uint32_t num);
-void del_flow(uint32_t num);
-bool hit_flow(const char *host);
+bool new_flow(const char *host, const char *id);
+void del_flow(const char *host, const char *id);
+bool hit_flow(const char *host, const char *id);
 
 int load_flow_manager(void);
 

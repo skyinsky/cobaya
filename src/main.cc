@@ -76,16 +76,16 @@ int main(int argc, char *argv[])
 		DUMP_LOG("load main thread context error");
 		return -1;
 	}
-	if (load_flow_manager()) {
-		DUMP_LOG("load flow manager error");
-		return -1;
-	}
 	if (load_dev_list()) {
 		DUMP_LOG("load dev error");
 		return -1;
 	}
 	if (load_office_list()) {
 		DUMP_LOG("load office error");
+		return -1;
+	}
+	if (load_flow_manager()) {
+		DUMP_LOG("load flow manager error");
 		return -1;
 	}
 	if (start_rpc_server()) {

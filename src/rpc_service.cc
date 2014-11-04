@@ -183,24 +183,41 @@ void RpcServiceImpl::AppendInfo(RpcController *ctl,
 		}
 	}
 
-	if (req->person() && !hit_flow(req->host().c_str())) {
-		store_doubt_flow(dev, req);
-		rsp->set_grant(false);
+	if (req->has_prev_id()) {
+		del_flow(req->host().c_str(), req->prev_id().c_str());
+	}
+
+	if (req->person()) {
+		if (!req->has_id()) {
+			store_doubt_flow(dev, req);
+			rsp->set_grant(false);
+		} else if (!hit_flow(req->host().c_str(),
+				     req->id().c_str())) {
+			store_doubt_flow(dev, req);
+			rsp->set_grant(false);
+		} else {
+			rsp->set_grant(true);
+		}
 	} else {
 		rsp->set_grant(true);
 	}
 
 out:	done->Run();
-
 }
 
-void RpcServiceImpl::StartFlow(RpcController *ctl,
-			       const MsgStartReq *req,
-			       MsgStartRsp *rsp, Closure *done)
+void RpcServiceImpl::AppendFlow(RpcController *ctl,
+				const MsgNewFlowReq *req,
+				MsgNewFlowRsp *rsp, Closure *done)
 {
-	if (!new_flow(req->check_host().c_str(), req->unique_num())) {
-		DUMP_LOG("not good!!!");
-		exit(EXIT_FAILURE);
+	int size = req->hosts_size();
+
+	for (int i = 0; i < size; i++) {
+		if (!new_flow(req->hosts(i).c_str(),
+			      req->id().c_str())) {
+			DUMP_LOG("sys should be sorry for %s:%s",
+				 req->hosts(i).c_str(),
+				 req->id().c_str());
+		}
 	}
 
 	rsp->set_status(1);
@@ -208,21 +225,20 @@ void RpcServiceImpl::StartFlow(RpcController *ctl,
 	done->Run();
 }
 
-void RpcServiceImpl::StopFlow(RpcController *ctl,
-			      const MsgStopReq *req,
-			      MsgStopRsp *rsp, Closure *done)
+void RpcServiceImpl::RemoveFlow(RpcController *ctl,
+				const MsgDelFlowReq *req,
+				MsgDelFlowRsp *rsp, Closure *done)
 {
-	del_flow(req->unique_num());
+	int size = req->hosts_size();
+
+	for (int i = 0; i < size; i++) {
+		del_flow(req->hosts(i).c_str(), req->id().c_str());
+	}
 
 	rsp->set_status(1);
 
 	done->Run();
 }
-
-
-
-
-
 
 
 } // namespace cobaya

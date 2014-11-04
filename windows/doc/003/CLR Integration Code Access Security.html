@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<!-- saved from url=(0064)http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx -->
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="WT.seg_1" content="en-us"><link rel="canonical" href="http://technet.microsoft.com/en-us/library/ms345101(v=sql.110).aspx">
+        <title>CLR Integration Code Access Security</title>
+        
+        
+
+
+
+
+
+
+<meta name="DCS.dcsuri" content="/en-us/library/ms345101(d=default,l=en-us,v=sql.100).aspx">
+
+<meta name="NormalizedUrl" content="http://msdn.microsoft.com/en-us/library/ms345101(d=default,l=en-us,v=sql.100).aspx">
+
+<meta name="ms.normalizedurl" content="http://msdn.microsoft.com/en-us/library/ms345101(d=default,l=en-us,v=sql.100).aspx">
+
+<meta name="VotingContextUrl" content="http://msdn.microsoft.com/en-us/library/ms345101(d=default,l=en-us,v=sql.100).aspx">
+
+<meta name="MN" content="4B9B1F29-7:37:20 AM">
+
+<meta name="Search.ShortId" content="ms345101">
+
+<meta name="ms.shortidmsdn" content="ms345101">
+
+<meta name="Ms.Locale" content="en-us">
+
+<meta name="ms.prodver" content="SQL.100">
+
+<meta name="ms.contentlang" content="EN">
+
+<meta name="ms.lang" content="EN">
+
+<meta name="ms.loc" content="US">
+
+<meta name="ms.sitever" content="2014.10.24.3">
+
+<meta name="ms.assetid" content="2111cfe0-d5e0-43b1-93c3-e994ac0e9729">
+
+<meta name="ms.auth" content="0">
+
+
+
+
+
+
+
+
+        
+    <link rel="stylesheet" type="text/css" href="./CLR Integration Code Access Security_files/Combined.css"><script type="text/javascript" async="" src="./CLR Integration Code Access Security_files/ms2.js"></script><script type="text/javascript" src="./CLR Integration Code Access Security_files/ai.js" async=""></script><script class="mtps-injected">try {
+/**/
+(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { 
+	"image": "http://i.msdn.microsoft.com", 
+	"js": "http://i2.msdn.microsoft.com", 
+	"css": "http://i3.msdn.microsoft.com", 
+	"xap": "http://207.46.99.206"
+});
+/**/
+} finally { MTPS._injectNextScript_0 && MTPS._injectNextScript_0(); }</script><script class="mtps-injected" src="./CLR Integration Code Access Security_files/jquery-1.8.2.min.js"></script><script class="mtps-injected">try {
+//
+  var literalNormalizedUrl = '/en-us/library/ms345101(l=en-us,v=sql.100).aspx';
+  var wt_nvr_ru = 'WT_NVR_RU';
+  var wt_fpcdom = '.microsoft.com';
+  var wt_domlist = 'msdn.microsoft.com';
+  var wt_pathlist = '';
+  var wt_paramlist = 'DCSext.mtps_devcenter';
+  var wt_siteid = 'MSDN';
+  var gDomain = 'm.webtrends.com';
+  var gDcsId = 'dcsmgru7m99k7mqmgrhudo0k8_8c6m';
+  var gFpc = 'WT_FPC';
+
+
+
+  if (document.cookie.indexOf(gFpc + "=") == -1) {
+    var wtidJs = document.createElement("script");
+    wtidJs.src = "//" + gDomain + "/" + gDcsId + "/wtid.js";
+    document.getElementsByTagName("head")[0].appendChild(wtidJs);
+  }
+
+
+
+  var detectedLocale = 'en-us';
+  var wtsp = '_msdn_library_sqlserver_';
+  var gTrackEvents = '0';
+/**/
+} finally { MTPS._injectNextScript_2 && MTPS._injectNextScript_2(); }</script><script class="mtps-injected">try {
+/**/
+  var omni_guid = "973a2f85-8412-42f5-ad5d-1f876c57f76f";
+/**/
+} finally { MTPS._injectNextScript_3 && MTPS._injectNextScript_3(); }</script><script class="mtps-injected">try {
+//
+
+            window.appInsightsId = '60854590-027a-4ae4-98be-2741a40f355f';
+            //
+} finally { MTPS._injectNextScript_4 && MTPS._injectNextScript_4(); }</script><script class="mtps-injected" src="./CLR Integration Code Access Security_files/Combined.js"></script><script class="mtps-injected" src="./CLR Integration Code Access Security_files/SearchBox.jss"></script><script class="mtps-injected" src="./CLR Integration Code Access Security_files/Combined(1).js"></script><script class="mtps-injected">try {
+MTPS = window.MTPS || {}; MTPS.LocalizedStrings = window.MTPS.LocalizedStrings || {}; MTPS.LocalizedStrings.ExpandButtonTooltip = 'Expand'; MTPS.LocalizedStrings.CollapseButtonTooltip = 'Collapse'; MTPS.LocalizedStrings.EnhancedExpandTooltip = 'Click to expand. Double-click to expand all.'; MTPS.LocalizedStrings.EnhancedCollapseTooltip = 'Click to collapse. Double-click to collapse all.'; MTPS.LocalizedStrings.ExpandAllButtonTooltip = 'Expand All'; MTPS.LocalizedStrings.CollapseAllButtonTooltip = 'Collapse All';
+} finally { MTPS._injectNextScript_8 && MTPS._injectNextScript_8(); }</script><script class="mtps-injected" src="./CLR Integration Code Access Security_files/jquery.tmpl.min.js"></script><script class="mtps-injected" src="./CLR Integration Code Access Security_files/Combined(2).js"></script><script src="./CLR Integration Code Access Security_files/broker.js"></script><script class="mtps-injected">try {
+$(document).ready(function() {
+        try {
+            var token = $("#globalRequestVerification input[name='__RequestVerificationToken']").clone();
+            $("#siteFeedbackForm").append(token);
+        } catch(err) {
+            
+        }
+    });
+} finally { MTPS._injectNextScript_11 && MTPS._injectNextScript_11(); }</script><link href="./CLR Integration Code Access Security_files/PrintView.css" rel="stylesheet" type="text/css" media="print"></head>
+    <body class="library Chrome">
+        <div id="page">
+            
+            
+            
+            
+    
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+    <input type="hidden" id="isHeaderBleeding" value="true">
+    <div id="ux-header" dir="ltr" class="ltr msdn">
+        
+
+        <header>
+            <div class="row">
+                <div class="top mobile"></div>
+                <div class="left">
+                    <div class="siteLogo">  
+                        
+                            <a class="msdnLogoImg" href="http://msdn.microsoft.com/en-us">
+                               <img src="./CLR Integration Code Access Security_files/microsoftLogoForHeader.png">
+                            </a>
+                                                             
+                        <div data-fragmentname="SiteLogo" id="Fragment_SiteLogo" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="LinkWithImage topImage">
+    <a id="SiteLogo_2152_1" href="http://msdn.microsoft.com/">
+      <img id="msdnLogo-black" src="./CLR Integration Code Access Security_files/dn610975.msdnLogo-black.jpg" xmlns="">
+      <span></span>
+    </a>
+  </div>
+</div>    
+
+                    </div>
+                    <div id="grip"></div>
+                </div>
+                
+                <div class="right desktop">
+                    <div class="auxNav">
+                        <div id="signIn">
+
+<a class="scarabLink" href="https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=12&ct=1415029040&rver=6.0.5276.0&wp=MCLBI&wlcxt=MSDN%24MSDN%24MSDN&wreply=http%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fms345101%2528v%3dsql.100%2529.aspx&lc=1033&id=254354&mkt=en-US" title="Sign in">Sign in</a></div>
+
+    
+
+                        <div data-fragmentname="Subscriptions" id="Fragment_Subscriptions" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="https://msdn.microsoft.com/subscriptions/manage/hh442900" id="Subscriptions_2153_1" xmlns="http://www.w3.org/1999/xhtml">MSDN subscriptions</a>
+</div>   
+                        <div data-fragmentname="GetTools" id="Fragment_GetTools" xmlns="http://www.w3.org/1999/xhtml">
+  <a href="http://go.microsoft.com/fwlink/?LinkId=309297&clcid=0x409&slcid=0x409" id="GetTools_2153_3" xmlns="http://www.w3.org/1999/xhtml">Get tools</a>
+</div>
+                        <div data-fragmentname="SocialLinks" id="Fragment_SocialLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="http://www.facebook.com/microsoftdeveloper" target="_blank" id="SocialLinks_2152_4" class="facebook" xmlns="http://www.w3.org/1999/xhtml">http://www.facebook.com/microsoftdeveloper</a>
+      </li>
+      <li>
+        <a href="https://twitter.com/msdev" target="_blank" id="SocialLinks_2152_5" class="twitter" xmlns="http://www.w3.org/1999/xhtml">https://twitter.com/msdev</a>
+      </li>
+      <li>
+        <a href="http://plus.google.com/111221966647232053570/" target="_blank" id="SocialLinks_2152_6" class="googlePlus" xmlns="http://www.w3.org/1999/xhtml">http://plus.google.com/111221966647232053570/</a>
+      </li>
+    </ul>
+  </div>
+</div> 
+                    </div>
+                    <div data-fragmentname="SearchBox" id="Fragment_SearchBox" xmlns="http://www.w3.org/1999/xhtml">
+  <div class="SearchBox">
+    <form id="HeaderSearchForm" name="HeaderSearchForm" method="get" onsubmit="return Epx.Controls.SearchBox.searchBoxOnSubmit(this);">
+      <input id="HeaderSearchTextBox" name="query" type="text" maxlength="200" onfocus="Epx.Controls.SearchBox.watermarkFocus(event, this.title)" onblur="Epx.Controls.SearchBox.watermarkBlur(event, this.title)" autocomplete="off">
+      <button id="HeaderSearchButton" value="" type="submit" class="header-search-button" title="Search MSDN"></button>
+    <div id="SearchFlyoutContainer" style="display: none; text-align: left; border: 1px solid buttonshadow; position: absolute; z-index: 1000; padding: 2px; color: rgb(59, 59, 59); font-family: Arial; font-size: 13px; background-color: rgb(255, 255, 255);"><div id="SuggestionContainer"><ul style="list-style: none; padding: 4px 2px 0px 1px; cursor: pointer; margin: 1px; white-space: nowrap;"></ul></div></div></form>
+    
+    
+  </div>
+</div> 
+                </div>
+            </div>
+       
+             <div class="row" id="droor" style="display: block;">
+                <div class="left toc">
+                            <nav>
+            <ul>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/microsoft-platform-technologies-tools-msdn" title="Technologies">Technologies</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="http://msdn.microsoft.com/cloud-app-development-msdn" title="Cloud">Cloud</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/mobile-app-development-msdn" title="Mobile">Mobile</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/web-app-development-msdn" title="Web">Web</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/business-and-productivity-app-development-msdn" title="Business">Business</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/big-data-development-msdn" title="Data">Data</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/games-development-msdn" title="Gaming">Gaming</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/developer-resource-downloads-msdn" title="Downloads">Downloads</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="http://go.microsoft.com/fwlink/?linkid=307137&clcid=0x409" title="Visual Studio">Visual Studio</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/subscriptions/" title="MSDN subscriptions">MSDN subscriptions</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/microsoft-sdks-msdn" title="SDKs">SDKs</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/developer-programs" title="Programs">Programs</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="http://www.microsoft.com/bizspark" title="BizSpark">BizSpark</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/students-overview-msdn" title="Students">Students</a></li>
+                                                 <li><a href="http://msdn.microsoft.com/architects-overview-msdn" title="Architects">Architects</a></li>
+                                                 <li><a href="http://events.msdn.microsoft.com/en-us" title="Events">Events</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="http://msdn.microsoft.com/developer-communities-msdn" title="Community">Community</a>
+                                 <div class="area">
+                                     <div class="arrow"></div>
+                                 </div>
+                                 <div class="subNav" style="">
+                                     <ul>
+                                                 <li><a href="https://social.msdn.microsoft.com/forums/" title="Forums">Forums</a></li>
+                                                 <li><a href="http://blogs.msdn.com/b/developer-tools/" title="Blogs">Blogs</a></li>
+                                                 <li><a href="http://tech-advisors.msdn.microsoft.com/en-us" title="Tech Advisors">Tech Advisors</a></li>
+                                                 <li><a href="http://channel9.msdn.com/" title="Channel 9">Channel 9</a></li>
+                                     </ul>
+                                 </div>
+
+                     </li>
+                     <li class="current active">
+
+                         <a href="http://msdn.microsoft.com/library/" title="Documentation">Documentation</a>
+
+                     </li>
+                     <li class="inactive">
+
+                         <a href="https://code.msdn.microsoft.com/" title="Samples">Samples</a>
+
+                     </li>
+            </ul>
+          
+        </nav>        
+
+                </div>
+                <div class="right mobile"></div>
+                
+                <span id="singleCol"></span>
+                <span id="doubleCol"></span>
+             </div>
+        </header>
+    </div>
+    
+    
+
+        
+    <div class="printExportMenus ltr">
+        <a id="isd_printABook" href="http://msdn.microsoft.com/en-us/library/export/help/?returnUrl=%2fen-us%2flibrary%2fms345101(v%3dsql.100).aspx" style="display: inline;">
+            Export (<span class="count">0</span>)
+        </a>
+        <a id="isd_print" href="http://msdn.microsoft.com/en-us/library/ms345101(d=printer,v=sql.100).aspx" rel="nofollow">
+            Print 
+        </a>
+    </div>
+    
+
+        <div class="printExportMenus ltr">
+        <a id="expandCollapseAll" accesskey="e" href="javascript:void(0)" title="Expand/Collapse all sections by pressing Ctrl + Shift + e">Collapse All</a>
+    </div>
+
+    
+
+
+            <div id="body">
+                
+
+
+
+
+
+
+
+
+    <div id="leftNav" style="width: 280px; max-width: 480px; min-height: 2946px; height: 465px;">
+
+
+
+<div id="tocnav" style="width: 280px; position: fixed; top: -173px;">
+
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms123401.aspx" id="ms310241_MSDN.10_en-us" mtpsaliasid="" mtpsassetid="5DDC0A78-6B2C-43E3-9C56-55F45C0DFFA5_MSDN.10_en-us" mtpsshortid="ms123401_MSDN.10_en-us" title="MSDN Library">MSDN Library</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/aa155072.aspx" id="aa155072_MSDN.10_en-us" mtpsaliasid="" mtpsassetid="MSDN|serverentdev|$\serverentdev.hxt@0,0_MSDN.10_en-us" mtpsshortid="aa155072_MSDN.10_en-us" title="Servers and Enterprise Development">Servers and Enterprise Development</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/bb545450.aspx" id="bb418431_SQL.10_en-us" mtpsaliasid="" mtpsassetid="9e4042ee-b3a7-4d92-92de-595c87e2eaf2_SQL.10_en-us" mtpsshortid="bb545450_MSDN.10_en-us" title="SQL Server">SQL Server</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ff929050(v=sql.10).aspx" id="ff929050_SQL.10_en-us" mtpsaliasid="" mtpsassetid="SQL|SQLTOC|$\sqltoc.hxt@0,0,6_SQL.10_en-us" mtpsshortid="ff929050_SQL.10_en-us" title="SQL Server 2008">SQL Server 2008</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/hh995091(v=sql.10).aspx" id="hh995091_SQL.10_en-us" mtpsaliasid="" mtpsassetid="SQL|SQLTOC|$\sqltoc.hxt@0,0,6,0_SQL.10_en-us" mtpsshortid="hh995091_SQL.10_en-us" title="Product Documentation">Product Documentation</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms130214(v=sql.100).aspx" id="bb543165_SQL.100_en-us" mtpsaliasid="" mtpsassetid="674933a8-e423-4d44-a39b-2a997e2c2333_SQL.100_en-us" mtpsshortid="ms130214_SQL.100_en-us" title="SQL Server 2008 Books Online">SQL Server 2008 Books Online</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms187875(v=sql.100).aspx" id="bb528141_SQL.100_en-us" mtpsaliasid="" mtpsassetid="65e2f424-1386-45a6-8912-bd053f434073_SQL.100_en-us" mtpsshortid="ms187875_SQL.100_en-us" title="Database Engine">Database Engine</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/bb500155(v=sql.100).aspx" id="bb528146_SQL.100_en-us" mtpsaliasid="" mtpsassetid="d9efe145-3306-4d61-bd77-e2af43e19c34_SQL.100_en-us" mtpsshortid="bb500155_SQL.100_en-us" title="Development">Development</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/bb522480(v=sql.100).aspx" id="bb528149_SQL.100_en-us" mtpsaliasid="" mtpsassetid="7638f46c-9e66-48e6-9a9b-425e0b788311_SQL.100_en-us" mtpsshortid="bb522480_SQL.100_en-us" title="Developer&#39;s Guide">Developer's Guide</a>            </div>
+            <div class="toclevel0" data-toclevel="0" style="padding-left: 0px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms131102(v=sql.100).aspx" id="bb525652_SQL.100_en-us" mtpsaliasid="" mtpsassetid="951bf851-3e6e-4361-ae6a-2bcd5b837ebd_SQL.100_en-us" mtpsshortid="ms131102_SQL.100_en-us" title="Common Language Runtime (CLR) Integration Programming Concepts">Common Language Runtime (CLR) Integration Programming Concepts</a>            </div>
+            <div class="toclevel1" data-toclevel="1" data-childrenloaded="true" style="padding-left: 17px;">
+<a class="toc_expanded" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms131071(v=sql.100).aspx" id="bb525687_SQL.100_en-us" mtpsaliasid="" mtpsassetid="05d7a471-c5d5-4730-b903-e4edc8157bb4_SQL.100_en-us" mtpsshortid="ms131071_SQL.100_en-us" title="CLR Integration Security">CLR Integration Security</a>            </div>
+            <div class="toclevel2 current" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="./CLR Integration Code Access Security_files/CLR Integration Code Access Security.html" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="CLR Integration Code Access Security">CLR Integration Code Access Security</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<a class="toc_collapsed" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#"></a><a data-tochassubtree="true" href="http://msdn.microsoft.com/en-us/library/ms403276(v=sql.100).aspx" id="bb525691_SQL.100_en-us" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Host Protection Attributes and CLR Integration Programming">Host Protection Attributes and CLR Integration Programming</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/en-us/library/ms345104(v=sql.100).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Links in CLR Integration Security">Links in CLR Integration Security</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/en-us/library/ms345105(v=sql.100).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Impersonation and CLR Integration Security">Impersonation and CLR Integration Security</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/en-us/library/ms345097(v=sql.100).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Allowing Partially Trusted Callers">Allowing Partially Trusted Callers</a>            </div>
+            <div class="toclevel2" data-toclevel="2" style="padding-left: 34px;">
+<span class="toc_empty"></span><a href="http://msdn.microsoft.com/en-us/library/ms345100(v=sql.100).aspx" mtpsaliasid="" mtpsassetid="" mtpsshortid="" title="Application Domains and CLR Integration Security">Application Domains and CLR Integration Security</a>            </div>
+</div>
+        
+
+        
+
+        
+        
+        <div id="toc-resizable-ew" class="toc-resizable-ew"></div>
+        
+
+<a id="NavigationResize" href="javascript:void(0)" style="left: 280px; display: inline-block;">
+    <img class="cl_nav_resize_open" src="./CLR Integration Code Access Security_files/ImageSprite.png" title="Expand" alt="Expand">
+    <img class="cl_nav_resize_close" src="./CLR Integration Code Access Security_files/ImageSprite.png" title="Minimize" alt="Minimize" style="display: none;">
+</a>
+
+
+
+    </div>
+<div id="content" class="content" style="margin-left: 280px; width: auto;">
+
+
+
+
+
+    
+    <div id="FeedbackCounterUrl" data-url="/en-us/library/feedbackcounterasync/ms345101(v=sql.100).aspx"></div>
+    <div id="FeedbackCounterPlaceHolder"><link rel="stylesheet" type="text/css" href="./CLR Integration Code Access Security_files/FeedbackCounter.css" xmlns="http://www.w3.org/1999/xhtml">
+    
+    
+
+    
+
+    
+</div>
+
+
+        
+
+<div class="topic" xmlns="http://www.w3.org/1999/xhtml">
+  <h1 class="title">CLR Integration Code Access Security</h1>
+  
+  <div class="lw_vs">
+    <div id="curversion">
+      <strong>
+            SQL Server 2008
+        </strong>
+    </div>
+    <div id="versionclick">
+      <div id="vsseperator" class="cl_lw_vs_seperator"></div>
+      <div>
+        <div>
+          <a id="vsLink" href="javascript:;">
+                        Other Versions
+                    </a>
+        </div>
+        <div class="cl_vs_arrow clip10x10">
+          <img class="cl_lw_vs_arrow" id="vsArrow" alt="" src="./CLR Integration Code Access Security_files/ImageSprite.png">
+        </div>
+      </div>
+      <ul id="vsPanel" style="display: none;">
+        <li>
+          <a href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.120).aspx">SQL Server 2014</a>
+        </li>
+        <li>
+          <a href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.110).aspx">SQL Server 2012</a>
+        </li>
+        <li>
+          <a href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.105).aspx">SQL Server 2008 R2</a>
+        </li>
+        <li>
+          <a href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.90).aspx">SQL Server 2005</a>
+        </li>
+      </ul>
+    </div>
+  <div id="ratingCounterSeperator" class="cl_lw_vs_seperator" style="display: block;" xmlns="http://www.w3.org/1999/xhtml"></div><div id="ratingCounter" xmlns="http://www.w3.org/1999/xhtml" style="margin: 0px 0px 0px 13px; display: block;">
+        <span id="rcA" class="ratingText">
+            1 out of 2 rated this helpful <span id="rateThisPrefix">- </span><a id="rateThisTopic" href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#feedback" title="Rate this topic">Rate this topic</a>
+            
+        </span>
+    </div></div>
+  <div style="clear:both;"></div>
+  
+  <div id="mainSection">
+    <div id="mainBody"> <p></p> <div class="introduction"><p>The common language runtime (CLR) supports a security model called code access security for managed code. In this model, permissions are granted to assemblies based on the identity of the code. For more information, see the "Code Access Security" section in the .NET Framework software development kit.</p><p>The security policy that determines the permissions granted to assemblies is defined in three different places:</p><ul><li><p>Machine policy: This is the policy in effect for all managed code running in the machine on which SQL Server is installed.</p></li><li><p>User policy: This is the policy in effect for managed code hosted by a process. For SQL Server, the user policy is specific to the Windows account on which the SQL Server service is running. </p></li><li><p>Host policy: This is the policy set up by the host of the CLR (in this case, SQL Server) that is in effect for managed code running in that host. </p></li></ul><p>The code access security mechanism supported by the CLR is based on the assumption that the runtime can host both fully trusted and partially trusted code. The resources that are protected by CLR code access security are typically wrapped by managed application programming interfaces that requirethe corresponding permission before allowing access to the resource. The demandfor the permission is satisfied only if all the callers (at the assembly level) in the call stack have the corresponding resource permission.</p><p>The set of code access security permissions that are granted to managed code when running inside SQL Server is the intersection of the set of permissions granted by the above three policy levels. Even if SQL Server grants a set of permissions to an assembly loaded in SQL Server, the eventual set of permissions given to user code may be restricted further by the user and machine-level policies.</p></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a href="javascript:void(0)" class="LW_CollapsibleArea_TitleAhref" title="Click to collapse. Double-click to collapse all." role="button"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">SQL Server Host Policy Level Permission Sets</span></a><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><a id="sectionToggle0"></a><p>The set of code access security permissions granted to assemblies by the SQL Server host policy level is determined by the permission set specified when creating the assembly. There are three permission sets: <span><span class="input">SAFE</span></span>, <span><span class="input">EXTERNAL_ACCESS</span></span> and <span><span class="input">UNSAFE</span></span> (specified using the<span><span class="input"> PERMISSION_SET</span></span> option of<span><span class="input">&nbsp;</span></span><span><a href="http://msdn.microsoft.com/en-us/library/ms189524(v=sql.100).aspx">CREATE ASSEMBLY (Transact-SQL)</a></span>).</p><p>SQL Server supplies a host-level security policy level to the CLR while hosting it; this policy is an additional policy level below the two policy levels that are always in effect. This policy is set for every application domain that is created by SQL Server. This policy is not meant for the default application domain that would be in effect when SQL Server creates an instance of the CLR. </p><p>The SQL Server host-level policy is a combination of SQL Server fixed<em>&nbsp;</em>policy for system assemblies and user-specified policy for user assemblies. </p><p>The fixed policy for CLR assemblies and SQL Server system assemblies grants them full trust. </p><p>The user-specified portion of the SQL Server host policy is based on the assembly owner specifying one of three permission buckets for each assembly. For more information about the security permissions listed below, see the .NET Framework SDK.</p><h3 class="subHeading">SAFE</h3><div class="subsection"><p>Only internal computation and local data access are allowed. <span><span class="input">SAFE</span></span> is the most restrictive permission set. Code executed by an assembly with <span><span class="input">SAFE</span></span> permissions cannot access external system resources such as files, the network, environment variables, or the registry. </p><p><span><span class="input">SAFE</span></span> assemblies have the following permissions and values:</p><div class="caption"></div><div class="tableSection"><table><tbody><tr><th><p>Permission</p></th><th><p>Value(s)/Description</p></th></tr><tr><td><p><span><span class="input">SecurityPermission</span></span></p></td><td><p><span><span class="input">Execution:</span></span> Permission to execute managed code.</p></td></tr><tr><td><p><span><span class="input">SqlClientPermission</span></span></p></td><td><p><span><span class="input">Context connection = true</span></span>, <span><span class="input">context connection = yes</span></span>: Only the context-connection can be used and the connection string can only specify a value of "context connection=true" or "context connection=yes".</p><p><span><span class="input">AllowBlankPassword = false: </span></span> Blank passwords are not permitted.</p></td></tr></tbody></table></div></div><h3 class="subHeading">EXTERNAL_ACCESS</h3><div class="subsection"><p>EXTERNAL_ACCESS assemblies have the same permissions as<span><span class="input"> SAFE </span></span>assemblies, with the additional ability to access external system resources such as files, networks, environmental variables, and the registry. </p><p><span><span class="input">EXTERNAL_ACCESS</span></span> assemblies also have the following permissions and values:</p><p></p><div class="caption"></div><div class="tableSection"><table><tbody><tr><th><p>Permission</p></th><th><p>Value(s)/Description</p></th></tr><tr><td><p><span><span class="input">DistributedTransactionPermission</span></span></p></td><td><p><span><span class="input">Unrestricted: </span></span>Distributed transactions are allowed.</p></td></tr><tr><td><p><span><span class="input">DNSPermission</span></span></p></td><td><p><span><span class="input">Unrestricted: </span></span>Permission to request information from Domain Name Servers.</p></td></tr><tr><td><p><span><span class="input">EnvironmentPermission</span></span></p></td><td><p><span><span class="input">Unrestricted:</span></span> Full access to system and user environment variables is allowed.</p></td></tr><tr><td><p><span><span class="input">EventLogPermission</span></span></p></td><td><p><span><span class="input">Administer:</span></span> The following actions are allowed: creating an event source, reading existing logs, deleting event sources or logs, responding to entries, clearing an event log, listening to events, and accessing a collection of all event logs.</p></td></tr><tr><td><p><span><span class="input">FileIOPermission</span></span></p></td><td><p><span><span class="input">Unrestricted:</span></span> Full access to files and folders is allowed.</p></td></tr><tr><td><p><span><span class="input">KeyContainerPermission</span></span></p></td><td><p><span><span class="input">Unrestricted:</span></span> Full access to key containers is allowed.</p></td></tr><tr><td><p><span><span class="input">NetworkInformationPermission</span></span></p></td><td><p><span><span class="input">Access:</span></span> Pinging is permitted.</p></td></tr><tr><td><p><span><span class="input">RegistryPermission</span></span></p></td><td><p>Allows read rights to <span><span class="input">HKEY_CLASSES_ROOT</span></span>, <span><span class="input">HKEY_LOCAL_MACHINE</span></span>, <span><span class="input">HKEY_CURRENT_USER</span></span>, <span><span class="input">HKEY_CURRENT_CONFIG</span></span>, and <span><span class="input">HKEY_USERS.</span></span></p></td></tr><tr><td><p><span><span class="input">SecurityPermission</span></span></p></td><td><p><span><span class="input">Assertion:</span></span> Ability to assert that all the callers of this code have the requisite permission for the operation. </p><p><span><span class="input">ControlPrincipal:</span></span> Ability to manipulate the principal object.</p><p><span><span class="input">Execution:</span></span> Permission to execute managed code.</p><p><span><span class="input">SerializationFormatter:</span></span> Ability to provide serialization services. </p></td></tr><tr><td><p><span><span class="input">SmtpPermission </span></span></p></td><td><p><span><span class="input">Access:</span></span> Outbound connections to SMTP host port 25 are allowed.</p></td></tr><tr><td><p><span><span class="input">SocketPermission</span></span></p></td><td><p><span><span class="input">Connect:</span></span> Outbound connections (all ports, all protocols) on a transport address are allowed.</p></td></tr><tr><td><p><span><span class="input">SqlClientPermission</span></span></p></td><td><p><span><span class="input">Unrestricted:</span></span> Full access to the datasource is allowed.</p></td></tr><tr><td><p><span><span class="input">StorePermission</span></span></p></td><td><p><span><span class="input">Unrestricted:</span></span> Full access to X.509 certificate stores is allowed.</p></td></tr><tr><td><p><span><span class="input">WebPermission</span></span></p></td><td><p><span><span class="input">Connect:</span></span> Outbound connections to web resources are allowed.</p></td></tr></tbody></table></div></div><h3 class="subHeading">UNSAFE</h3><div class="subsection"><p>UNSAFE allows assemblies unrestricted access to resources, both within and outside SQL Server. Code executing from within an <span><span class="input">UNSAFE</span></span> assembly can also call unmanaged code. </p><p><span><span class="input">UNSAFE</span></span> assemblies are given <span><span class="input">FullTrust</span></span>.</p><div class="alert"><table><tbody><tr><th><img id="alert_security" alt="Security note" src="./CLR Integration Code Access Security_files/clear.gif" title="Security note" xmlns="" class="cl_IC101171"><strong>Security Note</strong></th></tr><tr><td><p><span><span class="input">SAFE</span></span> is the recommended permission setting for assemblies that perform computation and data management tasks without accessing resources outside SQL Server. <span><span class="input">EXTERNAL_ACCESS</span></span> is recommended for assemblies that access resources outside SQL Server. <span><span class="input">EXTERNAL_ACCESS</span></span> assemblies by default execute as the SQL Server service account. It is possible for <span><span class="input">EXTERNAL_ACCESS</span></span> code to explicitly impersonate the caller's Windows Authentication security context. Since the default is to execute as the SQL Server service account, permission to execute <span><span class="input">EXTERNAL_ACCESS</span></span> should only be given to logins trusted to run as the service account. From a security perspective, <span><span class="input">EXTERNAL_ACCESS</span></span> and <span><span class="input">UNSAFE</span></span> assemblies are identical. However, <span><span class="input">EXTERNAL_ACCESS</span></span> assemblies provide various reliability and robustness protections that are not in <span><span class="input">UNSAFE</span></span> assemblies. Specifying <span><span class="input">UNSAFE</span></span> allows the code in the assembly to perform illegal operations against the SQL Server process space, and hence can potentially compromise the robustness and scalability of SQL Server. For more information about creating CLR assemblies in SQL Server, see <span><a href="http://msdn.microsoft.com/en-us/library/ms131107(v=sql.100).aspx">Managing CLR Integration Assemblies</a></span>.</p></td></tr></tbody></table></div></div></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a href="javascript:void(0)" class="LW_CollapsibleArea_TitleAhref" title="Click to collapse. Double-click to collapse all." role="button"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Accessing External Resources</span></a><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><a id="sectionToggle1"></a><p>If a user-defined type (UDT), stored procedure, or other type of construct assembly is registered with the <span><span class="input">SAFE</span></span> permission set, then managed code executing in the construct is unable to access external resources. However, if either the <span><span class="input">EXTERNAL_ACCESS</span></span> or <span><span class="input">UNSAFE</span></span> permission sets are specified, and managed code attempts to access external resources, SQL Server applies the following rules:</p><div class="caption"></div><div class="tableSection"><table><tbody><tr><th><p>If</p></th><th><p>Then</p></th></tr><tr><td><p>The execution context corresponds to a SQL Server login.</p></td><td><p>Attempts to access external resources are denied and a security exception is raised.</p></td></tr><tr><td><p>The execution context corresponds to a Windows login and the execution context is the original caller.</p></td><td><p>The external resource is accessed under the security context of the SQL Server service account.</p></td></tr><tr><td><p>The caller is not the original caller.</p></td><td><p>Access is denied and a security exception is raised.</p></td></tr><tr><td><p>The execution context corresponds to a Windows login and is the original caller, and the caller has been impersonated.</p></td><td><p>Access uses the caller security context rather than the service account.</p></td></tr></tbody></table></div></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a href="javascript:void(0)" class="LW_CollapsibleArea_TitleAhref" title="Click to collapse. Double-click to collapse all." role="button"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">Permission Set Summary</span></a><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><a id="sectionToggle2"></a><p>The following chart summarizes the restrictions and permissions granted to the <span><span class="input">SAFE</span></span>, <span><span class="input">EXTERNAL_ACCESS</span></span>, and <span><span class="input">UNSAFE</span></span> permission sets.</p><div class="caption"></div><div class="tableSection"><table><tbody><tr><td><p></p></td><td><p><span><span class="input">SAFE</span></span></p></td><td><p><span><span class="input">EXTERNAL_ACCESS</span></span></p></td><td><p><span><span class="input">UNSAFE</span></span></p></td></tr><tr><td><p><span><span class="input">Code Access Security Permissions</span></span></p></td><td><p>Execute only</p></td><td><p>Execute + access to external resources</p></td><td><p>Unrestricted (including P/Invoke)</p></td></tr><tr><td><p><span><span class="input">Programming model restrictions</span></span></p></td><td><p>Yes</p></td><td><p>Yes</p></td><td><p>No restrictions</p></td></tr><tr><td><p><span><span class="input">Verifiability requirement</span></span></p></td><td><p>Yes</p></td><td><p>Yes</p></td><td><p>No</p></td></tr><tr><td><p><span><span class="input">Local data access</span></span></p></td><td><p>Yes</p></td><td><p>Yes</p></td><td><p>Yes</p></td></tr><tr><td><p><span><span class="input">Ability to call native code</span></span></p></td><td><p>No</p></td><td><p>No</p></td><td><p>Yes</p></td></tr></tbody></table></div></div></div><div><h2 class="LW_CollapsibleArea_TitleDiv"><div><a href="javascript:void(0)" class="LW_CollapsibleArea_TitleAhref" title="Click to collapse. Double-click to collapse all." role="button"><span class="cl_CollapsibleArea_expanding LW_CollapsibleArea_Img"></span><span class="LW_CollapsibleArea_Title">See Also</span></a><div class="LW_CollapsibleArea_HrDiv"><hr class="LW_CollapsibleArea_Hr"></div></div></h2><div class="sectionblock"><a id="seeAlsoToggle"></a><h4 class="subHeading">Concepts</h4><div class="seeAlsoStyle"><span><a href="http://msdn.microsoft.com/en-us/library/ms131071(v=sql.100).aspx">CLR Integration Security</a></span></div><div class="seeAlsoStyle"><span><a href="http://msdn.microsoft.com/en-us/library/ms403276(v=sql.100).aspx">Host Protection Attributes and CLR Integration Programming</a></span></div><div class="seeAlsoStyle"><span><a href="http://msdn.microsoft.com/en-us/library/ms403273(v=sql.100).aspx">CLR Integration Programming Model Restrictions</a></span></div><div class="seeAlsoStyle"><span><a href="http://msdn.microsoft.com/en-us/library/ms131047(v=sql.100).aspx">CLR Hosted Environment</a></span></div></div></div></div>
+  </div>
+</div>
+
+    
+
+
+
+<script id="CommentTemplate" type="text/x-jquery-tmpl">
+    <div class="communityContentAnnotation">
+        <a name="${Index}"></a>
+        <h3>
+            ${Title}
+        </h3>
+        <div class="communityContentAnnotationBody">
+            {{html Body}}
+        </div>
+        <div class="communityContentAnnotationInfo">
+            <div class="communityContentAnnotationAvatarContainer">
+                <a href="${UserAvatar.Href}" title="${UserAvatar.ToolTip}" class="communityContentAnnotationAvatar"><img src="${UserAvatar.ImageUrl}" alt="${UserAvatar.ImageAltText}" width="34" height="34" /></a>
+            </div>
+            <div class="communityContentAnnotationUserDateContainer">
+                <div class="communityContentAnnotationUserContainer">
+                    <a href="${UserAvatar.Href}">
+                        ${User}
+                    </a>
+                </div>
+                <div class="communityContentAnnotationDateContainer">
+                    <span>${Date}</span>
+                    
+                    {{if EditLink}}
+                        <span>
+                            <a href="${EditLink.Href}" title="${EditLink.ToolTip}" class="communityContentCommentEditLink">${EditLink.Title}</a>
+                        </span>
+                    {{/if}}
+
+                    {{if DeleteLink}}
+                        <span>
+                            <a href="${DeleteLink.Href}" title="${DeleteLink.ToolTip}" class="communityContentDeleteLink">${DeleteLink.Title}</a>
+                        </span>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<div class="communityContentContainer">
+    <div id="CommunityContentHeader" class="communityContentHeader">
+        <div class="communityContentHeaderTitleContainer">
+            <h2>Community Additions</h2>
+                <a class="communityContentAddLink" href="http://msdn.microsoft.com/en-us/library/community/add/ms345101(v=sql.100).aspx">
+                    <span class="communityContentAddButton" title="Add">
+                        ADD
+                    </span>
+                </a>
+        </div>
+        <div style="clear: both;"></div>
+    </div>
+    
+    <div id="CommunityComments" data-url="/en-us/library/community/comments/ms345101(v=sql.100).aspx"></div>
+</div>
+
+
+
+
+<div class="libraryMemberFilter">
+    <div class="filterContainer">
+        <span>Show:</span>
+        <label>
+            <input type="checkbox" class="libraryFilterInherited" checked="checked" value="Inherit">Inherited
+        </label>
+        <label>
+            <input type="checkbox" class="libraryFilterProtected" checked="checked" value="Protected">Protected
+        </label>
+    </div>
+</div>
+    
+<input type="hidden" id="libraryMemberFilterEmptyWarning" value="There are no members available with your current filter settings.">
+
+
+ 
+</div>
+
+
+            </div>
+            <div class="clear"></div>
+
+            
+    
+<input name="__RequestVerificationToken" type="hidden" value="dZMb_K6AJWho4qBxeI_K8hj3BF6XfdPAWuRfGt-xhSuN9Hmpxlwz7zl5PQ71LbYLAkX54HKfrdX1vSykUfLOp4lyIUI1">
+<input id="ratingSubmitUrl" type="hidden" value="http://msdn.microsoft.com/en-us/library/feedback/add/ms345101(v=sql.100).aspx">
+<input id="isTopicRated" type="hidden" value="false">
+
+
+
+
+    
+
+    
+    <link type="text/css" rel="stylesheet">
+    
+    <div id="ux-footer" class="" style="" dir="ltr">
+            
+            <div id="footerSock" class="librarySock both">
+                <div id="footerSockInner">
+                        <a name="feedback"></a>
+
+<div class="rating" style="display: block;">
+    <div id="ratingSection1">
+        <div class="title">
+            Was this page helpful?
+        </div>
+        <div class="description">
+            Your feedback about this content is important.<br>Let us know what you think.
+        </div>
+        <div class="buttons">
+            <button class="button" id="ratingYes">Yes</button>
+            <button class="button" id="ratingNo">No</button>
+        </div>
+        <input id="ratingValue" type="hidden" value="">
+    </div>
+    <div id="ratingSection2">
+        <div class="title">
+            Additional feedback?
+        </div>
+        <textarea id="ratingText" rows="6" cols="" maxlength="1500"></textarea>
+        <div class="counter right">
+            <span id="feedbackTextCounter">1500</span> characters remaining
+        </div>
+        <div class="buttons left">
+            <button class="button" id="ratingSubmit">Submit</button>
+            <button class="button" id="ratingSkipThis">Skip this</button>
+        </div>
+    </div>
+    <div id="ratingSection3">
+        <div class="title">
+            Thank you!
+        </div>
+        <div class="description">
+            We appreciate your feedback.
+        </div>
+    </div>
+    
+    
+    <div id="contentFeedbackQAContainer" style="display: none;"></div>
+</div>
+    
+                    <div class="userVoice">
+    <div class="title">
+        Have a suggestion to improve MSDN Library?
+    </div>
+        <div class="description">
+            Visit our UserVoice Page to submit and vote on ideas!
+        </div>
+    <div class="buttons">
+        <a class="button" id="userVoiceButton" href="http://feedback.msdn.com/forums/257782-msdn-feature-suggestions/category/83975" target="_blank">Make a suggestion</a>
+    </div>
+</div>  
+                    <div class="clear"></div>
+                </div>
+            </div>
+
+        <footer class="top">
+            <div data-fragmentname="LeftLinks" id="Fragment_LeftLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Dev centers</div>
+    <ul class="links">
+      <li>
+        <a href="http://dev.windows.com/" id="LeftLinks_2148_1" class="windowsBlue" xmlns="http://www.w3.org/1999/xhtml">Windows</a>
+      </li>
+      <li>
+        <a href="http://dev.office.com/" id="LeftLinks_2148_3" class="office" xmlns="http://www.w3.org/1999/xhtml">Office</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/vstudio" id="LeftLinks_2148_4" class="visualStudio" xmlns="http://www.w3.org/1999/xhtml">Visual Studio</a>
+      </li>
+      <li>
+        <a href="http://developer.nokia.com/" title="Nokia" id="LeftLinks_2148_15" class="nokia" xmlns="http://www.w3.org/1999/xhtml">Nokia</a>
+      </li>
+      <li>
+        <a href="http://azure.microsoft.com/en-us/documentation/" target="_blank" id="LeftLinks_2148_12" xmlns="http://www.w3.org/1999/xhtml">Microsoft Azure</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/aa937802" id="LeftLinks_2148_5" xmlns="http://www.w3.org/1999/xhtml">More...</a>
+      </li>
+    </ul>
+  </div>
+</div>    
+            <div id="rightLinks">
+                <div data-fragmentname="CenterLinks1" id="Fragment_CenterLinks1" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Learning resources</div>
+    <ul class="links">
+      <li>
+        <a href="http://www.microsoftvirtualacademy.com/" id="CenterLinks1_2151_4" xmlns="http://www.w3.org/1999/xhtml">Microsoft Virtual Academy</a>
+      </li>
+      <li>
+        <a href="http://channel9.msdn.com/" id="CenterLinks1_2151_5" xmlns="http://www.w3.org/1999/xhtml">Channel 9</a>
+      </li>
+      <li>
+        <a href="http://www.interoperabilitybridges.com/" id="CenterLinks1_2151_6" xmlns="http://www.w3.org/1999/xhtml">Interoperability Bridges</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/magazine/" id="CenterLinks1_2151_7" xmlns="http://www.w3.org/1999/xhtml">MSDN Magazine</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks2" id="Fragment_CenterLinks2" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Community</div>
+    <ul class="links">
+      <li>
+        <a href="https://social.msdn.microsoft.com/forums/en-us/home" id="CenterLinks2_2151_8" xmlns="http://www.w3.org/1999/xhtml">Forums</a>
+      </li>
+      <li>
+        <a href="http://blogs.msdn.com/b/developer-tools/" id="CenterLinks2_2151_9" xmlns="http://www.w3.org/1999/xhtml">Blogs</a>
+      </li>
+      <li>
+        <a href="http://www.codeplex.com/" id="CenterLinks2_2151_10" xmlns="http://www.w3.org/1999/xhtml">Codeplex</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks3" id="Fragment_CenterLinks3" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Support</div>
+    <ul class="links">
+      <li>
+        <a href="http://msdn.microsoft.com/hh361695" id="CenterLinks3_2151_11" xmlns="http://www.w3.org/1999/xhtml">Self support</a>
+      </li>
+    </ul>
+  </div>
+</div>
+                <div data-fragmentname="CenterLinks4" id="Fragment_CenterLinks4" xmlns="http://www.w3.org/1999/xhtml" class="nth-child-4n">
+  
+  <div class="linkList">
+    <div class="linkListTitle">Programs</div>
+    <ul class="links">
+      <li>
+        <a href="http://www.microsoft.com/bizspark/" id="CenterLinks4_2151_13" xmlns="http://www.w3.org/1999/xhtml">BizSpark (for startups)</a>
+      </li>
+      <li>
+        <a href="https://www.dreamspark.com/" id="CenterLinks4_2151_14" xmlns="http://www.w3.org/1999/xhtml">DreamSpark</a>
+      </li>
+      <li>
+        <a href="http://www.imaginecup.com/" id="CenterLinks4_2151_17" xmlns="http://www.w3.org/1999/xhtml">Imagine Cup</a>
+      </li>
+    </ul>
+  </div>
+</div>                
+            </div>
+        </footer>
+    
+        <footer class="bottom">
+            <span class="localeContainer">
+                
+    <form class="selectLocale" id="selectLocaleForm" action="http://msdn.microsoft.com/en-us/selectlocale-dmc">
+        <input type="hidden" name="fromPage" value="http%3a%2f%2fmsdn.microsoft.com%2fen-us%2flibrary%2fms345101(v%3dsql.100).aspx">
+        <a href="http://msdn.microsoft.com/en-us/library/ms345101(v=sql.100).aspx#" onclick="$(&#39;#selectLocaleForm&#39;).submit();return false;" title="Change your language">United States (English)</a>
+    </form>
+
+
+            </span>
+        
+            <div data-fragmentname="BottomLinks" id="Fragment_BottomLinks" xmlns="http://www.w3.org/1999/xhtml">
+  
+  <div class="linkList">
+    <ul class="links horizontal">
+      <li>
+        <a href="http://msdn.microsoft.com/newsletter.aspx" id="BottomLinks_2148_7" xmlns="http://www.w3.org/1999/xhtml">Newsletter</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/dn529288" id="BottomLinks_2148_8" xmlns="http://www.w3.org/1999/xhtml">Privacy &amp; cookies</a>
+      </li>
+      <li>
+        <a href="http://msdn.microsoft.com/cc300389" id="BottomLinks_2148_9" xmlns="http://www.w3.org/1999/xhtml">Terms of use</a>
+      </li>
+      <li>
+        <a href="http://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" id="BottomLinks_2148_10" xmlns="http://www.w3.org/1999/xhtml">Trademarks</a>
+      </li>
+    </ul>
+  </div>
+</div>    
+            <span class="logoLegal">
+                <span class="logo"></span>
+                <span class="copyright">© 2014 Microsoft</span>
+            </span>
+        </footer>
+    </div>
+    
+
+
+            <div class="footerPrintView">
+                <div class="footerCopyrightPrintView">© 2014 Microsoft</div>
+            </div>
+
+            
+            
+    
+    
+    <input id="tocPaddingPerLevel" type="hidden" value="17">
+
+
+
+            <input id="MtpsDevice" type="hidden" value="Default">
+
+
+<!--[CDATA[ Third party scripts and code linked to or referenced from this website are licensed to you by the parties that own such code, not by Microsoft.  See ASP.NET Ajax CDN Terms of Use – http://www.asp.net/ajaxlibrary/CDN.ashx. ]]-->
+
+            
+            
+            
+            
+            
+
+
+
+
+
+
+
+<noscript>&lt;div&gt;&lt;img alt="DCSIMG" id="Img1" width="1" height="1" src="http://m.webtrends.com/dcsmgru7m99k7mqmgrhudo0k8_8c6m/njs.gif?dcsuri=/nojavascript&amp;amp;WT.js=No" /&gt;&lt;/div&gt;</noscript>
+
+
+
+
+
+
+
+
+
+<noscript>
+  &lt;a href="http://www.omniture.com" title="Web Analytics"&gt;
+    &lt;img src="//msstonojsmsdn.112.2o7.net/b/ss/msstonojsmsdn/1/H.20.2--NS/0" height="1" width="1" border="0" alt="" /&gt;
+  &lt;/a&gt;
+</noscript>
+
+
+
+
+<div id="globalRequestVerification">
+    <input name="__RequestVerificationToken" type="hidden" value="C3hgSWvwXTfHYpVIfHCOjJMzu_5mCK0GvfRSsDXaP5ugU68it0-moQt7w2uR84l6hoxnej3LQmqDgl_inZ_CsUQ3NpE1">
+</div>
+
+
+        </div>
+
+        
+        
+        
+        
+    <script type="text/javascript" class="mtps-injected">
+/*<![CDATA[*/
+(function(window,document){"use strict";function preload(scripts){for(var result=[],script,e,i=0;i<scripts.length;i++)script=scripts[i],script.hasOwnProperty("url")&&(e=document.createElement("script"),e.src=script.url,script.throwaway=e),result.push(script);return result}function inject(scripts,index){var script,elem;if(index>=scripts.length){delete mtps.injectScripts;return}script=scripts[index];elem=document.createElement("script");elem.className="mtps-injected";elem.async=!1;var isLoaded=!1,timeoutId=0,injectNextFnName="",injectNext=elem.onerror=function(){isLoaded||(isLoaded=!0,inject(scripts,index+1),window.clearTimeout(timeoutId),elem.onload=elem.onerror=elem.onreadystatechange=null,injectNextFnName&&delete mtps[injectNextFnName],elem.removeEventListener&&elem.removeEventListener("load",injectNext,!1))};elem.addEventListener?elem.addEventListener("load",injectNext,!1):elem.readyState==="uninitialized"?elem.onreadystatechange=function(){(this.readyState==="loaded"||this.readyState==="complete")&&injectNext()}:elem.onload=injectNext;script.hasOwnProperty("url")?(timeoutId=window.setTimeout(injectNext,12e4),elem.src=script.url):(injectNextFnName="_injectNextScript_"+index,mtps[injectNextFnName]=injectNext,timeoutId=window.setTimeout(injectNext,2e3),elem.text="try {\n"+script.txt+"\n} finally { MTPS."+injectNextFnName+" && MTPS."+injectNextFnName+"(); }");parent.appendChild(elem)}var mtps=window.MTPS||(window.MTPS={}),parent=document.getElementsByTagName("head")[0];mtps.injectScripts=function(scripts){inject(preload(scripts),0)}})(window,document);
+MTPS.injectScripts([
+	{ txt: "/**/\r\n(window.MTPS || (window.MTPS = {})).cdnDomains || (window.MTPS.cdnDomains = { \r\n\t\"image\": \"http://i.msdn.microsoft.com\", \r\n\t\"js\": \"http://i2.msdn.microsoft.com\", \r\n\t\"css\": \"http://i3.msdn.microsoft.com\", \r\n\t\"xap\": \"http://207.46.99.206\"\r\n});\r\n/**/" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js" },
+	{ txt: "//\n  var literalNormalizedUrl = \u0027/en-us/library/ms345101(l=en-us,v=sql.100).aspx\u0027;\n  var wt_nvr_ru = \u0027WT_NVR_RU\u0027;\n  var wt_fpcdom = \u0027.microsoft.com\u0027;\n  var wt_domlist = \u0027msdn.microsoft.com\u0027;\n  var wt_pathlist = \u0027\u0027;\n  var wt_paramlist = \u0027DCSext.mtps_devcenter\u0027;\n  var wt_siteid = \u0027MSDN\u0027;\n  var gDomain = \u0027m.webtrends.com\u0027;\n  var gDcsId = \u0027dcsmgru7m99k7mqmgrhudo0k8_8c6m\u0027;\n  var gFpc = \u0027WT_FPC\u0027;\n\n\n\n  if (document.cookie.indexOf(gFpc + \"=\") == -1) {\n    var wtidJs = document.createElement(\"script\");\n    wtidJs.src = \"//\" + gDomain + \"/\" + gDcsId + \"/wtid.js\";\n    document.getElementsByTagName(\"head\")[0].appendChild(wtidJs);\n  }\n\n\n\n  var detectedLocale = \u0027en-us\u0027;\n  var wtsp = \u0027_msdn_library_sqlserver_\u0027;\n  var gTrackEvents = \u00270\u0027;\n/**/" },
+	{ txt: "/**/\n  var omni_guid = \"973a2f85-8412-42f5-ad5d-1f876c57f76f\";\n/**/" },
+	{ txt: "//\n\n            window.appInsightsId = \u002760854590-027a-4ae4-98be-2741a40f355f\u0027;\n            //" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:Utilities,1:Layout,2:Header,3:FeedbackCounterAsync,1:Rating,2:Footer,0:Topic,4:webtrendsscript,5:omni_rsid_MSDN,0:AppInsightsPerf,6:Toc,1:SearchBox;/Areas/Epx/Content/Scripts:0,/Areas/Epx/Themes/Base/Content:1,/Areas/Centers/Themes/StandardDevCenter/Content:2,/Areas/Epx/Shared/Content:3,/Areas/Global/Content/Webtrends/resources:4,/Areas/Global/Content/Omniture/resources/MSDN:5,/Areas/Library/Content:6\u0026amp;hashKey=E51EE2CB09B3D21FAA182257289298FF" },
+	{ url: "http://i1.services.social.microsoft.com/search/Widgets/SearchBox.jss?boxid=HeaderSearchTextBox\u0026btnid=HeaderSearchButton\u0026brand=Msdn\u0026loc=en-us\u0026focusOnInit=false\u0026emptyWatermark=true\u0026searchButtonTooltip=Search MSDN" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:PrintExportButton,1:NavigationResize;/Areas/Library/Themes/Base/Content:0,/Areas/Library/Content:1\u0026amp;hashKey=72684789A0F98A77C33C1AC3470E9ECF" },
+	{ txt: "MTPS = window.MTPS || {}; MTPS.LocalizedStrings = window.MTPS.LocalizedStrings || {}; MTPS.LocalizedStrings.ExpandButtonTooltip = \u0027Expand\u0027; MTPS.LocalizedStrings.CollapseButtonTooltip = \u0027Collapse\u0027; MTPS.LocalizedStrings.EnhancedExpandTooltip = \u0027Click to expand. Double-click to expand all.\u0027; MTPS.LocalizedStrings.EnhancedCollapseTooltip = \u0027Click to collapse. Double-click to collapse all.\u0027; MTPS.LocalizedStrings.ExpandAllButtonTooltip = \u0027Expand All\u0027; MTPS.LocalizedStrings.CollapseAllButtonTooltip = \u0027Collapse All\u0027;" },
+	{ url: "http://ajax.aspnetcdn.com/ajax/jquery.templates/beta1/jquery.tmpl.min.js" },
+	{ url: "http://i2.msdn.microsoft.com/Combined.js?resources=0:CommunityContent,0:LibraryMemberFilter,1:Toc_Fixed,1:CodeSnippet,1:TopicNotInScope,1:CollapsibleArea,1:VersionSelector,1:SurveyBroker;/Areas/Library/Content:0,/Areas/Epx/Content/Scripts:1\u0026amp;hashKey=EB298C838117D9E7008C7CC11E7732E3" },
+	{ txt: "$(document).ready(function() {\n        try {\n            var token = $(\"#globalRequestVerification input[name=\u0027__RequestVerificationToken\u0027]\").clone();\n            $(\"#siteFeedbackForm\").append(token);\n        } catch(err) {\n            \n        }\n    });" }
+]);
+
+/*]]>*/
+</script>
+<script src="./CLR Integration Code Access Security_files/broker-config.js"></script><div id="_WEDCSInsertedData" style="display: none;"><iframe id="_msnFrame" src="./CLR Integration Code Access Security_files/c.gif" style="z-index:-1;height:1px;width:1px;display:none;visibility:hidden;" onload="javascript:MscomBeacon();"></iframe></div></body></html>

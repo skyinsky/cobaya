@@ -1,0 +1,1013 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0087)https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/ -->
+<html lang="en-us" xmlns="http://www.w3.org/1999/xhtml" class=" js no-touch cssanimations csstransitions"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./Building my First SQL Server 2005 CLR_files/shares.json"></script><script src="./Building my First SQL Server 2005 CLR_files/cb=gapi.loaded_1" async=""></script><script src="./Building my First SQL Server 2005 CLR_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Building my First SQL Server 2005 CLR_files/dc.js"></script><script type="text/javascript" src="./Building my First SQL Server 2005 CLR_files/counter020.js"></script><script type="text/javascript" src="./Building my First SQL Server 2005 CLR_files/plusone.js" gapi_processed="true"></script><meta http-equiv="content-language" content="en-us"><meta name="viewport" content="width=device_display, initial-scale=1.0"><meta name="msvalidate.01" content="9C05A0BBFB5A166A5C1C7202D4E5D72B">
+    <script type="text/javascript" data-main="/static/versioned/3e62335f7e28118064c631b9a3a32e46/js/main.js" src="./Building my First SQL Server 2005 CLR_files/require-2.1.9.js"></script>
+    <script>
+      require.config({
+        paths: {
+          "jquery": "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min",
+          "mediaelement": "lib/mediaelement/mediaelement-and-player"
+        },
+        urlArgs: "v=105"
+      });
+    </script>
+    <script type="text/javascript" src="./Building my First SQL Server 2005 CLR_files/modernizr.custom.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="./Building my First SQL Server 2005 CLR_files/main.css">
+    <link rel="stylesheet" type="text/css" href="./Building my First SQL Server 2005 CLR_files/content.css">
+    <link rel="stylesheet" type="text/css" href="./Building my First SQL Server 2005 CLR_files/mobile-navigation.css">
+    <link rel="stylesheet" type="text/css" href="./Building my First SQL Server 2005 CLR_files/mobile-searchbar.css">
+
+    
+      <link rel="stylesheet" href="./Building my First SQL Server 2005 CLR_files/sql.css" type="text/css">
+    
+    <!--[if lt IE 9]>
+      <script src="/static/versioned/c42155be65838a3ecf77bfc6caf1ee7f/js/lib/html5shiv-printshiv.js"></script>
+    <![endif]-->
+
+    
+    
+  <meta name="description" content="Greg Larsen provides a step-by-step tour of the hurdles he had to jump in building and deploying his first serious CLR stored procedure.">
+  <meta keywords="SQL Server 2005, CLR stored procedure, assembly, permission_set">
+  <meta itemprop="interactionCount" content="UserComments:16">
+  <link rel="canonical" href="./Building my First SQL Server 2005 CLR_files/Building my First SQL Server 2005 CLR.html">
+<title>
+	Building my First SQL Server 2005 CLR
+</title><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="main" src="./Building my First SQL Server 2005 CLR_files/main.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="./Building my First SQL Server 2005 CLR_files/jquery.min.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery.dlmenu" src="./Building my First SQL Server 2005 CLR_files/jquery.dlmenu.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="rss" src="./Building my First SQL Server 2005 CLR_files/rss.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="corner-peel" src="./Building my First SQL Server 2005 CLR_files/corner-peel.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="ajax-comment-delete" src="./Building my First SQL Server 2005 CLR_files/ajax-comment-delete.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="audio-polyfill" src="./Building my First SQL Server 2005 CLR_files/audio-polyfill.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="newsletter-subscriber" src="./Building my First SQL Server 2005 CLR_files/newsletter-subscriber.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="analytics" src="./Building my First SQL Server 2005 CLR_files/analytics.js"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="mobile-searchbar" src="./Building my First SQL Server 2005 CLR_files/mobile-searchbar.js"></script><script type="text/javascript" async="" src="./Building my First SQL Server 2005 CLR_files/addthis_widget.js"></script><link rel="stylesheet" type="text/css" href="./Building my First SQL Server 2005 CLR_files/widget007.old.css" media="all"><link rel="stylesheet" type="text/css" href="./Building my First SQL Server 2005 CLR_files/counter015.css" media="all"><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="mediaelement" src="./Building my First SQL Server 2005 CLR_files/mediaelement-and-player.js"></script></head>
+<body>
+  <div id="corner-peel">
+	  <a href="http://www.red-gate.com/sqlmonitor-simpletalk" rel="nofollow">
+      <img src="./Building my First SQL Server 2005 CLR_files/corner-peel.png" alt="Click here to monitor SSC">
+    </a>
+	  <div id="corner-peel-behind"></div>
+  </div>
+
+  <div class="site">
+    <div itemscope="" itemtype="http://schema.org/TechArticle" class="page"> 
+      
+
+<div class="site-header">
+  <div class="mobile-navigation" style="float: left; padding-top: 13px;">
+    
+	  <div class="mobile-navigation-column">
+    <div id="dl-menu" class="dl-menuwrapper">
+		  <button class="dl-trigger">Open Menu</button>
+		  <ul class="dl-menu">
+			  <li>
+				  <a href="https://www.simple-talk.com/">Home</a>
+        </li>
+        <li>
+          <a href="">SQL</a>
+				  <ul class="dl-submenu"><li class="dl-back"><a href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#">Back</a></li>
+					  <li><a href="https://www.simple-talk.com/sql/">SQL Home</a></li>
+					  <li><a href="https://www.simple-talk.com/sql/learn-sql-server/">Learn SQL Server</a></li>
+					  <li><a href="https://www.simple-talk.com/sql/sql-training/">SQL Training</a></li>
+					  <li><a href="https://www.simple-talk.com/sql/database-administration/">Database Administration</a></li>
+            <li><a href="https://www.simple-talk.com/sql/t-sql-programming/">T-SQL Programming</a></li>
+            <li><a href="https://www.simple-talk.com/sql/performance/">Performance</a></li>
+            <li><a href="https://www.simple-talk.com/sql/backup-and-recovery/">Backup and Recovery</a></li>
+            <li><a href="https://www.simple-talk.com/sql/sql-tools/">SQL Tools</a></li>
+            <li><a href="https://www.simple-talk.com/sql/editors-corner">Editor's Corner</a></li>
+            <li><a href="https://www.simple-talk.com/sql/ssis/">SSIS</a></li>
+            <li><a href="https://www.simple-talk.com/sql/reporting-services">Reporting Services</a></li>
+				  </ul>
+			  </li>
+			  <li>
+				  <a href="">.NET</a>
+          <ul class="dl-submenu"><li class="dl-back"><a href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#">Back</a></li>
+            <li><a href="https://www.simple-talk.com/dotnet/">.NET Home</a></li>
+					  <li><a href="https://www.simple-talk.com/dotnet/asp.net/">ASP.Net</a></li>
+					  <li><a href="https://www.simple-talk.com/dotnet/windows-forms/">Windows Forms</a></li>
+            <li><a href="https://www.simple-talk.com/dotnet/.net-framework/">.Net Framework</a></li>
+            <li><a href="https://www.simple-talk.com/dotnet/performance/">Performance</a></li>
+            <li><a href="https://www.simple-talk.com/dotnet/visual-studio/">Visual Studio</a></li>
+            <li><a href="https://www.simple-talk.com/dotnet/.net-tools/">.Net Tools</a></li>
+            <li><a href="https://www.simple-talk.com/dotnet/editors-corner/">Editor's Corner</a></li>
+				  </ul>
+			  </li>
+			  <li>
+				  <a href="">Cloud</a>
+          <ul class="dl-submenu"><li class="dl-back"><a href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#">Back</a></li>
+					  <li><a href="https://www.simple-talk.com/cloud/">Cloud Home</a></li>
+					  <li><a href="https://www.simple-talk.com/cloud/cloud-data/">Cloud Data</a></li>
+					  <li><a href="https://www.simple-talk.com/cloud/platform-as-a-service/">Platform as a Service</a></li>
+            <li><a href="https://www.simple-talk.com/cloud/development/">Development</a></li>
+            <li><a href="https://www.simple-talk.com/cloud/infrastructure-as-a-service/">Infrastructure as a Service</a></li>
+            <li><a href="https://www.simple-talk.com/cloud/security-and-compliance/">Security and Compliance</a></li>
+            <li><a href="https://www.simple-talk.com/cloud/data-science/">Data Science</a></li>
+            <li><a href="https://www.simple-talk.com/cloud/software-as-a-service/">Software as a Service</a></li>
+				  </ul>
+			  </li>
+			  <li>
+				  <a href="">SysAdmin</a>
+          <ul class="dl-submenu"><li class="dl-back"><a href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#">Back</a></li>
+            <li><a href="https://www.simple-talk.com/sysadmin/">SysAdmin Home</a></li>
+					  <li><a href="https://www.simple-talk.com/sysadmin/editors-corner/">Editor's Corner</a></li>
+					  <li><a href="https://www.simple-talk.com/sysadmin/exchange/">Exchange</a></li>
+            <li><a href="https://www.simple-talk.com/sysadmin/general/">General</a></li>
+            <li><a href="https://www.simple-talk.com/sysadmin/virtualization/">Virtualization</a></li>
+            <li><a href="https://www.simple-talk.com/sysadmin/unified-messaging/">Unified Messaging</a></li>
+            <li><a href="https://www.simple-talk.com/sysadmin/powershell/">Powershell</a></li>
+				  </ul>
+			  </li>
+        <li>
+          <a href="https://www.simple-talk.com/opinion/">Opinion</a>
+        </li>
+        <li>
+				  <a href="">Books</a>
+          <ul class="dl-submenu"><li class="dl-back"><a href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#">Back</a></li>
+            <li><a href="https://www.simple-talk.com/books/">Books Home</a></li>
+					  <li><a href="https://www.simple-talk.com/books/.net-books/">.Net Books</a></li>
+					  <li><a href="https://www.simple-talk.com/books/sql-books/">SQL Books</a></li>
+            <li><a href="https://www.simple-talk.com/books/sysadmin-books/">SysAdmin Books</a></li>
+            <li><a href="https://www.simple-talk.com/books/book-reviews/">Book Reviews</a></li>
+				  </ul>
+			  </li>
+        <li>
+				  <a href="https://www.simple-talk.com/blogs/">Blogs</a>
+        </li>
+        <li>
+				  <a href="https://www.simple-talk.com/community/forums/">Forums</a>
+        </li>
+		  </ul>
+	  </div><!-- /dl-menuwrapper -->
+    </div>
+<script type="text/javascript">
+  require(["jquery", "jquery.dlmenu"], function ($) {
+      $(document).ready(function() {
+          $('#dl-menu').dlmenu({
+              animationClasses: { classin: 'dl-animate-in-2', classout: 'dl-animate-out-2' }
+          });
+      });
+  });
+</script>
+  </div>
+  <div class="site-logo">
+    <a href="https://www.simple-talk.com/">
+      <img src="./Building my First SQL Server 2005 CLR_files/simple-talk-logo.png" class="simple-talk-logo-image" alt="Simple-Talk">
+    </a>
+  </div>
+        
+  <div class="site-tagline">
+    A technical journal and community hub from Red Gate
+  </div>
+
+	<div class="red-gate-logo">
+	  <a href="http://www.red-gate.com/?utm_source=simpletalk&utm_medium=textad&utm_campaign=homepage">
+	  	<img src="./Building my First SQL Server 2005 CLR_files/red-gate-logo.png" class="red-gate-logo-header-image" alt="Red Gate">
+	  </a>
+	</div>
+  <div class="signup-buttons">
+    
+  <div class="account-nav account-nav-anonymous">
+      <a href="https://www.simple-talk.com/community/user/CreateUser.aspx?ReturnUrl=%2fsql%2flearn-sql-server%2fbuilding-my-first-sql-server-2005-clr%2f">Join Simple-Talk</a>
+      <a href="https://www.simple-talk.com/community/login.aspx?ReturnUrl=%2fsql%2flearn-sql-server%2fbuilding-my-first-sql-server-2005-clr%2f">Sign in</a>
+  </div>
+
+  </div>
+  <br>
+  <div class="mobile-search">
+    
+<div class="mobile-searchbar-column">
+	<div id="sb-search" class="sb-search">
+		<input class="sb-search-input" placeholder="Search..." type="text" value="" name="search" id="search">
+		<input class="sb-search-submit" type="submit" value="">
+		<span class="sb-icon-search"><img src="./Building my First SQL Server 2005 CLR_files/search_white.png" style="height: 25px;" alt="Search"></span>
+	</div>
+</div>  
+  </div>
+</div>
+
+      
+
+<div class="mainnav nav">
+  <ul class="primarynav">
+    
+      <li>
+        <a href="https://www.simple-talk.com/">Home</a>
+      </li>
+    
+      <li>
+        <a href="https://www.simple-talk.com/sql/" class="on">SQL</a>
+      </li>
+    
+      <li>
+        <a href="https://www.simple-talk.com/dotnet/">.NET</a>
+      </li>
+    
+      <li>
+        <a href="https://www.simple-talk.com/cloud/">Cloud</a>
+      </li>
+    
+      <li>
+        <a href="https://www.simple-talk.com/sysadmin/">SysAdmin</a>
+      </li>
+    
+      <li>
+        <a href="https://www.simple-talk.com/opinion/">Opinion</a>
+      </li>
+    
+      <li>
+        <a href="https://www.simple-talk.com/books/">Books</a>
+      </li>
+    
+      <li>
+        <a href="https://www.simple-talk.com/blogs/">Blogs</a>
+      </li>
+    
+      <li>
+        <a href="https://www.simple-talk.com/community/forums/">Forums</a>
+      </li>
+    
+  </ul>
+  <div class="site-search">
+    
+      <form action="https://www.simple-talk.com/search/" method="get">
+    
+			  <input type="text" name="search" placeholder="Search…">
+        <button type="submit" class="search-button">
+          <img src="./Building my First SQL Server 2005 CLR_files/search.png" alt="Search">
+        </button>
+		
+      </form>
+    
+  </div>
+</div>
+  
+<div class="subnav nav">
+  <ul>
+    
+        <li>
+          <a id="ctl00_Navigation1_repSubMenu_ctl00_lnkItem" href="https://www.simple-talk.com/sql/"><span itemprop="articleSection">SQL Home</span></a>
+        </li>
+      
+        <li>
+          <a id="ctl00_Navigation1_repSubMenu_ctl01_lnkItem" href="https://www.simple-talk.com/sql/learn-sql-server/"><span itemprop="articleSection">Learn SQL Server</span></a>
+        </li>
+      
+        <li>
+          <span class="inactive-link ">Building my First SQL Server 2005 CLR</span>
+        </li>
+      
+  </ul>
+</div>
+      <div class="maincontent">
+        
+  <div class="article">
+  
+    <div id="ctl00_MainContent_panSummary" class="summarybox">
+	
+      <ul>
+        <li>Av rating: <img id="ctl00_MainContent_imgRating1" src="./Building my First SQL Server 2005 CLR_files/icon_plain_4stars.gif" style="height:13px;width:70px;border-width:0px;"></li>
+        <li>Total votes: 80</li>
+        <li>Total comments: 16</li>
+      </ul>
+      <ul>
+        <li><img id="ctl00_MainContent_imgEmail" src="./Building my First SQL Server 2005 CLR_files/icon_email_13x11.gif" style="height:11px;width:14px;border-width:0px;">&nbsp;<a id="ctl00_MainContent_lnkEmail" href="https://www.simple-talk.com/content/email.aspx?article=314">send to a friend</a></li>
+		    <li><img id="ctl00_MainContent_imgPrint" src="./Building my First SQL Server 2005 CLR_files/icon_print_13x11.gif" style="height:11px;width:14px;border-width:0px;">&nbsp;<a id="ctl00_MainContent_lnkPrint" href="https://www.simple-talk.com/content/print.aspx?article=314" target="_blank">printer friendly version</a></li>
+      </ul>
+      <ul>
+        <li>
+          
+    <img id="ctl00_MainContent_RelatedFiles1_repFiles_ctl00_imgDownload" src="./Building my First SQL Server 2005 CLR_files/icon_code_14x11.gif" style="height:11px;width:14px;border-width:0px;"> Downloads
+    <ul>
+  
+    <li><a id="ctl00_MainContent_RelatedFiles1_repFiles_ctl01_lnkLink" href="https://www.simple-talk.com/content/file.ashx?file=292">CODE DOWNLOAD</a></li>
+  
+    </ul>
+  
+
+        </li>
+      </ul>
+	
+</div>
+
+    <div class="article-header">
+      <img id="ctl00_MainContent_imgAuthor" class="authorpicture" align="left" itemprop="image" src="./Building my First SQL Server 2005 CLR_files/60.gif" alt="Greg Larsen" style="border-width:0px;">
+      <h1 class="articletitle">Building my First SQL Server 2005 CLR</h1>
+      <div class="date">06 December 2006</div>
+      <div class="author">by <a id="ctl00_MainContent_lnkAuthor" rel="author" href="https://www.simple-talk.com/author/greg-larsen/"><span itemprop="author">Greg Larsen</span></a></div>
+    </div>
+    <div class="clear"></div>
+    
+    <div itemprop="articleBody">
+
+    <p>Although Microsoft has always advised us not to use them, if you are like me you still might have found reason to use one or more of the SQL Server 2000 undocumented features. In particular, I built a number of processes that used an undocumented, extended stored procedure (SP) called <b>xp_getfiledetails</b>, which allowed me to obtain various bits of operating system information for a physical disk file. </p>
+<p>Well, in SQL Server 2005, the "bad" news is that Microsoft has decided to remove some of those undocumented features, including the <b>xp_getfiledetails</b> stored procedure. On the plus side, SQL 2005 does bring with it a lot of new features, one of which is the Common Language Runtime (CLR). The CLR allows you to extend SQL Server functionality by building your own routines using programming languages other than T-SQL.</p>
+<p>So although there is no direct replacement for the extended SP <b>xp_getfiledetails</b>, it's possible to build a common language runtime (CLR) object that will replicate its functionality. This article describes the first CLR-based stored procedure that I have written and implemented into our SQL Server 2005 environment, and what I learned from the process.</p>
+<h2>What did xp_getfiledetails do? </h2>
+<p>As noted, the <b>xp_getfiledetails</b> extended SP allowed you to obtain some operating system information for a physical disk file. To execute <b>xp_getfiledetails</b> you passed in a file name, and the extended SP returned the following information:</p>
+<ul type="disc">
+<li>short name 
+</li><li>size 
+</li><li>create date and create time 
+</li><li>last written date and time 
+</li><li>last access date and time 
+</li><li>file attribute byte of the file</li></ul>
+<p>I used this extended SP in a number of my T-SQL scripts and SPs to determine whether or not a file existed and to get the size of the file.</p>
+<h2>Building my first CLR </h2>
+<p>Since I had a number of processes that called <b>xp_getfiledetails</b> I needed a way to replace this functionality and I wanted to avoid having to modify all my existing processes. </p>
+<p>My solution was to build a CLR stored procedure that could transparently replace <b>xp_getfiledetails</b>. Microsoft has recommend that CLR&nbsp;code&nbsp;only be used in situations where they out-perform T-SQL, or where they provide functionality that is simply not available using T-SQL. It seemed to me that building a CLRbased stored procedure to replace the deprecated <b>xp_getfiledetails</b> would fit into the Microsoft recommendation.</p>
+<p>Following are the steps that I followed to get the CLR stored procedure built and installed:</p>
+<ol type="1">
+<li>Write the .NET (C#) code that would perform the same functionality as <b>xp_getfiledetails</b> 
+</li><li>Compile the .NET code 
+</li><li>Enable CLR environment&nbsp;in the database 
+</li><li>Create an assembly in the database based on the compiled .NET code 
+</li><li>Create a CLR stored procedure based on the assembly</li></ol>
+<p>Let's take a look at each one in more detail. I will focus mainly on the various hurdles I had to jump to get my C# code into SQL Server 2005 environment, and execute it.</p>
+<h3>Writing the C# code </h3>
+<p>I decided to replicate the <b>xp_getfiledetails</b> behavior in C#. In the interests of openness I should confess that this was not only was my first CLR stored procedure, but also my first C# program!</p>
+<p>I'm primarily a rookie VB programmer, but I decided to write my CLR assembly using C# because I found out that C# allowed me an easy way to return an integer value completion code for my CLR sproc (as it turns out, I later I found an example of how Visual Basic could also return an integer value).</p>
+<p>I'm not going to review my C# code in detail here, but the full source code is available for download from the "Code Download" link in the box to the right of the article title.</p>
+<h3>Compiling the C# Code </h3>
+<p>Download the C# source code and place it in a directory of your choice. In my examples, just for testing purposes, I've used <b>c:\temp</b>. </p>
+<p>Before you can use the C# code in a CLR you have to compile it. I did this using the C# compiler, "csc.exe", found in the .NET framework library, and the following DOS command:</p><pre><p class="MsoNormal" style="MARGIN: 0cm 0cm 0pt"><span lang="EN-US" style="FONT-SIZE: 10pt; FONT-FAMILY: &#39;Courier New&#39;">c:\WINDOWS\Microsoft.NET\Framework\v2.0.50727\csc /target:library /<br>   out:c:\temp\xp_getfiledetails.dll c:\temp\xp_getfiledetails.cs<!--?xml:namespace prefix = o ns = "urn:schemas-microsoft-com:office:office" /--><o:p></o:p></span></p></pre>
+<p>This compiler exe command used my C# code in the file "c:\temp\xp_getfiledetails.cs" and created a compiled DLL named "c:\temp\xp_getfiledetails.dll". </p>
+<p>With my <b>xp_getfiledetails</b> DLL created, I could step into the database and, using T-SQL, complete the rest of the steps needed to define my CLR stored procedure.</p>
+<h3>Enabling the CLR </h3>
+<p>By default the CLR functionality is turned off. To enable it, you can either use the SQL Server 2005 Surface Area Configuration tool or T-SQL. Following is the T-SQL code that I used to enable the CLR on my SQL Server 2005 machine:</p><pre><p class="MsoNormal" style="MARGIN: 0cm 0cm 0pt"><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: darkred">sp_configure&nbsp;</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: red">'clr&nbsp;enabled'</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: gray">,&nbsp;</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black">1 </span></code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: &#39;Courier New&#39;"><br><code>GO </code><br></span><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue">RECONFIGURE </span></code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: &#39;Courier New&#39;"><br></span><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black">GO</span></code><span lang="EN-US" style="FONT-SIZE: 10pt; FONT-FAMILY: &#39;Courier New&#39;"><o:p></o:p></span></p></pre>
+<p><b>Note:<br></b><i>It isn't actually necessary to enable the CLR in order to create your assembly, but only to execute it.</i></p>
+<h3>Creating the assembly </h3>
+<p>My next step was to create an assembly in the database, based on my compiled DLL. On the face of it, this is pretty straight-forward:</p><pre><p class="MsoNormal" style="MARGIN: 0cm 0cm 0pt; mso-layout-grid-align: none"><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: &#39;Courier New&#39;; mso-no-proof: yes">CREATE</span><span lang="EN-US" style="FONT-SIZE: 10pt; FONT-FAMILY: &#39;Courier New&#39;; mso-no-proof: yes"> <span style="COLOR: blue">ASSEMBLY</span> xp_getfiledetails<br><span style="COLOR: blue">from</span> <span style="COLOR: red">'c:\temp\xp_getfiledetails.dll'</span><br><span style="COLOR: blue">WITH</span> PERMISSION_SET <span style="COLOR: gray">=</span> UNSAFE<o:p></o:p></span></p></pre>
+<p>However, I gave quite a bit of thought to the following <b>PERMISSION_SET</b> options, which identify whether the assembly can access external resources and/or unmanaged code:</p>
+<ul type="disc">
+<li><b>SAFE</b> – allows assemblies to do only local computations and have access only to local files 
+</li><li><b>EXTERNAL_ACCESS</b> – similar to SAFE permissions except the assembly can access network resources and the registry 
+</li><li><b>UNSAFE</b> – allows unrestricted access to resources, and even allows execution of unmanaged code blocks</li></ul>
+<p>Using <b>UNSAFE</b> was not my first choice but was the option I ended up using. I tried both the <b>SAFE</b> and <b>EXTERNAL_ACCESS</b> options first, but my C# code contained a call to a <b>pinvokeimpl</b> method, which could only be assembled using the <b>UNSAFE</b> permission set.</p>
+<p>PInvoke (platform invoke) is the means by which you can call Win32 API functions that are not directly available to the .NET framework. My C# code contained the <b>GetShortPathName</b> method, which is in the kernel32 DLL:</p><pre><p class="MsoNormal" style="MARGIN: 0cm 0cm 0pt"><span lang="EN-US" style="FONT-FAMILY: &#39;Courier New&#39;"><span style="mso-spacerun: yes">&nbsp;&nbsp; </span></span><span lang="EN-US" style="FONT-SIZE: 10pt; FONT-FAMILY: &#39;Courier New&#39;">// include GetShortPathName API to get short name of file<br><span style="mso-spacerun: yes">&nbsp;&nbsp; </span>[DllImport("kernel32.dll")]<br><span style="mso-spacerun: yes">&nbsp;&nbsp; </span>static extern int GetShortPathName(string lpszLongPath, <br><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>StringBuilder lpszShortPath, <br><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span><span style="mso-spacerun: yes">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>int cchBuffer);<o:p></o:p></span></p></pre>
+<p>Since this is unmanaged code, the assembly that calls it requires the <b>UNSAFE</b> permission set. If you are concerned about <strong>UNSAFE</strong> assemblies and don't need to return the short file name then you simply can remove the <b>GetShortPathName</b> code and use the <b>EXTERNAL_ACCESS</b> permission set.</p>
+<p>Resigned to building an <strong>UNSAFE</strong> assembly, when I first attempted to create it, I received the following error:</p><pre><p class="MsoNormal" style="MARGIN: 0cm 0cm 0pt"><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: red; FONT-FAMILY: &#39;Courier New&#39;; mso-no-proof: yes">Msg 10327, Level 14, State 1, Line 1<br>CREATE ASSEMBLY for assembly <!--?xml:namespace prefix = st1 ns = "urn:schemas-microsoft-com:office:smarttags" /--><st1:personname w:st="on">'</st1:personname>xp_getfiledetails<st1:personname w:st="on">'</st1:personname> failed because<br>assembly <st1:personname w:st="on">'</st1:personname>xp_getfiledetails<st1:personname w:st="on">'</st1:personname> is not authorized for PERMISSION_SET = UNSAFE.<br>The assembly is authorized when either of the following is true:<br>the database owner (DBO) has UNSAFE ASSEMBLY permission and the database<br>has the TRUSTWORTHY database property on; or the assembly is signed with<br>a certificate or an asymmetric key that has a corresponding login with<br>UNSAFE ASSEMBLY permission.<o:p></o:p></span></p></pre>
+<p>I was already the DBO of the database (master) in which I was trying to assemble this code. To get around the above error in my testing environment, I set the <b>TRUSTWORHTY</b> property on the master database by using the following command:</p><pre class="MsoNormal" style="MARGIN: 0cm 0cm 0pt"><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue">ALTER&nbsp;DATABASE&nbsp;</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black">master&nbsp;</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue">SET&nbsp;</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black">trustworthy&nbsp;</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue">ON</span></code></pre>
+<p>However, setting <b>TRUSTWORTHY</b> on potentially opens the floodgates for dangerous code to run in an uninhibited manner, so on the live system this is unadvisable. Instead you will want to <strong>sign the assembly using a certificate</strong>.&nbsp;</p>
+<h3>Creating the CLR stored procedure</h3>
+<p>Once I had successfully assembled my C# code, all that was left to create a T-SQL reference to the <strong>xp_getfiledetails </strong>method in my assembly, which would produce&nbsp;my stored procedure. To accomplish this I used the following command:</p><pre><p class="MsoNormal" style="MARGIN: 0cm 0cm 0pt"><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue">CREATE&nbsp;PROCEDURE&nbsp;</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: darkred">xp_getfiledetails&nbsp; </span></code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: darkred; FONT-FAMILY: &#39;Courier New&#39;"><br><code>&nbsp;&nbsp;&nbsp;</code></span><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: #434343">@FileName&nbsp;</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue">NVARCHAR</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: gray">(</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black">128</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: gray">) </span></code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: gray; FONT-FAMILY: &#39;Courier New&#39;"><br></span><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue">AS </span></code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: &#39;Courier New&#39;"><br><code>&nbsp;&nbsp;&nbsp;</code></span><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black">EXTERNAL&nbsp;NAME&nbsp;</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: darkred">xp_getfiledetails</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black">.SQLCLR.</span></code><code><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: darkred">xp_getfiledetails</span></code><span lang="EN-US" style="COLOR: #333333; FONT-FAMILY: Arial"> </span><span lang="EN-US" style="FONT-SIZE: 10pt; FONT-FAMILY: &#39;Courier New&#39;; mso-no-proof: yes"><o:p></o:p></span></p></pre>
+<p>I was now ready to execute my <b>xp_getfiledetails</b> CLR stored procedure&nbsp;for the first time. All I needed to do was issue the <b>EXECUTE</b> command just as I would have done to execute the deprecated extended SP in SQL Server 2000. Here is an example of my <b>EXECUTE</b> command that displays the details of a file on my c drive:</p><pre><p class="MsoNormal" style="MARGIN: 0cm 0cm 0pt; mso-layout-grid-align: none"><span lang="EN-US" style="FONT-SIZE: 10pt; COLOR: blue; FONT-FAMILY: &#39;Courier New&#39;; mso-no-proof: yes">declare</span><span lang="EN-US" style="FONT-SIZE: 10pt; FONT-FAMILY: &#39;Courier New&#39;; mso-no-proof: yes"> @return_code <span style="COLOR: blue">int<br>EXECUTE </span>@return_code <span style="COLOR: gray">=</span> xp_getfiledetails <st1:personname w:st="on"><span style="COLOR: red">'</span></st1:personname><span style="COLOR: red">c:\temp\xp_getfiledetails.cs'<br></span><span style="COLOR: blue">print</span> @return_code<o:p></o:p></span></p></pre>
+<p>So there you have it. There's nothing too difficult here, but yet this CLR stored procedure allowed me to add some functionality to SQL Server 2005 I would not have had otherwise. Also I was able to simulate the deprecated <b>xp_getfiledetails </b>extended SP without having to modify any of the existing code that referenced it.</p>
+<h2>Observations and advice </h2>
+<p>Now that I had a CLR object in my database, I realized that, for the first time, I had objects defined in my database for which the source code was stored externally. The upshot of this is that if you are going to allow CLRs then you had better develop a source code management process to make sure that you do not lose the source code associated with your CLRs. In addition to this you will need to consider where the DLLs for your CLRs should be placed. For the sake of this article, I compiled my DLL into the "c:\temp" directory. Obviously it would be wise to establish a different location for storing your CLR DLLs. </p>
+<p>There seems to be a lot of discussion about what kinds of code/processes are appropriate for CLRs. Just because it can be done with a few lines of VB or C# code, it doesn't necessarily make it the correct design decision. At our shop we plan to move cautiously forward with CLRs. We plan to develop standards and guidelines around what is an appropriate use for CLRs and what is not. It is hoped that our standards/guidelines and testing methodology will ensure we minimize the impact that CLRs might have on our SQL Server environment.</p>
+<p>Lastly, the DBAs I speak to are generally concerned about potential security issues associated with creating an <b>UNSAFE</b> assembly. My research on the web did not indicate that my assembly would open the door for any security breach, but then not all <strong>UNSAFE</strong> code is as benign as that called by my C# program. As a DBA, you will want to perform a thorough review of any CLR code that a programmer says needs to be assembled using the <b>UNSAFE</b> permission set.</p>
+    
+    </div>
+
+    
+
+    <div class="content-meta">
+      <div class="share-tools"><div class="addthis_toolbox addthis_default_style"><p>Thank this author by sharing:</p><a class="addthis_button_google_plusone at300b" g:plusone:annotation="none"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 24px; height: 15px; background: transparent;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 24px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I0_1415029109940" name="I0_1415029109940" src="./Building my First SQL Server 2005 CLR_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div></a><a class="addthis_button_linkedin at300b" href="https://www.addthis.com/bookmark.php?v=300&winname=addthis&pub=ra-4f3bb4c87aeb8915&source=tbx-300&lng=en-US&s=linkedin&url=https%3A%2F%2Fwww.simple-talk.com%2Fsql%2Flearn-sql-server%2Fbuilding-my-first-sql-server-2005-clr%2F&title=Building%20my%20First%20SQL%20Server%202005%20CLR&ate=AT-ra-4f3bb4c87aeb8915/-/-/5457a175538cb677/2&frommenu=1&uid=5457a1757f886092&ct=1&tt=0&captcha_provider=nucaptcha" target="_blank" title="LinkedIn"><span class="at16nc at300bs at15nc at15t_linkedin at16t_linkedin"><span class="at_a11y">Share on linkedin</span></span></a><a class="addthis_button_facebook at300b" title="Facebook" href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#"><span class="at16nc at300bs at15nc at15t_facebook at16t_facebook"><span class="at_a11y">Share on facebook</span></span></a><a class="addthis_button_twitter at300b" title="Tweet" href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#"><span class="at16nc at300bs at15nc at15t_twitter at16t_twitter"><span class="at_a11y">Share on twitter</span></span></a><a class="addthis_counter addthis_bubble_style" href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#" style="display: inline-block;"><a class="addthis_button_expanded" target="_blank" title="View more services" href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#">0</a><a class="atc_s addthis_button_compact"><span></span></a></a><div class="atclear"></div></div></div>
+      This article has been viewed 69698 times.
+    </div>
+  </div>
+
+  
+<div class="authorpanel">
+    <a id="ctl00_MainContent_Author1_lnkImage" title="Greg Larsen" href="https://www.simple-talk.com/author/greg-larsen/"><img id="ctl00_MainContent_Author1_imgAuthor" class="authorpicture" itemprop="image" src="./Building my First SQL Server 2005 CLR_files/60.gif" alt="Greg Larsen" align="left" style="border-width:0px;"></a>
+    <p><strong>Author profile:</strong> <a id="ctl00_MainContent_Author1_lnkName" href="https://www.simple-talk.com/author/greg-larsen/"><span itemprop="author">Greg Larsen</span></a></p>
+    <p>Greg started working in the computer industry in 1982. In 1985, he got his first DBA job, and since then he has held five different DBA jobs and managed a number of different database management systems. Currently works as a DBA for Department of Health in Washington State managing SQL Server databases, and also does part-time consulting. He has published numerous articles in SQL Server Magazine, and many online web sites dedicated to SQL Server. He also is a SQL Server MVP and holds a number of Microsoft Certification.  Greg can be reached at gregalarsen@msn.com.</p>
+    <p><a id="ctl00_MainContent_Author1_lnkSearch" href="https://www.simple-talk.com/author/greg-larsen/">Search for other articles by Greg Larsen</a></p>
+    <div class="clear"></div>
+</div>
+  
+
+  <form name="aspnetForm" method="post" action="https://www.simple-talk.com/content/article.aspx?article=314" id="aspnetForm">
+<div>
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="">
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUIMjAwMDcyMjNkGAIFHl9fQ29udHJvbHNSZXF1aXJlUG9zdEJhY2tLZXlfXxYLBRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmcxBRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmcxBRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmcyBRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmcyBRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmczBRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmczBRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmc0BRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmc0BRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmc1BRxjdGwwMCRNYWluQ29udGVudCRyYWRSYXRpbmc1BSBjdGwwMCRNYWluQ29udGVudCRidG5SYXRlQXJ0aWNsZQURY3RsMDAkTmF2aWdhdGlvbjEPFCsAAmQy9wQAAQAAAP////8BAAAAAAAAAAwCAAAAQVdlYlNpdGUsIFZlcnNpb249MS4zLjAuMTA2NSwgQ3VsdHVyZT1uZXV0cmFsLCBQdWJsaWNLZXlUb2tlbj1udWxsBAEAAAB7U3lzdGVtLkNvbGxlY3Rpb25zLkdlbmVyaWMuTGlzdGAxW1tTaW1wbGVUYWxrLk1lbnVJdGVtLCBXZWJTaXRlLCBWZXJzaW9uPTEuMy4wLjEwNjUsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGljS2V5VG9rZW49bnVsbF1dAwAAAAZfaXRlbXMFX3NpemUIX3ZlcnNpb24EAAAVU2ltcGxlVGFsay5NZW51SXRlbVtdAgAAAAgICQMAAAADAAAAAwAAAAcDAAAAAAEAAAAEAAAABBNTaW1wbGVUYWxrLk1lbnVJdGVtAgAAAAkEAAAACQUAAAAJBgAAAAoFBAAAABNTaW1wbGVUYWxrLk1lbnVJdGVtBAAAAAxtX0NoaWxkQ291bnQKbV9TZWxlY3RlZAdtX1RpdGxlBW1fVXJsAAABAQgBAgAAAAAAAAAABgcAAAAIU1FMIEhvbWUGCAAAACBodHRwczovL3d3dy5zaW1wbGUtdGFsay5jb20vc3FsLwEFAAAABAAAAAAAAAAABgkAAAAQTGVhcm4gU1FMIFNlcnZlcgYKAAAAMWh0dHBzOi8vd3d3LnNpbXBsZS10YWxrLmNvbS9zcWwvbGVhcm4tc3FsLXNlcnZlci8BBgAAAAQAAAAAAAAAAAYLAAAAJUJ1aWxkaW5nIG15IEZpcnN0IFNRTCBTZXJ2ZXIgMjAwNSBDTFIGDAAAAAALZDZ9clMbWZ0qo8WpqEVlm+9NrmV8">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['aspnetForm'];
+if (!theForm) {
+    theForm = document.aspnetForm;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="./Building my First SQL Server 2005 CLR_files/WebResource.axd" type="text/javascript"></script>
+
+
+<script src="./Building my First SQL Server 2005 CLR_files/ScriptResource.axd" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="./Building my First SQL Server 2005 CLR_files/ScriptResource(1).axd" type="text/javascript"></script>
+    <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$MainContent$ScriptManager1', document.getElementById('aspnetForm'));
+Sys.WebForms.PageRequestManager.getInstance()._updateControls([], [], [], 90);
+//]]>
+</script>
+
+    <script language="javascript" type="text/javascript">
+      function EndRequestHandler() {
+        if (theForm._initialAction == undefined)
+          theForm._initialAction = theForm.action;
+        else
+          theForm.action = theForm._initialAction;
+      }
+      if (typeof (Sys) != "undefined") {
+        EndRequestHandler();
+        Sys.WebForms.PageRequestManager.getInstance().add_endRequest(EndRequestHandler);
+      }
+    </script>
+    
+  <div id="ctl00_MainContent_panVoting" class="rating">
+	
+    <strong>Rate this article:</strong> &nbsp;&nbsp;Avg rating: <img id="ctl00_MainContent_imgRating2" src="./Building my First SQL Server 2005 CLR_files/icon_plain_4stars.gif" style="height:13px;width:70px;border-width:0px;"> from a total of 80 votes.<br><br>
+    <div id="ctl00_MainContent_panToRate">
+		
+        <table border="0" class="rating">
+          <tbody><tr>
+	        <td><input id="ctl00_MainContent_radRating1" type="radio" name="ctl00$MainContent$radRating" value="radRating1"><br>Poor</td>
+	        <td><input id="ctl00_MainContent_radRating2" type="radio" name="ctl00$MainContent$radRating" value="radRating2"><br>OK</td>
+	        <td><input id="ctl00_MainContent_radRating3" type="radio" name="ctl00$MainContent$radRating" value="radRating3"><br>Good</td>
+	        <td><input id="ctl00_MainContent_radRating4" type="radio" name="ctl00$MainContent$radRating" value="radRating4"><br>Great</td>
+	        <td><input id="ctl00_MainContent_radRating5" type="radio" name="ctl00$MainContent$radRating" value="radRating5"><br>Must read</td>
+		    <td>
+		        <input type="image" name="ctl00$MainContent$btnRateArticle" id="ctl00_MainContent_btnRateArticle" title="Rate article" src="./Building my First SQL Server 2005 CLR_files/btn_submit.gif" style="height:19px;width:56px;border-width:0px;">
+		    </td>
+	      </tr>
+        </tbody></table>
+    
+	</div>
+    
+    
+  
+</div>
+  
+  <div id="ctl00_MainContent_panComments" class="comments">
+	
+    <div class="haveyoursayheader">
+      <div class="title">Have Your Say</div>
+        Do you have an opinion on this article? Then <a href="https://www.simple-talk.com/sql/learn-sql-server/building-my-first-sql-server-2005-clr/#commentform" class="commentlink"><u>add your comment below</u></a>:
+      </div>
+      <div class="forumview">
+        
+
+<script type="text/javascript" src="./Building my First SQL Server 2005 CLR_files/jquery.watermark.js"></script>
+<div id="ctl00_MainContent_ForumView1_panPostingNotAllowed" style="width:100%;">
+	
+    You must be logged in to post to this forum<br><br><a id="ctl00_MainContent_ForumView1_lnkLogin" href="https://www.simple-talk.com/community/login.aspx?ReturnUrl=%2fsql%2flearn-sql-server%2fbuilding-my-first-sql-server-2005-clr%2f">Click here to log in</a>.
+
+</div>
+
+
+    <br><hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl01_lblSubject">You can store the code in the database</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl01_lblAuthor">Anonymous</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl01_lblDate">Wednesday, December 6, 2006 at 8:03 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl01_lblMessage">If you deploy your assembly to a database with Visual Studio instead of just adding it from a .dll, then the source code will go into the database along with the assembly. You can do the same thing manually with the ALTER ASSEMBLY ADD FILE syntax, adding all your source code files. The .dll is stored in the database in any case, so looking after the original isn't that important - it's possible to extract it from the database (SQL Doc does it, for instance).</span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl03_lblSubject">SQL CLR</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl03_lblAuthor">Anonymous</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl03_lblDate">Wednesday, December 6, 2006 at 8:27 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl03_lblMessage">* Couldn't figure out how to return an int from VB? How about "Return n"? :-)<br><br>* "In addition to this you will need to consider where the DLLs for your CLRs should be placed." <br><br>  - it doesn't matter! - this is from Books Online: "CREATE ASSEMBLY *uploads* an assembly that was previously compiled as a .dll file from managed code for use inside an instance of SQL Server. "<br><br>...therefore it takes a copy.</span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl05_lblSubject">Having a go at trying it out</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl05_lblAuthor">Anonymous</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl05_lblDate">Thursday, December 7, 2006 at 5:59 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl05_lblMessage">As a DBA, I've always been nervous about using CLRs. I think this is true for a lot of us who are happier with Transact SQL. I therefore enjoyed reading this article as it is has given me encouragement to 'have a go', after reading his 'warts and all' account of what happened when he tried.<br><br>Many thanks too for the comments, which will be a great help, but thanks to Greg for inspiring me to try.</span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl07_lblSubject">An alternative to all this</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl07_lblAuthor">Phil Factor</span></i> (<a id="ctl00_MainContent_ForumView1_repPosts_ctl07_lnkProfile" href="https://www.simple-talk.com/community/user/Profile.aspx?UserID=2126">view profile</a>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl07_lblDate">Thursday, December 7, 2006 at 7:19 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl07_lblMessage"><p>I enjoyed this too, but my reaction was to think that it really wasn't necessary to use the CLR in this case if all you want to do is to get a file's details. I realise that this is beside the point, as the real interest is to hear of one man's struggle with BOL, but here is my code anyway....</p><pre><font color="blue">CREATE&nbsp;PROCEDURE&nbsp;</font><font color="black">spFileDetails
+<br></font><font color="#434343">@Filename&nbsp;</font><font color="blue">VARCHAR</font><font color="gray">(</font><font color="black">100</font><font color="gray">)
+<br>
+<br></font><font color="green">/*
+<br>spFileDetails&nbsp;'c:\autoexec.bat'
+<br>*/
+<br></font><font color="blue">AS
+<br>DECLARE&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">INT</font><font color="gray">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="green">--the&nbsp;HRESULT&nbsp;returned&nbsp;from&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFileSystem&nbsp;</font><font color="blue">INT</font><font color="gray">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="green">--the&nbsp;FileSystem&nbsp;object
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFile&nbsp;</font><font color="blue">INT</font><font color="gray">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="green">--the&nbsp;File&nbsp;object
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@ErrorObject&nbsp;</font><font color="blue">INT</font><font color="gray">,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="green">--the&nbsp;error&nbsp;object
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@ErrorMessage&nbsp;</font><font color="blue">VARCHAR</font><font color="gray">(</font><font color="black">255</font><font color="gray">),</font><font color="green">--the&nbsp;potential&nbsp;error&nbsp;message
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@Path&nbsp;</font><font color="blue">VARCHAR</font><font color="gray">(</font><font color="black">100</font><font color="gray">),</font><font color="green">--
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@ShortPath&nbsp;</font><font color="blue">VARCHAR</font><font color="gray">(</font><font color="black">100</font><font color="gray">),
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@Type&nbsp;</font><font color="blue">VARCHAR</font><font color="gray">(</font><font color="black">100</font><font color="gray">),
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@DateCreated&nbsp;</font><font color="black">datetime</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@DateLastAccessed&nbsp;</font><font color="black">datetime</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@DateLastModified&nbsp;</font><font color="black">datetime</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@Attributes&nbsp;</font><font color="blue">INT</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@size&nbsp;</font><font color="blue">INT
+<br>
+<br>
+<br>
+<br>SET&nbsp;</font><font color="black">nocount&nbsp;</font><font color="blue">ON
+<br>
+<br>SELECT&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0</font><font color="gray">,</font><font color="#434343">@errorMessage</font><font color="blue">=</font><font color="red">'opening&nbsp;the&nbsp;file&nbsp;system&nbsp;object&nbsp;'
+<br></font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OACreate&nbsp;</font><font color="red">'Scripting.FileSystemObject'</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFileSystem&nbsp;</font><font color="black">OUT
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">SELECT&nbsp;</font><font color="#434343">@errorMessage</font><font color="blue">=</font><font color="red">'accessing&nbsp;the&nbsp;file&nbsp;'''
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="gray">+</font><font color="#434343">@Filename</font><font color="gray">+</font><font color="red">''''</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@ErrorObject</font><font color="blue">=</font><font color="#434343">@objFileSystem
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OAMethod&nbsp;</font><font color="#434343">@objFileSystem</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="red">'GetFile'</font><font color="gray">,&nbsp;&nbsp;</font><font color="#434343">@objFile&nbsp;</font><font color="black">out</font><font color="gray">,</font><font color="#434343">@Filename
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="blue">SELECT&nbsp;</font><font color="#434343">@errorMessage</font><font color="blue">=</font><font color="red">'getting&nbsp;the&nbsp;attributes&nbsp;of&nbsp;'''
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="gray">+</font><font color="#434343">@Filename</font><font color="gray">+</font><font color="red">''''</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@ErrorObject</font><font color="blue">=</font><font color="#434343">@objFile
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OAGetProperty&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFile</font><font color="gray">,&nbsp;</font><font color="red">'Path'</font><font color="gray">,&nbsp;</font><font color="#434343">@path&nbsp;</font><font color="black">OUT
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OAGetProperty&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFile</font><font color="gray">,&nbsp;</font><font color="red">'ShortPath'</font><font color="gray">,&nbsp;</font><font color="#434343">@ShortPath&nbsp;</font><font color="black">OUT
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OAGetProperty&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFile</font><font color="gray">,&nbsp;</font><font color="red">'Type'</font><font color="gray">,&nbsp;</font><font color="#434343">@Type&nbsp;</font><font color="black">OUT
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OAGetProperty&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFile</font><font color="gray">,&nbsp;</font><font color="red">'DateCreated'</font><font color="gray">,&nbsp;</font><font color="#434343">@DateCreated&nbsp;</font><font color="black">OUT
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OAGetProperty&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFile</font><font color="gray">,&nbsp;</font><font color="red">'DateLastAccessed'</font><font color="gray">,&nbsp;</font><font color="#434343">@DateLastAccessed&nbsp;</font><font color="black">OUT
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OAGetProperty&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFile</font><font color="gray">,&nbsp;</font><font color="red">'DateLastModified'</font><font color="gray">,&nbsp;</font><font color="#434343">@DateLastModified&nbsp;</font><font color="black">OUT
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OAGetProperty&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFile</font><font color="gray">,&nbsp;</font><font color="red">'Attributes'</font><font color="gray">,&nbsp;</font><font color="#434343">@Attributes&nbsp;</font><font color="black">OUT
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="blue">=</font><font color="black">0&nbsp;</font><font color="blue">EXEC&nbsp;</font><font color="#434343">@hr&nbsp;</font><font color="blue">=&nbsp;</font><font color="darkred">sp_OAGetProperty&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@objFile</font><font color="gray">,&nbsp;</font><font color="red">'size'</font><font color="gray">,&nbsp;</font><font color="#434343">@size&nbsp;</font><font color="black">OUT
+<br>
+<br>
+<br></font><font color="blue">IF&nbsp;</font><font color="#434343">@hr</font><font color="gray">&lt;&gt;</font><font color="black">0
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="blue">BEGIN
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DECLARE&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@Source&nbsp;</font><font color="blue">VARCHAR</font><font color="gray">(</font><font color="black">255</font><font color="gray">),
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@Description&nbsp;</font><font color="blue">VARCHAR</font><font color="gray">(</font><font color="black">255</font><font color="gray">),
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@Helpfile&nbsp;</font><font color="blue">VARCHAR</font><font color="gray">(</font><font color="black">255</font><font color="gray">),
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@HelpID&nbsp;</font><font color="blue">INT
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EXECUTE&nbsp;</font><font color="darkred">sp_OAGetErrorInfo&nbsp;&nbsp;</font><font color="#434343">@errorObject</font><font color="gray">,&nbsp;
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@source&nbsp;</font><font color="black">output</font><font color="gray">,</font><font color="#434343">@Description&nbsp;</font><font color="black">output</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@Helpfile&nbsp;</font><font color="black">output</font><font color="gray">,</font><font color="#434343">@HelpID&nbsp;</font><font color="black">output
+<br>
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="blue">SELECT&nbsp;</font><font color="#434343">@ErrorMessage</font><font color="blue">=</font><font color="red">'Error&nbsp;whilst&nbsp;'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="gray">+</font><font color="#434343">@Errormessage</font><font color="gray">+</font><font color="red">',&nbsp;'
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="gray">+</font><font color="#434343">@Description
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="blue">RAISERROR&nbsp;</font><font color="gray">(</font><font color="#434343">@ErrorMessage</font><font color="gray">,</font><font color="black">16</font><font color="gray">,</font><font color="black">1</font><font color="gray">)
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="blue">END
+<br>EXEC&nbsp;</font><font color="darkred">sp_OADestroy&nbsp;</font><font color="#434343">@objFileSystem
+<br></font><font color="blue">EXEC&nbsp;</font><font color="darkred">sp_OADestroy&nbsp;</font><font color="#434343">@objFile
+<br></font><font color="blue">SELECT&nbsp;</font><font color="black">[Path]</font><font color="blue">=&nbsp;&nbsp;</font><font color="#434343">@Path</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="black">[ShortPath]</font><font color="blue">=&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@ShortPath</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="black">[Type]</font><font color="blue">=&nbsp;</font><font color="#434343">@Type</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="black">[DateCreated]</font><font color="blue">=&nbsp;&nbsp;</font><font color="#434343">@DateCreated&nbsp;</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="black">[DateLastAccessed]</font><font color="blue">=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@DateLastAccessed</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="black">[DateLastModified]</font><font color="blue">=&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#434343">@DateLastModified</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="black">[Attributes]</font><font color="blue">=&nbsp;&nbsp;&nbsp;</font><font color="#434343">@Attributes</font><font color="gray">,
+<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="black">[size]</font><font color="blue">=&nbsp;</font><font color="#434343">@size
+<br></font><font color="blue">RETURN&nbsp;</font><font color="#434343">@hr
+<br>
+<br>
+<br></font><font color="black">GO</font></pre></span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl09_lblSubject">Excellent Alternative</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl09_lblAuthor">Greg Larsen</span></i> (<a id="ctl00_MainContent_ForumView1_repPosts_ctl09_lnkProfile" href="https://www.simple-talk.com/community/user/Profile.aspx?UserID=7157">view profile</a>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl09_lblDate">Thursday, December 7, 2006 at 2:02 PM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl09_lblMessage">Phil your T-SQL solution is an excellent alternative to my CLR is excellent.  With a few minor changes to your code it will accomplish exactly the same thing I did with my CLR.  Thank you for sharing.  </span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl11_lblSubject">stored procedure</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl11_lblAuthor">Anonymous</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl11_lblDate">Friday, December 8, 2006 at 8:37 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl11_lblMessage">how to insert into table and execute using stored procedure</span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl13_lblSubject">source code management</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl13_lblAuthor">Tony Davis</span></i> (<a id="ctl00_MainContent_ForumView1_repPosts_ctl13_lnkProfile" href="https://www.simple-talk.com/community/user/Profile.aspx?UserID=2130">view profile</a>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl13_lblDate">Monday, December 11, 2006 at 5:29 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl13_lblMessage">I had a chat with Adam Machanic about this and basically, it seems that this isn't really an issue with CLRs. As soon as you run CREATE ASSEMBLY all links between the DLL file and the database are gone -- SQL Server "sucks in" the bytes and stores them internally.  So there is no reason to worry about the DLL.  You can move it, rename it, delete it, whatever. SQL Server doesn't maintain any kind of reference to the file.<br><br>That's one of the biggest benefits of SQLCLR over, say, XPs -- with an XP you had to keep the DLL around, and if you had some stored procedures that relied on it, doing something like moving the database to a different server would require also moving the XP.  Not so with SQLCLR assemblies, which are backed up, restored, and even replicated just like any other code units.<br><br>Cheers,<br><br>Tony D (Simple-Talk Ed.)<br></span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl15_lblSubject">Easier way to do things</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl15_lblAuthor">Anonymous</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl15_lblDate">Wednesday, December 13, 2006 at 12:33 PM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl15_lblMessage">There is actually an easier way to do things.  Create a database project in VS 2005 and add a stored procedure item.  Using this method, you can also use VS2005 to build and deploy the stored proc, user defined function etc etc to the database with one button click.  You can also enable clr debugging on sql server and step through the code if you chose but this not recommended on any production server as it severely limits the db.</span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl17_lblSubject">PERMISSION_SET = EXTERNAL_ACCESS</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl17_lblAuthor">Anonymous</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl17_lblDate">Friday, December 15, 2006 at 12:38 PM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl17_lblMessage">Thanks very much for this article and the comments. It's sure great to be able to profit painlessly from others attempts :)<br><br>I did manage to find another blog entry where he does a similar thing but is able to use the PERMISSION_SET = EXTERNAL_ACCESS. I believe that it's because of a different implementation inthe C# assembly.<br><br>http://blogs.conchango.com/jamiethomson/archive/2006/08/24/4400.aspx</span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl19_lblSubject">Books for 70-431</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl19_lblAuthor">Anonymous</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl19_lblDate">Friday, December 22, 2006 at 3:25 PM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl19_lblMessage">Could you recommend a good book for 70-431 exam?<br><br>Thank you!</span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl21_lblSubject">PERMISSION_SET = EXTERNAL_ACCESS</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl21_lblAuthor">Greg Larsen</span></i> (<a id="ctl00_MainContent_ForumView1_repPosts_ctl21_lnkProfile" href="https://www.simple-talk.com/community/user/Profile.aspx?UserID=7157">view profile</a>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl21_lblDate">Tuesday, December 26, 2006 at 11:52 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl21_lblMessage">Jamie's version doesn't require PERMISSION_SET = UNSAFE because he doesn't use the GetShortPathName method to return the true short file name (Alternate Name), for files that have names longer that 8 character.  I think you will find that Jamie's version works fine as long as you don't need the short version name</span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl23_lblSubject">SQLCLR's output</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl23_lblAuthor">Rod</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl23_lblDate">Tuesday, June 12, 2007 at 10:31 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl23_lblMessage">I'm doing some XML transformations and trying to get just plain text. Any clue on how to return a large string right form a SQLCLR and into SQL?<br><br>My function is:<br>create function dbo.TransformaTXT( @inXML xml, @inXSLT xml )<br>returns [??????]&lt;-<br>as external name [myassm].XSLTTransform].TransformaTXT;<br></span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl25_lblSubject">How it work for not for me?</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl25_lblAuthor">Anonymous</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl25_lblDate">Wednesday, October 10, 2007 at 2:28 PM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl25_lblMessage">Whenever I execute following statement:<br><br>CREATE ASSEMBLY xp_getfiledetailsfrom 'c:\temp\xp_getfiledetails.dll'WITH PERMISSION_SET = UNSAFE<br><br>The messages I got is:<br>Msg 15404, Level 16, State 19, Line 2<br>Could not obtain information about Windows NT group/user 'SEISMICMICRO\lli', error code 0x5.<br><br>The reason is because of PERMISSION_SET = UNSAFE. By the way, I have set TRUSTWORTHY TO 1. You also can email me lli@seismicmicro.com. Thanks.</span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl27_lblSubject">CLR Procedure Schema</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl27_lblAuthor">Anonymous</span></i> (<span class="inactive-link ">not signed in</span>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl27_lblDate">Thursday, February 28, 2008 at 5:23 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl27_lblMessage">Hi there. <br>For any of you guys battling to release you procedure to a specific schema in the DB. The schema your procedure is created or updated in relates to the default schema of the connection you are using for your DB.<br>So if your DB connections default SCHEMA is "myNewScema" your procedure will look a bit like this [myNewSchema].[myNewProcedure].<br><br>THough this may help someone as I spent a fair bit of time trying to figure it out even though it is a bit obvious.<br><br>Cheers<br></span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl29_lblSubject">help needed!!!!!</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl29_lblAuthor">ishan</span></i> (<a id="ctl00_MainContent_ForumView1_repPosts_ctl29_lnkProfile" href="https://www.simple-talk.com/community/user/Profile.aspx?UserID=15643">view profile</a>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl29_lblDate">Thursday, February 12, 2009 at 10:13 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl29_lblMessage">i read the code but coudn't understand it .. neways i tried another code but its showing errors . can u tell me what i am missing here <br><br>using System;<br>using System.Data;<br>using System.Data.SqlClient;<br>using System.Data.SqlTypes;<br>using Microsoft.SqlServer.Server;<br><br>public partial class UserDefined<br>{<br>    [Microsoft.SqlServer.Server.SqlFunction]<br>    public static SqlString.GetOSVersion()<br>    {<br>    return System.Environment.OSVersion.Tostring()<br>    }<br>}<br><br>i created it in visual studio 2005<br></span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+	<table border="0" cellpadding="0" cellspacing="4" class="commenttable" width="500">
+      <tbody><tr><td class="commenttitle">Subject: </td><td><b><span id="ctl00_MainContent_ForumView1_repPosts_ctl31_lblSubject">good article</span></b></td></tr>
+      <tr><td class="commenttitle">Posted by: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl31_lblAuthor">codedefiner</span></i> (<a id="ctl00_MainContent_ForumView1_repPosts_ctl31_lnkProfile" href="https://www.simple-talk.com/community/user/Profile.aspx?UserID=19170">view profile</a>)</td></tr>
+      <tr><td class="commenttitle">Posted on: </td><td><i><span id="ctl00_MainContent_ForumView1_repPosts_ctl31_lblDate">Sunday, September 13, 2009 at 9:42 AM</span></i></td></tr>
+      <tr><td class="commenttitle" valign="top">Message: </td><td><span id="ctl00_MainContent_ForumView1_repPosts_ctl31_lblMessage">this is great article, you can find more at &lt;a href="http://www.codedefiner.com/vbnet/CLRinSQL.aspx"&gt;http://www.codedefiner.com/vbnet/CLRinSQL.aspx&lt;/a&gt; </span></td></tr>
+      
+	</tbody></table>
+  
+    <hr>
+  
+
+
+<script type="text/javascript">
+    require(["jquery"], function($) {
+        $('.comment-name').watermark('Name');
+        $('.comment-subject').watermark('Subject');
+        $('.comment-message').watermark('Message');
+    });
+</script>
+        <a name="commentform">&nbsp;</a>
+      </div>
+  
+</div>
+  
+<div>
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="AC54A3B1">
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+Sys.Application.initialize();
+//]]>
+</script>
+</form>
+
+      </div> 
+      <div class="rightcolumn">
+        
+  
+
+<div class="widget-new" id="categories">
+  <h2>SQL Categories</h2>
+  <div class="widget-new-body">
+    <ul>
+      
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl00_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl00_lnkCategory" href="https://www.simple-talk.com/sql/">SQL Home</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl01_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl01_lnkCategory" href="https://www.simple-talk.com/sql/learn-sql-server/">Learn SQL Server</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl02_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl02_lnkCategory" href="https://www.simple-talk.com/sql/sql-training/">SQL Training</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl03_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl03_lnkCategory" href="https://www.simple-talk.com/sql/database-administration/">Database Administration</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl04_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl04_lnkCategory" href="https://www.simple-talk.com/sql/t-sql-programming/">T-SQL Programming</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl05_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl05_lnkCategory" href="https://www.simple-talk.com/sql/performance/">Performance</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl06_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl06_lnkCategory" href="https://www.simple-talk.com/sql/backup-and-recovery/">Backup and Recovery</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl07_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl07_lnkCategory" href="https://www.simple-talk.com/sql/sql-tools/">SQL Tools</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl08_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl08_lnkCategory" href="https://www.simple-talk.com/sql/editors-corner/">Editor's Corner</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl09_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl09_lnkCategory" href="https://www.simple-talk.com/sql/ssis/">SSIS</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl10_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl10_lnkCategory" href="https://www.simple-talk.com/sql/reporting-services/">Reporting Services</a>
+    	    </li>
+        
+    	    <li id="ctl00_RightColumn_Categories1_repCategories_ctl11_CategoryListItem">
+  	        <a id="ctl00_RightColumn_Categories1_repCategories_ctl11_lnkCategory" href="https://www.simple-talk.com/sql/database-delivery/">Database Delivery</a>
+    	    </li>
+        
+    </ul>
+  </div>
+</div>
+
+  
+<div class="widget-new" id="dlm">
+    <div style="background-color:#ddd; height: 100px;">
+        <img style="float: right" src="./Building my First SQL Server 2005 CLR_files/1970-delivery_pathway_icon.png" alt="Simple-Talk Database Delivery">
+        <a href="https://www.simple-talk.com/sql/database-administration/database-delivery-patterns-and-practices/?utm_source=simpletalk&utm_medium=publink&utm_campaign=dlm&utm_content=deliverylearningprogram&utm_term=mainpagewidget"><h2 style="vertical-align: center">DLM<br>Patterns &amp; Practices Library</h2></a>
+    </div>
+  <div class="widget-new-body" id="deliverypathway">
+    <p>Visit our patterns and practices library to learn more about database lifecycle management.</p>
+    <p>Find out how to automate the process of building, testing and deploying your database changes to reduce risk and make rapid releases possible.</p>
+    <h3><a href="https://www.simple-talk.com/sql/database-administration/database-delivery-patterns-and-practices/?utm_source=simpletalk&utm_medium=publink&utm_campaign=dlm&utm_content=deliverylearningprogram&utm_term=mainpagewidget">Get started</a></h3>
+  </div>
+</div>
+
+  
+  
+  
+  
+  
+
+  
+<div class="widget-new hidden" id="RSSfeedwidget" style="display: block;">
+  <h2>Custom RSS feeds</h2>
+  <div class="widget-new-body">
+    <div class="rss-inputs">
+      <input type="checkbox" name="rss" id="sqlFeed" value="2" checked="checked"><label for="sqlFeed">SQL</label><br>
+      <input type="checkbox" name="rss" id="netFeed" value="3" checked="checked"><label for="netFeed">.NET</label><br>
+      <input type="checkbox" name="rss" id="exchangeFeed" value="31" checked="checked"><label for="exchangeFeed">SysAdmin</label><br>
+      <input type="checkbox" name="rss" id="opinionFeed" value="4" checked="checked"><label for="opinionFeed">Opinion</label><br>
+      <input type="checkbox" name="rss" id="booksFeed" value="35" checked="checked"><label for="booksFeed">Books</label><br>
+      <input type="checkbox" name="rss" id="blogsFeed" value="B" checked="checked"><label for="blogsFeed">Blogs</label><br>                
+      <p>
+        <a id="rssGetLink" href="https://www.simple-talk.com/rss.aspx" onclick="RssGetSide(false); return(false);" class="btn">Get my feed</a>
+      </p>
+    </div>
+    <div class="rss-buttons">
+      <div class="rss-advanced">
+        If you update your feed, please remember to tell your RSS reader the new URL
+        <br><br>
+        <a id="rssAdvLink" href="https://www.simple-talk.com/rsssel.aspx" onclick="RssGetSide(true); return(false);">Click here for <b>advanced</b> RSS options</a>
+      </div>
+    </div>
+  </div>
+</div>      
+  
+  
+  
+<div class="widget-new">
+  <h2><a id="ctl00_RightColumn_SQLOpinion1_lnkHeader" href="https://www.simple-talk.com/author/phil-factor/"><span itemprop="author">Phil Factor</span></a></h2>
+  <div class="widget-new-body">
+    <a id="ctl00_RightColumn_SQLOpinion1_lnkAuthor" title="Phil Factor" href="https://www.simple-talk.com/author/phil-factor/"><img id="ctl00_RightColumn_SQLOpinion1_imgAuthor" class="avatar" itemprop="image" src="./Building my First SQL Server 2005 CLR_files/avatar.aspx" alt="Phil Factor" align="left" style="height:83px;width:65px;border-width:0px;"></a>
+    <div id="ctl00_RightColumn_SQLOpinion1_panArticles">
+	
+      <strong><a id="ctl00_RightColumn_SQLOpinion1_lnkArticle1" href="https://www.simple-talk.com/sysadmin/powershell/getting-data-into-and-out-of--powershell-objects/">Getting Data Into and Out of  PowerShell Objects</a></strong><br>
+      <p>You can execute PowerShell code that creates the data of an object, but there is no cmdlet to generate the 'object... <a id="ctl00_RightColumn_SQLOpinion1_lnkArticle2" href="https://www.simple-talk.com/sysadmin/powershell/getting-data-into-and-out-of--powershell-objects/">Read more...</a></p>
+    
+</div>
+    <div id="ctl00_RightColumn_SQLOpinion1_panBlogs">
+	
+      RECENT BLOG POSTS:<br>
+		  <img src="./Building my First SQL Server 2005 CLR_files/1px.gif" alt="" width="1" height="8"><br>
+      
+          <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;<a id="ctl00_RightColumn_SQLOpinion1_repBlogPosts_ctl00_lnkBlogPost" href="https://www.simple-talk.com/blogs/2014/09/26/you-cant-crowdsource-good-design/">You Can’t Crowdsource Good Design</a><br>
+				  <img src="./Building my First SQL Server 2005 CLR_files/1px.gif" alt="" width="1" height="8"><br>
+        
+          <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;<a id="ctl00_RightColumn_SQLOpinion1_repBlogPosts_ctl01_lnkBlogPost" href="https://www.simple-talk.com/blogs/2014/09/11/calculating-public-holidays-based-on-the-day-of-the-week/">Calculating Public Holidays based on the Day...</a><br>
+				  <img src="./Building my First SQL Server 2005 CLR_files/1px.gif" alt="" width="1" height="8"><br>
+        
+          <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;<a id="ctl00_RightColumn_SQLOpinion1_repBlogPosts_ctl02_lnkBlogPost" href="https://www.simple-talk.com/blogs/2014/07/17/on-identifying-the-real-stakeholders/">On Identifying the Real Stakeholders</a><br>
+				  <img src="./Building my First SQL Server 2005 CLR_files/1px.gif" alt="" width="1" height="8"><br>
+        
+    
+</div>
+    <img src="./Building my First SQL Server 2005 CLR_files/w_icon_articles_13x15.gif" alt="" width="13" height="15">&nbsp;<a id="ctl00_RightColumn_SQLOpinion1_lnkBlog" href="https://www.simple-talk.com/blogs/author/2126-phil-factor/">View the blog</a><br>
+  </div>
+</div>
+  
+<div class="widget-new">
+  <h2><a id="ctl00_RightColumn_ArticlesRated1_lnkHeader">Top Rated</a></h2>
+  <div class="widget-new-body">
+    
+        <strong><a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl00_lnkArticle1" href="https://www.simple-talk.com/sql/database-administration/the-mindset-of-the-enterprise-dba-harnessing-the-power-of-automation/">The Mindset of the Enterprise DBA: Harnessing the Power of Automation</a></strong><br>
+        <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;After you have done the necessary groundwork of standardizing and centralizing your database...&nbsp;<a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl00_lnkArticle2" href="https://www.simple-talk.com/sql/database-administration/the-mindset-of-the-enterprise-dba-harnessing-the-power-of-automation/">Read more...</a><br><br>
+      
+        <strong><a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl01_lnkArticle1" href="https://www.simple-talk.com/sql/database-administration/rollback-and-recovery-troubleshooting-challenges-and-strategies/">Rollback and Recovery Troubleshooting; Challenges and Strategies</a></strong><br>
+        <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;What happens if your database deployment goes awry? Do you restore from a backup or snapshot and lose...&nbsp;<a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl01_lnkArticle2" href="https://www.simple-talk.com/sql/database-administration/rollback-and-recovery-troubleshooting-challenges-and-strategies/">Read more...</a><br><br>
+      
+        <strong><a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl02_lnkArticle1" href="https://www.simple-talk.com/sql/database-administration/using-migration-scripts-in-database-deployments/">Using Migration Scripts in Database Deployments</a></strong><br>
+        <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;A SQL migration script is similar to a SQL build script, except that it changes a  database from one...&nbsp;<a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl02_lnkArticle2" href="https://www.simple-talk.com/sql/database-administration/using-migration-scripts-in-database-deployments/">Read more...</a><br><br>
+      
+        <strong><a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl03_lnkArticle1" href="https://www.simple-talk.com/sql/database-administration/the-sql-server-sqlio-utility/">The SQL Server Sqlio Utility</a></strong><br>
+        <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;If, before deployment, you need to push the limits of your disk subsystem in order to determine whether...&nbsp;<a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl03_lnkArticle2" href="https://www.simple-talk.com/sql/database-administration/the-sql-server-sqlio-utility/">Read more...</a><br><br>
+      
+        <strong><a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl04_lnkArticle1" href="https://www.simple-talk.com/sql/sql-tools/mysql-compare-the-manual-that-time-forgot,-part-1/">MySQL Compare: The Manual That Time Forgot, Part 1</a></strong><br>
+        <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;Although SQL Compare, for SQL Server, is one of Red Gate's best-known products, there are also 'sister'...&nbsp;<a id="ctl00_RightColumn_ArticlesRated1_repArticles_ctl04_lnkArticle2" href="https://www.simple-talk.com/sql/sql-tools/mysql-compare-the-manual-that-time-forgot,-part-1/">Read more...</a><br><br>
+      
+  </div>
+</div>
+  
+
+<div class="widget-new" id="mostviewed">
+  <h2>Most Viewed</h2>
+  <div class="widget-new-body">
+  
+      <strong><a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl00_lnkArticle1" href="https://www.simple-talk.com/sql/reporting-services/beginning-sql-server-2005-reporting-services-part-1/">Beginning SQL Server 2005 Reporting Services Part 1</a></strong><br>
+      <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;Steve Joubert begins an in-depth tour of SQL Server 2005 Reporting Services with a step-by-step guide...&nbsp;<a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl00_lnkArticle2" href="https://www.simple-talk.com/sql/reporting-services/beginning-sql-server-2005-reporting-services-part-1/">Read more...</a><br><br>
+    
+      <strong><a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl01_lnkArticle1" href="https://www.simple-talk.com/sql/database-administration/ten-common-database-design-mistakes/">Ten Common Database Design Mistakes</a></strong><br>
+      <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;If database design is done right, then the development, deployment and subsequent performance in...&nbsp;<a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl01_lnkArticle2" href="https://www.simple-talk.com/sql/database-administration/ten-common-database-design-mistakes/">Read more...</a><br><br>
+    
+      <strong><a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl02_lnkArticle1" href="https://www.simple-talk.com/sql/learn-sql-server/sql-server-index-basics/">SQL Server Index Basics</a></strong><br>
+      <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;Given the fundamental importance of indexes in databases, it always comes as a surprise how often the...&nbsp;<a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl02_lnkArticle2" href="https://www.simple-talk.com/sql/learn-sql-server/sql-server-index-basics/">Read more...</a><br><br>
+    
+      <strong><a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl03_lnkArticle1" href="https://www.simple-talk.com/sql/t-sql-programming/reading-and-writing-files-in-sql-server-using-t-sql/">Reading and Writing Files in SQL Server using T-SQL</a></strong><br>
+      <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;SQL Server provides several "standard" techniques by which to read and write to files but, just...&nbsp;<a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl03_lnkArticle2" href="https://www.simple-talk.com/sql/t-sql-programming/reading-and-writing-files-in-sql-server-using-t-sql/">Read more...</a><br><br>
+    
+      <strong><a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl04_lnkArticle1" href="https://www.simple-talk.com/sql/t-sql-programming/concatenating-row-values-in-transact-sql/">Concatenating Row Values in Transact-SQL</a></strong><br>
+      <img src="./Building my First SQL Server 2005 CLR_files/w_icon_article_9x11.jpg" alt="" width="9" height="11">&nbsp;It is an interesting problem in Transact SQL, for which there are a number of solutions and...&nbsp;<a id="ctl00_RightColumn_ArticlesViewed1_repArticles_ctl04_lnkArticle2" href="https://www.simple-talk.com/sql/t-sql-programming/concatenating-row-values-in-transact-sql/">Read more...</a><br><br>
+    
+  </div>
+</div>
+  
+
+<div class="widget-new" id="whyjoin">
+  
+      <h2>Why Join</h2>
+      <div class="widget-new-body">
+	      <p>
+	        Over 400,000 Microsoft professionals subscribe to the Simple-Talk technical journal. Join today, it's fast, simple, free and secure.
+	      </p>
+		    <div class="joinbutton">
+		      <a href="https://www.simple-talk.com/community/user/CreateUser.aspx?ReturnUrl=%2fsql%2flearn-sql-server%2fbuilding-my-first-sql-server-2005-clr%2f" class="btn">
+            Join Simple-Talk!
+          </a>
+		    </div>
+      </div>
+    
+</div>
+
+        <div class="clear"></div><br>
+      </div>
+      <div class="clear"></div><br>
+      
+
+<div class="pagefooter nav">
+  <div class="red-gate-logo">
+	  <a href="http://www.red-gate.com/?utm_source=simpletalk&utm_medium=textad&utm_campaign=homepage">
+	  	<img src="./Building my First SQL Server 2005 CLR_files/red-gate-logo-footer.png" class="red-gate-logo-footer-image" alt="Red Gate">
+	  </a>
+  </div>
+  <ul class="footer-nav">
+    <li>
+      <a id="ctl00_ctl02_lnkGotoAbout" href="https://www.simple-talk.com/about.aspx">About</a>
+    </li>
+    <li>
+      <a id="ctl00_ctl02_lnkGotoSitemap" href="https://www.simple-talk.com/site-map.aspx">Site map</a>
+    </li>
+    <li>
+      <a id="ctl00_ctl02_lnkGotoAuthor" href="https://www.simple-talk.com/become-an-author.aspx">Become an author</a>
+    </li>
+    <li>
+      <a id="ctl00_ctl02_lnkGotoArchive" href="https://www.simple-talk.com/newsletter-archive/">Newsletters</a>
+    </li>
+    <li>
+      <a id="ctl00_ctl02_lnkGotoContact" href="https://www.simple-talk.com/contact-us.aspx">Contact us</a>
+    </li>
+    <li>
+      <a href="https://www.simple-talk.com/community/languages/en-US/docs/faq.aspx">Help</a>
+    </li>
+  </ul>
+
+  <ul class="footer-legal-nav">
+    <li>
+      <a id="ctl00_ctl02_lnkGotoPrivacy" href="https://www.simple-talk.com/privacy-policy.aspx">Privacy policy</a>
+    </li>
+    <li>
+      <a id="ctl00_ctl02_lnkGotoTerms" href="https://www.simple-talk.com/terms-and-conditions.aspx">Terms and conditions</a>
+    </li>
+    <li>
+      <a href="http://www.red-gate.com/" target="_blank">©2005-2014 Red Gate Software</a>
+    </li>
+  </ul>
+</div>
+    </div>
+  </div>
+<script type="text/javascript">
+/* <![CDATA[ */
+    var google_conversion_id = 1072726260;
+    var google_conversion_language = "en";
+    var google_conversion_format = "3";
+    var google_conversion_color = "ffffff";
+    var google_conversion_label = "kOZ_CJS21AIQ9IHC_wM";
+    var google_conversion_value = 0;
+/* ]]> */
+</script>
+
+<script type="text/javascript" src="./Building my First SQL Server 2005 CLR_files/conversion.js">
+</script><img height="1" width="1" border="0" alt="" src="./Building my First SQL Server 2005 CLR_files/saved_resource">
+<noscript>
+&lt;div style="display:inline;"&gt;
+&lt;img height="1" width="1" style="border-style:none;" alt="" src="//www.googleadservices.com/pagead/conversion/1072726260/?label=kOZ_CJS21AIQ9IHC_wM&amp;amp;guid=ON&amp;amp;script=0"/&gt;
+&lt;/div&gt;
+</noscript>
+
+
+
+<script data-main="/static/versioned/3e62335f7e28118064c631b9a3a32e46/js/main.js" src="./Building my First SQL Server 2005 CLR_files/require-2.1.9(1).js"></script> 
+<script src="./Building my First SQL Server 2005 CLR_files/retina-1.1.0.js"></script>
+
+
+<div id="_atssh" style="visibility: hidden; height: 1px; width: 1px; position: absolute; z-index: 100000;"><iframe id="_atssh798" title="AddThis utility frame" src="./Building my First SQL Server 2005 CLR_files/sh177.html" style="height: 1px; width: 1px; position: absolute; z-index: 100000; border: 0px; left: 0px; top: 0px;"></iframe></div><script type="text/javascript" src="./Building my First SQL Server 2005 CLR_files/core160.js"></script><iframe name="oauth2relay434562537" id="oauth2relay434562537" src="./Building my First SQL Server 2005 CLR_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

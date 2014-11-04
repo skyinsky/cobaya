@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<!-- saved from url=(0112)http://weblogs.asp.net/paulomorgado/playing-with-sql-server-clr-integration-part-iv-deploying-to-sql-server-2005 -->
+<html lang="en-US" class="detail-blog-post url-playing-with-sql-server-clr-integration-part-iv-deploying-to-sql-server-2005 contents"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Paulo Morgado - Playing With SQL Server CLR Integration – Part IV (Deploying To SQL Server 2005)</title> 
+	<!-- Anti-Clickjacking script -->
+	
+	<script type="text/javascript">
+		if (self === top) {
+			var antiClickjack = document.getElementById("antiClickjack");
+			antiClickjack.parentNode.removeChild(antiClickjack);
+			} else {
+			top.location = self.location;
+		}
+	</script>
+    <!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js" type="text/javascript"></script>
+<![endif]-->
+<!--[if lt IE 9]>
+<script src="//oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js" type="text/javascript"></script>
+<![endif]-->
+<meta content="Orchard" name="generator">
+<meta content="Playing With SQL Server CLR Integration – Part IV (Deploying To SQL Server 2005)" name="og:title">
+<meta content="http://weblogs.asp.net/paulomorgado/playing-with-sql-server-clr-integration-part-iv-deploying-to-sql-server-2005" name="og:url">
+<meta content="article" name="og:type">
+<meta content="summary" name="twitter:card">
+<meta content=".NET,Microsoft,MSDN,SoftDev,SQLCLR,SQLServer,SQLServer2005" name="keywords">
+<meta content="With all developed and tested on my laptop using SQL Server 2008, it’s time to deploy to the company’s test machine running SQL Server 2005.  The first thing I ran into when executing:  CREATE&amp;#160;&amp;#8230;" name="description">
+<link href="http://az619453.vo.msecnd.net/content/Content/favicon.ico" rel="shortcut icon" type="image/x-icon">
+<link href="./Paulo Morgado - Playing With SQL Server CLR Integration – Part IV (Deploying To SQL Server 2005)_files/styles.min.css" rel="stylesheet" type="text/css">
+
+<link rel="alternate" type="application/rss+xml" title="Paulo Morgado" href="http://weblogs.asp.net/paulomorgado/rss?containerid=12">
+
+    <!-- Start of StatCounter Code for Default Guide -->
+<script type="text/javascript">
+var sc_project=4885194; 
+var sc_invisible=1; 
+var sc_security="a2ce9ba6"; 
+</script>
+<script type="text/javascript" src="https://www.statcounter.com/counter/counter.js"></script>
+<noscript>&lt;div class="statcounter"&gt;&lt;a title="hits counter"
+href="https://statcounter.com/free-hit-counter/"
+target="_blank"&gt;&lt;img class="statcounter"
+src="https://c.statcounter.com/4885194/0/a2ce9ba6/1/"
+alt="hits counter"&gt;&lt;/a&gt;&lt;/div&gt;</noscript>
+<!-- End of StatCounter Code for Default Guide -->
+</head> 
+<body>
+
+
+
+<div class="aside-1" id="layout-wrapper">
+<div id="layout-navigation" class="group">
+    <div class="zone zone-navigation">
+<article class="widget-navigation widget-menu-widget widget">
+    
+<nav role="navigation">
+    <div class="navbar navbar-default navbar-static-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="http://weblogs.asp.net/paulomorgado">Paulo Morgado</a>
+            </div>
+            <div class="collapse navbar-collapse navbar-responsive-collapse">
+                <ul class="navbar-nav nav menu menu-main-menu">
+                
+                
+<li class="last first"><a href="http://weblogs.asp.net/paulomorgado/">Home</a>
+</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                        <li><a href="http://weblogs.asp.net/paulomorgado/Users/Account/LogOn?ReturnUrl=%2Fpaulomorgado%2Fplaying-with-sql-server-clr-integration-part-iv-deploying-to-sql-server-2005" rel="nofollow">Sign In</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+</article></div>
+</div>
+<div id="layout-main-container">
+<div id="layout-main" class="group">
+    <aside id="aside-first" class="aside-first group">
+        <div class="zone zone-aside-first">
+<article class="widget-BlogArchives widget-aside-first widget-blog-archives widget">
+    <header>
+        <h1>Blog Archives</h1>
+        
+    </header>
+    
+<div class="archives">
+    <ul class="years">
+
+        <li>
+            <h4>2014</h4>
+             <ul class="archiveMonthList"><li class="first last"><a href="http://weblogs.asp.net/paulomorgado/archive/2014/4">April (1)</a></li></ul>
+       </li>
+        <li class="previous">
+            <h4>2013 <span>(7)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="http://weblogs.asp.net/paulomorgado/archive/2013/10">October (1)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2013/5">May (2)</a></li><li class="last"><a href="http://weblogs.asp.net/paulomorgado/archive/2013/1">January (4)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2012 <span>(14)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="http://weblogs.asp.net/paulomorgado/archive/2012/12">December (1)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2012/10">October (3)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2012/9">September (1)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2012/7">July (3)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2012/6">June (4)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2012/5">May (1)</a></li><li class="last"><a href="http://weblogs.asp.net/paulomorgado/archive/2012/3">March (1)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2011 <span>(13)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="http://weblogs.asp.net/paulomorgado/archive/2011/10">October (3)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2011/9">September (2)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2011/7">July (3)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2011/4">April (2)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2011/3">March (2)</a></li><li class="last"><a href="http://weblogs.asp.net/paulomorgado/archive/2011/1">January (1)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2010 <span>(44)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="http://weblogs.asp.net/paulomorgado/archive/2010/12">December (1)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2010/10">October (7)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2010/9">September (1)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2010/8">August (6)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2010/7">July (3)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2010/6">June (2)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2010/5">May (1)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2010/4">April (13)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2010/3">March (5)</a></li><li class="last"><a href="http://weblogs.asp.net/paulomorgado/archive/2010/1">January (5)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2009 <span>(35)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="http://weblogs.asp.net/paulomorgado/archive/2009/12">December (1)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2009/10">October (3)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2009/9">September (4)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2009/7">July (1)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2009/6">June (6)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2009/5">May (5)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2009/4">April (1)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2009/3">March (6)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2009/2">February (3)</a></li><li class="last"><a href="http://weblogs.asp.net/paulomorgado/archive/2009/1">January (5)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2008 <span>(95)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="http://weblogs.asp.net/paulomorgado/archive/2008/12">December (7)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/11">November (3)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/10">October (6)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/9">September (3)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/8">August (14)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/7">July (7)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/6">June (9)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/5">May (18)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/4">April (2)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/3">March (9)</a></li><li class=""><a href="http://weblogs.asp.net/paulomorgado/archive/2008/2">February (8)</a></li><li class="last"><a href="http://weblogs.asp.net/paulomorgado/archive/2008/1">January (9)</a></li></ul>
+        </li>
+        <li class="previous">
+            <h4>2007 <span>(4)</span></h4>
+            <ul class="archiveMonthList"><li class="first"><a href="http://weblogs.asp.net/paulomorgado/archive/2007/10">October (1)</a></li><li class="last"><a href="http://weblogs.asp.net/paulomorgado/archive/2007/9">September (3)</a></li></ul>
+        </li>
+    </ul>
+</div>
+</article></div>
+    </aside>
+    <div id="layout-content" class="group">
+                        <div id="content" class="group">
+            <div class="zone zone-content">
+<article class="blog-post content-item">
+    <header>
+        
+
+
+
+
+<h1>Playing With SQL Server CLR Integration – Part IV (Deploying To SQL Server 2005)</h1>
+
+            <div class="metadata">
+                <time class="clearfix" datetime="2009-06-13" pubdate="">Saturday, June 13, 2009</time>
+
+
+    <a class="tag label label-default" rel="tag" href="http://weblogs.asp.net/paulomorgado/Tags/.NET">.NET</a>
+    <a class="tag label label-default" rel="tag" href="http://weblogs.asp.net/paulomorgado/Tags/Microsoft">Microsoft</a>
+    <a class="tag label label-default" rel="tag" href="http://weblogs.asp.net/paulomorgado/Tags/MSDN">MSDN</a>
+    <a class="tag label label-default" rel="tag" href="http://weblogs.asp.net/paulomorgado/Tags/SoftDev">SoftDev</a>
+    <a class="tag label label-default" rel="tag" href="http://weblogs.asp.net/paulomorgado/Tags/SQLCLR">SQLCLR</a>
+    <a class="tag label label-default" rel="tag" href="http://weblogs.asp.net/paulomorgado/Tags/SQLServer">SQLServer</a>
+    <a class="tag label label-default" rel="tag" href="http://weblogs.asp.net/paulomorgado/Tags/SQLServer2005">SQLServer2005</a>
+
+            </div>
+    </header>
+    
+<p>With all developed and tested on my laptop using <a title="Microsoft SQL Server" href="http://www.microsoft.com/sqlserver/" target="_blank">SQL Server</a> 2008, it’s time to deploy to the company’s test machine running SQL Server 2005.</p>  <p>The first thing I ran into when executing:</p>  <pre class="code"><span style="color: blue">CREATE ASSEMBLY </span>[MyAssembly]
+<span style="color: blue">AUTHORIZATION </span>[dbo]
+<span style="color: blue">FROM </span><span style="color: red">'...\MyAssembly.dll'
+</span><span style="color: blue">WITH PERMISSION_SET </span><span style="color: gray">= </span><span style="color: blue">SAFE
+GO</span></pre>
+<a href="http://11011.net/software/vspaste"></a>
+
+<p>was:</p>
+
+<pre class="code"><span style="color: red">Msg 10327, Level 14, State 1, Line 1
+Assembly 'MyAssembly' references assembly 'system.xml.linq, version=3.5.0.0, culture=neutral, publickeytoken=b77a5c561934e089.',
+which is not present in the current database.
+SQL Server attempted to locate and automatically load the referenced assembly from the same location where referring assembly came from,
+but that operation has failed (reason: 2(The system cannot find the file specified.)).
+Please load the referenced assembly into the current database and retry your request.</span></pre>
+
+<p>Looks like SQL Server 2005 doesn’t know about <a title="Microsoft .NET" href="http://cli.gs/cligs/Microsoft-NET" target="_blank">.NET Framework</a> 3.5. I’d just load the assemblies being used: <strong>System.Core</strong> and <strong>System.Linq.Xml</strong>:</p>
+
+<pre class="code"><span style="color: blue">CREATE ASSEMBLY </span>[System.Core]
+<span style="color: blue">AUTHORIZATION </span>[dbo]
+<span style="color: blue">FROM </span><span style="color: red">'C:\Program Files\Reference Assemblies\Microsoft\Framework\v3.5\System.Core.dll'
+</span><span style="color: blue">WITH PERMISSION_SET </span><span style="color: gray">= </span><span style="color: blue">SAFE
+GO
+</span></pre>
+
+<p>Not so easy:</p>
+
+<pre class="code"><span style="color: black">Warning: The Microsoft .Net frameworks assembly 'system.core, version=3.5.0.0, culture=neutral, publickeytoken=b77a5c561934e089, processorarchitecture=msil.' you are registering is not fully tested in SQL Server hosted environment.</span>
+<span style="color: red">Msg 6218, Level 16, State 2, Line 1
+CREATE ASSEMBLY for assembly 'System.Core' failed because assembly 'System.Core' failed verification. Check if the referenced assemblies are up-to-date and trusted (for external_access or unsafe) to execute in the database. CLR Verifier error messages if any will follow this message
+[ : System.Diagnostics.Eventing.EventProvider::EtwRegister][mdToken=0x600003b][offset 0x0000003D][found Native Int][expected unmanaged pointer] Unexpected type on the stack.
+[ : System.Diagnostics.Eventing.EventProvider::EncodeObject][mdToken=0x6000046][offset 0x00000000] Unmanaged pointers are not a verifiable type.
+[ : System.Diagnostics.Eventing.EventProvider::WriteMessageEvent][mdToken=0x6000047][offset 0x0000003C][found ref 'System.String'] Expected numeric type on the stack.
+[ : System.Diagnostics.Eventing.EventProvider::WriteEvent][mdToken=0x6000049][offset 0x0000012E] Instruction cannot be verified.
+[ : System.Diagnostics.Eventing.EventProvider::WriteEvent][mdToken=0x6000049][offset 0x00000030] Instruction cannot be verified.
+[ : System.Diagnostics.Eventing.EventProvider::WriteEvent][mdToken=0x600004a][offset 0x0000005F][found ref 'System.String'] Expected numeric type on the stack.
+[ : System.Diagnostics.Eventing.EventProvider::WriteEvent][mdToken=0x600004b][offset 0x00000010][found unmanaged pointer][expected unmanaged pointer] Unexpected type on the stack.
+[ : System.Diagnostics.Eventing.EventProvider::WriteTransferEvent][mdToken=0x600004c][offset 0x0000007D] Instruction cannot be verified.
+[ : System.Diagnostics.Eventing.EventProvider::WriteTransferEvent][mdToken=0x600004c][offset 0x00000309][found Native Int][expected unmanaged pointer] Unexpected type on the stack.
+[ : System.Diagnostics.Eventing.EventProvider::WriteTransferEvent][mdToken=0x600004d][offset 0x0000001B][found unmanaged pointer][expected unmanaged pointer] Unexpected type on the stack.
+[ : System.Security.Cryptography.CapiNative::ImportSymmetricKey][mdToken=0x60007c2][offset 0x00000071][found address of Byte] Expected numeric type on the stac...</span></pre>
+
+<p>Ok. I’d just load it with <strong>PERMISSION_SET = UNSAFE</strong>:</p>
+
+<pre class="code"><span style="color: blue">CREATE ASSEMBLY </span>[MyAssembly]
+<span style="color: blue">AUTHORIZATION </span>[dbo]
+<span style="color: blue">FROM </span><span style="color: red">'...\MyAssembly.dll'
+</span><span style="color: blue">WITH PERMISSION_SET </span><span style="color: gray">= </span><span style="color: blue">UNSAFE
+GO</span></pre>
+<a href="http://11011.net/software/vspaste"></a>
+
+<p>Not yet:</p>
+
+<pre class="code"><span style="color: black">Warning: The Microsoft .Net frameworks assembly 'system.core, version=3.5.0.0, culture=neutral, publickeytoken=b77a5c561934e089, processorarchitecture=msil.' you are registering is not fully tested in SQL Server hosted environment.</span>
+<span style="color: red">Msg 10327, Level 14, State 1, Line 1
+CREATE ASSEMBLY for assembly 'System.Core' failed because assembly 'System.Core' is not authorized for PERMISSION_SET = UNSAFE.
+The assembly is authorized when either of the following is true: the database owner (DBO) has UNSAFE ASSEMBLY permission and the database has the TRUSTWORTHY database property on; or the assembly is signed with a certificate or an asymmetric key that has a corresponding login with UNSAFE ASSEMBLY permission.
+If you have restored or attached this database, make sure the database owner is mapped to the correct login on this server.
+If not, use sp_changedbowner to fix the problem.</span></pre>
+
+<p>Solved:</p>
+
+<pre class="code"><span style="color: blue">ALTER DATABASE </span>MyDatabase <span style="color: blue">SET TRUSTWORTHY ON
+GO</span></pre>
+
+<p>Only than I was able to load the .NET 3.5 assemblies:</p>
+
+<pre class="code"><span style="color: blue">CREATE ASSEMBLY </span>[System.Core]
+<span style="color: blue">AUTHORIZATION </span>[dbo]
+<span style="color: blue">FROM </span><span style="color: red">'C:\Program Files\Reference Assemblies\Microsoft\Framework\v3.5\System.Core.dll'
+</span><span style="color: blue">WITH PERMISSION_SET </span><span style="color: gray">= </span><span style="color: blue">UNSAFE
+GO
+
+CREATE ASSEMBLY </span>[System.Xml.Linq]
+<span style="color: blue">AUTHORIZATION </span>[dbo]
+<span style="color: blue">FROM </span><span style="color: red">'C:\Program Files\Reference Assemblies\Microsoft\Framework\v3.5\System.Xml.Linq.dll'
+</span><span style="color: blue">WITH PERMISSION_SET </span><span style="color: gray">= </span><span style="color: blue">UNSAFE
+GO</span></pre>
+
+<p>With all dependencies in place, I tried to load the assembly with <strong>PERMISSION_SET = SAFE</strong> with no luck:</p>
+
+<pre class="code"><span style="color: red">Msg 6212, Level 16, State 1, Line 1
+CREATE ASSEMBLY failed because method 'ShortPropsToXml' on type 'ShortProps'  in safe assembly 'Esi.SA.Encyclopedia' is storing to a static field.
+Storing to a static field is not allowed in safe assemblies.</span></pre>
+
+<p>It had to be with <strong>PERMISSION_SET = UNSAFE</strong>.</p>
+
+<p>After successfully loading the assemblies, I was finally able to create the <a title="Transact-SQL Overview" href="http://cli.gs/Transact-SQL" target="_blank">Transact-SQL</a> definitions for the functions (see <a title="Playing With SQL Server CLR Integration - Part I" href="http://cli.gs/gupt5m" target="_blank">Part I</a> and <a title="Playing With SQL Server CLR Integration - Part II" href="http://cli.gs/2gs6GD" target="_blank">Part II</a>).</p>
+
+<p>Now the DBAs won’t definitely let me use this, but it was fun to build it.</p>
+</article></div>
+        </div>
+                <div id="after-content">
+            <div class="zone zone-after-content">
+
+<h2 class="comment-count">No Comments</h2>
+
+
+
+
+
+
+
+</div>
+        </div>
+    </div>
+</div>
+</div>
+<div id="layout-footer" class="group">
+    <footer id="footer">
+        <div id="footer-quad" class="group">
+                                            </div>
+        <div id="footer-sig" class="group">
+            <div class="zone zone-footer">    <div class="credits text-muted"><span class="terms"><a href="http://www.asp.net/terms-of-use">Terms Of Use</a></span> - <span class="poweredby">Powered by <a href="http://www.orchardproject.net/" target="_blank">Orchard</a></span></div>
+</div>
+        </div>
+    </footer>
+</div>
+</div>
+
+<script src="./Paulo Morgado - Playing With SQL Server CLR Integration – Part IV (Deploying To SQL Server 2005)_files/jquery-1.11.1.min.js" type="text/javascript"></script>
+<script src="./Paulo Morgado - Playing With SQL Server CLR Integration – Part IV (Deploying To SQL Server 2005)_files/bootstrap.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">var omni_guid="2b2d7b67-4b7c-42ea-9ac8-45d90301927a";</script>
+<script type="text/javascript" src="./Paulo Morgado - Playing With SQL Server CLR Integration – Part IV (Deploying To SQL Server 2005)_files/prod-omniture.min.js"></script>
+<noscript>&lt;a href="http://www.omniture.com" title="Web Analytics"&gt;&lt;img src="http://msstonojsaspnet.112.2O7.net/b/ss/msstonojsaspnet/1/H.20.2--NS/0" height="1" width="1" alt="omni" /&gt;&lt;/a&gt;</noscript>
+
+
+</body></html>

@@ -74,10 +74,18 @@ message MsgClientRsp {
 
 message MsgDiscoveryReq {
 	required string host = 1;
+
+	/* 当前登录客户端的用户 */
 	required string user = 2;
 
 	/* 传感器是否检测到人 */
 	required bool person = 3;
+	
+	/* 当前检查的病人唯一号 */
+	optional string id = 4;
+
+	/* 上次检查的病人唯一号 */
+	optional string prev_id = 5;
 }
 
 message MsgDiscoveryRsp {
@@ -86,22 +94,21 @@ message MsgDiscoveryRsp {
 }
 
 /* his 系统对接通讯协议 */
-message MsgStartReq {
-	required string check_host = 1;
-	required uint32 unique_num = 2;
-	optional string guest_name = 3;
-	optional string register_items = 4;
+message MsgNewFlowReq {
+	required string id = 1;
+	repeated string hosts = 2;
 }
 
-message MsgStartRsp {
+message MsgNewFlowRsp {
 	optional uint32 status = 1;
 }
 
-message MsgStopReq {
-	required uint32 unique_num = 1;
+message MsgDelFlowReq {
+	required string id = 1;
+	repeated string hosts = 2;
 }
 
-message MsgStopRsp {
+message MsgDelFlowRsp {
 	optional uint32 status = 1;
 }
 
@@ -119,6 +126,6 @@ service RpcService {
 	rpc AppendInfo (MsgDiscoveryReq) returns (MsgDiscoveryRsp);
 
 	/* his operation */
-	rpc StartFlow (MsgStartReq) returns (MsgStartRsp);
-	rpc StopFlow (MsgStopReq) returns (MsgStopRsp);
+	rpc AppendFlow (MsgNewFlowReq) returns (MsgNewFlowRsp);
+	rpc RemoveFlow (MsgDelFlowReq) returns (MsgDelFlowRsp);
 }

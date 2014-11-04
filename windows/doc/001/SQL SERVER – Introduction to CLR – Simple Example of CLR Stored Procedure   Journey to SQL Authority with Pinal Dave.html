@@ -1,0 +1,2137 @@
+<!DOCTYPE html>
+<!-- saved from url=(0110)http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/ -->
+<html lang="en" class="wf-calluna1-n7-active wf-active"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<title>SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure | Journey to SQL Authority with Pinal Dave</title>
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="http://blog.sqlauthority.com/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="http://s0.wp.com/wp-content/themes/pub/misty-lake/js/html5.js?m=1354305289g" type="text/javascript"></script>
+<![endif]-->
+
+<meta name="google-site-verification" content="OzU_5xIy7EG57tYokexMnIJ2C4BXOb1OIl7AVl9SiiQ">
+<meta name="msvalidate.01" content="8F6DBB52BE58D7F617791A1BE13F446A">
+		<script type="text/javascript" async="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/saved_resource"></script><script type="text/javascript" async="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/wl"></script><script src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/laf5dwl.js" type="text/javascript" async=""></script><script src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/remote-login.php" type="text/javascript"></script>
+		<script type="text/javascript">
+		/* <![CDATA[ */
+			if ( 'function' === typeof WPRemoteLogin ) {
+				document.cookie = "wordpress_test_cookie=test; path=/";
+				if ( document.cookie.match( /(;|^)\s*wordpress_test_cookie\=/ ) ) {
+					WPRemoteLogin();
+				}
+			}
+		/* ]]> */
+		</script>
+		<link rel="alternate" type="application/rss+xml" title="Journey to SQL Authority with Pinal Dave » Feed" href="http://blog.sqlauthority.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="Journey to SQL Authority with Pinal Dave » Comments Feed" href="http://blog.sqlauthority.com/comments/feed/">
+<link rel="alternate" type="application/rss+xml" title="Journey to SQL Authority with Pinal Dave » SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure Comments Feed" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/feed/">
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel="stylesheet" id="all-css-0" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/saved_resource(1)" type="text/css" media="all">
+<!--[if IE 8]>
+<link rel='stylesheet' id='mistylake-ie-css'  href='http://s0.wp.com/wp-content/themes/pub/misty-lake/ie.css?m=1377549400g&#038;ver=4.1-alpha-20141011' type='text/css' media='all' />
+<![endif]-->
+<link rel="stylesheet" id="mistylake-open-sans-css" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/css" type="text/css" media="all">
+<link rel="stylesheet" id="mistylake-droid-serif-css" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/css(1)" type="text/css" media="all">
+<link rel="stylesheet" id="all-css-6" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/saved_resource(2)" type="text/css" media="all">
+<link rel="stylesheet" id="print-css-6" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/global-print.css" type="text/css" media="print">
+<script type="text/javascript">
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/saved_resource(3)"></script>
+<link rel="stylesheet" id="all-css-0" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/style.css" type="text/css" media="all">
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='http://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://sqlauthority.wordpress.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://s1.wp.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="SQL SERVER – Retrieve – Select Only Date Part From DateTime – Best Practice – Part 2" href="http://blog.sqlauthority.com/2008/10/18/sql-server-retrieve-select-only-date-part-from-datetime-best-practice-part-2/">
+<link rel="next" title="SQL SERVER – Transaction and Local Variables – Swap Variables – Update All At Once Concept" href="http://blog.sqlauthority.com/2008/10/20/sql-server-transaction-and-local-variables-swap-variables-update-all-at-once-concept/">
+<meta name="generator" content="WordPress.com">
+<link rel="canonical" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave.html">
+<link rel="shortlink" href="http://wp.me/p2NUQ-mq">
+<link rel="alternate" type="application/json+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=json&url=http%3A%2F%2Fblog.sqlauthority.com%2F2008%2F10%2F19%2Fsql-server-introduction-to-clr-simple-example-of-clr-stored-procedure%2F&for=wpcom-auto-discovery"><link rel="alternate" type="application/xml+oembed" href="https://public-api.wordpress.com/oembed/1.0/?format=xml&url=http%3A%2F%2Fblog.sqlauthority.com%2F2008%2F10%2F19%2Fsql-server-introduction-to-clr-simple-example-of-clr-stored-procedure%2F&for=wpcom-auto-discovery">
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL SERVER - Introduction to CLR - Simple Example of CLR Stored Procedure">
+<meta property="og:url" content="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/">
+<meta property="og:description" content="CLR is abbreviation of Common Language Runtime. In SQL Server 2005 and later version of it database objects can be created which are created in CLR. Stored Procedures, Functions, Triggers can be co...">
+<meta property="article:published_time" content="2008-10-19T01:30:51+00:00">
+<meta property="article:modified_time" content="2011-10-26T12:42:49+00:00">
+<meta property="article:author" content="http://blog.sqlauthority.com/author/pinaldave/">
+<meta property="og:site_name" content="Journey to SQL Authority with Pinal Dave">
+<meta property="og:image" content="http://www.pinaldave.com/bimg/CLR//clr1.gif">
+<meta property="og:image" content="http://www.pinaldave.com/bimg/CLR//clr2.gif">
+<meta property="og:image" content="http://www.pinaldave.com/bimg/CLR//clr3.gif">
+<meta property="og:image" content="http://www.pinaldave.com/bimg/CLR//clr4.gif">
+<meta property="og:image" content="http://www.pinaldave.com/bimg/CLR//clr5.gif">
+<meta property="og:image" content="http://www.pinaldave.com/bimg/CLR//clr6.gif">
+<meta property="og:image" content="http://www.pinaldave.com/bimg/CLR//clr7.gif">
+<meta property="og:image" content="http://www.pinaldave.com/bimg/CLR//clr8.gif">
+<meta name="twitter:site" content="@pinaldave">
+<meta name="twitter:image" content="http://www.pinaldave.com/bimg/CLR//clr1.gif?w=240">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:creator" content="@pinaldave">
+<meta property="article:publisher" content="https://www.facebook.com/WordPresscom">
+<link rel="shortcut icon" type="image/x-icon" href="http://1.gravatar.com/blavatar/b05cec99e9618fa4eedafd17f02a0de9?s=16" sizes="16x16">
+<link rel="icon" type="image/x-icon" href="http://1.gravatar.com/blavatar/b05cec99e9618fa4eedafd17f02a0de9?s=16" sizes="16x16">
+<link rel="apple-touch-icon-precomposed" href="http://0.gravatar.com/blavatar/08e35387c05b61340e885b1763a69d9f?s=114">
+<link rel="openid.server" href="http://sqlauthority.wordpress.com/?openidserver=1">
+<link rel="openid.delegate" href="http://sqlauthority.wordpress.com/">
+<link rel="search" type="application/opensearchdescription+xml" href="http://blog.sqlauthority.com/osd.xml" title="Journey to SQL Authority with Pinal Dave">
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com">
+<meta name="application-name" content="Journey to SQL Authority with Pinal Dave"><meta name="msapplication-window" content="width=device-width;height=device-height"><meta name="msapplication-tooltip" content="SQL, SQL Server, MySQL, Big Data and NoSQL"><meta name="msapplication-task" content="name=Subscribe;action-uri=http://blog.sqlauthority.com/feed/;icon-uri=http://1.gravatar.com/blavatar/b05cec99e9618fa4eedafd17f02a0de9?s=16"><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=http://s2.wp.com/i/favicon.ico"><meta name="title" content="SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure | Journey to SQL Authority with Pinal Dave on WordPress.com">
+<meta name="description" content="CLR is abbreviation of Common Language Runtime. In SQL Server 2005 and later version of it database objects can be created which are created in CLR. Stored Procedures, Functions, Triggers can be coded in CLR. CLR is faster than T-SQL in many cases. CLR is mainly used to accomplish task which are not possible by…">
+<style type="text/css" id="custom-background-css">
+body.custom-background { background-color: #f2f2f2; }
+</style>
+
+<script type="text/javascript">
+var wpcom_ads = { bid: 668536, pt: 'permalink', wa: 1, colorscheme: 'light', domain: 'blog.sqlauthority.com', url: 'http://blog.sqlauthority.com', gid: '', };
+</script>
+
+		<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/google_service.js"></script>
+		<script type="text/javascript">
+			GS_googleAddAdSenseService("ca-pub-3443918307802676");
+			GS_googleEnableAllServices();
+		</script><script src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/google_ads.js"></script>
+		<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/amzn_ads.js"></script>
+		<script type="text/javascript">
+			try {
+				amznads.getAds("3033");
+			} catch(e) { /* ignore */ }
+		</script><script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/bid"></script>
+		<script type="text/javascript">
+		var amznKeys = amznads.getKeys();
+		if (typeof amznKeys != "undefined" && amznKeys != "") { for (var i =0; i < amznKeys.length; i++) { var key = amznKeys[i]; GA_googleAddAttr("amzn", key);} }
+		document.close();
+		</script>
+		<script type="text/javascript">
+		GA_googleAddAttr( 'WordAds', '1' );
+GA_googleAddAttr( 'BlogId', '668536' );
+GA_googleAddAttr( 'Domain', 'blog.sqlauthority.com' );
+GA_googleAddAttr( 'PageURL', 'http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/' );
+GA_googleAddAttr( 'WordAds-MI', '1' );
+GA_googleAddAttr( 'AdSafe', '1' );
+GA_googleAddAttr( 'NoNetFill', '0' );
+GA_googleAddAttr( 'Partner', 'AOL' );
+GA_googleAddAttr( 'Partner', 'OXM' );
+GA_googleAddAttr( 'Partner', 'CRNL' );
+GA_googleAddAttr( 'LangId', '1' );
+GA_googleAddAttr( 'MarkupVer', '2' );
+GA_googleAddAttr( 'Autotag', 'technology' );
+GA_googleAddAttr( 'Tag', 'pinal-dave' )
+GA_googleAddAttr( 'Tag', 'software-development' )
+GA_googleAddAttr( 'Tag', 'sql' )
+GA_googleAddAttr( 'Tag', 'sql-authority' )
+GA_googleAddAttr( 'Tag', 'sql-performance' )
+GA_googleAddAttr( 'Tag', 'sql-query' )
+GA_googleAddAttr( 'Tag', 'sql-scripts' )
+GA_googleAddAttr( 'Tag', 'sql-server' )
+GA_googleAddAttr( 'Tag', 'sql-stored-procedure' )
+GA_googleAddAttr( 'Tag', 'sql-tips-and-tricks' )
+GA_googleAddAttr( 'Tag', 'sql-utility' )
+GA_googleAddAttr( 'Tag', 't-sql' )
+GA_googleAddAttr( 'Tag', 'technology' )
+GA_googleAddAttr( 'Tag', 'clr' )
+GA_googleAddAttr( 'theme_bg', 'ffffff' );
+GA_googleAddAttr( 'theme_text', '444444' );
+GA_googleAddAttr( 'theme_link', '265e15' );
+GA_googleAddAttr( 'theme_border', '265e15' );
+GA_googleAddAttr( 'theme_url', '64a2d8' );
+
+		</script>
+		<script type="text/javascript">
+			GA_googleAddSlot('ca-pub-3443918307802676', 'Wordads_MIS_Mrec_Below_adsafe');
+
+		</script>
+		<script type="text/javascript">
+			GA_googleFetchAds();
+		</script>
+		<script type="text/javascript">
+		jQuery( window ).load( function() {
+			jQuery( "a.wpa-about" ).text( "About these ads" );
+		} );
+		</script>
+		<script type="text/javascript">
+		var wpcom_adclk_hovering = false;
+		var wpcom_adclk_recorded = false;
+		var wpcom_adclk_theme = "Misty Lake";
+		var wpcom_adclk_slot = "belowpost";
+		var wpcom_adclk_network = ( typeof wpcom_adclk_network === "undefined" ) ? "" : wpcom_adclk_network ;
+
+		jQuery(document).ready( function() {
+			function wpcom_adclk_hover_yes() { wpcom_adclk_hovering = true; }
+			function wpcom_adclk_hover_no() { wpcom_adclk_hovering = false; }
+			jQuery(".wpa").click(wpcom_adclk_click);
+			jQuery(".wpa iframe").hover( wpcom_adclk_hover_yes, wpcom_adclk_hover_no );
+			jQuery(".wpa object").hover( wpcom_adclk_hover_yes, wpcom_adclk_hover_no );
+
+			jQuery(window).blur( function() {
+				if ( wpcom_adclk_hovering ) { wpcom_adclk_click(); }
+			});
+		});
+
+		function wpcom_adclk_impression() {
+			var stat_gif = document.location.protocol + "//pixel.wp.com/g.gif?v=wpcom-no-pv";
+			stat_gif += "&x_ads_imp_theme=" + wpcom_adclk_theme;
+			stat_gif += "&x_ads_imp_placement="+wpcom_adclk_slot;
+			stat_gif += "&x_ads_imp_network=" + wpcom_adclk_network;
+			stat_gif += "&x_ads_imp_theme_network="+wpcom_adclk_theme+"_"+wpcom_adclk_network;
+			new Image().src = stat_gif + "&baba=" + Math.random();
+			return true;
+		}
+
+		function wpcom_adclk_click() {
+			if (wpcom_adclk_recorded) { return true; } // no double counting
+			var stat_gif = document.location.protocol + "//pixel.wp.com/g.gif?v=wpcom-no-pv";
+			stat_gif += "&x_ads_click_theme=" + wpcom_adclk_theme;
+			stat_gif += "&x_ads_click_placement="+wpcom_adclk_slot;
+			stat_gif += "&x_ads_click_network=" + wpcom_adclk_network;
+			stat_gif += "&x_ads_click_theme_network="+wpcom_adclk_theme+"_"+wpcom_adclk_network;
+
+			new Image().src = stat_gif + "&baba=" + Math.random();
+			wpcom_adclk_recorded = true;
+			var now=new Date(); var end=now.getTime()+250;
+			while(true){now=new Date();if(now.getTime()>end){break;}}
+			return true;
+		}
+		</script><style type="text/css" id="syntaxhighlighteranchor"></style>
+<style type="text/css" id="custom-colors-css">
+	.header-search input {
+		background: rgba( 0, 0, 0, 0.3 );
+		color: rgba( 255, 255, 255, 0.8 );
+	}
+input[type="text"], input[type="email"], textarea { color: #565656;}
+.site-main, .main-navigation ul li a { border-color: #E5E5E5;}
+.site-description, .site-info { color: #565656;}
+body { background-color: #f9f9f0;}
+a, a:visited, .post-label, .page-links { color: #384F83;}
+.site-title a, .site-info a { color: #384F83;}
+.widget a { color: #384F83;}
+body { border-top-color: #384F83;}
+.sticky { border-bottom-color: #384F83;}
+.bypostauthor .comment .avatar { border-color: #384F83;}
+a:hover, a:focus, a:active { color: #384F83;}
+.site-title a:hover, .site-info:hover { color: #384F83;}
+.widget a:hover { color: #384F83;}
+.main-navigation ul li a { color: #384F83;}
+.entry-title, #respond h3, .comments-title { color: #384F83;}
+.widget-title { color: #384F83;}
+</style>
+<script type="text/javascript" id="custom-fonts-js">
+(function(doc) {
+	
+	var config = {"kitId":"laf5dwl","scriptTimeout":3000},
+	h=doc.getElementsByTagName("html")[0];h.className+=" wf-loading";var t=setTimeout(function(){h.className=h.className.replace(/(\s|^)wf-loading(\s|$)/g," ");h.className+="wf-inactive"},config.scriptTimeout);var tk=doc.createElement("script"),d=false;tk.src='//use.typekit.net/'+config.kitId+'.js';tk.type="text/javascript";tk.async="true";tk.onload=tk.onreadystatechange=function(){var a=this.readyState;if(d||a&&a!="complete"&&a!="loaded")return;d=true;clearTimeout(t);try{Typekit.load(config)}catch(b){}};var s=doc.getElementsByTagName("script")[0];s.parentNode.insertBefore(tk,s);
+})(document);
+</script>
+<style type="text/css" id="custom-fonts-css">/* Site Title */ .wf-loading .site-title,.wf-loading .site-title a { visibility: hidden; } .wf-active .site-title,.wf-active .site-title a { font-family: calluna-1,calluna-2,"Droid Serif",Georgia,"Times New Roman",serif; font-style: normal; font-weight: 700; font-variant: normal; } 
+</style>
+		<link rel="stylesheet" id="custom-css-css" type="text/css" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/saved_resource(4)">
+		<script type="text/javascript">
+	window.google_analytics_uacct = "UA-52447-2";
+</script>
+
+<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-52447-2']);
+	_gaq.push(['_setDomainName', 'none']);
+	_gaq.push(['_setAllowLinker', true]);
+	_gaq.push(['_initData']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(ga);
+	})();
+</script><script type="text/javascript" async="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/ga.js"></script>
+<link rel="stylesheet" type="text/css" id="gravatar-card-css" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/hovercard.css"><link rel="stylesheet" type="text/css" id="gravatar-card-services-css" href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/services.css"><style type="text/css">.tk-calluna{font-family:"calluna-1","calluna-2",serif;}</style><link rel="stylesheet" href="http://use.typekit.net/c/c58ada/1w;calluna-1,2,b4s:R:n7/d?3bb2a6e53c9684ffdc9a9bf41d5b2a62183a574751fd848f787439a977ba4c2031cf709d1f570ce88a4d3db08c7b3e331baf22a3ad6b62c7a4594d9ae598d1bee17683af9c3784125b7de138f97e68e839f512740cf57e53f6f76f636af742cb0340fae711eac9db887e63dc942859ece6424e9267c6dfc62414d4e1995833"><script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/osd.js"></script><script type="text/javascript" async="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/saved_resource(5)"></script></head>
+
+<body class="single single-post postid-1390 single-format-standard custom-background mp6 typekit-enabled group-blog highlander-enabled highlander-light custom-colors" data-twttr-rendered="true">
+<div id="page" class="hfeed site">
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<h1 class="site-title"><a href="http://blog.sqlauthority.com/" title="Journey to SQL Authority with Pinal Dave" rel="home" sl-processed="1">Journey to SQL Authority with Pinal Dave</a></h1>
+			<h2 class="site-description">SQL, SQL Server, MySQL, Big Data and NoSQL</h2>
+		</div>
+
+		<nav id="nav" role="navigation" class="site-navigation main-navigation">
+			<h1 class="assistive-text">Menu</h1>
+			<div class="assistive-text skip-link"><a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#content" title="Skip to content" sl-processed="1">Skip to content</a></div>
+
+			<div class="menu-main-menu-container"><ul id="menu-main-menu" class="menu"><li id="menu-item-10819" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-10819"><a title="Home" href="http://blog.sqlauthority.com/" sl-processed="1">Home</a></li>
+<li id="menu-item-10773" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10773"><a href="http://blog.sqlauthority.com/best_top_sql_server_blog_all_post/" sl-processed="1">All&nbsp;Articles</a></li>
+<li id="menu-item-10780" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10780"><a href="http://blog.sqlauthority.com/sql-server-interview-questions-and-answers/" sl-processed="1">Interviews</a></li>
+<li id="menu-item-10774" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10774"><a href="http://blog.sqlauthority.com/stats/" sl-processed="1">Blog Stats</a></li>
+<li id="menu-item-21143" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-21143"><a href="http://blog.sqlauthority.com/contact-me/" sl-processed="1">Contact</a>
+<ul class="sub-menu">
+	<li id="menu-item-10779" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10779"><a href="http://blog.sqlauthority.com/sql-server-corporate-trainer-consultant/" sl-processed="1">Resume</a></li>
+	<li id="menu-item-12610" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-12610"><a href="http://blog.sqlauthority.com/sql-server-performance-tuning/" sl-processed="1">Performance</a></li>
+	<li id="menu-item-10783" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10783"><a href="http://blog.sqlauthority.com/contact-me/community-rules/" sl-processed="1">Community&nbsp;Rules</a></li>
+	<li id="menu-item-10784" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-10784"><a href="http://blog.sqlauthority.com/contact-me/disclaimer-copyright/" sl-processed="1">Copyright</a></li>
+</ul>
+</li>
+<li id="menu-item-11116" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-11116"><a href="http://blog.sqlauthority.com/sql-server-tools/" sl-processed="1">Tools</a>
+<ul class="sub-menu">
+	<li id="menu-item-13237" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13237"><a rel="nofollow" href="http://bit.ly/pl-learning" sl-processed="1">Pluralsight</a></li>
+	<li id="menu-item-26017" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-26017"><a href="http://bit.ly/dl-spotlight" sl-processed="1">Spotlight – Dell</a></li>
+	<li id="menu-item-11122" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11122"><a rel="nofollow" href="http://bit.ly/sqlelements" sl-processed="1">Idera</a></li>
+	<li id="menu-item-11720" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-11720"><a rel="nofollow" href="http://bit.ly/rg-sc-0714" sl-processed="1">Red Gate</a></li>
+	<li id="menu-item-24050" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24050"><a rel="nofollow" href="http://bit.ly/apex-tools" sl-processed="1">ApexSQL Tools</a></li>
+	<li id="menu-item-21649" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-21649"><a rel="nofollow" href="http://bit.ly/sa-dbforge" sl-processed="1">Devart SQL Server Tools</a></li>
+	<li id="menu-item-24650" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-24650"><a rel="nofollow" href="http://bit.ly/confio-14" sl-processed="1">IgniteFree</a></li>
+	<li id="menu-item-22617" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-22617"><a rel="nofollow" href="http://bit.ly/sa-dbchange" sl-processed="1">Embarcadero</a></li>
+	<li id="menu-item-28853" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-28853"><a href="http://bit.ly/gobitcan" sl-processed="1">BitCan</a></li>
+	<li id="menu-item-23335" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-23335"><a rel="nofollow" href="http://bit.ly/koenig-sa" sl-processed="1">Koenig Solutions</a></li>
+	<li id="menu-item-14730" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-14730"><a rel="nofollow" href="http://bit.ly/sql-md" sl-processed="1">Melissadata</a></li>
+	<li id="menu-item-16031" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-16031"><a rel="nofollow" href="http://bit.ly/sql-me-db" sl-processed="1">Manage Engine</a></li>
+</ul>
+</li>
+<li id="menu-item-23850" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children menu-item-23850"><a href="http://blog.sqlauthority.com/video-courses/" sl-processed="1">Videos</a>
+<ul class="sub-menu">
+	<li id="menu-item-28862" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-28862"><a href="http://blog.sqlauthority.com/video-courses/video-courses-at-pluralsight/" sl-processed="1">Video Courses</a></li>
+	<li id="menu-item-14295" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-14295"><a href="http://blog.sqlauthority.com/sql-server-books/" sl-processed="1">Books</a></li>
+</ul>
+</li>
+<li id="menu-item-13539" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-13539"><a href="http://search.sqlauthority.com/" sl-processed="1">Search</a></li>
+<li id="menu-item-25735" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-25735"><a href="http://mag.sqlauthority.com/" sl-processed="1">Magazine</a></li>
+<li id="menu-item-25715" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-25715"><a href="http://blog.sqlauthority.com/fix-your-sql-server/" sl-processed="1">Fix Your SQL Server</a></li>
+</ul></div>		</nav><!-- .site-navigation .main-navigation -->
+	</header><!-- #masthead .site-header -->
+
+	<div id="main" class="site-main">
+
+					<div class="header-image">
+				<a href="http://blog.sqlauthority.com/" title="Journey to SQL Authority with Pinal Dave" rel="home" sl-processed="1">
+					<img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/sql-authority.png" width="1015" height="276" alt="">
+				</a>
+			</div>
+		
+	<div id="primary" class="content-area">
+		<div id="content" class="site-content" role="main">
+
+		
+			
+<article id="post-1390" class="post-1390 post type-post status-publish format-standard hentry category-pinal-dave category-software-development category-sql category-sql-authority category-sql-performance category-sql-query category-sql-scripts category-sql-server category-sql-stored-procedure category-sql-tips-and-tricks category-sql-utility category-t-sql category-technology tag-clr">
+	<header class="entry-header">
+		<div class="entry-meta">
+			<a href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave.html" title="7:00 am" rel="bookmark" sl-processed="1"><time class="entry-date" datetime="2008-10-19T07:00:51+00:00" pubdate="">October 19, 2008</time></a><span class="byline"> by <span class="author vcard"><a class="url fn n" href="http://blog.sqlauthority.com/author/pinaldave/" title="View all posts by Pinal Dave" rel="author" sl-processed="1">Pinal Dave</a></span></span>		</div><!-- .entry-meta -->
+		<h1 class="entry-title">SQL SERVER – Introduction to CLR – Simple Example of CLR Stored&nbsp;Procedure</h1>	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+		<p style="text-align:justify;">CLR is abbreviation of Common Language Runtime. In SQL Server 2005 and later version of it database objects can be created which are created in CLR. Stored Procedures, Functions, Triggers can be coded in CLR. CLR is faster than T-SQL in many cases. CLR is mainly used to accomplish task which are not possible by T-SQL or can use lots of resources. CLR can be usually implemented where there is intense string operation, thread management or iteration methods which can be complicated for T-SQL. Implementing CLR provides more security to Extended Stored Procedure.</p>
+<p style="text-align:justify;">Let us create one very simple CLR where we will print current system datetime.</p>
+<p style="text-align:justify;"><strong>1) Open Microsoft Visual Studio &gt;&gt; Click New Project &gt;&gt; Select Visual C# &gt;&gt; Database &gt;&gt; SQL Server Project</strong></p>
+<p style="text-align:justify;"><img class="alignnone" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/clr1.gif" alt="" width="500" height="429"></p>
+<p style="text-align:justify;"><strong>2) Either choose from existing database connection as reference or click on Add New Reference. In my example I have selected Add New Reference. </strong></p>
+<p style="text-align:justify;"><img class="alignnone" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/clr2.gif" alt="" width="364" height="374"></p>
+<p style="text-align:justify;"><strong>3) If you have selected existing reference skip to next step or add database reference as displayed in image.</strong></p>
+<p style="text-align:justify;"><img class="alignnone" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/clr3.gif" alt="" width="451" height="657"></p>
+<p style="text-align:justify;"><strong>4) Once database reference is added following project will be displayed in Solution Explorer. Right click on Solution Explorer &gt;&gt; Click on Add &gt;&gt; Stored Procedure.</strong></p>
+<p style="text-align:justify;"><img class="alignnone" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/clr4.gif" alt="" width="434" height="699"></p>
+<p style="text-align:justify;"><strong>5) Add new stored procedure template from following screen.</strong></p>
+<p style="text-align:justify;"><img class="alignnone" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/clr5.gif" alt="" width="500" height="383"></p>
+<p style="text-align:justify;"><strong>6) Once template added it will look like following image. </strong></p>
+<p style="text-align:justify;"><img class="alignnone" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/clr6.gif" alt="" width="437" height="431"></p>
+<p style="text-align:justify;"><strong>7) Now where it suggest to //Put your code here. Replace it with code displayed in the image. Once the code is complete do following two steps.<br>
+a) Click on menu bar &gt;&gt; Build &gt;&gt; Build ProjectName<br>
+b) Click on menu bar &gt;&gt; Build &gt;&gt; Deploy ProjectName<br>
+Building and Deploying project should give successful message.<br>
+</strong></p>
+<p style="text-align:justify;"><img class="alignnone" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/clr7.gif" alt="" width="500" height="386"><br>
+<span class="kwrd">using</span> System;<br>
+<span class="kwrd">using</span> <span class="skimlinks-unlinked">System.Data</span>;<br>
+<span class="kwrd">using</span> <span class="skimlinks-unlinked">System.Data.SqlClient</span>;<br>
+<span class="kwrd">using</span> <span class="skimlinks-unlinked">System.Data.SqlTypes</span>;<br>
+<span class="kwrd">using</span> Microsoft.SqlServer.Server;</p>
+<p style="text-align:justify;"><span class="kwrd">public</span> <span class="kwrd">partial</span> <span class="kwrd">class</span> StoredProcedures<br>
+{<br>
+[Microsoft.SqlServer.Server.SqlProcedure]<br>
+<span class="kwrd">public</span> <span class="kwrd">static</span> <span class="kwrd">void</span> CLRSPTest()<br>
+{<br>
+SqlPipe sp;<br>
+sp = <span class="skimlinks-unlinked">SqlContext.Pipe</span>;<br>
+String strCurrentTime = <span class="str">“Current System DateTime is: “</span><br>
++ <span class="skimlinks-unlinked">System.DateTime.Now.ToString</span>();<br>
+<span class="skimlinks-unlinked">sp.Send(strCurrentTime</span>);<br>
+}<br>
+};<br>
+<strong>8) Now open SQL Server Management Studio and run following script in Query Editor. It should return current system datetime. Running it again the time will change.</strong>
+</p>
+<p style="text-align:justify;"><img class="alignnone" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/clr8.gif" alt="" width="387" height="162"></p>
+<p style="text-align:justify;"><code style="font-size:12px;"><span style="color:blue;">USE </span><span style="color:black;">AdventureWorks<br>
+GO<br>
+</span><span style="color:blue;">EXEC </span><span style="color:black;">dbo.CLRSPTest<br>
+GO</span></code>
+</p>
+<p style="text-align:justify;">Reference : <strong>Pinal Dave (</strong><a href="http://blog.sqlauthority.com/" target="_blank" sl-processed="1"><strong>http://blog.SQLAuthority.com</strong></a><strong>)</strong></p>
+		<div class="wpcnt">
+			<div class="wpa  wpmrec">
+				<a class="wpa-about" href="http://wordpress.com/about-these-ads/" rel="nofollow" sl-processed="1">About these ads</a>
+
+				<div class="u">
+					<script type="text/javascript">
+					GA_googleFillSlot("Wordads_MIS_Mrec_Below_adsafe");
+
+					</script><script src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/ads"></script><div id="google_ads_div_Wordads_MIS_Mrec_Below_adsafe_ad_wrapper">
+<div id="google_ads_div_Wordads_MIS_Mrec_Below_adsafe_ad_container" style="display:inline-block;"><div id="grv-personalization-16" style="width: 300px; height: 250px; overflow: hidden; position: static; top: auto; left: auto;"><iframe frameborder="0" scrolling="no" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/w2.html" style="overflow: hidden; width: 300px; height: 250px; opacity: 1;"></iframe></div>
+<script type="text/javascript">
+  //<![CDATA[
+ function _grc(k){return(document.cookie.match('(^|; )'+k+'=([^;]*)')||0)[2]}
+    (function(){
+    window.gravityInsightsParams = {
+      'type': 'content',
+      'site_guid': '361837bc83c4c2cba7b350dff56a564f',
+      'user_guid': _grc('grvinsights'),
+      'sourceUrl': 'blog.sqlauthority.com',
+    };
+    var b,c,d,e,f,g,h,i;f=(b=!0===gravityInsightsParams.useGravityUserGuid?1:0,e=b?"":gravityInsightsParams.user_guid||(null!=(g=/grvinsights=([^;]+)/.exec(document.cookie))?g[1]:void 0)||"",c=(null!=(h=window.jQuery)?null!=(i=h.fn)?i.jquery:void 0:void 0)||"","http://rma-api.gravity.com/v1/api/intelligence/wl?jq="+c+"&sg="+gravityInsightsParams.site_guid+"&ug="+e+"&ugug="+b+"&pl=16&id=grv-personalization-16&type=iframe");
+    window.grvMakeScript=function(j){var a;a=document.createElement("script");a.type="text/javascript";a.async=!0;a.src=j;return a};d=document.getElementsByTagName("script")[0];f&&d.parentNode.insertBefore(window.grvMakeScript(f),d);})();
+  //]]>
+</script>
+
+</div>
+</div>
+
+				</div>
+			</div>
+		</div><div id="jp-post-flair" class="sharedaddy sd-like-enabled sd-sharing-enabled"><div class="sharedaddy sd-sharing-enabled"><div class="robots-nocontent sd-block sd-social sd-social-icon sd-sharing"><h3 class="sd-title">Share:</h3><div class="sd-content"><ul><li class="share-facebook"><a rel="nofollow" class="share-facebook sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?share=facebook&nb=1" target="_blank" title="Share on Facebook" id="sharing-facebook-1390" sl-processed="1"><span><span class="share-count">9</span></span><span class="sharing-screen-reader-text">Share on Facebook (Opens in new window)</span></a></li><li class="share-google-plus-1"><a rel="nofollow" class="share-google-plus-1 sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?share=google-plus-1&nb=1" target="_blank" title="Click to share on Google+" id="sharing-google-1390" sl-processed="1"><span></span><span class="sharing-screen-reader-text">Click to share on Google+ (Opens in new window)</span></a></li><li class="share-twitter"><a rel="nofollow" class="share-twitter sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?share=twitter&nb=1" target="_blank" title="Click to share on Twitter" id="sharing-twitter-1390" sl-processed="1"><span></span><span class="sharing-screen-reader-text">Click to share on Twitter (Opens in new window)</span></a></li><li class="share-linkedin"><a rel="nofollow" class="share-linkedin sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?share=linkedin&nb=1" target="_blank" title="Click to share on LinkedIn" id="sharing-linkedin-1390" sl-processed="1"><span></span><span class="sharing-screen-reader-text">Click to share on LinkedIn (Opens in new window)</span></a></li><li class="share-reddit"><a rel="nofollow" class="share-reddit sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?share=reddit&nb=1" target="_blank" title="Click to share on Reddit" sl-processed="1"><span></span><span class="sharing-screen-reader-text">Click to share on Reddit (Opens in new window)</span></a></li><li><a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#" class="sharing-anchor sd-button share-more" sl-processed="1"><span>More</span></a></li><li class="share-end"></li></ul><div class="sharing-hidden"><div class="inner" style="display: none;"><ul><li class="share-stumbleupon"><a rel="nofollow" class="share-stumbleupon sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?share=stumbleupon&nb=1" target="_blank" title="Click to share on StumbleUpon" sl-processed="1"><span></span><span class="sharing-screen-reader-text">Click to share on StumbleUpon (Opens in new window)</span></a></li><li class="share-email share-service-visible"><a rel="nofollow" class="share-email sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?share=email&nb=1" target="_blank" title="Click to email this to a friend" sl-processed="1"><span></span><span class="sharing-screen-reader-text">Click to email this to a friend (Opens in new window)</span></a></li><li class="share-end"></li><li class="share-pinterest"><a rel="nofollow" class="share-pinterest sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?share=pinterest&nb=1" target="_blank" title="Click to share on Pinterest" sl-processed="1"><span></span><span class="sharing-screen-reader-text">Click to share on Pinterest (Opens in new window)</span></a></li><li class="share-tumblr"><a rel="nofollow" class="share-tumblr sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?share=tumblr&nb=1" target="_blank" title="Click to share on Tumblr" sl-processed="1"><span></span><span class="sharing-screen-reader-text">Click to share on Tumblr (Opens in new window)</span></a></li><li class="share-end"></li><li class="share-print"><a rel="nofollow" class="share-print sd-button share-icon no-text" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#print" target="_blank" title="Click to print" sl-processed="1"><span></span><span class="sharing-screen-reader-text">Click to print (Opens in new window)</span></a></li><li class="share-end"></li></ul></div></div></div></div></div><div class="sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-loaded" id="like-post-wrapper-668536-1390-5457a0901ce4f" data-src="//widgets.wp.com/likes/#blog_id=668536&amp;post_id=1390&amp;origin=sqlauthority.wordpress.com&amp;obj_id=668536-1390-5457a0901ce4f" data-name="like-post-frame-668536-1390-5457a0901ce4f"><h3 class="sd-title">Like this:</h3><div class="likes-widget-placeholder post-likes-widget-placeholder" style="height: 55px; display: none;"><span class="button"><span>Like</span></span> <span class="loading">Loading...</span></div><iframe class="post-likes-widget jetpack-likes-widget" name="like-post-frame-668536-1390-5457a0901ce4f" height="55px" width="100%" frameborder="0" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/saved_resource.html"></iframe><span class="sd-text-color"></span><a class="sd-link-color"></a></div>
+<div id="jp-relatedposts" class="jp-relatedposts" style="display: block;">
+	<h3 class="jp-relatedposts-headline"><em>Related</em></h3>
+<div class="jp-relatedposts-items jp-relatedposts-items-minimal"><p class="jp-relatedposts-post jp-relatedposts-post0" data-post-id="536" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="http://blog.sqlauthority.com/2008/03/14/sql-server-2005-introduction-to-clr-and-integration-to-clr-with-sql-simple-sample-example-of-clr/" title="SQL SERVER - 2005 - Introduction to CLR and Integration to CLR with SQL - Simple Sample Example of CLR
+
+It is always interesting to learn new technology. I always wanted to learn about CLR but I somehow never got chance to practice on it. I had requested excellent blog&amp;hellip;" rel="nofollow" data-origin="1390" data-position="0" sl-processed="1">SQL SERVER - 2005 - Introduction to CLR and Integration to CLR with SQL - Simple Sample Example of CLR</a></span><span class="jp-relatedposts-post-context">In "Pinal Dave"</span></p><p class="jp-relatedposts-post jp-relatedposts-post1" data-post-id="25555" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="http://blog.sqlauthority.com/2013/10/19/sql-server-weekly-series-memory-lane-051/" title="SQL SERVER - Weekly Series - Memory Lane - #051
+
+Here is the list of selected articles of SQLAuthority.com across all these years. Instead of just listing all the articles I have selected a few of my most favorite articles&amp;hellip;" rel="nofollow" data-origin="1390" data-position="1" sl-processed="1">SQL SERVER - Weekly Series - Memory Lane - #051</a></span><span class="jp-relatedposts-post-context">In "Memory Lane"</span></p><p class="jp-relatedposts-post jp-relatedposts-post2" data-post-id="467" data-post-format="false"><span class="jp-relatedposts-post-title"><a class="jp-relatedposts-post-a" href="http://blog.sqlauthority.com/2008/01/07/sql-server-2005-introduction-and-explanation-to-synonym-helpful-t-sql-feature-for-developer/" title="SQL SERVER - 2005 - Introduction and Explanation to SYNONYM - Helpful T-SQL Feature for Developer
+
+One of my friend and extremely smart DBA Jonathan from Las Vegas has pointed out nice little enhancement in T-SQL. I was very pleased when I learned about SYNONYM feature&amp;hellip;" rel="nofollow" data-origin="1390" data-position="2" sl-processed="1">SQL SERVER - 2005 - Introduction and Explanation to SYNONYM - Helpful T-SQL Feature for Developer</a></span><span class="jp-relatedposts-post-context">In "Pinal Dave"</span></p></div></div></div>			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+		This entry was posted in <a href="http://blog.sqlauthority.com/category/pinal-dave/" rel="category tag" sl-processed="1">Pinal Dave</a>, <a href="http://blog.sqlauthority.com/category/software-development/" rel="category tag" sl-processed="1">Software Development</a>, <a href="http://blog.sqlauthority.com/category/technology/sql/" rel="category tag" sl-processed="1">SQL</a>, <a href="http://blog.sqlauthority.com/category/technology/sql-authority/" rel="category tag" sl-processed="1">SQL Authority</a>, <a href="http://blog.sqlauthority.com/category/sql-performance/" rel="category tag" sl-processed="1">SQL Performance</a>, <a href="http://blog.sqlauthority.com/category/technology/sql-query/" rel="category tag" sl-processed="1">SQL Query</a>, <a href="http://blog.sqlauthority.com/category/sql-scripts/" rel="category tag" sl-processed="1">SQL Scripts</a>, <a href="http://blog.sqlauthority.com/category/technology/sql-server/" rel="category tag" sl-processed="1">SQL Server</a>, <a href="http://blog.sqlauthority.com/category/sql-stored-procedure/" rel="category tag" sl-processed="1">SQL Stored Procedure</a>, <a href="http://blog.sqlauthority.com/category/technology/sql-tips-and-tricks/" rel="category tag" sl-processed="1">SQL Tips and Tricks</a>, <a href="http://blog.sqlauthority.com/category/sql-utility/" rel="category tag" sl-processed="1">SQL Utility</a>, <a href="http://blog.sqlauthority.com/category/technology/t-sql/" rel="category tag" sl-processed="1">T SQL</a>, <a href="http://blog.sqlauthority.com/category/technology/" rel="category tag" sl-processed="1">Technology</a> and tagged <a href="http://blog.sqlauthority.com/tag/clr/" rel="tag" sl-processed="1">CLR</a>. Bookmark the <a href="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave.html" title="Permalink to SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure" rel="bookmark" sl-processed="1">permalink</a>.
+			</footer><!-- .entry-meta -->
+</article><!-- #post-## -->
+
+				<nav role="navigation" id="nav-below" class="site-navigation post-navigation">
+		<h1 class="assistive-text">Post navigation</h1>
+
+	
+		<div class="nav-previous"><a href="http://blog.sqlauthority.com/2008/10/18/sql-server-retrieve-select-only-date-part-from-datetime-best-practice-part-2/" rel="prev" sl-processed="1"><span class="meta-nav">←</span> SQL SERVER – Retrieve – Select Only Date Part From DateTime – Best Practice – Part&nbsp;2</a></div>		<div class="nav-next"><a href="http://blog.sqlauthority.com/2008/10/20/sql-server-transaction-and-local-variables-swap-variables-update-all-at-once-concept/" rel="next" sl-processed="1">SQL SERVER – Transaction and Local Variables – Swap Variables – Update All At Once&nbsp;Concept <span class="meta-nav">→</span></a></div>
+	
+	</nav><!-- #nav-below -->
+	
+			
+<div id="comments" class="comments-area">
+
+			<h2 class="comments-title">
+			37 thoughts on “<span>SQL SERVER – Introduction to CLR – Simple Example of CLR Stored&nbsp;Procedure</span>”		</h2>
+
+		
+		<ol class="commentlist">
+				<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-43796">
+		<article id="comment-43796" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/cecf554a38e59f700597224306c6e7f7" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-cecf554a38e59f700597224306c6e7f7-0">					<cite class="fn">Bashar Kokash</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-43796" sl-processed="1"><time pubdate="" datetime="2008-10-19T11:07:48+00:00">
+						October 19, 2008 at 11:07 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Can a SQL CLR stored procedure call or excute a SQL procedure or function?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=43796#respond" onclick="return addComment.moveForm( &quot;comment-43796&quot;, &quot;43796&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Bashar Kokash" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-43803">
+		<article id="comment-43803" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/27f4f309382490565fd034fd3805f9cf" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-27f4f309382490565fd034fd3805f9cf-0">					<cite class="fn"><a href="http://bhupendrapatel.blogspot.com/" rel="external nofollow" class="url" sl-processed="1">Bhupendra Patel</a></cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-43803" sl-processed="1"><time pubdate="" datetime="2008-10-20T00:40:12+00:00">
+						October 20, 2008 at 12:40 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Thanks for the post Pinal, I make a point to read your blog very useful stuff. I hope you dont mind me putting reference’s to other blogs</p>
+<p>Hi friends<br>
+In case you run into the same problem as i did .<br>
+i.e. at command prompt if you get<br>
+“Execution of user code in the .NET Framework is disabled. Enable “clr enabled” configuration option.”</p>
+<p>then you can correct that by</p>
+<p><a href="http://forums.microsoft.com/MSDN/ShowPost.aspx?PostID=125208&SiteID=1" rel="nofollow" sl-processed="1">http://forums.microsoft.com/MSDN/ShowPost.aspx?PostID=125208&amp;SiteID=1</a></p>
+<p>or</p>
+<p><a href="http://geekswithblogs.net/vrod/archive/2006/07/17/85471.aspx" rel="nofollow" sl-processed="1">http://geekswithblogs.net/vrod/archive/2006/07/17/85471.aspx</a></p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=43803#respond" onclick="return addComment.moveForm( &quot;comment-43803&quot;, &quot;43803&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Bhupendra Patel" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment even depth-2 highlander-comment" id="li-comment-197739">
+		<article id="comment-197739" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/2d5e1ddb89782739270bf87d8dfbd3b7" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-2d5e1ddb89782739270bf87d8dfbd3b7-0">					<cite class="fn">anu</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-197739" sl-processed="1"><time pubdate="" datetime="2011-11-17T19:45:17+00:00">
+						November 17, 2011 at 7:45 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>u can use the following query:</p>
+<p>EXEC sp_configure ‘show advanced options’ , ‘1’;<br>
+reconfigure; </p>
+<p>EXEC sp_configure ‘clr enabled’ , ‘1’ ;<br>
+reconfigure; </p>
+<p>EXEC sp_configure ‘show advanced options’ , ‘0’;<br>
+reconfigure;</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=197739#respond" onclick="return addComment.moveForm( &quot;comment-197739&quot;, &quot;197739&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to anu" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-519818">
+		<article id="comment-519818" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/7343f8ea0e7862f6e9b76f1eec664d34" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-7343f8ea0e7862f6e9b76f1eec664d34-0">					<cite class="fn">santosh</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-519818" sl-processed="1"><time pubdate="" datetime="2013-07-09T10:07:05+00:00">
+						July 9, 2013 at 10:07 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>–ad-hoc-update-to-system-catalogs<br>
+sp_configure ‘user options’, 1<br>
+reconfigure with override;<br>
+–allow user<br>
+sp_configure ‘Allow Updates’, 1;<br>
+reconfigure with override;<br>
+–enable clr for sql clr run<br>
+sp_configure ‘clr enabled’, 1;<br>
+reconfigure with override;</p>
+<p>sp_configure</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=519818#respond" onclick="return addComment.moveForm( &quot;comment-519818&quot;, &quot;519818&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to santosh" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-43811">
+		<article id="comment-43811" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/02672dba6e2f316085c77221abf2ccc6" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-02672dba6e2f316085c77221abf2ccc6-0">					<cite class="fn">contrapunctus</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-43811" sl-processed="1"><time pubdate="" datetime="2008-10-20T14:31:11+00:00">
+						October 20, 2008 at 2:31 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>hello pinal. one thing puzzled me a little bit, i really need to ask this:)</p>
+<p>you wrote “Stored Procedures, Functions, Triggers can be coded in CLR. CLR is faster than T-SQL in many cases. CLR is mainly used to accomplish task which are not possible by T-SQL or can use lots of resources.”<br>
+now, if i save a stored procedure in sql server management studio, isnt it saved as a clr function? up to now i always knew that stored procedures are “compiled”, but your sentences made me understand as if the sp way is similar to hardcoding the sql query text in code and execute it with a SqlConnection object.<br>
+can you clarify this point a little bit more please?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=43811#respond" onclick="return addComment.moveForm( &quot;comment-43811&quot;, &quot;43811&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to contrapunctus" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-43812">
+		<article id="comment-43812" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/02672dba6e2f316085c77221abf2ccc6" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-02672dba6e2f316085c77221abf2ccc6-1">					<cite class="fn">contrapunctus</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-43812" sl-processed="1"><time pubdate="" datetime="2008-10-20T14:31:43+00:00">
+						October 20, 2008 at 2:31 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>hello pinal. one thing puzzled me a little bit, i really need to ask this:)</p>
+<p>you wrote “Stored Procedures, Functions, Triggers can be coded in CLR. CLR is faster than T-SQL in many cases. CLR is mainly used to accomplish task which are not possible by T-SQL or can use lots of resources.”</p>
+<p>now, if i save a stored procedure in sql server management studio, isnt it saved as a clr function? up to now i always knew that stored procedures are “compiled”, but your sentences made me understand as if the sp way is similar to hardcoding the sql query text in code and execute it with a SqlConnection object.</p>
+<p>can you clarify this point a little bit more please?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=43812#respond" onclick="return addComment.moveForm( &quot;comment-43812&quot;, &quot;43812&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to contrapunctus" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-45709">
+		<article id="comment-45709" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/719d482068b53574a6589175699edc57" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-719d482068b53574a6589175699edc57-0">					<cite class="fn">greggy</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-45709" sl-processed="1"><time pubdate="" datetime="2009-01-18T22:54:27+00:00">
+						January 18, 2009 at 10:54 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Hi,<br>
+    Dave (Pinal). Thanks to God for bringing you to earth,  you have a perculiar way of making programmers life easy, all over the web, there are lots of bla-bla..bla, but every argument you treat, is always a strait and simplest form to a solution.<br>
+Keep up with it. YOU ARE MY OBAMA!</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=45709#respond" onclick="return addComment.moveForm( &quot;comment-45709&quot;, &quot;45709&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to greggy" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-339604">
+		<article id="comment-339604" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/65dfb72bef16a891d3f36f238e6dc458" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-65dfb72bef16a891d3f36f238e6dc458-0">					<cite class="fn">Terry Hulsey</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-339604" sl-processed="1"><time pubdate="" datetime="2012-08-31T20:27:21+00:00">
+						August 31, 2012 at 8:27 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Idolatry is not allowed!</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=339604#respond" onclick="return addComment.moveForm( &quot;comment-339604&quot;, &quot;339604&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Terry Hulsey" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-52009">
+		<article id="comment-52009" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/1a157d4695a10092985159595dad0dde" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-1a157d4695a10092985159595dad0dde-0">					<cite class="fn">tann</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-52009" sl-processed="1"><time pubdate="" datetime="2009-05-18T20:54:02+00:00">
+						May 18, 2009 at 8:54 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Enjoyed post.  I’m wondering why it is so difficult to find an example ( in literature or Internet at large ) of converting a T-SQL procedure which contains an “out” variable into an identicale  C# CLR stored procedure.  Is there something which prohibits this conversion ?   If not, can you provide or cite an example ?   Real world T-SQL procedures tend to have out parameters. Thx</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=52009#respond" onclick="return addComment.moveForm( &quot;comment-52009&quot;, &quot;52009&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to tann" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-58645">
+		<article id="comment-58645" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/84ffb5ae052e04b14a38978234203eac" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-84ffb5ae052e04b14a38978234203eac-0">					<cite class="fn">Faker</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-58645" sl-processed="1"><time pubdate="" datetime="2009-12-15T12:19:41+00:00">
+						December 15, 2009 at 12:19 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Thanks for a brilliant article Pinal. Very helpful.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=58645#respond" onclick="return addComment.moveForm( &quot;comment-58645&quot;, &quot;58645&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Faker" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-scmay even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-59873">
+		<article id="comment-59873" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/7f2a30f267a504c61d6e046efd171d28" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-7f2a30f267a504c61d6e046efd171d28-0">					<cite class="fn"><a href="http://www21.brinkster.com/scmay" rel="external nofollow" class="url" sl-processed="1">scmay</a></cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-59873" sl-processed="1"><time pubdate="" datetime="2010-01-18T10:34:21+00:00">
+						January 18, 2010 at 10:34 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Interesting article, I was wondering if this is possible for a problem which I need to read from the different database to another database. Both database is in SQL Server.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=59873#respond" onclick="return addComment.moveForm( &quot;comment-59873&quot;, &quot;59873&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to scmay" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-79191">
+		<article id="comment-79191" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/225b35434ed0619dc7d3343ff495e90d" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-225b35434ed0619dc7d3343ff495e90d-0">					<cite class="fn">Rinu</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-79191" sl-processed="1"><time pubdate="" datetime="2010-07-08T15:22:09+00:00">
+						July 8, 2010 at 3:22 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Really helpful…..all ur articles are wonderful…..it is simple and good….thank you</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=79191#respond" onclick="return addComment.moveForm( &quot;comment-79191&quot;, &quot;79191&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Rinu" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-80034">
+		<article id="comment-80034" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/0bcb8282ce0b14aaa81df205e16ab39d" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-0bcb8282ce0b14aaa81df205e16ab39d-0">					<cite class="fn">Dan</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-80034" sl-processed="1"><time pubdate="" datetime="2010-07-13T12:26:19+00:00">
+						July 13, 2010 at 12:26 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>I have a question : </p>
+<p>How can I connect to two or more databases using this project ?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=80034#respond" onclick="return addComment.moveForm( &quot;comment-80034&quot;, &quot;80034&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Dan" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-80407">
+		<article id="comment-80407" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/4a2a9545b3165fbfa90ed3c25febe80c" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-4a2a9545b3165fbfa90ed3c25febe80c-0">					<cite class="fn">Saad</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-80407" sl-processed="1"><time pubdate="" datetime="2010-07-15T19:51:15+00:00">
+						July 15, 2010 at 7:51 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Great to see a simple example !<br>
+Very useful to get started…Thanks !!!</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=80407#respond" onclick="return addComment.moveForm( &quot;comment-80407&quot;, &quot;80407&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Saad" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-115894">
+		<article id="comment-115894" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/171c7d89024e5ff28642703b42b51e65" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-171c7d89024e5ff28642703b42b51e65-0">					<cite class="fn">isuru</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-115894" sl-processed="1"><time pubdate="" datetime="2011-02-03T23:03:50+00:00">
+						February 3, 2011 at 11:03 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Great Article. Thank u very much..</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=115894#respond" onclick="return addComment.moveForm( &quot;comment-115894&quot;, &quot;115894&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to isuru" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-124901">
+		<article id="comment-124901" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/a957e89df0ae03a6cfeb2480670837b3" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-a957e89df0ae03a6cfeb2480670837b3-0">					<cite class="fn">Anthony Henley</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-124901" sl-processed="1"><time pubdate="" datetime="2011-03-25T00:03:19+00:00">
+						March 25, 2011 at 12:03 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Are you saying that you need a full-blown version of Visual Studio to work with CLRs? I only have the Visual Studio that comes with SQL 2008 R2 and it does not have a Visual C# project type.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=124901#respond" onclick="return addComment.moveForm( &quot;comment-124901&quot;, &quot;124901&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Anthony Henley" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-140089">
+		<article id="comment-140089" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/ae9d1de501a22e5cfd6db58d0d7071cf" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-ae9d1de501a22e5cfd6db58d0d7071cf-0">					<cite class="fn">Alan</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-140089" sl-processed="1"><time pubdate="" datetime="2011-06-10T01:27:52+00:00">
+						June 10, 2011 at 1:27 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Considering you are a proven expert, I wish you would have tried  to add something more to this really  simple example that can be found almost everywhere!  but thanks for the effort.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=140089#respond" onclick="return addComment.moveForm( &quot;comment-140089&quot;, &quot;140089&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Alan" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-157764">
+		<article id="comment-157764" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/eb8829007f1624691fd24ff28a0881e1" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-eb8829007f1624691fd24ff28a0881e1-0">					<cite class="fn">Srivastava</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-157764" sl-processed="1"><time pubdate="" datetime="2011-08-16T16:51:14+00:00">
+						August 16, 2011 at 4:51 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>good article</p>
+<p>thank you very much</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=157764#respond" onclick="return addComment.moveForm( &quot;comment-157764&quot;, &quot;157764&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Srivastava" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-164216">
+		<article id="comment-164216" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/f83779c682ed995f5a16d05255fbd06d" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-f83779c682ed995f5a16d05255fbd06d-0">					<cite class="fn">noName</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-164216" sl-processed="1"><time pubdate="" datetime="2011-09-01T13:15:53+00:00">
+						September 1, 2011 at 1:15 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>“CLR is faster than T-SQL in many cases”<br>
+Sorry but here i can’t agree with you. T-SQL is used mostly in stored procedures or functions, which they are stored on the server it’s self. Wright noe i am ‘translating’ a stored procedure from SQL into a CLR function, and after i tested it severl times the results are aprox:<br>
+10 s for the SQL<br>
+35 s for the CLR</p>
+<p>One of the time consuming effect for the CLR is opening/closing the readers, executing commands and all the other things that you must do in order to execute the SQL querys.<br>
+But i think CLR are one of the best solutions if you want acces to a database from C#.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=164216#respond" onclick="return addComment.moveForm( &quot;comment-164216&quot;, &quot;164216&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to noName" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-179818">
+		<article id="comment-179818" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/a70bc722ee7638062c85387f9db57212" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-a70bc722ee7638062c85387f9db57212-0">					<cite class="fn">Steve</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-179818" sl-processed="1"><time pubdate="" datetime="2011-10-17T12:40:34+00:00">
+						October 17, 2011 at 12:40 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>When Exec dbo.clrsptest is run it puts the result in the messages tab in sql server management studio. How would one get the result into a table? This did not work.</p>
+<p>Use [vc]</p>
+<p>Create Table #t (date nvarchar (255))<br>
+Insert Into #t<br>
+Exec dbo.clrsptest</p>
+<p>Select * from #t<br>
+Drop Table #t</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=179818#respond" onclick="return addComment.moveForm( &quot;comment-179818&quot;, &quot;179818&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Steve" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-202673">
+		<article id="comment-202673" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/a04cc78eebdec1ca19d6ea5a105053b1" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-a04cc78eebdec1ca19d6ea5a105053b1-0">					<cite class="fn">Sree Achanta</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-202673" sl-processed="1"><time pubdate="" datetime="2011-11-23T10:35:30+00:00">
+						November 23, 2011 at 10:35 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>excellent and thank u……………….</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=202673#respond" onclick="return addComment.moveForm( &quot;comment-202673&quot;, &quot;202673&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Sree Achanta" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-230501">
+		<article id="comment-230501" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/f819ff4746b302a85678c450e0fc59e9" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-f819ff4746b302a85678c450e0fc59e9-0">					<cite class="fn">ashish amatya</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-230501" sl-processed="1"><time pubdate="" datetime="2012-01-03T12:38:59+00:00">
+						January 3, 2012 at 12:38 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>i wonder what will be the result of, sp_helptext CLRSPTest.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=230501#respond" onclick="return addComment.moveForm( &quot;comment-230501&quot;, &quot;230501&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to ashish amatya" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-235922">
+		<article id="comment-235922" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/08052185cac1a6ac634a1c3fb9874ff1" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-08052185cac1a6ac634a1c3fb9874ff1-0">					<cite class="fn">Dilip</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-235922" sl-processed="1"><time pubdate="" datetime="2012-01-12T14:12:28+00:00">
+						January 12, 2012 at 2:12 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Hi…. good article….it helped me alot….but,</p>
+<p>i want to use a global variable in the procedure…. how can i do this….?<br>
+eg: </p>
+<p>  public static string strr = “hhhiii”;</p>
+<p>    [Microsoft.SqlServer.Server.SqlProcedure]<br>
+    public static void sp_GetHexValue(int number)<br>
+    {<br>
+       strr = “hhhhhiiiii”;<br>
+       <span class="skimlinks-unlinked">SqlContext.Pipe.Send(strr</span>);<br>
+    }</p>
+<p>i’m getting an error while deploying.</p>
+<p>” Deploy error SQL01268: .Net SqlClient Data Provider: Msg 6211, Level 16, State 1, Line 1 CREATE ASSEMBLY failed because type ‘StoredProcedures’ in external_access assembly ‘TestSQL_CLR_Project’ has a static field ‘strr’. Attributes of static fields in external_access assemblies must be marked  readonly in Visual C#, ReadOnly in Visual Basic, or initonly in Visual C++ and intermediate language.<br>
+  An error occurred while the batch was being executed.”</p>
+<p>so, i tried giving readonly property…. it worked…. but, i’m unable to set the value at runtime.</p>
+<p>how can i achieve this ….?</p>
+<p>Thanks 4 ur help.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=235922#respond" onclick="return addComment.moveForm( &quot;comment-235922&quot;, &quot;235922&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Dilip" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-asifhuddani odd alt thread-even depth-1 highlander-comment" id="li-comment-263209">
+		<article id="comment-263209" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/9416719003a562e236e9ab711a574e4c" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-9416719003a562e236e9ab711a574e4c-0">					<cite class="fn"><a href="http://asifhuddani.wordpress.com/" rel="external nofollow" class="url" sl-processed="1">Asif</a></cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-263209" sl-processed="1"><time pubdate="" datetime="2012-03-15T15:54:44+00:00">
+						March 15, 2012 at 3:54 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Hi i am facing issue after clr deployment</p>
+<p>my user has sysadmin right<br>
+but i am not dbowner of database<br>
+i change sp_changedbowner to my user and deploy that and then re change to original one.<br>
+Assembly is UNSAFE, database is Trustworthy on and clr is on</p>
+<p>but execution with dbowner user stored procedure gives below error<br>
+dbowner is not sysadmin.</p>
+<p>Msg 10314, Level 16, State 11, Line 4<br>
+An error occurred in the Microsoft .NET Framework while trying to load assembly id 65672. The server may be running out of resources, or the assembly may not be trusted with PERMISSION_SET = EXTERNAL_ACCESS or UNSAFE. Run the query again, or check documentation to see how to solve the assembly trust issues. For more information about this error:<br>
+<span class="skimlinks-unlinked">System.IO.FileLoadException</span>: Could not load file or assembly ‘pssqlcustmization, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null’ or one of its dependencies. An error relating to security occurred. (Exception from HRESULT: 0x8013150A)<br>
+<span class="skimlinks-unlinked">System.IO.FileLoadException</span>:<br>
+   at System.Reflection.Assembly._nLoad(AssemblyName fileName, String codeBase, Evidence assemblySecurity, Assembly locationHint, StackCrawlMark&amp; stackMark, Boolean throwOnFileNotFound, Boolean forIntrospection)<br>
+   at System.Reflection.Assembly.InternalLoad(AssemblyName assemblyRef, Evidence assemblySecurity, StackCrawlMark&amp; stackMark, Boolean forIntrospection)<br>
+   at System.Reflection.Assembly.InternalLoad(String assemblyString, Evidence assemblySecurity, StackCrawlMark&amp; stackMark, Boolean forIntrospection)<br>
+   at <span class="skimlinks-unlinked">System.Reflection.Assembly.Load(String</span> assemblyString)</p>
+<p>if i change that dbowner and gives right to sysadmin then it works.<br>
+but that’s not what i am looking for.</p>
+<p>i tried to set permission on database that execure, create assembly and alter any assembly but error continues.</p>
+<p>Can you let me know which right need to assign when it’s not sysadmin<br>
+I already checked MSDN and other blogs but not get good idea for practical situations.</p>
+<p>i create stored procedure with EXECUTE AS CALLER.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=263209#respond" onclick="return addComment.moveForm( &quot;comment-263209&quot;, &quot;263209&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Asif" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-322228">
+		<article id="comment-322228" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/f2878b34af71570ebb00e51d057004a9" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-f2878b34af71570ebb00e51d057004a9-0">					<cite class="fn"><a href="http://www.cyberedge.co.in/" rel="external nofollow" class="url" sl-processed="1">Rajesh Sheth</a></cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-322228" sl-processed="1"><time pubdate="" datetime="2012-07-31T11:51:22+00:00">
+						July 31, 2012 at 11:51 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Hi Pinal</p>
+<p>Thanks for detail help on Extended stored procedure, I have a query related to build. My client does not allowed me to install visual studio on production environment so there is any option to generate DLL on local PC with Local database and implement at production server.</p>
+<p>Pl. help me on this issue.</p>
+<p>Regards<br>
+Rajesh Sheth</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=322228#respond" onclick="return addComment.moveForm( &quot;comment-322228&quot;, &quot;322228&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Rajesh Sheth" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-348856">
+		<article id="comment-348856" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/691e13b4d8fb7fd2f30d0e8364522f82" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-691e13b4d8fb7fd2f30d0e8364522f82-0">					<cite class="fn">Mariusz C</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-348856" sl-processed="1"><time pubdate="" datetime="2012-09-15T16:33:42+00:00">
+						September 15, 2012 at 4:33 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Hi,</p>
+<p>You can copy DLL file from VS project BIN folder, and register this DLL asembly on SQL Server using SQL commands. Example:</p>
+<p>create ASSEMBLY SQLCLRTest1 from ‘c:\temp\SQLCLRTest1.dll’ WITH PERMISSION_SET = SAFE<br>
+go</p>
+<p>create procedure YOURCLRPROCEDURENAME(@YOYRPARAMETERNAME int)<br>
+as<br>
+external name<br>
+    [SQLCLRTest1].[StoredProcedures].[YOURC#PROCEDURENAME]<br>
+go </p>
+<p>After that you can delete DLL file from SQL Server. Regards.<br>
+Mariusz</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=348856#respond" onclick="return addComment.moveForm( &quot;comment-348856&quot;, &quot;348856&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Mariusz C" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-388170">
+		<article id="comment-388170" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/ec17253504072df018a7bd076904d053" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-ec17253504072df018a7bd076904d053-0">					<cite class="fn">Jeff</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-388170" sl-processed="1"><time pubdate="" datetime="2012-12-06T20:42:16+00:00">
+						December 6, 2012 at 8:42 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Excellent article and I got it to work with no problem.<br>
+What I need to do is pass in 1 parameter and then do a select from a table and return exactly 1 value. What would be the preferred means of doing this? Do you have an example? I can’t find any on the net for this.</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=388170#respond" onclick="return addComment.moveForm( &quot;comment-388170&quot;, &quot;388170&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Jeff" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-398057">
+		<article id="comment-398057" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/eff509416d4170f99ec4ee8ae5397028" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-eff509416d4170f99ec4ee8ae5397028-0">					<cite class="fn">Sekhar C</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-398057" sl-processed="1"><time pubdate="" datetime="2012-12-23T15:37:42+00:00">
+						December 23, 2012 at 3:37 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>How can we fetch SahrePoint List data in CLR server solution??</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=398057#respond" onclick="return addComment.moveForm( &quot;comment-398057&quot;, &quot;398057&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Sekhar C" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-417203">
+		<article id="comment-417203" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/a7280f3c0373aa9f8048a634cffbac61" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-a7280f3c0373aa9f8048a634cffbac61-0">					<cite class="fn">Suman Miah</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-417203" sl-processed="1"><time pubdate="" datetime="2013-02-03T20:36:52+00:00">
+						February 3, 2013 at 8:36 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Thanks!</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=417203#respond" onclick="return addComment.moveForm( &quot;comment-417203&quot;, &quot;417203&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Suman Miah" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-even depth-1 highlander-comment" id="li-comment-433929">
+		<article id="comment-433929" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/b2c9729e6a33350f7795c25dc904e327" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-b2c9729e6a33350f7795c25dc904e327-0">					<cite class="fn">Shantanu Choudhary</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-433929" sl-processed="1"><time pubdate="" datetime="2013-03-08T19:23:51+00:00">
+						March 8, 2013 at 7:23 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Shantanu Choudhary<br>
+I had created clr using T-SQL but when i am executing the store procedure in T-SQL query window i am getting an</p>
+<p>”<br>
+Msg 6522, Level 16, State 1, Procedure CLRSPTest, Line 0<br>
+A .NET Framework error occurred during execution of user-defined routine or aggregate “CLRSPTest”:<br>
+System.Security.SecurityException: Request for the permission of type ‘System.Security.Permissions.SecurityPermission, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089′ failed.<br>
+System.Security.SecurityException:<br>
+   at System.Security.CodeAccessSecurityEngine.CheckNReturnSO(PermissionToken permToken, CodeAccessPermission demand, StackCrawlMark&amp; stackMark, Int32 unrestrictedOverride, Int32 create)<br>
+   at System.Security.CodeAccessSecurityEngine.Assert(CodeAccessPermission cap, StackCrawlMark&amp; stackMark)<br>
+   at System.Security.CodeAccessPermission.Assert()<br>
+   at StoredProcedures.CLRSPTest()<br>
+”<br>
+In CLR fuction i had written a code</p>
+<p>string MachineName = System.Environment.MachineName.ToString();</p>
+<p>Can any one suggest me why this is happing</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=433929#respond" onclick="return addComment.moveForm( &quot;comment-433929&quot;, &quot;433929&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Shantanu Choudhary" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-odd thread-alt depth-1 highlander-comment" id="li-comment-521437">
+		<article id="comment-521437" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/e683d1dc43750e4f154a186d481315d8" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-e683d1dc43750e4f154a186d481315d8-0">					<cite class="fn">Rami Ebeid</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-521437" sl-processed="1"><time pubdate="" datetime="2013-07-11T21:50:08+00:00">
+						July 11, 2013 at 9:50 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>thanks a lot for the valuable essay, could u help me in the below error<br>
+Could not find stored procedure</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=521437#respond" onclick="return addComment.moveForm( &quot;comment-521437&quot;, &quot;521437&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Rami Ebeid" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	<ul class="children">
+	<li class="comment odd alt depth-2 highlander-comment" id="li-comment-569626">
+		<article id="comment-569626" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/b5f9c0a32bcdfe4e5ab950cb50486ade" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-b5f9c0a32bcdfe4e5ab950cb50486ade-0">					<cite class="fn">Naveen</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-569626" sl-processed="1"><time pubdate="" datetime="2013-08-23T16:38:51+00:00">
+						August 23, 2013 at 4:38 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Really superbbbbbbbbbb</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=569626#respond" onclick="return addComment.moveForm( &quot;comment-569626&quot;, &quot;569626&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Naveen" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+</ul><!-- .children -->
+</li><!-- #comment-## -->
+	<li class="comment byuser comment-author-baalajiselvarajan-2 even thread-even depth-1 highlander-comment" id="li-comment-583063">
+		<article id="comment-583063" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/6d8f8bc24adb0bedd592e99b85e5de06" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-6d8f8bc24adb0bedd592e99b85e5de06-0">					<cite class="fn"><a href="http://balajidotnet.wordpress.com/" rel="external nofollow" class="url" sl-processed="1">Baalaji selvarajan</a></cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-583063" sl-processed="1"><time pubdate="" datetime="2013-09-06T10:38:41+00:00">
+						September 6, 2013 at 10:38 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Good Article</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=583063#respond" onclick="return addComment.moveForm( &quot;comment-583063&quot;, &quot;583063&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Baalaji selvarajan" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="post pingback">
+		<p>Pingback: <a href="http://blog.sqlauthority.com/2013/10/19/sql-server-weekly-series-memory-lane-051/" rel="external nofollow" class="url" sl-processed="1">SQL SERVER – Weekly Series – Memory Lane – #051 | Journey to SQL Authority with Pinal Dave</a></p>
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-685369">
+		<article id="comment-685369" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/feacc681a48fbce689ce3dbfbbd44b4b" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-feacc681a48fbce689ce3dbfbbd44b4b-0">					<cite class="fn">Mohamed</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-685369" sl-processed="1"><time pubdate="" datetime="2013-12-09T11:39:25+00:00">
+						December 9, 2013 at 11:39 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Can you Post about assemblies?….</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=685369#respond" onclick="return addComment.moveForm( &quot;comment-685369&quot;, &quot;685369&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Mohamed" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment even thread-even depth-1 highlander-comment" id="li-comment-1024069">
+		<article id="comment-1024069" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/fca39ecdb7cd32bf8c1bc868a6891a18" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-fca39ecdb7cd32bf8c1bc868a6891a18-0">					<cite class="fn">Jonathan</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-1024069" sl-processed="1"><time pubdate="" datetime="2014-05-02T05:52:41+00:00">
+						May 2, 2014 at 5:52 am						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Great article! However I’m having trouble getting Database templates to show up in Visual Studio 2008. I have SQL Server 2008 R2. The initial install may have been Express – the instance indicates it is. I’ve tried updating SQL Server, and installed newer versions of VS, but cannot get database templates to show up. I’ve also run <span class="skimlinks-unlinked">devenv.exe</span> /installvstemplates at the VS command prompt (32 &amp; 64). Is my version of SQL Server the issue maybe? I’ve spend days on this :-(</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=1024069#respond" onclick="return addComment.moveForm( &quot;comment-1024069&quot;, &quot;1024069&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to Jonathan" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+	<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="li-comment-1096689">
+		<article id="comment-1096689" class="comment">
+			<footer>
+				<div class="comment-author vcard">
+					<img alt="" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/88198961591dff3ba854e958002e8f86" class="avatar avatar-50 grav-hashed grav-hijack" height="50" width="50" id="grav-88198961591dff3ba854e958002e8f86-0">					<cite class="fn">indrajith A B</cite> |
+					<span class="comment-meta commentmetadata">
+						<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-1096689" sl-processed="1"><time pubdate="" datetime="2014-06-11T15:45:39+00:00">
+						June 11, 2014 at 3:45 pm						</time></a>
+											</span><!-- .comment-meta .commentmetadata -->
+
+				</div><!-- .comment-author .vcard -->
+							</footer>
+
+			<div class="comment-content"><p>Hi pinal please me out i am stuck in “HOW TO HANDLE ERRORS IN USER-DEFINED FUNCTION”.</p>
+<p>i know we can’t handle the errors in functions but how to handle error occurred at nth line of function?</p>
+</div>
+
+			<div class="reply">
+				<a class="comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/?replytocom=1096689#respond" onclick="return addComment.moveForm( &quot;comment-1096689&quot;, &quot;1096689&quot;, &quot;respond&quot;, &quot;1390&quot; )" aria-label="Reply to indrajith A B" sl-processed="1">Reply</a>			</div><!-- .reply -->
+		</article><!-- #comment-## -->
+
+	</li><!-- #comment-## -->
+		</ol><!-- .commentlist -->
+
+		
+	
+	
+									<div id="respond" class="comment-respond js">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#respond" style="display:none;" sl-processed="1">Cancel reply</a></small></h3>
+									<form action="http://blog.sqlauthority.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										
+
+
+												<input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="fb351d93cf"><input type="hidden" name="_wp_http_referer" value="/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/">
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest">
+
+<div class="comment-form-field comment-textarea">
+	
+	<div id="comment-form-comment"><textarea tabindex="-1" style="position: absolute; top: -999px; left: 0px; right: auto; bottom: auto; border: 0px; padding: 0px; box-sizing: content-box; word-wrap: break-word; overflow: hidden; -webkit-transition: none; transition: none; height: 0px !important; min-height: 0px !important; font-family: Arial, Helvetica, Tahoma, Verdana, sans-serif; font-size: 14px; font-weight: 400; font-style: normal; letter-spacing: 0px; text-transform: none; text-decoration: none; word-spacing: 0px; text-indent: 0px; line-height: 21px; width: 597px;" class="autosizejs "></textarea><textarea id="comment" name="comment" title="Enter your comment here..." placeholder="Enter your comment here..." style="height: 41px; overflow: hidden; word-wrap: break-word; resize: none;"></textarea></div>
+</div>
+
+<div id="comment-form-identity" style="display: none;">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-form-guest" id="postas-guest" title="Guest" sl-processed="1">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com" sl-processed="1">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter" sl-processed="1">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook" sl-processed="1">
+					<span></span>
+				</a>
+			</li>
+			<li>
+		</li></ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank" sl-processed="1">				<img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/ad516503a11cd5ca435acc9bb6523536" alt="Gravatar" width="25" class="no-grav">
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value=""></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text" value=""></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/wplogo.png" alt="WordPress.com Logo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="">
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="">
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your <span class="skimlinks-unlinked">WordPress.com</span> account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );" sl-processed="1">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#" onclick="javascript:HighlanderComments.switchAccount();return false;" sl-processed="1">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/ad516503a11cd5ca435acc9bb6523536" alt="Twitter picture" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="">
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="">
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );" sl-processed="1">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#" onclick="javascript:HighlanderComments.switchAccount();return false;" sl-processed="1">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/ad516503a11cd5ca435acc9bb6523536" alt="Facebook photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="">
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="">
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );" sl-processed="1">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#" onclick="javascript:HighlanderComments.switchAccount();return false;" sl-processed="1">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-googleplus" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/ad516503a11cd5ca435acc9bb6523536" alt="Google+ photo" width="25" class="no-grav">
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="googleplus_avatar" id="googleplus-avatar" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_user_id" id="googleplus-user_id" class="comment-meta-googleplus" value="">
+				<input type="hidden" name="googleplus_access_token" id="googleplus-access_token" class="comment-meta-googleplus" value="">
+				<p class="comment-form-posting-as pa-googleplus"><strong></strong> You are commenting using your Google+ account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'googleplus' );" sl-processed="1">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#" onclick="javascript:HighlanderComments.switchAccount();return false;" sl-processed="1">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();" sl-processed="1">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+	
+</div>
+
+<script type="text/javascript">
+var highlander_expando_javascript = function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+}
+jQuery(document).ready( highlander_expando_javascript );
+</script>
+
+<div id="comment-form-subscribe" style="display: none;">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6"> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of new comments via email.</label></p><p class="post-subscription-form"><input type="checkbox" name="subscribe_blog" id="subscribe_blog" value="subscribe" style="width: auto;" tabindex="7"> <label class="subscribe-label" id="subscribe-blog-label" for="subscribe_blog" style="display: inline;">Notify me of new posts via email.</label></p></div>
+
+												<p class="form-submit" style="display: none;">
+							<input name="submit" type="submit" id="comment-submit" class="submit" value="Post Comment">
+							<input type="hidden" name="comment_post_ID" value="1390" id="comment_post_ID">
+<input type="hidden" name="comment_parent" id="comment_parent" value="0">
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="af1d996956"></p>
+<input type="hidden" name="genseq" value="1415028880">
+<p style="display: none;"></p>					<input type="hidden" id="ak_js" name="ak_js" value="1415028910079"></form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>
+</div><!-- #comments .comments-area -->
+
+		
+		</div><!-- #content .site-content -->
+	</div><!-- #primary .content-area -->
+
+
+<div id="secondary" class="updateable widget-area" role="complementary">
+		<aside id="text-294926563" class="widget widget_text"><h1 class="widget-title">Community Initiatives</h1>			<div class="textwidget"><a rel="nofollow" href="http://bit.ly/pl-learning" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/pluralsight.jpg" border="0" alt="pluralsight" width="185"></a>
+
+<a rel="nofollow" href="http://bit.ly/sqlelements" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/sqlelements.gif" border="0" alt="Idera" width="185"></a>
+
+<a rel="nofollow" href="http://bit.ly/rg-1010-life" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/worst_dba_days_5_170x90_animated1.gif" border="0" alt="Red-Gate" width="185"></a>
+
+<a rel="nofollow" href="http://bit.ly/dl-spotlight" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/bannerad-sosse-dba-rock-star-170x90-ac-23823.gif" border="0" alt="Dell" width="185"></a>
+
+<a rel="nofollow" href="http://bit.ly/sa-dbforge" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/sql-server-tools.gif" border="0" alt="DBForge" width="185"></a>
+
+<a rel="nofollow" href="http://bit.ly/apex-tools" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/shark-gif.gif" border="0" alt="Apex SQL" width="185"></a>
+
+<div style="height:5px;"></div>
+<a rel="nofollow" href="http://bit.ly/confio-14" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/hog-confio.gif" alt="Confio" width="185"></a>
+
+<a rel="nofollow" href="http://bit.ly/scalebase" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/scalebase.gif" border="0" alt="ScaleBase" width="185"></a>
+
+<div style="height:5px;"></div>
+<a rel="nofollow" href="http://bit.ly/dl-safepeak" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/safepeak_image.gif" alt="SafePeak" width="185"></a>
+
+<a rel="nofollow" href="http://bit.ly/sa-dbchange" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/pinaldave_webgraphic01_020514.png" border="0" alt="Embarcadero" width="185"></a>
+
+<a rel="nofollow" href="http://bit.ly/sql-md" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/melissadata.jpg" border="0" alt="Melissa Data" width="185"></a>
+
+<a rel="nofollow" href="http://bit.ly/sql-me-db" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/sql-ad.png" border="0" alt="ManageEngine" width="185"></a>
+</div>
+		</aside><aside id="text-1" class="widget widget_text"><h1 class="widget-title">About Pinal Dave</h1>			<div class="textwidget"><p style="text-align:justify;"><a href="https://plus.google.com/+PinalDaveSQLAuthority" rel="author" sl-processed="1">Pinal Dave</a> is a <a rel="nofollow" href="http://bit.ly/pl-learning" target="_blank" sl-processed="1">Pluralsight</a> Developer Evangelist. He has authored 11 SQL Server database books, 14 Pluralsight courses and have written over 2900 articles on the database technology on his blog at a http://blog.sqlauthority.com. Along with 10+ years of hands on experience he holds a Masters of Science degree and a number of certifications, including MCTS, MCDBA and MCAD (.NET). His past work experiences include Technology Evangelist at Microsoft and Sr. Consultant at SolidQ.  <br>
+ 
+<a href="http://www.twitter.com/pinaldave" target="_blank" sl-processed="1"><img title="Twitter - Pinal Dave" alt="Twitter - Pinal Dave" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/twittericon49.jpg" height="40" width="40" border="0"></a>    
+ 
+<a href="http://www.facebook.com/SQLAuth" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/facebook49.jpg" width="40" height="40" border="0" alt="facebook">
+
+</a><a rel="author" href="https://plus.google.com/+PinalDaveSQLAuthority?rel=author" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/gplus49.png" width="40" height="40" border="0" alt="Google+"></a>
+
+<a href="http://www.linkedin.com/in/pinaldave" target="_blank" sl-processed="1"><img title="LinkedIn - Pinal Dave" alt="LinkedIn - Pinal Dave" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/linkedin49.jpg" height="40" width="40" border="0"></a>
+
+<a href="http://blog.sqlauthority.com/feed/" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/feed49.png" width="40" height="40" border="0" alt="Feed">
+
+</a><a href="http://www.youtube.com/playlist?list=PL4BD5C24EDB584162" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/youtube_logo1.png" border="0" alt="Youtube" width="110"></a> 
+<br>
+<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/follow_button.21f7daa948263c3043bab783473c3475.en.html" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 125px; height: 20px;"></iframe>
+<br>
+Send Author <a href="https://plus.google.com/+PinalDaveSQLAuthority?rel=author" rel="author" sl-processed="1">Pinal Dave</a>
+an email at <a href="mailto:pinal@sqlauthority.com" sl-processed="1">pinal@sqlauthority.com</a></p>
+
+<a href="http://eepurl.com/eIm4M" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/subscribe-now.png" border="0" alt="Subscribe Now"></a>
+</div>
+		</aside><aside id="text-294926571" class="widget widget_text">			<div class="textwidget"><a rel="nofollow" href="http://bit.ly/rg-1010-ctrl" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/24_percent_170x90.gif" border="0" alt="RedGate" width="185"></a></div>
+		</aside><aside id="blog_subscription-3" class="widget widget_blog_subscription"><h1 class="widget-title"><label for="subscribe-field">Email Subscription</label></h1>
+				<form action="https://subscribe.wordpress.com/" method="post" accept-charset="utf-8" id="subscribe-blog">
+											<p>Enter your email address to subscribe to this blog and receive notifications of new posts by email.</p>
+<p>Join 93,955 other followers</p>
+						<p><input type="text" name="email" style="width: 95%; padding: 1px 2px" placeholder="Enter your email address" value="" id="subscribe-field"></p>
+					
+					<p>
+						<input type="hidden" name="action" value="subscribe">
+						<input type="hidden" name="blog_id" value="668536">
+						<input type="hidden" name="source" value="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/">
+						<input type="hidden" name="sub-type" value="widget">
+						<input type="hidden" name="redirect_fragment" value="blog_subscription-3">
+						<input type="hidden" id="_wpnonce" name="_wpnonce" value="f2965590e3">						<input type="submit" value="Sign me up!">
+					</p>
+				</form>
+			
+</aside><aside id="text-294926572" class="widget widget_text">			<div class="textwidget"><a rel="nofollow" href="http://bit.ly/idera-114" target="_blank" sl-processed="1"><img src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/idera-xevent.gif" alt="Idera" width="185"></a></div>
+		</aside><aside id="text-294926568" class="widget widget_text"><h1 class="widget-title">SQL in Sixty Seconds</h1>			<div class="textwidget"><span class="embed-youtube" style="text-align:center; display: block;"><iframe class="youtube-player" type="text/html" width="220" height="154" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/2ER5BgCAn7g.html" frameborder="0" allowfullscreen="true"></iframe></span></div>
+		</aside><aside id="blog-stats-2" class="widget widget_blog-stats"><h1 class="widget-title">Blog Stats</h1>		<ul>
+			<li>88,030,443 (87 Million+)</li>
+		</ul>
+		</aside><aside id="text-2" class="widget widget_text"><h1 class="widget-title">SQLAuthority Links</h1>			<div class="textwidget"><div style="font-size:14px;">
+
+<b>Top Downloads</b> <br>
+&nbsp; &nbsp;<a href="http://www.pinaldave.com/sql-downloads/pdf-download/" target="_blank" sl-processed="1"><b>PDF Downloads</b></a><br>
+&nbsp; &nbsp;<a href="http://www.pinaldave.com/sql-script-bank/script-downloads-1/" target="_blank" sl-processed="1"><b>Script Downloads</b></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp;--------------------<br>
+<b>Videos and Books</b> <br>
+&nbsp; &nbsp;<a href="http://blog.sqlauthority.com/video-courses/" target="_blank" sl-processed="1"><b>Videos</b></a><br>
+&nbsp; &nbsp;<a href="http://blog.sqlauthority.com/sql-server-books/" target="_blank" sl-processed="1"><b>Books</b></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp;--------------------<br>
+<b>Script Bank</b> <br>
+&nbsp; &nbsp;<a href="http://www.pinaldave.com/sql-script-bank/best-sql-blog-sql-server-script/" target="_blank" sl-processed="1"><b>Favorite Scripts</b></a><br>
+&nbsp; &nbsp;<a href="http://www.pinaldave.com/sql-script-bank/best-sql-blog-sql-server-script1/" target="_blank" sl-processed="1"><b>All Scripts - 1</b></a><br>
+&nbsp; &nbsp;<a href="http://www.pinaldave.com/sql-script-bank/best-sql-blog-sql-server-script2/" target="_blank" sl-processed="1"><b>All Scripts - 2</b></a><br>
+&nbsp; &nbsp;<a href="http://www.pinaldave.com/sql-script-bank/best-sql-blog-sql-server-script3/" target="_blank" sl-processed="1"><b>All Scripts - 3</b></a><br>
+<b>Top Articles</b> <br>
+&nbsp; &nbsp;<a href="http://www.pinaldave.com/best-sql-blog-best-top-articles/best-sql-blog-best-favorite-articles1/" target="_blank" sl-processed="1"><b>Best Articles </b></a><br>
+&nbsp; &nbsp;<a href="http://www.pinaldave.com/best-sql-blog-best-top-articles/best-sql-blog-best-favorite-articles2/" target="_blank" sl-processed="1"><b>Favorite Articles - 1</b></a><br>
+&nbsp; &nbsp;<a href="http://www.pinaldave.com/best-sql-blog-best-top-articles/best-sql-blog-best-favorite-articles/" target="_blank" sl-processed="1"><b>Favorite Articles - 2</b></a><br>
+&nbsp; &nbsp; &nbsp; &nbsp;--------------------<br>
+
+<a href="http://blog.sqlauthority.com/sql-server-interview-questions-and-answers/" target="_blank" sl-processed="1"><b>SQL Interview Q &amp; A</b></a><br>
+<a href="http://blog.sqlauthority.com/2008/09/25/sql-server-guidelines-and-coding-standards/" target="_blank" sl-processed="1"><b>SQL Coding Standards</b></a><br>
+<a href="http://blog.sqlauthority.com/2008/10/02/sql-server-2008-cheat-sheet-one-page-pdf-download/" target="_blank" sl-processed="1"><b>SQL FAQ Download</b></a>
+
+</div></div>
+		</aside><aside id="text-294926564" class="widget widget_text"><h1 class="widget-title">About Nupur Dave</h1>			<div class="textwidget"><p style="text-align:justify;"><a href="http://blog.sqlauthority.com/" target="_blank" sl-processed="1">Nupur Dave</a> loves technology simply because it makes life more convenient. She is devoted to technology because it touches our heart makes our daily lives easier.</p></div>
+		</aside></div><!-- #secondary .widget-area -->
+
+	</div><!-- #main .site-main -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+						<a href="https://wordpress.com/?ref=footer_blog" sl-processed="1">Blog at WordPress.com</a>.
+			<span class="sep"> | </span>
+			<a href="https://wordpress.com/themes/misty-lake/" title="Learn more about this theme" sl-processed="1">The Misty Lake Theme</a>.		</div><!-- .site-info -->
+	</footer><!-- #colophon .site-footer -->
+</div><!-- #page .hfeed .site -->
+
+<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/gprofiles.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/wpgroho.js"></script>
+
+	<script>
+		//initialize and attach hovercards to all gravatars
+		jQuery( document ).ready( function( $ ) {
+			if ( typeof Gravatar.init !== "function" ) {
+				return;
+			}			
+
+			Gravatar.profile_cb = function( hash, id ) {
+				WPGroHo.syncProfileData( hash, id );
+			};
+			Gravatar.my_hash = WPGroHo.my_hash;
+			Gravatar.init( 'body', '#wp-admin-bar-my-account' );
+		});
+	</script>
+
+		<div style="display:none">
+	<div class="grofile-hash-map-cecf554a38e59f700597224306c6e7f7">
+	</div>
+	<div class="grofile-hash-map-27f4f309382490565fd034fd3805f9cf">
+	</div>
+	<div class="grofile-hash-map-2d5e1ddb89782739270bf87d8dfbd3b7">
+	</div>
+	<div class="grofile-hash-map-7343f8ea0e7862f6e9b76f1eec664d34">
+	</div>
+	<div class="grofile-hash-map-02672dba6e2f316085c77221abf2ccc6">
+	</div>
+	<div class="grofile-hash-map-719d482068b53574a6589175699edc57">
+	</div>
+	<div class="grofile-hash-map-65dfb72bef16a891d3f36f238e6dc458">
+	</div>
+	<div class="grofile-hash-map-1a157d4695a10092985159595dad0dde">
+	</div>
+	<div class="grofile-hash-map-84ffb5ae052e04b14a38978234203eac">
+	</div>
+	<div class="grofile-hash-map-7f2a30f267a504c61d6e046efd171d28">
+	</div>
+	<div class="grofile-hash-map-225b35434ed0619dc7d3343ff495e90d">
+	</div>
+	<div class="grofile-hash-map-0bcb8282ce0b14aaa81df205e16ab39d">
+	</div>
+	<div class="grofile-hash-map-4a2a9545b3165fbfa90ed3c25febe80c">
+	</div>
+	<div class="grofile-hash-map-171c7d89024e5ff28642703b42b51e65">
+	</div>
+	<div class="grofile-hash-map-a957e89df0ae03a6cfeb2480670837b3">
+	</div>
+	<div class="grofile-hash-map-ae9d1de501a22e5cfd6db58d0d7071cf">
+	</div>
+	<div class="grofile-hash-map-eb8829007f1624691fd24ff28a0881e1">
+	</div>
+	<div class="grofile-hash-map-f83779c682ed995f5a16d05255fbd06d">
+	</div>
+	<div class="grofile-hash-map-a70bc722ee7638062c85387f9db57212">
+	</div>
+	<div class="grofile-hash-map-a04cc78eebdec1ca19d6ea5a105053b1">
+	</div>
+	<div class="grofile-hash-map-f819ff4746b302a85678c450e0fc59e9">
+	</div>
+	<div class="grofile-hash-map-08052185cac1a6ac634a1c3fb9874ff1">
+	</div>
+	<div class="grofile-hash-map-9416719003a562e236e9ab711a574e4c">
+	</div>
+	<div class="grofile-hash-map-f2878b34af71570ebb00e51d057004a9">
+	</div>
+	<div class="grofile-hash-map-691e13b4d8fb7fd2f30d0e8364522f82">
+	</div>
+	<div class="grofile-hash-map-ec17253504072df018a7bd076904d053">
+	</div>
+	<div class="grofile-hash-map-eff509416d4170f99ec4ee8ae5397028">
+	</div>
+	<div class="grofile-hash-map-a7280f3c0373aa9f8048a634cffbac61">
+	</div>
+	<div class="grofile-hash-map-b2c9729e6a33350f7795c25dc904e327">
+	</div>
+	<div class="grofile-hash-map-e683d1dc43750e4f154a186d481315d8">
+	</div>
+	<div class="grofile-hash-map-b5f9c0a32bcdfe4e5ab950cb50486ade">
+	</div>
+	<div class="grofile-hash-map-6d8f8bc24adb0bedd592e99b85e5de06">
+	</div>
+	<div class="grofile-hash-map-feacc681a48fbce689ce3dbfbbd44b4b">
+	</div>
+	<div class="grofile-hash-map-fca39ecdb7cd32bf8c1bc868a6891a18">
+	</div>
+	<div class="grofile-hash-map-88198961591dff3ba854e958002e8f86">
+	</div>
+	</div>
+<script type="text/javascript">
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"http:\/\/sqlauthority.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/sqlauthority.wordpress.com\/wp-login.php?action=logout&_wpnonce=6be8364369","homeURL":"http:\/\/blog.sqlauthority.com\/","postID":"1390","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"0"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/saved_resource(6)"></script>
+
+	<div id="bit" class="loggedout-follow-normal" style="bottom: -274px;">
+		<a class="bsub" href="javascript:void(0)" sl-processed="1"><span id="bsub-text">Follow</span></a>
+		<div id="bitsubscribe">
+
+					<h3><label for="loggedout-follow-field">Follow “Journey to SQL Authority with Pinal Dave”</label></h3>
+
+			<form action="https://subscribe.wordpress.com/" method="post" accept-charset="utf-8" id="loggedout-follow">
+			<p>Get every new post delivered to your Inbox.</p>
+
+			<p id="loggedout-follow-error" style="display: none;"></p>
+
+						<p class="bit-follow-count">Join 93,955 other followers</p>
+			<p><input type="email" name="email" value="Enter your email address" onfocus="this.value=(this.value==&quot;Enter your email address&quot;) ? &quot;&quot; : this.value;" onblur="this.value=(this.value==&quot;&quot;) ? &quot;Enter email address&quot; : this.value;" id="loggedout-follow-field"></p>
+
+			<input type="hidden" name="action" value="subscribe">
+			<input type="hidden" name="blog_id" value="668536">
+			<input type="hidden" name="source" value="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/">
+			<input type="hidden" name="sub-type" value="loggedout-follow">
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="f2965590e3"><input type="hidden" name="_wp_http_referer" value="/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/">
+			<p id="bsub-subscribe-button"><input type="submit" value="Sign me up"></p>
+			</form>
+					<div id="bsub-credit"><a href="https://wordpress.com/?ref=lof" sl-processed="1">Build a website with WordPress.com</a></div>
+		</div><!-- #bitsubscribe -->
+	</div><!-- #bit -->
+		<script type="text/javascript">
+		(function() {
+			var a, s = document.getElementsByTagName("script")[0];
+			a = document.createElement("script");
+			a.type = "text/javascript";
+			a.async = true;
+			a.src = "http://www.luminate.com/widget/syndicated/137fe395802/";
+			s.parentNode.insertBefore(a, s);
+		})();
+		</script>
+	<script type="text/javascript">
+		WPCOM_sharing_counts = {"http:\/\/blog.sqlauthority.com\/2008\/10\/19\/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure\/":1390}	</script>
+		<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-facebook' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomfacebook', 'menubar=1,resizable=1,width=600,height=400' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-google-plus-1' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomgoogle-plus-1', 'menubar=1,resizable=1,width=480,height=550' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-twitter' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtwitter', 'menubar=1,resizable=1,width=600,height=350' );
+				return false;
+			});
+		});
+		</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-linkedin' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomlinkedin', 'menubar=1,resizable=1,width=580,height=450' );
+				return false;
+			});
+		});
+		</script>
+			
+					<script type="text/javascript">
+			jQuery(document).on('ready', function(){
+				jQuery('body').on('click', 'a.share-pinterest', function(e){
+					e.preventDefault();
+
+					// Load Pinterest Bookmarklet code
+					var s = document.createElement("script");
+					s.type = "text/javascript";
+					s.src = window.location.protocol + "//assets.pinterest.com/js/pinmarklet.js?r=" + ( Math.random() * 99999999 );
+					var x = document.getElementsByTagName("script")[0];
+					x.parentNode.insertBefore(s, x);
+
+					// Trigger Stats
+					var s = document.createElement("script");
+					s.type = "text/javascript";
+					s.src = this + ( this.toString().indexOf( '?' ) ? '&' : '?' ) + 'js_only=1';
+					var x = document.getElementsByTagName("script")[0];
+					x.parentNode.insertBefore(s, x);
+				});
+			});
+			</script>
+				<script type="text/javascript">
+		jQuery(document).on( 'ready post-load', function(){
+			jQuery( 'a.share-tumblr' ).on( 'click', function() {
+				window.open( jQuery(this).attr( 'href' ), 'wpcomtumblr', 'menubar=1,resizable=1,width=450,height=450' );
+				return false;
+			});
+		});
+		</script>
+				<iframe src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/master.html" scrolling="no" id="likes-master" name="likes-master" style="display:none;"></iframe>
+		<div id="likes-other-gravatars"><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		<script type="text/javascript">
+		//<![CDATA[
+			var jetpackLikesWidgetQueue = [];
+			var jetpackLikesWidgetBatch = [];
+			var jetpackLikesMasterReady = false;
+
+			function JetpackLikespostMessage( message, target ) {
+				if ( "string" === typeof message ){
+					try{
+						message = JSON.parse( message );
+					}
+					catch(e) {
+						return;
+					}
+				}
+
+				pm( {
+					target: target,
+					type: 'likesMessage',
+					data: message,
+					origin: '*'
+				} );
+			}
+
+			function JetpackLikesBatchHandler() {
+				var requests = [];
+				jQuery( 'div.jetpack-likes-widget-unloaded' ).each( function( i ) {
+					if ( jetpackLikesWidgetBatch.indexOf( this.id ) > -1 )
+						return;
+					jetpackLikesWidgetBatch.push( this.id );
+					var regex = /like-(post|comment)-wrapper-(\d+)-(\d+)-(\w+)/;
+					var match = regex.exec( this.id );
+					if ( ! match || match.length != 5 )
+						return;
+
+					var info = {
+						blog_id: match[2],
+						width:   this.width
+					};
+
+					if ( 'post' == match[1] ) {
+						info.post_id = match[3];
+					} else if ( 'comment' == match[1] ) {
+						info.comment_id = match[3];
+					}
+
+					info.obj_id = match[4];
+
+					requests.push( info );
+				});
+
+				if ( requests.length > 0 ) {
+					JetpackLikespostMessage( { event: 'initialBatch', requests: requests }, window.frames['likes-master'] );
+				}
+			}
+
+			function JetpackLikesMessageListener( event ) {
+				if ( "undefined" == typeof event.event )
+					return;
+
+				if ( 'masterReady' == event.event ) {
+					jQuery( document ).ready( function() {
+						jetpackLikesMasterReady = true;
+
+						var stylesData = {
+								event: 'injectStyles'
+						};
+
+						if ( jQuery( 'iframe.admin-bar-likes-widget' ).length > 0 ) {
+							JetpackLikespostMessage( { event: 'adminBarEnabled' }, window.frames[ 'likes-master' ] );
+
+							stylesData.adminBarStyles = {
+								background: jQuery( '#wpadminbar .quicklinks li#wp-admin-bar-wpl-like > a' ).css( 'background' ),
+								isRtl: ( 'rtl' == jQuery( '#wpadminbar' ).css( 'direction' ) )
+							};
+						}
+
+						if ( !window.addEventListener )
+							jQuery( '#wp-admin-bar-admin-bar-likes-widget' ).hide();
+
+						stylesData.textStyles = {
+							color: jQuery( '.sd-text-color').css( 'color' ),
+							fontFamily: jQuery( '.sd-text-color' ).css( 'font-family' ),
+							fontSize: jQuery( '.sd-text-color' ).css( 'font-size' ),
+							direction: jQuery( '.sd-text-color' ).css( 'direction' ),
+							fontWeight: jQuery( '.sd-text-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-text-color' ).css( 'font-style' ),
+							textDecoration: jQuery( '.sd-text-color' ).css('text-decoration')
+						};
+
+						stylesData.linkStyles = {
+							color: jQuery( '.sd-link-color' ).css('color'),
+							fontFamily: jQuery( '.sd-link-color' ).css('font-family'),
+							fontSize: jQuery( '.sd-link-color' ).css('font-size'),
+							textDecoration: jQuery( '.sd-link-color' ).css('text-decoration'),
+							fontWeight: jQuery( '.sd-link-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-link-color' ).css( 'font-style' )
+						};
+
+						JetpackLikespostMessage( stylesData, window.frames[ 'likes-master' ] );
+
+						JetpackLikesBatchHandler();
+
+						jQuery( document ).on( 'inview', 'div.jetpack-likes-widget-unloaded', function() {
+							jetpackLikesWidgetQueue.push( this.id );
+						});
+					});
+				}
+
+				if ( 'showLikeWidget' == event.event ) {
+					jQuery( '#' + event.id + ' .post-likes-widget-placeholder'  ).fadeOut( 'fast', function() {
+						jQuery( '#' + event.id + ' .post-likes-widget' ).fadeIn( 'fast', function() {
+							JetpackLikespostMessage( { event: 'likeWidgetDisplayed', blog_id: event.blog_id, post_id: event.post_id, obj_id: event.obj_id }, window.frames['likes-master'] );
+						});
+					});
+				}
+
+				if ( 'clickReblogFlair' == event.event ) {
+					wpcom_reblog.toggle_reblog_box_flair( event.obj_id );
+				}
+
+				if ( 'showOtherGravatars' == event.event ) {
+					var $container = jQuery( '#likes-other-gravatars' );
+					var $list = $container.find( 'ul' );
+
+					$container.hide();
+					$list.html( '' );
+
+					$container.find( '.likes-text span' ).text( event.total );
+
+					jQuery.each( event.likers, function( i, liker ) {
+						$list.append( '<li class="' + liker.css_class + '"><a href="' + liker.profile_URL + '" class="wpl-liker" rel="nofollow" target="_parent"><img src="' + liker.avatar_URL + '" alt="' + liker.name + '" width="30" height="30" style="padding-right: 3px;" /></a></li>');
+					} );
+
+					var offset = jQuery( "[name='" + event.parent + "']" ).offset();
+
+					$container.css( 'left', offset.left + event.position.left - 10 + 'px' );
+					$container.css( 'top', offset.top + event.position.top - 33 + 'px' );
+
+					var rowLength = Math.floor( event.width / 37 );
+					var height = ( Math.ceil( event.likers.length / rowLength ) * 37 ) + 13;
+					if ( height > 204 ) {
+						height = 204;
+					}
+
+					$container.css( 'height', height + 'px' );
+					$container.css( 'width', rowLength * 37 - 7 + 'px' );
+
+					$list.css( 'width', rowLength * 37 + 'px' );
+
+					$container.fadeIn( 'slow' );
+
+					var scrollbarWidth = $list[0].offsetWidth - $list[0].clientWidth;
+					if ( scrollbarWidth > 0 ) {
+						$container.width( $container.width() + scrollbarWidth );
+						$list.width( $list.width() + scrollbarWidth );
+					}
+				}
+			}
+
+			pm.bind( 'likesMessage', function(e) { JetpackLikesMessageListener(e); } );
+
+			jQuery( document ).click( function( e ) {
+				var $container = jQuery( '#likes-other-gravatars' );
+
+				if ( $container.has( e.target ).length === 0 ) {
+					$container.fadeOut( 'slow' );
+				}
+			});
+
+			function JetpackLikesWidgetQueueHandler() {
+				var wrapperID;
+				if ( ! jetpackLikesMasterReady ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+					return;
+				}
+
+				if ( jetpackLikesWidgetQueue.length > 0 ) {
+					// We may have a widget that needs creating now
+					var found = false;
+					while( jetpackLikesWidgetQueue.length > 0 ) {
+						// Grab the first member of the queue that isn't already loading.
+						wrapperID = jetpackLikesWidgetQueue.splice( 0, 1 )[0];
+						if ( jQuery( '#' + wrapperID ).hasClass( 'jetpack-likes-widget-unloaded' ) ) {
+							found = true;
+							break;
+						}
+					}
+					if ( ! found ) {
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				} else if ( jQuery( 'div.jetpack-likes-widget-unloaded' ).length > 0 ) {
+					// Grab any unloaded widgets for a batch request
+					JetpackLikesBatchHandler();
+
+					// Get the next unloaded widget
+					wrapperID = jQuery( 'div.jetpack-likes-widget-unloaded' ).first()[0].id;
+					if ( ! wrapperID ) {
+						// Everything is currently loaded
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				}
+
+				if ( 'undefined' === typeof wrapperID ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+					return;
+				}
+
+				var $wrapper = jQuery( '#' + wrapperID );
+				$wrapper.find( 'iframe' ).remove();
+
+				if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='22px' width='68px' frameBorder='0' scrolling='no' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				} else {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='55px' width='100%' frameBorder='0' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				}
+
+				$wrapper.removeClass( 'jetpack-likes-widget-unloaded' ).addClass( 'jetpack-likes-widget-loading' );
+
+				$wrapper.find( 'iframe' ).load( function( e ) {
+					var $iframe = jQuery( e.target );
+					$wrapper.removeClass( 'jetpack-likes-widget-loading' ).addClass( 'jetpack-likes-widget-loaded' );
+
+					JetpackLikespostMessage( { event: 'loadLikeWidget', name: $iframe.attr( 'name' ), width: $iframe.width() }, window.frames[ 'likes-master' ] );
+
+					if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+						$wrapper.find( 'iframe' ).Jetpack( 'resizeable' );
+					}
+				});
+				setTimeout( JetpackLikesWidgetQueueHandler, 250 );
+			}
+			JetpackLikesWidgetQueueHandler();
+		//]]>
+		</script>
+<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/form.js"></script>
+<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/widgets.js"></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+var recaptcha_options = {"lang":"en"};
+/* ]]> */
+</script>
+<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/saved_resource(7)"></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script>	<script type="text/javascript">
+	var skimlinks_pub_id = "725X584219"
+	var skimlinks_sitename = "sqlauthority.wordpress.com";
+	</script>
+	<script type="text/javascript" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/725X1342.skimlinks.js"></script><script src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/w.js" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'668536','v':'wpcom','tz':'5','user_id':'0','post':'1390','subd':'sqlauthority'});
+ex_go({'crypt':'UE5tW3cvZGRRRWN1LTZlQVFwJTNwRkNDVTE4TjFnNjUmVzImMjhnd104LW4zcG1Kam43bFlFY2lGekVJVnk1Yyt2aCt0YUZrZVI4Rn5pVEc0UVEzQlUwJnUmZW9kUWd3dXZLSXg0MXF8UFRYV3NKLmxHcC8vPUZzLnZ2JmpEcz9SRFMsTjFlUFBsNHpGVFhURz1Nb1NRaCs9bEVnXXBwMnd+Rj1mRTdOYV1bWDQ0eWdiY3ZLMys9WGdkX3kseGtxek1yJkV1bUZ1MC90JVBVcXxiM3xZdHVYNTAyfHk9OC5jWGpvaTFzcHR3VjkyOD1ydGZ2RW5ZMDl2OEhaY2Q5fCt+b1B2ZklWU2F+RGJoYjItV3NIMHAsaGUlZzlwNyZ0akFMUEFoUzlbN2x3X2hwJTFGSC5bYWlnflE='});
+addLoadEvent(function(){linktracker_init('668536',1390);});
+	</script><img id="wpstats" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/g.gif" alt=""><img id="wpstats2" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/g(1).gif" alt="" style="display:none">
+<noscript>&lt;img src="http://pixel.wp.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /&gt;</noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//pixel.wp.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script>
+
+<div id="sharing_email" style="display: none;">
+		<form action="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave.html" method="post">
+			<label for="target_email">Send to Email Address</label>
+			<input type="email" name="target_email" id="target_email" value="">
+
+			
+				<label for="source_name">Your Name</label>
+				<input type="text" name="source_name" id="source_name" value="">
+
+				<label for="source_email">Your Email Address</label>
+				<input type="email" name="source_email" id="source_email" value="">
+
+			
+			<div class="recaptcha" id="sharing_recaptcha"></div><input type="hidden" name="recaptcha_public_key" id="recaptcha_public_key" value="6LcYW8MSAAAAADBAuEH9yaPcF7lWh11Iq62ZKtoo">
+			<img style="float: right; display: none" class="loading" src="./SQL SERVER – Introduction to CLR – Simple Example of CLR Stored Procedure   Journey to SQL Authority with Pinal Dave_files/loading.gif" alt="loading" width="16" height="16">
+			<input type="submit" value="Send Email" class="sharing_send">
+			<a href="http://blog.sqlauthority.com/2008/10/19/sql-server-introduction-to-clr-simple-example-of-clr-stored-procedure/#cancel" class="sharing_cancel" sl-processed="1">Cancel</a>
+
+			<div class="errors errors-1" style="display: none;">
+				Post was not sent - check your email addresses!			</div>
+
+			<div class="errors errors-2" style="display: none;">
+				Email check failed, please try again			</div>
+
+			<div class="errors errors-3" style="display: none;">
+				Sorry, your blog cannot share posts by email.			</div>
+		</form>
+	</div><iframe id="google_osd_static_frame_5390311393421" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body></html>

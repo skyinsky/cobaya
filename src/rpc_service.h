@@ -32,10 +32,10 @@ public:
 			MsgDiscoveryRsp *rsp, Closure *done);
 
 	/* his operations */
-	void StartFlow(RpcController *ctl, const MsgStartReq *req,
-		       MsgStartRsp *rsp, Closure *done);
-	void StopFlow(RpcController *ctl, const MsgStopReq *req,
-		      MsgStopRsp *rsp, Closure *done);
+	void AppendFlow(RpcController *ctl, const MsgNewFlowReq *req,
+			MsgNewFlowRsp *rsp, Closure *done);
+	void RemoveFlow(RpcController *ctl, const MsgDelFlowReq *req,
+			MsgDelFlowRsp *rsp, Closure *done);
 };
 
 } // namespace cobaya
