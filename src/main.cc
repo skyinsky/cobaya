@@ -100,7 +100,6 @@ int main(int argc, char *argv[])
 		DUMP_LOG("load keepalive error");
 		return -1;
 	}
-	DUMP_LOG("fuck");
 
 	event_base_loop(main_base, 0);
 
