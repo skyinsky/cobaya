@@ -28,4 +28,5 @@ windows/bin
 windows/admin/obj
 windows/client/obj
 windows/MedLib
-windows/his/obj
+windows/sql_cobaya/obj
+windows/his_cobaya/obj

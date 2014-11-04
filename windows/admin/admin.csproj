@@ -108,7 +108,6 @@
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cobaya.cs" />
     <Compile Include="Config.cs" />
     <Compile Include="DllPathResolver.cs" />
     <Compile Include="Info.cs" />

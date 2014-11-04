@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("list_cobaya")]
-[assembly: AssemblyDescription("香河县人民医院医疗设备监控服务")]
+[assembly: AssemblyTitle("his_cobaya")]
+[assembly: AssemblyDescription("香河县人民医院医疗设备监控系统")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("香河县人民医院")]
-[assembly: AssemblyProduct("hist_cobaya")]
-[assembly: AssemblyCopyright("Copyright ©  香河县人民医院 2014")]
+[assembly: AssemblyCompany("")]
+[assembly: AssemblyProduct("his_cobaya")]
+[assembly: AssemblyCopyright("Copyright © 香河县人民医院 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("166ce585-49ad-474e-bb11-45ca60d0b220")]
+[assembly: Guid("15ae8c74-ee22-40ad-b0c8-e0e422f853d0")]
 
 // 程序集的版本信息由下面四个值组成:
 //

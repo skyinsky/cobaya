@@ -12,7 +12,7 @@ void loop() {
     Serial.println(1);
   else
     Serial.println(0);
-  delay(5000);
+  delay(1000);
 }
 
 
