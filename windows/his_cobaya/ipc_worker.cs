@@ -17,7 +17,7 @@ namespace cobaya
             _queue = q;
             _syncEvents = e;
 
-            _pipe = new NamedPipeServerStream("cobaya_pipe");
+            _pipe = new NamedPipeServerStream("cobaya_his_pipe");
             _reader = new StreamReader(_pipe);
         }
 
@@ -45,7 +45,7 @@ namespace cobaya
                 catch (Exception)
                 {
                     _pipe.Close();
-                    _pipe = new NamedPipeServerStream("cobaya_pipe");
+                    _pipe = new NamedPipeServerStream("cobaya_his_pipe");
                     _reader = new StreamReader(_pipe);
                 }
             }
@@ -61,7 +61,7 @@ namespace cobaya
                 }
                 else
                 {
-                    NamedPipeClientStream pipe = new NamedPipeClientStream("cobaya_pipe");
+                    NamedPipeClientStream pipe = new NamedPipeClientStream("cobaya_his_pipe");
                     StreamWriter writer = new StreamWriter(pipe);
 
                     pipe.Connect();

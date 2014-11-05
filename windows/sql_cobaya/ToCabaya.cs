@@ -9,7 +9,7 @@ using Microsoft.SqlServer.Server;
 public partial class StoredProcedures
 {
     private static Object thisLock = new Object();
-    private static NamedPipeClientStream pipe = new NamedPipeClientStream("cobaya_pipe");
+    private static NamedPipeClientStream pipe = new NamedPipeClientStream("cobaya_his_pipe");
     private static StreamWriter writer = new StreamWriter(pipe);
 
     [Microsoft.SqlServer.Server.SqlProcedure]
