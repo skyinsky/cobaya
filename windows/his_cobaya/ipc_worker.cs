@@ -33,6 +33,8 @@ namespace cobaya
                     }
 
                     string res = _reader.ReadLine();
+                    if (res == null)
+                        continue;
 
                     lock (((ICollection)_queue).SyncRoot)
                     {
@@ -40,9 +42,11 @@ namespace cobaya
                         _syncEvents.NewItemEvent.Set();
                     }
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
-                    string err = e.Message;
+                    _pipe.Close();
+                    _pipe = new NamedPipeServerStream("cobaya_pipe");
+                    _reader = new StreamReader(_pipe);
                 }
             }
         }

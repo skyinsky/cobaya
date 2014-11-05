@@ -50,7 +50,7 @@ namespace cobaya
             }
             else
             {
-                MessageBox.Show("登录失败，请联系管理员！");
+                //MessageBox.Show("登录失败，请联系管理员！");
             }
         }
 

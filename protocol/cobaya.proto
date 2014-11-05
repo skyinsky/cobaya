@@ -110,6 +110,14 @@ message MsgDelFlowRsp {
 	optional uint32 status = 1;
 }
 
+message MsgOrgFlowReq {
+	required string info = 1;
+}
+
+message MsgOrgFlowRsp {
+	optional uint32 status = 1;
+}
+
 /* rpc 服务 */
 service RpcService {
 	/* admin operation */
@@ -126,4 +134,5 @@ service RpcService {
 	/* his operation */
 	rpc AppendFlow (MsgNewFlowReq) returns (MsgNewFlowRsp);
 	rpc RemoveFlow (MsgDelFlowReq) returns (MsgDelFlowRsp);
+	rpc SetOrgFlow (MsgOrgFlowReq) returns (MsgOrgFlowRsp);
 }

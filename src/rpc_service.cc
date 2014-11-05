@@ -241,5 +241,36 @@ void RpcServiceImpl::RemoveFlow(RpcController *ctl,
 	done->Run();
 }
 
+void RpcServiceImpl::SetOrgFlow(RpcController *ctl,
+				const MsgOrgFlowReq *req,
+				MsgOrgFlowRsp *rsp, Closure *done)
+{
+	DUMP_LOG("msg from his: %s", req->info().c_str());
+
+	rsp->set_status(1);
+
+	done->Run();
+}
+
 
 } // namespace cobaya
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

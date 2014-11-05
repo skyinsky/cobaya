@@ -23,12 +23,17 @@ namespace cobaya
                 {
                     for (; ;)
                     {
+                        string msg = null;
+
                         lock (((ICollection)_queue).SyncRoot)
                         {
                             if (_queue.Count == 0)
                                 break;
-                            string res = _queue.Dequeue();
+                            msg = _queue.Dequeue();
                         }
+
+                        if (msg != null)
+                            RpcClient.SendOrgFlowMsg(msg);
                     }
                 }
                 catch (Exception)

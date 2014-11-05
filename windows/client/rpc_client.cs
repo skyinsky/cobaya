@@ -116,8 +116,11 @@ namespace cobaya
 
                 return rsp.Grant;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                string err = "请联系管理员\n" + e.ToString();
+
+                MessageBox.Show(err);
                 return false;
             }
         }
@@ -189,8 +192,11 @@ namespace cobaya
 
                 return rsp.Grant;
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                string err = "请联系管理员\n" + e.ToString();
+
+                MessageBox.Show(err);
                 return false;
             }
         }

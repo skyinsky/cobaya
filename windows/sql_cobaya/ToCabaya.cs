@@ -13,15 +13,15 @@ public partial class StoredProcedures
     private static StreamWriter writer = new StreamWriter(pipe);
 
     [Microsoft.SqlServer.Server.SqlProcedure]
-    public static void ToCabaya()
+    public static void ToCabaya(string msg)
     {
-        // 在此处放置代码
+        if (msg == null)
+            return;
         bool retry = true;
         
         retry_once:
         try
         {
-
             lock (thisLock)
             {
                 if (!pipe.IsConnected)
@@ -30,7 +30,7 @@ public partial class StoredProcedures
                     writer.AutoFlush = true;
                 }
 
-                writer.WriteLine("sqlserver");
+                writer.WriteLine(msg);
             }
         }
         catch (Exception e)

@@ -36,6 +36,8 @@ public:
 			MsgNewFlowRsp *rsp, Closure *done);
 	void RemoveFlow(RpcController *ctl, const MsgDelFlowReq *req,
 			MsgDelFlowRsp *rsp, Closure *done);
+	void SetOrgFlow(RpcController *ctl, const MsgOrgFlowReq *req,
+			MsgOrgFlowRsp *rsp, Closure *done);
 };
 
 } // namespace cobaya
