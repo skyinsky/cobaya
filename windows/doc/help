@@ -21,7 +21,7 @@ FROM 'C:\Program Files\Reference Assemblies\Microsoft\Framework\v3.5\System.Core
 WITH PERMISSION_SET = UNSAFE
 GO
 
-4.加载his_cobaya.dll
+4.加载sql_cobaya.dll
 CREATE ASSEMBLY [sql_cobaya]
 AUTHORIZATION [dbo]
 FROM 'c:\sql_cobaya.dll'
