@@ -34,9 +34,11 @@ struct FlowHead {
 };
 
 struct FlowDesc {
-#define FLOW_WATCH	(0x1 << 1)
-#define FLOW_ACTIVE	(0x1 << 2)
-#define FLOW_EVENT	(0x1 << 3)
+#define FLOW_REMOVE	(0x1 << 1)
+#define FLOW_ITEDEL	(0x1 << 2)
+#define FLOW_WATCH	(0x1 << 3)
+#define FLOW_ACTIVE	(0x1 << 4)
+#define FLOW_EVENT	(0x1 << 5)
 	unsigned long flags;
 
 	char id[ULEN + 1];
@@ -80,9 +82,21 @@ static void __del_flow(kref *ref)
 
 static void handle_flow_timeout(int fd, short ev, void *arg)
 {
+	bool del_all = true;
 	FlowDesc *flow = (FlowDesc *)arg;
 
-	while (!kref_put(&flow->ref, __del_flow));
+	spin_lock(&flow->owner->lock);
+	flow->flags |= FLOW_REMOVE;
+	if (flow->flags & FLOW_ITEDEL) {
+		del_all = false;
+	}
+	spin_unlock(&flow->owner->lock);
+
+	if (del_all) {
+		while (!kref_put(&flow->ref, __del_flow));
+	} else {
+		kref_put(&flow->ref, __del_flow);
+	}
 }
 
 static void handle_flow_monitor(int fd, short ev, void *arg)
@@ -303,7 +317,14 @@ void del_flow(const char *host, const char *id)
 				if (!(flow->flags & FLOW_WATCH)) {
 					list_del(&flow->list);
 					del = true;
-				} else if (!(flow->flags & FLOW_ACTIVE)) {
+					break;
+				}
+				if (flow->flags & FLOW_REMOVE) {
+					break;
+				} else {
+					flow->flags |= FLOW_ITEDEL;
+				}
+				if (!(flow->flags & FLOW_ACTIVE)) {
 					kref_get(&flow->ref);
 					flow->flags |= FLOW_ACTIVE;
 					active = true;
@@ -319,10 +340,6 @@ void del_flow(const char *host, const char *id)
 		cache_free(flow_cache, flow);
 	}
 	if (active && (write(notify_fd, &flow, sizeof(flow)) != sizeof(flow))) {
-		spin_lock(&head->lock);
-		flow->flags &= ~FLOW_ACTIVE;
-		spin_unlock(&head->lock);
-
 		kref_put(&flow->ref, __del_flow);
 		DUMP_LOG("failed writing notify pipe");
 	}
