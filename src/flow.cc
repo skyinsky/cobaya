@@ -257,9 +257,9 @@ static inline FlowHead* get_flow_head(const char *host)
 
 bool new_flow(const char *host, const char *id)
 {
-	bool res = true;
-	FlowDesc *desc;
+	bool res = true, has = false;
 	FlowHead *head;
+	FlowDesc *desc, *pos;
 
 	head = get_flow_head(host);
 	if (unlikely(head == NULL)) {
@@ -288,8 +288,22 @@ bool new_flow(const char *host, const char *id)
 	}
 
 	spin_lock(&head->lock);
-	list_add_tail(&desc->list, &head->list);
+	list_for_each_entry(pos, &head->list, list) {
+		if (!strncmp(pos->id, id, ULEN)) {
+			has = true;
+			break;
+		}
+	}
+	if (!has) {
+		list_add_tail(&desc->list, &head->list);
+	}
 	spin_unlock(&head->lock);
+
+	if (has) {
+		cache_free(flow_cache, desc);
+		res = false;
+		DUMP_LOG("user(id = %s) already add before", id);
+	}
 
 out:	return res;
 }
