@@ -16,5 +16,6 @@ namespace cobaya
         public static UInt32 sensor;
 
         public static LoginForm login_form;
+        public static CheckForm check_form;
     }
 }

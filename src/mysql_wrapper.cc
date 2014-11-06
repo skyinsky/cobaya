@@ -77,13 +77,16 @@ int MysqlWrapper::SelectQuery(const char* szSQL) {
 			ERRMSG2("%s", mysql_error(&m_connection));
 			//printf("%s", mysql_error(&m_connection));
 			//printf("ReConnect()  is called, select111  !!!***\r\n");
-			DUMP_LOG("%s", mysql_error(&m_connection));
 			int nRet = ReConnect();
-			if (nRet != 0)
+			if (nRet != 0) {
+				DUMP_LOG("%s", mysql_error(&m_connection));
 				return -3;
+			}
 			//
-			if (mysql_real_query(&m_connection, szSQL, strlen(szSQL)) != 0)
+			if (mysql_real_query(&m_connection, szSQL, strlen(szSQL)) != 0) {
+				DUMP_LOG("%s", mysql_error(&m_connection));
 				return -33;
+			}
 			//
 		}
 		//释放上一次的结果集
@@ -130,8 +133,16 @@ int MysqlWrapper::ModifyQuery(const char* szSQL) {
 		//查询, 实际上开始真正地修改数据库
 		if (mysql_real_query(&m_connection, szSQL, strlen(szSQL)) != 0) {
 			ERRMSG2("%s", mysql_error(&m_connection));
-			DUMP_LOG("%s", mysql_error(&m_connection));
-			return -3;
+			int nRet = ReConnect();
+			if (nRet != 0) {
+				DUMP_LOG("%s", mysql_error(&m_connection));
+				return -3;
+			}
+			//
+			if (mysql_real_query(&m_connection, szSQL, strlen(szSQL)) != 0) {
+				DUMP_LOG("%s", mysql_error(&m_connection));
+				return -33;
+			}
 		}
 	} catch (...) {
 		DUMP_LOG("%s", "ReConnect()  is called  ,modify!!!***");
@@ -207,6 +218,7 @@ int MysqlWrapper::ReConnect() {
 		DUMP_LOG("%s", mysql_error(&m_connection));
 		return -1;
 	}
+	mysql_options(&m_connection, MYSQL_SET_CHARSET_NAME, "utf8");
 	//设置连接标志为 true
 	SetConnected(true);
 	return 0;

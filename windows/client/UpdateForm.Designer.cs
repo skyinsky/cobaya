@@ -118,10 +118,12 @@
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.oklogin);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "UpdateForm";
             this.ShowInTaskbar = false;
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -74,7 +74,7 @@
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
             // 
-            // login
+            // LoginForm
             // 
             this.AcceptButton = this.oklogin;
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
@@ -89,10 +89,12 @@
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.oklogin);
             this.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Shadow;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "login";
+            this.Name = "LoginForm";
             this.ShowInTaskbar = false;
+            this.TopMost = true;
             this.ResumeLayout(false);
             this.PerformLayout();
 

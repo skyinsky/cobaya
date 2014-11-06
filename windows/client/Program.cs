@@ -52,7 +52,37 @@ namespace cobaya
             }
             Info.login_form.splashScreenManager1.CloseWaitForm();
 
-            Application.Run(new MainFrame());
+            //queue & events
+            queue = new Queue<MsgDiscoveryReq>();
+            sync = new SyncEvents();
+
+            //com thread
+            com_worker = new ComWorker(queue, sync);
+            com_thread = new Thread(com_worker.Routine);
+            com_thread.Name = "com";
+
+            //rpc thread
+            rpc_worker = new RpcWorker(queue, sync);
+            rpc_thread = new Thread(rpc_worker.Routine);
+            rpc_thread.Name = "rpc";
+
+            //start thread
+            com_thread.Start();
+            rpc_thread.Start();
+
+            while (!com_thread.IsAlive) ;
+            while (!rpc_thread.IsAlive) ;
+
+            Application.Run(new MainFrame(queue, sync));
         }
+
+        private static ComWorker com_worker;
+        private static Thread com_thread;
+
+        private static RpcWorker rpc_worker;
+        private static Thread rpc_thread;
+
+        private static Queue<MsgDiscoveryReq> queue;
+        private static SyncEvents sync;
     }
 }

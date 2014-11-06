@@ -1967,7 +1967,7 @@
     <value>CenterScreen</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>系统登录</value>
+    <value>登录系统</value>
   </data>
   <data name="&gt;&gt;splashScreenManager1.Name" xml:space="preserve">
     <value>splashScreenManager1</value>
@@ -1976,7 +1976,7 @@
     <value>DevExpress.XtraSplashScreen.SplashScreenManager, DevExpress.XtraEditors.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>login</value>
+    <value>LoginForm</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>DevExpress.XtraEditors.XtraForm, DevExpress.Utils.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a</value>

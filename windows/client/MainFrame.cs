@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,7 +15,7 @@ namespace cobaya
 {
     public partial class MainFrame : DevExpress.XtraEditors.XtraForm
     {
-        public MainFrame mframe;
+        //public MainFrame mframe;
     
         //UI 图像管理定时器
         private bool mfram_show;
@@ -24,7 +25,10 @@ namespace cobaya
 
         public bool login_yes;
 
-        public MainFrame()
+        private Queue<MsgDiscoveryReq> _queue;
+        private SyncEvents _syncEvents;
+
+        public MainFrame(Queue<MsgDiscoveryReq> q, SyncEvents e)
         {
             InitializeComponent();
 
@@ -36,6 +40,15 @@ namespace cobaya
             timer.Elapsed += new ElapsedEventHandler(timer_hide_main_frame);
             timer.Interval = 3000;
             timer.Enabled = true;
+
+            timer1.Interval = (int)Info.heartbeat * 1000;
+            timer1.Enabled = true;
+
+            _queue = q;
+            _syncEvents = e;
+
+            //Info.check_form = new CheckForm();
+            //Info.check_form.Show(this);
         }
 
         private  void timer_hide_main_frame(object sender, ElapsedEventArgs e)
@@ -128,6 +141,34 @@ namespace cobaya
 
             this.notifyIcon.BalloonTipText = show;
             this.notifyIcon.Text = show;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            MsgDiscoveryReq.Builder req_build;
+            req_build = MsgDiscoveryReq.CreateBuilder();
+            req_build.SetHost(Info.host);
+            req_build.SetUser(Info.user);
+            req_build.SetPerson(false);
+
+            MsgDiscoveryReq req = req_build.Build();
+
+            lock (((ICollection)_queue).SyncRoot)
+            {
+                _queue.Enqueue(req);
+                _syncEvents.NewItemEvent.Set();
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            timer2.Enabled = false;
+            timer2.Dispose();
+            timer2 = null;
+
+            Info.check_form = new CheckForm();
+            Info.check_form.Show(this);
+            //Info.check_form.ShowDialog();
         }
 
     }

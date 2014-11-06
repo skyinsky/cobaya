@@ -12,6 +12,9 @@ namespace cobaya
 {
     class RpcClient
     {
+        private static RcfProtoChannel _channel;
+        private static RpcService.Stub _stub;
+
         public static bool Init()
         {
             try
@@ -24,6 +27,18 @@ namespace cobaya
 
                 // Initialize RCFProto.
                 RCFProto.Init();
+
+                // Create channel.
+                _channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
+
+                // 5s connect timeout.
+                _channel.SetConnectTimeoutMs(5 * 1000);
+
+                // 10s remote call timeout.
+                _channel.SetRemoteCallTimeoutMs(10 * 1000);
+
+                // Create service stub.
+                _stub = new RpcService.Stub(_channel);
 
                 return true;
             }
@@ -197,6 +212,25 @@ namespace cobaya
                 string err = "请联系管理员\n" + e.ToString();
 
                 MessageBox.Show(err);
+                return false;
+            }
+        }
+
+        public static bool AppendInfo(MsgDiscoveryReq req)
+        {
+            try
+            {
+                // Make a synchronous remote call to server.
+                _stub.AppendInfo(null, req, null);
+                MsgDiscoveryRsp rsp = (MsgDiscoveryRsp)_channel.GetResponse();
+
+                return rsp.Grant;
+            }
+            catch (Exception)
+            {
+                //string err = "请联系管理员\n" + e.ToString();
+
+                //MessageBox.Show(err);
                 return false;
             }
         }
