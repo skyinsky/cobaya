@@ -4,6 +4,7 @@
 #include "config.h"
 #include "office.h"
 #include "mysql_wrapper.h"
+#include "main.h"
 
 namespace cobaya {
 
@@ -29,40 +30,29 @@ int load_office_list()
 {
 	int err = 0;
 	char **row;
-	MysqlWrapper con;
 
-	if (con.Connect(g_config.mysql_cobaya_ip,
-			g_config.mysql_user,
-			g_config.mysql_passwd,
-			g_config.mysql_db)) {
+	if (main_mysql.SelectQuery("SELECT * FROM `科室`")) {
 		DUMP_LOG("connect mysql error");
 		err = -1;
 		goto out;
-	}
-	if (con.SelectQuery("SELECT * FROM `科室`")) {
-		DUMP_LOG("connect mysql error");
-		err = -1;
-		goto close;
 	}
 
 	/* point to self */
 	office_head.next = &office_head;
 
-	for (; (row = con.FetchRow()) != NULL;) {
+	for (; (row = main_mysql.FetchRow()) != NULL;) {
 		OfficeDesc *res = NULL;
 
 		if ((res = parser_rows(row)) == NULL) {
 			DUMP_LOG("parser mysql row error");
 			err = -1;
-			goto close;
+			goto out;
 		}
 
 		res->next = office_head.next;
 		office_head.next = res;
 	}
 
-close:
-	con.CloseConnect();
 out:
 	return err;
 }

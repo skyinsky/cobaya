@@ -40,10 +40,7 @@ static int load_main_context()
 	}
 
 	/* init mysql conn */
-	if (main_mysql.Connect(g_config.mysql_cobaya_ip,
-			       g_config.mysql_user,
-			       g_config.mysql_passwd,
-			       g_config.mysql_db)) {
+	if (main_mysql.Connect()) {
 		DUMP_LOG("connect mysql error");
 		return -1;
 	}

@@ -5,6 +5,7 @@
 #include "config.h"
 #include "mysql_wrapper.h"
 #include "timer.h"
+#include "main.h"
 
 namespace cobaya {
 
@@ -12,37 +13,34 @@ DevDesc dev_head;
 
 int load_dev_list()
 {
-	int err = 0;
+	int err = 0, count;
 	char **row;
-	MysqlWrapper con;
 	DevDesc *desc, *dev;
 
-	if (con.Connect(g_config.mysql_cobaya_ip,
-			g_config.mysql_user,
-			g_config.mysql_passwd,
-			g_config.mysql_db)) {
-		DUMP_LOG("connect mysql error");
+	if (main_mysql.SelectQuery("SELECT * FROM `设备`")) {
+		DUMP_LOG("query mysql error");
 		err = -1;
 		goto out;
 	}
-	if (con.SelectQuery("SELECT * FROM `设备`")) {
-		DUMP_LOG("query mysql error");
-		err = -1;
-		goto close;
-	}
+	count = main_mysql.GetNumRows();
 
 	/* point to self */
 	dev_head.next = &dev_head;
 
-	desc = (DevDesc *)malloc(sizeof(*desc) * con.m_iFields);
+	desc = (DevDesc *)malloc(sizeof(*desc) * count);
 	if (desc == NULL) {
 		DUMP_LOG("no memory");
 		err = -1;
-		goto close;
+		goto out;
 	}
-	memset(desc, 0, sizeof(*desc) * con.m_iFields);
+	memset(desc, 0, sizeof(*desc) * count);
 
-	for (dev = desc; (row = con.FetchRow()) != NULL; dev++) {
+	for (dev = desc; (row = main_mysql.FetchRow()) != NULL; dev++) {
+		if (main_mysql.GetNumFields() < 4) {
+			DUMP_LOG("[cobaya.设备] 表字段错误");
+			err = -1;
+			goto out;
+		}
 		strcpy(dev->code, row[0]);
 		strcpy(dev->name, row[1]);
 		strcpy(dev->host, row[2]);
@@ -52,8 +50,6 @@ int load_dev_list()
 		dev_head.next = dev;
 	}
 
-close:
-	con.CloseConnect();
 out:
 	return err;
 }

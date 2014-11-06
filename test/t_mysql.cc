@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "mysql_wapper.h"
+#include "mysql.h"
 
 using namespace cobaya;
 

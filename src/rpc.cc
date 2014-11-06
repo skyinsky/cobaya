@@ -125,10 +125,7 @@ void RpcServer::SlaveInit()
 		DUMP_LOG("no memory");
 		exit(EXIT_FAILURE);
 	}
-	if (mysql->Connect(g_config.mysql_cobaya_ip,
-			   g_config.mysql_user,
-			   g_config.mysql_passwd,
-			   g_config.mysql_db)) {
+	if (mysql->Connect()) {
 		DUMP_LOG("connect mysql error");
 		exit(EXIT_FAILURE);
 	}
@@ -138,7 +135,8 @@ void RpcServer::SlaveExit()
 {
 	if (mysql == NULL)
 		return;
-	mysql->CloseConnect();
+	delete mysql;
+	mysql = NULL;
 }
 
 int RpcServer::CreateThreadPool(int workers)
