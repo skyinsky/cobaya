@@ -44,6 +44,9 @@ int load_config(const char *path)
 	config.compact_mysql = iniparser_getint(ini, "compact:mysql", 90);
 	config.compact_flow = iniparser_getint(ini, "compact:flow", 2);
 
+	config.watch_allow = iniparser_getboolean(ini, "watch:allow", false);
+	config.watch_flow_life = iniparser_getint(ini, "watch:flow_life", 10);
+
 	g_config = config;
 	g_config.dir = strdup(config.dir);
 	g_config.rpc_ip = strdup(config.rpc_ip);

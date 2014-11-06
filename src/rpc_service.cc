@@ -7,6 +7,7 @@
 #include "office.h"
 #include "user.h"
 #include "flow.h"
+#include "main.h"
 #include "rpc.h"
 #include "rpc_service.h"
 #include "mysql_wrapper.h"
@@ -14,8 +15,6 @@
 namespace cobaya {
 
 using namespace RCF;
-
-bool g_start_monitor = false;
 
 RpcServiceImpl::RpcServiceImpl()
 {

@@ -1,11 +1,12 @@
 #ifndef _RPC_H
 #define _RPC_H
 
-#include "mysql_wrapper.h"
-
 namespace cobaya {
 
+class MysqlWrapper;
+
 /* rpc worker's connection */
+extern __thread int notify_fd;
 extern __thread MysqlWrapper *mysql;
 
 int  start_rpc_server();

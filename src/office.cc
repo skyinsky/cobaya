@@ -31,7 +31,7 @@ int load_office_list()
 	int err = 0;
 	char **row;
 
-	if (main_mysql.SelectQuery("SELECT * FROM `科室`")) {
+	if (main_mysql->SelectQuery("SELECT * FROM `科室`")) {
 		DUMP_LOG("connect mysql error");
 		err = -1;
 		goto out;
@@ -40,7 +40,7 @@ int load_office_list()
 	/* point to self */
 	office_head.next = &office_head;
 
-	for (; (row = main_mysql.FetchRow()) != NULL;) {
+	for (; (row = main_mysql->FetchRow()) != NULL;) {
 		OfficeDesc *res = NULL;
 
 		if ((res = parser_rows(row)) == NULL) {

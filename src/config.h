@@ -27,6 +27,9 @@ struct Config {
 	bool compact_allow;
 	int compact_mysql;
 	int compact_flow;
+
+	bool watch_allow;
+	int watch_flow_life;
 };
 
 extern Config g_config;

@@ -33,7 +33,7 @@ static void store_timeout_exception(DevDesc *dev)
 
 	sprintf(tmp, "INSERT INTO `异常` VALUES ('%s', '%s', '%s', '%s', '%s')",
 		dev->code, dev->name, dev->host, dev->office, datetmp);
-	if (main_mysql.ModifyQuery(tmp)) {
+	if (main_mysql->ModifyQuery(tmp)) {
 		DUMP_LOG("insert value error");
 	}
 }

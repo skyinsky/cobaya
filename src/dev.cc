@@ -17,12 +17,12 @@ int load_dev_list()
 	char **row;
 	DevDesc *desc, *dev;
 
-	if (main_mysql.SelectQuery("SELECT * FROM `设备`")) {
+	if (main_mysql->SelectQuery("SELECT * FROM `设备`")) {
 		DUMP_LOG("query mysql error");
 		err = -1;
 		goto out;
 	}
-	count = main_mysql.GetNumRows();
+	count = main_mysql->GetNumRows();
 
 	/* point to self */
 	dev_head.next = &dev_head;
@@ -35,8 +35,8 @@ int load_dev_list()
 	}
 	memset(desc, 0, sizeof(*desc) * count);
 
-	for (dev = desc; (row = main_mysql.FetchRow()) != NULL; dev++) {
-		if (main_mysql.GetNumFields() < 4) {
+	for (dev = desc; (row = main_mysql->FetchRow()) != NULL; dev++) {
+		if (main_mysql->GetNumFields() < 4) {
 			DUMP_LOG("[cobaya.设备] 表字段错误");
 			err = -1;
 			goto out;

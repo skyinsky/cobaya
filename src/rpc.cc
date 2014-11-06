@@ -7,6 +7,7 @@
 #include "rpc.h"
 #include "rpc_service.h"
 #include "config.h"
+#include "flow.h"
 #include "mysql_wrapper.h"
 
 namespace cobaya {
@@ -15,6 +16,7 @@ using namespace RCF;
 using namespace boost;
 using namespace google::protobuf;
 
+__thread int notify_fd;
 __thread MysqlWrapper *mysql;
 
 class RpcServer {
@@ -56,6 +58,8 @@ private:
 	/* define rpc service implimentation */
 	RpcServiceImpl impl;
 };
+
+static RpcServer g_server;
 
 RpcServer::RpcServer() : impl()
 {
@@ -118,6 +122,25 @@ int RpcServer::AddEndpoint(const char *ip, uint16_t port)
 	return res;
 }
 
+static int init_count;
+static pthread_mutex_t init_lock = PTHREAD_MUTEX_INITIALIZER;
+static pthread_cond_t init_cond = PTHREAD_COND_INITIALIZER;
+
+static void wait_for_thread_registration(int nthreads)
+{
+	while (init_count < nthreads) {
+		pthread_cond_wait(&init_cond, &init_lock);
+	}
+}
+
+static void register_thread_initialized(void)
+{
+	pthread_mutex_lock(&init_lock);
+	init_count++;
+	pthread_cond_signal(&init_cond);
+	pthread_mutex_unlock(&init_lock);
+}
+
 void RpcServer::SlaveInit()
 {
 	mysql = new MysqlWrapper();
@@ -129,6 +152,13 @@ void RpcServer::SlaveInit()
 		DUMP_LOG("connect mysql error");
 		exit(EXIT_FAILURE);
 	}
+
+	if (load_flow_monitor()) {
+		DUMP_LOG("load flow monitor error");
+		exit(EXIT_FAILURE);
+	}
+
+	register_thread_initialized();
 }
 
 void RpcServer::SlaveExit()
@@ -137,6 +167,8 @@ void RpcServer::SlaveExit()
 		return;
 	delete mysql;
 	mysql = NULL;
+
+	register_thread_initialized();
 }
 
 int RpcServer::CreateThreadPool(int workers)
@@ -220,8 +252,6 @@ int RpcServer::BindService()
 	return res;
 }
 
-static RpcServer g_server;
-
 int start_rpc_server()
 {
 	if (g_server.Init()) {
@@ -243,12 +273,23 @@ int start_rpc_server()
 		return -1;
 	}
 
+	/* Wait for all the threads to set themselves up before returning. */
+	pthread_mutex_lock(&init_lock);
+	wait_for_thread_registration(g_config.worker);
+	pthread_mutex_unlock(&init_lock);
+
 	return 0;
 }
 
 void stop_rpc_server()
 {
 	g_server.StopServer();
+
+	/* Wait for all the threads to set themselves up before returning. */
+	pthread_mutex_lock(&init_lock);
+	init_count = 0;
+	wait_for_thread_registration(g_config.worker);
+	pthread_mutex_unlock(&init_lock);
 }
 
 } // namespace cobaya

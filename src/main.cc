@@ -17,8 +17,9 @@
 
 namespace cobaya {
 
+bool g_start_monitor;
 event_base *main_base;
-MysqlWrapper main_mysql;
+MysqlWrapper *main_mysql;
 
 } // namespace cobaya
 
@@ -39,8 +40,13 @@ static int load_main_context()
 		return -1;
 	}
 
-	/* init mysql conn */
-	if (main_mysql.Connect()) {
+	/* init mysql for main thread */
+	main_mysql = new MysqlWrapper();
+	if (main_mysql == NULL) {
+		DUMP_LOG("no memory");
+		return -1;
+	}
+	if (main_mysql->Connect()) {
 		DUMP_LOG("connect mysql error");
 		return -1;
 	}

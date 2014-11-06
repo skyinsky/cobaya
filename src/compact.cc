@@ -24,7 +24,7 @@ static inline void erase_log_table()
 {
 	const char *sql = "TRUNCATE TABLE 日志";
 
-	if (main_mysql.ModifyQuery(sql)) {
+	if (main_mysql->ModifyQuery(sql)) {
 		DUMP_LOG("truncate table error");
 	}
 }
@@ -33,7 +33,7 @@ static inline void erase_exception_table()
 {
 	const char *sql = "TRUNCATE TABLE 异常";
 
-	if (main_mysql.ModifyQuery(sql)) {
+	if (main_mysql->ModifyQuery(sql)) {
 		DUMP_LOG("truncate table error");
 	}
 }
