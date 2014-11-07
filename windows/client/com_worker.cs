@@ -84,7 +84,7 @@ namespace cobaya
                 _serialPort = new SerialPort();
 
                 // Allow the user to set the appropriate properties.
-                _serialPort.PortName = "com1";
+                _serialPort.PortName = Config.dev_port;
                 _serialPort.BaudRate = 9600;
                 _serialPort.Parity = Parity.None;
                 _serialPort.DataBits = 8;

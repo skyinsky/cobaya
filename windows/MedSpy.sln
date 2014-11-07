@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "his_cobaya", "his_cobaya\hi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sql_cobaya", "sql_cobaya\sql_cobaya.csproj", "{A03D237B-973E-4148-81EE-0375963CDC97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "serial_test", "serial_test\serial_test.csproj", "{8A386441-7674-44CF-AAA0-828FFC4265ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,16 @@ Global
 		{A03D237B-973E-4148-81EE-0375963CDC97}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A03D237B-973E-4148-81EE-0375963CDC97}.Release|Mixed Platforms.Deploy.0 = Release|Any CPU
 		{A03D237B-973E-4148-81EE-0375963CDC97}.Release|x86.ActiveCfg = Release|Any CPU
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Debug|x86.ActiveCfg = Debug|x86
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Debug|x86.Build.0 = Debug|x86
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Release|Any CPU.ActiveCfg = Release|x86
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Release|Mixed Platforms.Build.0 = Release|x86
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Release|x86.ActiveCfg = Release|x86
+		{8A386441-7674-44CF-AAA0-828FFC4265ED}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
