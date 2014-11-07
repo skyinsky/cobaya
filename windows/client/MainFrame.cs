@@ -15,7 +15,7 @@ namespace cobaya
 {
     public partial class MainFrame : DevExpress.XtraEditors.XtraForm
     {
-        //public MainFrame mframe;
+        public static MainFrame mframe;
     
         //UI 图像管理定时器
         private bool mfram_show;
@@ -27,6 +27,9 @@ namespace cobaya
 
         private Queue<MsgDiscoveryReq> _queue;
         private SyncEvents _syncEvents;
+
+        private static UiWorker ui_worker;
+        private static Thread ui_thread;
 
         public MainFrame(Queue<MsgDiscoveryReq> q, SyncEvents e)
         {
@@ -46,6 +49,8 @@ namespace cobaya
 
             _queue = q;
             _syncEvents = e;
+
+            mframe = this;
 
             //Info.check_form = new CheckForm();
             //Info.check_form.Show(this);
@@ -166,8 +171,15 @@ namespace cobaya
             timer2.Dispose();
             timer2 = null;
 
-            Info.check_form = new CheckForm();
-            Info.check_form.Show(this);
+            ui_worker = new UiWorker();
+            ui_thread = new Thread(ui_worker.Routine);
+            ui_thread.Name = "ui_id";
+
+            ui_thread.Start();
+            while (!ui_thread.IsAlive) ;
+
+            //Info.check_form = new CheckForm();
+            //Info.check_form.Show(this);
             //Info.check_form.ShowDialog();
         }
 

@@ -99,6 +99,12 @@
     <Compile Include="Config.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="PortForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PortForm.Designer.cs">
+      <DependentUpon>PortForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="rpc_worker.cs" />
     <Compile Include="sync.cs" />
     <Compile Include="WaitForm.cs">
@@ -136,6 +142,10 @@
     <Compile Include="CheckForm.Designer.cs">
       <DependentUpon>CheckForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ui_worker.cs" />
+    <EmbeddedResource Include="PortForm.resx">
+      <DependentUpon>PortForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="WaitForm.resx">
       <DependentUpon>WaitForm.cs</DependentUpon>
     </EmbeddedResource>
