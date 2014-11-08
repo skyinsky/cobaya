@@ -47,6 +47,8 @@ namespace cobaya
                         if (_hit_person >= Info.person)
                         {
                             find_person();
+
+                            _hit_person = 0;
                         }
                     }
                     else
