@@ -14,6 +14,7 @@ namespace cobaya
         public static string dev_code;
         public static UInt32 heartbeat;
         public static UInt32 sensor;
+        public static UInt32 person;
 
         public static LoginForm login_form;
         public static CheckForm check_form;

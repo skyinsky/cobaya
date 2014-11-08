@@ -88,6 +88,7 @@ namespace cobaya
                 Info.dev_code = rsp.DevCode;
                 Info.heartbeat = rsp.Heartbeat;
                 Info.sensor = rsp.Sensor;
+                Info.person = rsp.Person;
 
                 return true;
             }

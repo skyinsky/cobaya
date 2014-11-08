@@ -19,11 +19,13 @@ namespace cobaya
         private SyncEvents _syncEvents;
 
         private SerialPort _serialPort;
+        private UInt32 _hit_person;
 
         public ComWorker(Queue<MsgDiscoveryReq> q, SyncEvents e)
         {
             _queue = q;
             _syncEvents = e;
+            _hit_person = 0;
         }
 
         public void Routine()
@@ -34,17 +36,22 @@ namespace cobaya
 
             while (!_syncEvents.ExitThreadEvent.WaitOne(0, false))
             {
-                //set_serial_port();
-
                 try
                 {
-                    int val = _serialPort.ReadChar();
+                    string msg = _serialPort.ReadLine();
 
-                    //find_person();
-                    lock (((ICollection)_queue).SyncRoot)
+                    if (UInt32.Parse(msg) == 1)
                     {
-                        //_queue.Enqueue(res);
-                        //_syncEvents.NewItemEvent.Set();
+                        _hit_person++;
+
+                        if (_hit_person >= Info.person)
+                        {
+                            find_person();
+                        }
+                        else
+                        {
+                            _hit_person = 0;
+                        }
                     }
                 }
                 catch (InvalidOperationException e)
@@ -92,7 +99,7 @@ namespace cobaya
                 _serialPort.Handshake = Handshake.None;
 
                 // Set the read/write timeouts
-                _serialPort.ReadTimeout = 10000;
+                _serialPort.ReadTimeout = (int)Info.sensor * 1000;
                 //_serialPort.WriteTimeout = 10000;
 
                 _serialPort.Open();

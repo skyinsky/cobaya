@@ -45,6 +45,7 @@ namespace ConsoleApplication1
                 {
                     //int val = _serialPort.ReadChar();
                     string line = _serialPort.ReadLine();
+
                     Console.WriteLine(line);
                 }
             }
