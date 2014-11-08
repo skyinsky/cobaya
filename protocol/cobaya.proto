@@ -29,7 +29,6 @@ message MsgUpdateUserReq {
 	required string host = 1;
 	required string user = 2;
 	required string passwd = 3;
-	//required string office = 4;
 }
 
 message MsgUpdateUserRsp {

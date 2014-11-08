@@ -84,7 +84,7 @@ void RpcServiceImpl::GetClientInfo(RpcController *ctl,
 		rsp->set_dev_code(dev->code);
 		rsp->set_heartbeat(g_config.client_heartbeat);
 		rsp->set_sensor(g_config.client_sensor);
-		rsp->set_flow(g_config.client_flow);
+		rsp->set_person(g_config.client_person);
 
 //		for (OfficeDesc *desc = office_head.next;
 //		     desc != &office_head; desc = desc->next) {

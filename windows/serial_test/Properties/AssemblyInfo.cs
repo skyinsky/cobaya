@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("serial_test")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("香河县人民医院医疗设备监控服务")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("香河县人民医院")]
 [assembly: AssemblyProduct("serial_test")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]

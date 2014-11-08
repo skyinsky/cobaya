@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("cobaya")]
-[assembly: AssemblyDescription("香河县医疗设备监控服务")]
+[assembly: AssemblyDescription("香河县人民医院医疗设备监控服务")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("香河县人民医院")]
 [assembly: AssemblyProduct("cobaya")]

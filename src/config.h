@@ -22,7 +22,7 @@ struct Config {
 	int client_timeout;
 	int client_heartbeat;
 	int client_sensor;
-	int client_flow;
+	int client_person;
 
 	bool compact_allow;
 	int compact_mysql;

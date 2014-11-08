@@ -36,9 +36,9 @@ int load_config(const char *path)
 	config.mysql_db = iniparser_getstring(ini, "mysql:db", NULL);
 
 	config.client_timeout = iniparser_getint(ini, "client:timeout", 60);
-	config.client_heartbeat = iniparser_getint(ini, "client:heartbeat", 5);
-	config.client_sensor = iniparser_getint(ini, "client:sensor", 5);
-	config.client_flow = iniparser_getint(ini, "client:flow", 10);
+	config.client_heartbeat = iniparser_getint(ini, "client:heartbeat", 10);
+	config.client_sensor = iniparser_getint(ini, "client:sensor", 10);
+	config.client_person = iniparser_getint(ini, "client:person", 5);
 
 	config.compact_allow = iniparser_getboolean(ini, "compact:allow", true);
 	config.compact_mysql = iniparser_getint(ini, "compact:mysql", 90);

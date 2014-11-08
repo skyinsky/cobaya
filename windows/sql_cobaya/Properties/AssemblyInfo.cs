@@ -9,7 +9,7 @@ using System.Data.Sql;
 [assembly: AssemblyTitle("sql_cobaya")]
 [assembly: AssemblyDescription("香河县人民医院医疗设备监控服务")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("香河县人民医院")]
 [assembly: AssemblyProduct("sql_cobaya")]
 [assembly: AssemblyCopyright("Copyright © 香河县人民医院 2014")]
 [assembly: AssemblyTrademark("")]

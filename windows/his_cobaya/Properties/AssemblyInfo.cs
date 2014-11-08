@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("his_cobaya")]
-[assembly: AssemblyDescription("香河县人民医院医疗设备监控系统")]
+[assembly: AssemblyDescription("香河县人民医院医疗设备监控服务")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("香河县人民医院")]
 [assembly: AssemblyProduct("his_cobaya")]
-[assembly: AssemblyCopyright("Copyright © 香河县人民医院 2014")]
+[assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("15ae8c74-ee22-40ad-b0c8-e0e422f853d0")]
+[assembly: Guid("ec276ecc-6676-4756-976e-e8b9ede0fea7")]
 
 // 程序集的版本信息由下面四个值组成:
 //
