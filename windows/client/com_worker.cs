@@ -48,10 +48,10 @@ namespace cobaya
                         {
                             find_person();
                         }
-                        else
-                        {
-                            _hit_person = 0;
-                        }
+                    }
+                    else
+                    {
+                        _hit_person = 0;
                     }
                 }
                 catch (InvalidOperationException e)
@@ -77,6 +77,19 @@ namespace cobaya
                     UserLookAndFeel.Default.SetSkinStyle("Caramel");
 
                     string msg = "传感器可能中断，请联系管理员！\n\n" + e.Message;
+
+                    Application.Run(new PortForm(msg, 60));
+                }
+                catch (Exception e)
+                {
+                    Application.EnableVisualStyles();
+                    Application.SetCompatibleTextRenderingDefault(false);
+
+                    DevExpress.Skins.SkinManager.EnableFormSkins();
+                    DevExpress.UserSkins.BonusSkins.Register();
+                    UserLookAndFeel.Default.SetSkinStyle("Caramel");
+
+                    string msg = "操作传感器错误，请联系管理员！\n\n" + e.Message;
 
                     Application.Run(new PortForm(msg, 60));
                 }
