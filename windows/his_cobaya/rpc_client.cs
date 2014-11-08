@@ -18,6 +18,7 @@ namespace cobaya
                 if (!DllPathResolver.Resolve())
                 {
                     //MessageBox.Show("找不到rpc模块，请联系管理员!");
+                    Log.WriteLog("找不到rpc模块");
                     return false;
                 }
 
@@ -38,11 +39,13 @@ namespace cobaya
 
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 //string err = "请联系管理员\n" + e.ToString();
 
                 //MessageBox.Show(err);
+
+                Log.WriteLog(e.Message);
                 return false;
             }
         }
@@ -63,8 +66,9 @@ namespace cobaya
                 _stub.SetOrgFlow(null, req, null);
                 //MsgOrgFlowRsp rsp = (MsgOrgFlowRsp)_channel.GetResponse();
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                Log.WriteLog(e.Message);
             }
         }
 

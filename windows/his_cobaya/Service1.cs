@@ -28,16 +28,23 @@ namespace cobaya
 
         protected override void OnStart(string[] args)
         {
+            //log
+            if (!Log.Init())
+            {
+                Process.GetCurrentProcess().Kill();
+            }
+
             //config
             if (!Config.Init("cobaya.ini"))
             {
-                //MessageBox.Show("读取配置文件错误，请联系管理员！");
+                Log.WriteLog("读取配置文件错误");
                 Process.GetCurrentProcess().Kill();
             }
 
             //rpc: config
             if (!RpcClient.Init())
             {
+                Log.WriteLog("rpc init error");
                 Process.GetCurrentProcess().Kill();
             }
 

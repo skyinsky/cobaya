@@ -81,6 +81,9 @@ namespace cobaya
             string rcfProtoBinDir = rootDir + binRelativePath;
             AddPath(rcfProtoBinDir);
 
+            //string rcf = "rcf impl version is " + rcfProtoBinDir;
+            //Log.WriteLog(rcf);
+
             string rcfProtoAssemblyDir = rootDir;
             AddPath(rcfProtoAssemblyDir);
 
