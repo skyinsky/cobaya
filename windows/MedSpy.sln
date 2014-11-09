@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "serial_test", "serial_test\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "his_cobaya", "his_cobaya\his_cobaya.csproj", "{1A8A677F-8830-4711-9817-C42BCBB8BDFC}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "install_client", "install_client\install_client.vdproj", "{79ADCDAD-A657-4953-A09A-092F6B6E70C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,12 @@ Global
 		{1A8A677F-8830-4711-9817-C42BCBB8BDFC}.Release|Mixed Platforms.Build.0 = Release|x86
 		{1A8A677F-8830-4711-9817-C42BCBB8BDFC}.Release|x86.ActiveCfg = Release|x86
 		{1A8A677F-8830-4711-9817-C42BCBB8BDFC}.Release|x86.Build.0 = Release|x86
+		{79ADCDAD-A657-4953-A09A-092F6B6E70C9}.Debug|Any CPU.ActiveCfg = Debug
+		{79ADCDAD-A657-4953-A09A-092F6B6E70C9}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{79ADCDAD-A657-4953-A09A-092F6B6E70C9}.Debug|x86.ActiveCfg = Debug
+		{79ADCDAD-A657-4953-A09A-092F6B6E70C9}.Release|Any CPU.ActiveCfg = Release
+		{79ADCDAD-A657-4953-A09A-092F6B6E70C9}.Release|Mixed Platforms.ActiveCfg = Release
+		{79ADCDAD-A657-4953-A09A-092F6B6E70C9}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
