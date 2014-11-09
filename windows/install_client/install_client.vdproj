@@ -15,14 +15,26 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_10D092CB10964282914B52D3865FFA0B"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_14527559D71194A2EB71C28E92258EDA"
         "OwnerKey" = "8:_B6D9B9D0A5CF7D70F50B0E3D29A915B9"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
+        "MsmKey" = "8:_1BBA9A82AD834A96ADB53FDF0B765299"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_292FF7C36882BCD9DB294054F94701BC"
-        "OwnerKey" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
+        "OwnerKey" = "8:_10D092CB10964282914B52D3865FFA0B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -33,14 +45,14 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_6734CD8D1AF2AF59DBDAF524DE5AF021"
-        "OwnerKey" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
+        "MsmKey" = "8:_5BDD0DC740994DF5ABCC8A3E8DADAB63"
+        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_91972D57D71A4CE0AC9E306C8E22CA1D"
-        "OwnerKey" = "8:_UNDEFINED"
+        "MsmKey" = "8:_6734CD8D1AF2AF59DBDAF524DE5AF021"
+        "OwnerKey" = "8:_10D092CB10964282914B52D3865FFA0B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -58,7 +70,7 @@
         "Entry"
         {
         "MsmKey" = "8:_A4D7AE36D3199BCA6BFC1B4A3A00CB12"
-        "OwnerKey" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
+        "OwnerKey" = "8:_10D092CB10964282914B52D3865FFA0B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,31 +100,19 @@
         "Entry"
         {
         "MsmKey" = "8:_B6D9B9D0A5CF7D70F50B0E3D29A915B9"
-        "OwnerKey" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
+        "OwnerKey" = "8:_10D092CB10964282914B52D3865FFA0B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_BC12BF7FEF56E711F2589068D31C39DF"
-        "OwnerKey" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
+        "OwnerKey" = "8:_10D092CB10964282914B52D3865FFA0B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_BC12BF7FEF56E711F2589068D31C39DF"
         "OwnerKey" = "8:_292FF7C36882BCD9DB294054F94701BC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
-        "OwnerKey" = "8:_UNDEFINED"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CE1A0AAD3D174181BC31771E90F3178D"
-        "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -148,24 +148,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_292FF7C36882BCD9DB294054F94701BC"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BC12BF7FEF56E711F2589068D31C39DF"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_B6D9B9D0A5CF7D70F50B0E3D29A915B9"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -178,19 +160,37 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_91972D57D71A4CE0AC9E306C8E22CA1D"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_6734CD8D1AF2AF59DBDAF524DE5AF021"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_5BDD0DC740994DF5ABCC8A3E8DADAB63"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_14527559D71194A2EB71C28E92258EDA"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_10D092CB10964282914B52D3865FFA0B"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_292FF7C36882BCD9DB294054F94701BC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_BC12BF7FEF56E711F2589068D31C39DF"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -218,6 +218,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -225,7 +238,7 @@
         "DisplayName" = "8:Release"
         "IsDebugOnly" = "11:FALSE"
         "IsReleaseOnly" = "11:TRUE"
-        "OutputFilename" = "8:Release\\x86\\install_client.msi"
+        "OutputFilename" = "8:Release\\x64\\install_client.msi"
         "PackageFilesAs" = "3:2"
         "PackageFileSize" = "3:-2147483648"
         "CabType" = "3:1"
@@ -285,6 +298,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_10D092CB10964282914B52D3865FFA0B"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:cobaya_client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_10D092CB10964282914B52D3865FFA0B"
+                    {
+                    "Name" = "8:cobaya_client.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\release\\cobaya_client.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_14527559D71194A2EB71C28E92258EDA"
             {
             "AssemblyRegister" = "3:1"
@@ -314,6 +358,26 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_1BBA9A82AD834A96ADB53FDF0B765299"
+            {
+            "SourcePath" = "8:..\\release\\cobaya.ini"
+            "TargetName" = "8:cobaya.ini"
+            "Tag" = "8:"
+            "Folder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_292FF7C36882BCD9DB294054F94701BC"
@@ -367,6 +431,37 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_5BDD0DC740994DF5ABCC8A3E8DADAB63"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:serial_test, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_5BDD0DC740994DF5ABCC8A3E8DADAB63"
+                    {
+                    "Name" = "8:serial_test.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\release\\serial_test.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_6734CD8D1AF2AF59DBDAF524DE5AF021"
             {
             "AssemblyRegister" = "3:1"
@@ -396,37 +491,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_91972D57D71A4CE0AC9E306C8E22CA1D"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:serial_test, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_91972D57D71A4CE0AC9E306C8E22CA1D"
-                    {
-                    "Name" = "8:serial_test.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\release\\serial_test.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_A4D7AE36D3199BCA6BFC1B4A3A00CB12"
@@ -551,57 +615,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C2E16C402A9C4CA2BB686379502C2B64"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:cobaya_client, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_C2E16C402A9C4CA2BB686379502C2B64"
-                    {
-                    "Name" = "8:cobaya_client.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\release\\cobaya_client.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_CE1A0AAD3D174181BC31771E90F3178D"
-            {
-            "SourcePath" = "8:..\\release\\cobaya.ini"
-            "TargetName" = "8:cobaya.ini"
-            "Tag" = "8:"
-            "Folder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_D6046B1E35A54B6E83E65AF4D8A3A5F0"
@@ -767,7 +780,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:cobaya"
         "ProductCode" = "8:{2A3E3B00-6810-40C9-8E91-2E6E3582748F}"
-        "PackageCode" = "8:{DEAB6A42-7AC6-4CBC-8858-1D1312F0F4DC}"
+        "PackageCode" = "8:{039F1946-3560-4DF3-885E-D8545A0E94EE}"
         "UpgradeCode" = "8:{ACFB0A9F-EAAF-44D1-9F79-5E5595BD01E9}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -887,46 +900,46 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_0B4B6031B5AB4A69B22B10F3228FBB7A"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_5E5FA6C1F56F4F2FA72CA66471605478"
             {
-            "Name" = "8:cobaya_client"
+            "Name" = "8:cobaya"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
-            "Folder" = "8:_6B2E28E0CBBF454AA9D36736F97DE309"
-            "WorkingFolder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
-            "Icon" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
-            "Feature" = "8:"
-            }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A32A4DA80CCB450BA6271C0F9634B784"
-            {
-            "Name" = "8:cobaya_client"
-            "Arguments" = "8:"
-            "Description" = "8:"
-            "ShowCmd" = "3:1"
-            "IconIndex" = "3:32512"
-            "Transitive" = "11:FALSE"
-            "Target" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
+            "Target" = "8:_10D092CB10964282914B52D3865FFA0B"
             "Folder" = "8:_09A79C6CD83B4016842137ADD97FCA20"
             "WorkingFolder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
-            "Icon" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
+            "Icon" = "8:_10D092CB10964282914B52D3865FFA0B"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B0DAD44757EA48C8A2BAC228DE4AF619"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_DD8846AF63F54E899799A211F016DEBF"
             {
-            "Name" = "8:cobaya_client"
+            "Name" = "8:cobaya"
             "Arguments" = "8:"
             "Description" = "8:"
             "ShowCmd" = "3:1"
             "IconIndex" = "3:32512"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
+            "Target" = "8:_10D092CB10964282914B52D3865FFA0B"
+            "Folder" = "8:_6B2E28E0CBBF454AA9D36736F97DE309"
+            "WorkingFolder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
+            "Icon" = "8:_10D092CB10964282914B52D3865FFA0B"
+            "Feature" = "8:"
+            }
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_F44660F6D13E4912B33118A13DFFFDE4"
+            {
+            "Name" = "8:cobaya"
+            "Arguments" = "8:"
+            "Description" = "8:"
+            "ShowCmd" = "3:1"
+            "IconIndex" = "3:32512"
+            "Transitive" = "11:FALSE"
+            "Target" = "8:_10D092CB10964282914B52D3865FFA0B"
             "Folder" = "8:_5506AC09C9DB488E9010F02983E913EA"
             "WorkingFolder" = "8:_6E86F595C7AB4B34B6AF92C8519CB4F1"
-            "Icon" = "8:_C2E16C402A9C4CA2BB686379502C2B64"
+            "Icon" = "8:_10D092CB10964282914B52D3865FFA0B"
             "Feature" = "8:"
             }
         }
