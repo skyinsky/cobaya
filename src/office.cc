@@ -8,27 +8,27 @@
 
 namespace cobaya {
 
-OfficeDesc office_head;
+OfficeDesc *offices;
 
-static OfficeDesc* parser_rows(char **row)
+static OfficeDesc* parser_rows(int i, char **row)
 {
-	OfficeDesc *desc;
+	OfficeDesc *desc = &offices[i];
 
-	desc = (OfficeDesc *)malloc(sizeof(*desc));
-	if (desc == NULL) {
-		DUMP_LOG("no memory");
-		goto out;
+	desc->id = atoi(row[0]);
+	strcpy(desc->name, row[1]);
+
+	if (desc->id != (uint32_t)i) {
+		DUMP_LOG("office (%s:%s) not sequence",
+			 row[0], row[1]);
+		desc = NULL;
 	}
-	memset(desc, 0, sizeof(*desc));
-
-	strcpy(desc->name, row[0]);
-
-out:	return desc;
+	
+	return desc;
 }
 
 int load_office_list()
 {
-	int err = 0;
+	int err = 0, rows;
 	char **row;
 
 	if (main_mysql->SelectQuery("SELECT * FROM `科室`")) {
@@ -37,20 +37,22 @@ int load_office_list()
 		goto out;
 	}
 
-	/* point to self */
-	office_head.next = &office_head;
-
-	for (; (row = main_mysql->FetchRow()) != NULL;) {
+	rows = main_mysql->GetNumRows();
+	offices = (OfficeDesc *)calloc(rows, sizeof(OfficeDesc));
+	if (offices ==  NULL) {
+		DUMP_LOG("no memory");
+		err = -1;
+		goto out;
+	}
+	
+	for (int i = 0; (row = main_mysql->FetchRow()) != NULL; i++) {
 		OfficeDesc *res = NULL;
 
-		if ((res = parser_rows(row)) == NULL) {
+		if ((res = parser_rows(i, row)) == NULL) {
 			DUMP_LOG("parser mysql row error");
 			err = -1;
 			goto out;
 		}
-
-		res->next = office_head.next;
-		office_head.next = res;
 	}
 
 out:

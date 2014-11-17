@@ -3,16 +3,17 @@
 
 namespace cobaya {
 
-#define OFFICE_LEN	10
+#define OFFICE_LEN	20
 
 struct OfficeDesc {
 	OfficeDesc *next;
 
 	/* mysql:table, 科室表 */
+	uint32_t id;
 	char name[OFFICE_LEN];
 };
 
-extern OfficeDesc office_head;
+extern OfficeDesc *offices;
 
 int load_office_list();
 
