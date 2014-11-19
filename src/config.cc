@@ -38,6 +38,7 @@ int load_config(const char *path)
 	config.client_timeout = iniparser_getint(ini, "client:timeout", 60);
 	config.client_heartbeat = iniparser_getint(ini, "client:heartbeat", 10);
 	config.client_sensor = iniparser_getint(ini, "client:sensor", 10);
+	config.client_fetch = iniparser_getint(ini, "client:fetch", 10);
 	config.client_person = iniparser_getint(ini, "client:person", 5);
 
 	config.compact_allow = iniparser_getboolean(ini, "compact:allow", true);

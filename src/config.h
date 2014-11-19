@@ -22,6 +22,7 @@ struct Config {
 	int client_timeout;
 	int client_heartbeat;
 	int client_sensor;
+	int client_fetch;
 	int client_person;
 
 	bool compact_allow;

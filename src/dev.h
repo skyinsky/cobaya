@@ -16,6 +16,7 @@ struct DevDesc {
 	Timer timer;
 
 	/* mysql:table, 设备表 */
+	int item_code;
 	char code[DEV_CODE];
 	char name[DEV_NAME];
 	char host[DEV_HOST];
@@ -25,7 +26,6 @@ struct DevDesc {
 
 	/* FlowHead */
 	void *head;
-	int item_code;
 };
 
 extern DevDesc dev_head;

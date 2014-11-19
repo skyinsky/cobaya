@@ -30,6 +30,8 @@ public:
 			  MsgLogoutRsp *rsp, Closure *done);
 	void AppendInfo(RpcController *ctl, const MsgDiscoveryReq *req,
 			MsgDiscoveryRsp *rsp, Closure *done);
+	void FetchFlow(RpcController *ctl, const MsgFetchFlowReq *req,
+			MsgFetchFlowRsp *rsp, Closure *done);
 
 	/* his operations */
 	void AppendFlow(RpcController *ctl, const MsgNewFlowReq *req,

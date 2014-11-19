@@ -20,8 +20,10 @@
 #include "cache.h"
 #include "compact.h"
 #include "timer.h"
+#include "office.h"
 #include "office_ctl.h"
 #include "his.h"
+#include "protocol/cobaya.pb.h"
 
 namespace cobaya {
 
@@ -315,7 +317,7 @@ static inline ItemDesc* head_search(rb_root *root, uint32_t item_id)
 
 		if (res < 0)
   			node = node->rb_left;
-		else if (result > 0)
+		else if (res > 0)
   			node = node->rb_right;
 		else
   			return data;
@@ -334,9 +336,10 @@ static inline FlowHead* get_flow_head(const HisDesc *his, ItemDesc **item)
 		}
 		*item = head_search(&office->tree, his->item_id);
 		if (*item != NULL) {
-			head = office->head[item->code];
+			head = (FlowHead *)office->head[(*item)->code];
 		} else {
-			DUMP_LOG("his传入无效数据");
+			DUMP_LOG("[cobaya.监控科室] %s:%s 不存在执行项目%d",
+				 office->strid, office->name, his->item_id);
 		}
 		break;
 	}
@@ -350,12 +353,39 @@ bool new_flow(const HisDesc *his)
 	FlowHead *head;
 	FlowDesc *desc, *pos;
 
+	/* which flow head */
 	head = get_flow_head(his, &item);
 	if (unlikely(head == NULL)) {
 		res = false;
 		goto out;
 	}
 
+	/* add before */
+	spin_lock(&head->lock);
+	list_for_each_entry(pos, &head->list, list) {
+		if (pos->user_id == his->user_id) {
+			desc = pos;
+			has = true;
+			break;
+		}
+	}
+	if (has) {
+		bool add = true;
+		for (int i = 0; i < desc->valid; i++) {
+			if (desc->items[i] == item) {
+				add = false;
+				break;
+			}
+		}
+		if (add) {
+			desc->items[desc->valid++] = item;
+		}
+	}
+	spin_unlock(&head->lock);
+
+	/* first time add */
+	if (has)
+		goto out;
 	desc = (FlowDesc *)cache_alloc(flow_cache);
 	if (desc == NULL) {
 		DUMP_LOG("no memory");
@@ -367,12 +397,13 @@ bool new_flow(const HisDesc *his)
 	desc->owner = head;
 	kref_init(&desc->ref);
 	INIT_LIST_HEAD(&desc->list);
-	memcpy(desc->id, id, USER_ID);
 	desc->user_id = his->user_id;
 	desc->apply_id = his->apply_id;
 	desc->office_id = his->app_office_id;
 	strcpy(desc->user, his->user);
 	strcpy(desc->doctor, his->doctor);
+	desc->items[desc->valid++] = item;
+
 	if (clock_gettime(CLOCK_MONOTONIC, &desc->start)) {
 		cache_free(flow_cache, desc);
 		res = false;
@@ -380,14 +411,27 @@ bool new_flow(const HisDesc *his)
 		goto out;
 	}
 
+	/* add new flow, check again */
 	spin_lock(&head->lock);
 	list_for_each_entry(pos, &head->list, list) {
-		if (!strncmp(pos->id, id, USER_ID)) {
+		if (pos->user_id == his->user_id) {
+			desc = pos;
 			has = true;
 			break;
 		}
 	}
-	if (!has) {
+	if (has) {
+		bool add = true;
+		for (int i = 0; i < desc->valid; i++) {
+			if (desc->items[i] == item) {
+				add = false;
+				break;
+			}
+		}
+		if (add) {
+			desc->items[desc->valid++] = item;
+		}
+	} else {
 		list_add_tail(&desc->list, &head->list);
 	}
 	spin_unlock(&head->lock);
@@ -395,51 +439,69 @@ bool new_flow(const HisDesc *his)
 	if (has) {
 		cache_free(flow_cache, desc);
 		res = false;
-		DUMP_LOG("user(id = %s) already add before", id);
+		DUMP_LOG("user(id = %lu) already add before", his->user_id);
 	}
 
 out:	return res;
 }
 
-void del_flow(const char *host, const char *id)
+void del_flow(const HisDesc *his)
 {
+	ItemDesc *item;
 	FlowHead *head;
 	FlowDesc *pos, *n, *flow = NULL;
 	bool active = false, del = false;
 
-	head = get_flow_head(host);
+	/* which flow head */
+	head = get_flow_head(his, &item);
 	if (unlikely(head == NULL)) {
-		DUMP_LOG("host: %s not register", host);
 		return;
 	}
 
 	spin_lock(&head->lock);
 	list_for_each_entry_safe(pos, n, &head->list, list) {
-		if (!strncmp(pos->id, id, USER_ID)) {
-			flow = pos;
-			if (!g_config.watch_allow) {
-				list_del(&flow->list);
-				del = true;
-			} else {
-				if (!(flow->flags & FLOW_WATCH)) {
-					list_del(&flow->list);
-					del = true;
-					break;
-				}
-				if (flow->flags & FLOW_REMOVE) {
-					break;
-				} else {
-					flow->flags |= FLOW_ITEDEL;
-				}
-				if (!(flow->flags & FLOW_ACTIVE)) {
-					kref_get(&flow->ref);
-					flow->flags |= FLOW_ACTIVE;
-					active = true;
-				}
+		if (pos->user_id != his->user_id) {
+			continue;
+		}
+		flow = pos;
+
+		for (int i = 0; i < flow->valid; i++) {
+			if (flow->items[i] != item) {
+				continue;
 			}
 
-			break;
+			for (int j = i; j < flow->valid; j++) {
+				flow->items[j] = flow->items[j+1];
+			}
+			flow->valid--;
 		}
+		if (flow->valid) {
+			spin_unlock(&head->lock);
+			return;
+		}
+
+		if (!g_config.watch_allow) {
+			list_del(&flow->list);
+			del = true;
+		} else {
+			if (!(flow->flags & FLOW_WATCH)) {
+				list_del(&flow->list);
+				del = true;
+				break;
+			}
+			if (flow->flags & FLOW_REMOVE) {
+				break;
+			} else {
+				flow->flags |= FLOW_ITEDEL;
+			}
+			if (!(flow->flags & FLOW_ACTIVE)) {
+				kref_get(&flow->ref);
+				flow->flags |= FLOW_ACTIVE;
+				active = true;
+			}
+		}
+
+		break;
 	}
 	spin_unlock(&head->lock);
 
@@ -455,30 +517,72 @@ void del_flow(const char *host, const char *id)
 	}
 }
 
-bool hit_flow(const char *host, const char *id)
+void del_flow(void *_head, uint64_t user_id)
 {
-	FlowHead *head;
+	FlowHead *head = (FlowHead *)_head;
+	FlowDesc *pos, *n, *flow = NULL;
+	bool active = false, del = false;
+
+	spin_lock(&head->lock);
+	list_for_each_entry_safe(pos, n, &head->list, list) {
+		if (pos->user_id != user_id)
+			continue;
+		flow = pos;
+		if (!g_config.watch_allow) {
+			list_del(&flow->list);
+			del = true;
+		} else {
+			if (!(flow->flags & FLOW_WATCH)) {
+				list_del(&flow->list);
+				del = true;
+				break;
+			}
+			if (flow->flags & FLOW_REMOVE) {
+				break;
+			} else {
+				flow->flags |= FLOW_ITEDEL;
+			}
+			if (!(flow->flags & FLOW_ACTIVE)) {
+				kref_get(&flow->ref);
+				flow->flags |= FLOW_ACTIVE;
+				active = true;
+			}
+		}
+
+		break;
+	}
+	spin_unlock(&head->lock);
+
+	if (del) {
+		cache_free(flow_cache, flow);
+	}
+	if (active && (write(notify_fd, &flow, sizeof(flow)) != sizeof(flow))) {
+		kref_put(&flow->ref, __del_flow);
+		DUMP_LOG("failed writing notify pipe");
+	}
+	if (active) {
+		kref_put(&flow->ref, __del_flow);
+	}
+}
+
+bool hit_flow(void *_head, uint64_t user_id)
+{
+	FlowHead *head = (FlowHead *)_head;
 	FlowDesc *pos, *flow = NULL;
 	bool watch = false;
 
-	head = get_flow_head(host);
-	if (unlikely(head == NULL)) {
-		DUMP_LOG("host: %s not register", host);
-		return false;
-	}
-
 	spin_lock(&head->lock);
 	list_for_each_entry(pos, &head->list, list) {
-		if (!strncmp(pos->id, id, USER_ID)) {
-			flow = pos;
-			if (!(flow->flags & FLOW_WATCH) &&
-			    g_config.watch_allow) {
-				flow->flags |= FLOW_WATCH;
-				kref_get(&flow->ref);
-				watch = true;
-			}
-			break;
+		if (pos->user_id != user_id)
+			continue;
+		flow = pos;
+		if (!(flow->flags & FLOW_WATCH) &&
+		    g_config.watch_allow) {
+			flow->flags |= FLOW_WATCH;
+			kref_get(&flow->ref);
+			watch = true;
 		}
+		break;
 	}
 	spin_unlock(&head->lock);
 
@@ -492,6 +596,35 @@ bool hit_flow(const char *host, const char *id)
 	}
 
 	return (flow != NULL);
+}
+
+void get_flow(void *_head, MsgFetchFlowRsp *rsp)
+{
+	FlowDesc *pos;
+	FlowHead *head = (FlowHead *)_head;
+
+	spin_lock(&head->lock);
+	list_for_each_entry(pos, &head->list, list) {
+		if (pos->flags & (FLOW_REMOVE | FLOW_ITEDEL | FLOW_WATCH)) {
+			continue;
+		}
+
+		UserFlow *flow = rsp->add_flows();
+		if (!flow) {
+			DUMP_LOG("no memory");
+			break;
+		}
+
+		flow->set_user_id(pos->user_id);
+		flow->set_apply_id(pos->apply_id);
+		flow->set_user(pos->user);
+		flow->set_office(offices[pos->office_id].name);
+		flow->set_doctor(pos->doctor);
+		for (int i = 0; i < pos->valid; i++) {
+			flow->add_items(pos->items[i]->name);
+		}
+	}
+	spin_unlock(&head->lock);
 }
 
 void remove_expire_flow()

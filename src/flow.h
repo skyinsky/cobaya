@@ -5,12 +5,17 @@
 
 namespace cobaya {
 
+struct HisDesc;
+class MsgFetchFlowRsp;
+
 int load_flow_manager(void);
 int load_flow_monitor(void);
 
 bool new_flow(const HisDesc *his);
 void del_flow(const HisDesc *his);
-bool hit_flow(const char *host, const char *id);
+void del_flow(void *head, uint64_t user_id);
+bool hit_flow(void *head, uint64_t user_id);
+void get_flow(void *head, MsgFetchFlowRsp *rsp);
 
 void remove_expire_flow();
 

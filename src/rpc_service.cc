@@ -11,6 +11,7 @@
 #include "rpc.h"
 #include "rpc_service.h"
 #include "mysql_wrapper.h"
+#include "his.h"
 
 namespace cobaya {
 
@@ -84,6 +85,7 @@ void RpcServiceImpl::GetClientInfo(RpcController *ctl,
 		rsp->set_dev_code(dev->code);
 		rsp->set_heartbeat(g_config.client_heartbeat);
 		rsp->set_sensor(g_config.client_sensor);
+		rsp->set_fetch(g_config.client_fetch);
 		rsp->set_person(g_config.client_person);
 
 //		for (OfficeDesc *desc = office_head.next;
@@ -156,9 +158,9 @@ static void store_doubt_flow(DevDesc *dev, const MsgDiscoveryReq *req)
 	}
 	strftime(datetmp, 128, "%F %T", date);
 
-	sprintf(sql, "INSERT INTO `日志` VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
+	sprintf(sql, "INSERT INTO `日志` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
 		req->user().c_str(), req->host().c_str(), datetmp,
-		dev->code, dev->name, dev->office_name);
+		dev->code, dev->name, dev->office_id, dev->office_name, dev->office_owner);
 	if (mysql->ModifyQuery(sql)) {
 		DUMP_LOG("insert log table (user:%s) error", req->user().c_str());
 	}
@@ -170,7 +172,7 @@ void RpcServiceImpl::AppendInfo(RpcController *ctl,
 {
 	DevDesc *dev;
 
-	dev = find_dev_by_host(req->host().c_str());
+	dev = find_dev_by_code(req->dev_code().c_str());
 	if (dev == NULL) {
 		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
 
@@ -184,15 +186,14 @@ void RpcServiceImpl::AppendInfo(RpcController *ctl,
 	}
 
 	if (req->has_prev_id()) {
-		del_flow(req->host().c_str(), req->prev_id().c_str());
+		del_flow(dev->head, req->prev_id());
 	}
 
 	if (req->person()) {
 		if (!req->has_id()) {
 			store_doubt_flow(dev, req);
 			rsp->set_grant(false);
-		} else if (!hit_flow(req->host().c_str(),
-				     req->id().c_str())) {
+		} else if (!hit_flow(dev->head, req->id())) {
 			store_doubt_flow(dev, req);
 			rsp->set_grant(false);
 		} else {
@@ -205,48 +206,88 @@ void RpcServiceImpl::AppendInfo(RpcController *ctl,
 out:	done->Run();
 }
 
+void RpcServiceImpl::FetchFlow(RpcController *ctl,
+			       const MsgFetchFlowReq *req,
+			       MsgFetchFlowRsp *rsp, Closure *done)
+{
+	DevDesc *dev;
+
+	dev = find_dev_by_code(req->dev_code().c_str());
+	if (dev == NULL) {
+		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
+
+		rcfctl->SetFailed("host not register");
+		goto out;
+	} else {
+		/* update alive heartbeat */
+		if (clock_gettime(CLOCK_MONOTONIC, &dev->client_update)) {
+			DUMP_LOG("clock_gettime() error");
+		}
+	}
+
+	get_flow(dev->head, rsp);
+
+out:	done->Run();
+}
+
 void RpcServiceImpl::AppendFlow(RpcController *ctl,
 				const MsgNewFlowReq *req,
 				MsgNewFlowRsp *rsp, Closure *done)
 {
-	int size = req->hosts_size();
-
-	for (int i = 0; i < size; i++) {
-		if (!new_flow(req->hosts(i).c_str(),
-			      req->id().c_str())) {
-			DUMP_LOG("sys should be sorry for %s:%s",
-				 req->hosts(i).c_str(),
-				 req->id().c_str());
-		}
-	}
-
-	rsp->set_status(1);
-
-	done->Run();
+//	int size = req->hosts_size();
+//
+//	for (int i = 0; i < size; i++) {
+//		if (!new_flow(req->hosts(i).c_str(),
+//			      req->id().c_str())) {
+//			DUMP_LOG("sys should be sorry for %s:%s",
+//				 req->hosts(i).c_str(),
+//				 req->id().c_str());
+//		}
+//	}
+//
+//	rsp->set_status(1);
+//
+//	done->Run();
 }
 
 void RpcServiceImpl::RemoveFlow(RpcController *ctl,
 				const MsgDelFlowReq *req,
 				MsgDelFlowRsp *rsp, Closure *done)
 {
-	int size = req->hosts_size();
-
-	for (int i = 0; i < size; i++) {
-		del_flow(req->hosts(i).c_str(), req->id().c_str());
-	}
-
-	rsp->set_status(1);
-
-	done->Run();
+//	int size = req->hosts_size();
+//
+//	for (int i = 0; i < size; i++) {
+//		del_flow(req->hosts(i).c_str(), req->id().c_str());
+//	}
+//
+//	rsp->set_status(1);
+//
+//	done->Run();
 }
 
 void RpcServiceImpl::SetOrgFlow(RpcController *ctl,
 				const MsgOrgFlowReq *req,
 				MsgOrgFlowRsp *rsp, Closure *done)
 {
-	DUMP_LOG("%s", req->info().c_str());
+	int res;
+	int add;
+	HisDesc his;
 
-	rsp->set_status(1);
+	res = sscanf(req->info().c_str(), "%lu:%d:%lu:%s:%d:%d:%d:%s",
+		     &his.user_id, &add, &his.apply_id,
+		     (char *)&his.user, &his.item_id, &his.exe_office_id,
+		     &his.app_office_id, (char *)&his.doctor);
+	if (res != 8) {
+		DUMP_LOG("his数据格式错误, %s", req->info().c_str());
+		rsp->set_status(0);
+	} else {
+		if (add) {
+			new_flow(&his);
+		} else {
+			del_flow(&his);
+		}
+		rsp->set_status(1);
+	}
 
 	done->Run();
 }
