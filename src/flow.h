@@ -8,8 +8,8 @@ namespace cobaya {
 int load_flow_manager(void);
 int load_flow_monitor(void);
 
-bool new_flow(const char *host, const char *id);
-void del_flow(const char *host, const char *id);
+bool new_flow(const HisDesc *his);
+void del_flow(const HisDesc *his);
 bool hit_flow(const char *host, const char *id);
 
 void remove_expire_flow();

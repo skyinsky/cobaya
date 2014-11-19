@@ -14,6 +14,7 @@
 #include "keepalive.h"
 #include "compact.h"
 #include "main.h"
+#include "office_ctl.h"
 
 namespace cobaya {
 
@@ -85,6 +86,10 @@ int main(int argc, char *argv[])
 	}
 	if (load_office_list()) {
 		DUMP_LOG("load office error");
+		return -1;
+	}
+	if (load_officectl_list()) {
+		DUMP_LOG("load office control error");
 		return -1;
 	}
 	if (load_flow_manager()) {

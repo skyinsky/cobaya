@@ -41,10 +41,49 @@ int load_dev_list()
 			err = -1;
 			goto out;
 		}
+		if (strlen(row[0]) >= DEV_CODE) {
+			DUMP_LOG("字段 (%s) len = %d 太长",
+				 row[0], strlen(row[0]));
+			err = -1;
+			goto out;
+		}
+		if (strlen(row[1]) >= DEV_NAME) {
+			DUMP_LOG("字段 (%s) len = %d 太长",
+				 row[1], strlen(row[1]));
+			err = -1;
+			goto out;
+		}
+		if (strlen(row[2]) >= DEV_HOST) {
+			DUMP_LOG("字段 (%s) len = %d 太长",
+				 row[2], strlen(row[2]));
+			err = -1;
+			goto out;
+		}
+		if (strlen(row[3]) >= OFFICE_ID) {
+			DUMP_LOG("字段 (%s) len = %d 太长",
+				 row[3], strlen(row[3]));
+			err = -1;
+			goto out;
+		}
+		if (strlen(row[4]) >= OFFICE_NAME) {
+			DUMP_LOG("字段 (%s) len = %d 太长",
+				 row[4], strlen(row[4]));
+			err = -1;
+			goto out;
+		}
+		if (strlen(row[5]) >= OFFICE_OWNER) {
+			DUMP_LOG("字段 (%s) len = %d 太长",
+				 row[5], strlen(row[5]));
+			err = -1;
+			goto out;
+		}
 		strcpy(dev->code, row[0]);
 		strcpy(dev->name, row[1]);
 		strcpy(dev->host, row[2]);
-		strcpy(dev->office, row[3]);
+		strcpy(dev->office_id, row[3]);
+		strcpy(dev->office_name, row[4]);
+		strcpy(dev->office_owner, row[5]);
+		dev->item_code = ITEM_HEAD(dev->code);
 
 		dev->next = dev_head.next;
 		dev_head.next = dev;

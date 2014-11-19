@@ -1,16 +1,16 @@
 #ifndef _OFFICE_H
 #define _OFFICE_H
 
-namespace cobaya {
+#include "common.h"
 
-#define OFFICE_LEN	20
+namespace cobaya {
 
 struct OfficeDesc {
 	OfficeDesc *next;
 
 	/* mysql:table, 科室表 */
 	uint32_t id;
-	char name[OFFICE_LEN];
+	char name[OFFICE_NAME];
 };
 
 extern OfficeDesc *offices;

@@ -32,7 +32,7 @@ static void store_timeout_exception(DevDesc *dev)
 	strftime(datetmp, 128, "%F %T", date);
 
 	sprintf(tmp, "INSERT INTO `异常` VALUES ('%s', '%s', '%s', '%s', '%s')",
-		dev->code, dev->name, dev->host, dev->office, datetmp);
+		dev->code, dev->name, dev->host, dev->office_name, datetmp);
 	if (main_mysql->ModifyQuery(tmp)) {
 		DUMP_LOG("insert value error");
 	}

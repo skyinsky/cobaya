@@ -3,13 +3,9 @@
 
 #include <event.h>
 #include "timer.h"
+#include "common.h"
 
 namespace cobaya {
-
-#define DEV_CODE	10
-#define DEV_NAME	20
-#define DEV_HOST	20
-#define DEV_OFFICE	10
 
 struct DevDesc {
 	DevDesc *next;
@@ -23,7 +19,13 @@ struct DevDesc {
 	char code[DEV_CODE];
 	char name[DEV_NAME];
 	char host[DEV_HOST];
-	char office[DEV_OFFICE];
+	char office_id[OFFICE_ID];
+	char office_name[OFFICE_NAME];
+	char office_owner[OFFICE_OWNER];
+
+	/* FlowHead */
+	void *head;
+	int item_code;
 };
 
 extern DevDesc dev_head;

@@ -14,6 +14,11 @@ static OfficeDesc* parser_rows(int i, char **row)
 {
 	OfficeDesc *desc = &offices[i];
 
+	if (strlen(row[1]) >= OFFICE_NAME) {
+		DUMP_LOG("添加科室 (%s:%s) len=%d 名称太长",
+			 row[0], row[1], strlen(row[1]));
+		return NULL;
+	}
 	desc->id = atoi(row[0]);
 	strcpy(desc->name, row[1]);
 

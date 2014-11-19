@@ -158,7 +158,7 @@ static void store_doubt_flow(DevDesc *dev, const MsgDiscoveryReq *req)
 
 	sprintf(sql, "INSERT INTO `日志` VALUES ('%s', '%s', '%s', '%s', '%s', '%s')",
 		req->user().c_str(), req->host().c_str(), datetmp,
-		dev->code, dev->name, dev->office);
+		dev->code, dev->name, dev->office_name);
 	if (mysql->ModifyQuery(sql)) {
 		DUMP_LOG("insert log table (user:%s) error", req->user().c_str());
 	}

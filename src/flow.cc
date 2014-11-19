@@ -20,14 +20,16 @@
 #include "cache.h"
 #include "compact.h"
 #include "timer.h"
+#include "office_ctl.h"
+#include "his.h"
 
 namespace cobaya {
 
-#define ULEN	11
-
 struct FlowHead {
 	list_head head;
-	char host[DEV_HOST];
+
+	int item_code;
+	OfficeCtl *office;
 
 	list_head list;
 	spinlock_t lock;
@@ -41,14 +43,21 @@ struct FlowDesc {
 #define FLOW_EVENT	(0x1 << 5)
 	unsigned long flags;
 
-	char id[ULEN + 1];
-
 	kref ref;
 	FlowHead *owner;
 	list_head list;
 
 	timespec start;
 	event life_event;
+
+	uint64_t user_id;
+	uint64_t apply_id;
+	uint32_t office_id;
+	char user[USER_NAME];
+	char doctor[USER_NAME];
+
+	int valid;
+	ItemDesc *items[ITEM_CHILD];
 };
 
 static DEFINE_LIST_HEAD(flow_head);
@@ -203,32 +212,85 @@ close:
 	return err;
 }
 
+static int get_officectl_items()
+{
+	int items = 0;
+
+	for (OfficeCtl *office = officectl_head.next;
+	     office != &officectl_head; office = office->next) {
+		char *p = office->items;
+		char *end = office->items + OFFICE_ITEM;
+
+		for (; p < end; p++) {
+			if (*p == '_') items++;
+		}
+	}
+
+	return items;
+}
+
 int load_flow_manager()
 {
 	int count = 0, i = 0;
 	FlowHead *flows;
 
-	for (DevDesc *desc = dev_head.next;
-	     desc != &dev_head; desc = desc->next) {
-		count++;
-	}
-	flows = (FlowHead *)malloc(sizeof(*flows) * count);
+	count = get_officectl_items();
+	flows = (FlowHead *)calloc(count, sizeof(*flows));
 	if (flows == NULL) {
 		DUMP_LOG("no memory");
 		return -1;
 	}
-	memset(flows, 0, sizeof(*flows) * count);
 
-	for (DevDesc *desc = dev_head.next;
-	     desc != &dev_head; desc = desc->next, i++) {
-		FlowHead *flow = flows + i;
+	for (OfficeCtl *office = officectl_head.next;
+	     office != &officectl_head; office = office->next) {
+		char *p = office->items;
+		char *end = office->items + OFFICE_ITEM;
 
-		strcpy(flow->host, desc->host);
-		INIT_LIST_HEAD(&flow->head);
-		INIT_LIST_HEAD(&flow->list);
-		spin_lock_init(&flow->lock);
+		for (; p < end; p++) {
+			FlowHead *flow;
 
-		list_add(&flow->head, &flow_head);
+			if (*p != '_') {
+				continue;
+			} else {
+				p++;
+			}
+
+			flow = flows + i;
+			flow->item_code = ITEM_HEAD(p);
+			flow->office = office;
+			INIT_LIST_HEAD(&flow->head);
+			INIT_LIST_HEAD(&flow->list);
+			spin_lock_init(&flow->lock);
+
+			office->head[flow->item_code] = flow;
+
+			list_add(&flow->head, &flow_head);
+			i++;
+		}
+	}
+
+	for (DevDesc *dev = dev_head.next;
+	     dev != &dev_head; dev = dev->next) {
+		FlowHead *flow;
+		bool find = false;
+
+		list_for_each_entry(flow, &flow_head, head) {
+			if (dev->item_code != flow->item_code) {
+				continue;
+			}
+			if (strcmp(dev->office_id, flow->office->strid)) {
+				continue;
+			}
+			find = true;
+			dev->head = flow;
+			break;
+		}
+
+		if (!find) {
+			DUMP_LOG("无效设备 (%s:%s:%s)",
+				dev->code, dev->name, dev->host);
+			return -1;
+		}
 	}
 
 	flow_cache = cache_create("flow_cache", sizeof(FlowDesc),
@@ -241,29 +303,55 @@ int load_flow_manager()
 	return 0;
 }
 
-static inline FlowHead* get_flow_head(const char *host)
+static inline ItemDesc* head_search(rb_root *root, uint32_t item_id)
 {
-	FlowHead *head = NULL, *pos;
+	rb_node *node = root->rb_node;
 
-	list_for_each_entry(pos, &flow_head, head) {
-		if (!strcmp(pos->host, host)) {
-			head = pos;
-			break;
-		}
+	while (node) {
+		ItemDesc *data = container_of(node, ItemDesc, node);
+		int res;
+
+		res = item_id - data->id;
+
+		if (res < 0)
+  			node = node->rb_left;
+		else if (result > 0)
+  			node = node->rb_right;
+		else
+  			return data;
 	}
+	return NULL;
+}
 
+static inline FlowHead* get_flow_head(const HisDesc *his, ItemDesc **item)
+{
+	FlowHead *head = NULL;
+
+	for (OfficeCtl *office = officectl_head.next;
+	     office != &officectl_head; office = office->next) {
+		if (office->id != his->exe_office_id) {
+			continue;
+		}
+		*item = head_search(&office->tree, his->item_id);
+		if (*item != NULL) {
+			head = office->head[item->code];
+		} else {
+			DUMP_LOG("his传入无效数据");
+		}
+		break;
+	}
 	return head;
 }
 
-bool new_flow(const char *host, const char *id)
+bool new_flow(const HisDesc *his)
 {
 	bool res = true, has = false;
+	ItemDesc *item;
 	FlowHead *head;
 	FlowDesc *desc, *pos;
 
-	head = get_flow_head(host);
+	head = get_flow_head(his, &item);
 	if (unlikely(head == NULL)) {
-		DUMP_LOG("host: %s not register", host);
 		res = false;
 		goto out;
 	}
@@ -279,7 +367,12 @@ bool new_flow(const char *host, const char *id)
 	desc->owner = head;
 	kref_init(&desc->ref);
 	INIT_LIST_HEAD(&desc->list);
-	memcpy(desc->id, id, ULEN);
+	memcpy(desc->id, id, USER_ID);
+	desc->user_id = his->user_id;
+	desc->apply_id = his->apply_id;
+	desc->office_id = his->app_office_id;
+	strcpy(desc->user, his->user);
+	strcpy(desc->doctor, his->doctor);
 	if (clock_gettime(CLOCK_MONOTONIC, &desc->start)) {
 		cache_free(flow_cache, desc);
 		res = false;
@@ -289,7 +382,7 @@ bool new_flow(const char *host, const char *id)
 
 	spin_lock(&head->lock);
 	list_for_each_entry(pos, &head->list, list) {
-		if (!strncmp(pos->id, id, ULEN)) {
+		if (!strncmp(pos->id, id, USER_ID)) {
 			has = true;
 			break;
 		}
@@ -322,7 +415,7 @@ void del_flow(const char *host, const char *id)
 
 	spin_lock(&head->lock);
 	list_for_each_entry_safe(pos, n, &head->list, list) {
-		if (!strncmp(pos->id, id, ULEN)) {
+		if (!strncmp(pos->id, id, USER_ID)) {
 			flow = pos;
 			if (!g_config.watch_allow) {
 				list_del(&flow->list);
@@ -376,7 +469,7 @@ bool hit_flow(const char *host, const char *id)
 
 	spin_lock(&head->lock);
 	list_for_each_entry(pos, &head->list, list) {
-		if (!strncmp(pos->id, id, ULEN)) {
+		if (!strncmp(pos->id, id, USER_ID)) {
 			flow = pos;
 			if (!(flow->flags & FLOW_WATCH) &&
 			    g_config.watch_allow) {
