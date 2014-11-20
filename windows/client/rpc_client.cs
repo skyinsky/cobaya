@@ -15,6 +15,9 @@ namespace cobaya
         private static RcfProtoChannel _channel;
         private static RpcService.Stub _stub;
 
+        private static RcfProtoChannel fetch_channel;
+        private static RpcService.Stub fetch_stub;
+
         public static bool Init()
         {
             try
@@ -30,15 +33,21 @@ namespace cobaya
 
                 // Create channel.
                 _channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
-
                 // 5s connect timeout.
                 _channel.SetConnectTimeoutMs(5 * 1000);
-
                 // 10s remote call timeout.
                 _channel.SetRemoteCallTimeoutMs(10 * 1000);
-
                 // Create service stub.
                 _stub = new RpcService.Stub(_channel);
+
+                // Create channel.
+                fetch_channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
+                // 5s connect timeout.
+                fetch_channel.SetConnectTimeoutMs(5 * 1000);
+                // 10s remote call timeout.
+                fetch_channel.SetRemoteCallTimeoutMs(10 * 1000);
+                // Create service stub.
+                fetch_stub = new RpcService.Stub(fetch_channel);
 
                 return true;
             }
@@ -88,6 +97,7 @@ namespace cobaya
                 Info.dev_code = rsp.DevCode;
                 Info.heartbeat = rsp.Heartbeat;
                 Info.sensor = rsp.Sensor;
+                Info.fetch = rsp.Fetch;
                 Info.person = rsp.Person;
 
                 return true;
@@ -217,7 +227,7 @@ namespace cobaya
             }
         }
 
-        public static bool AppendInfo(MsgDiscoveryReq req)
+        public static bool AppendInfo(ref MsgDiscoveryReq req)
         {
             try
             {
@@ -232,6 +242,29 @@ namespace cobaya
                 //string err = "请联系管理员\n" + e.ToString();
 
                 //MessageBox.Show(err);
+                return false;
+            }
+        }
+
+        public static bool FetchFlows(out MsgFetchFlowRsp rsp)
+        {
+            try
+            {
+                // Create request object.
+                MsgFetchFlowReq.Builder req_build;
+                req_build = MsgFetchFlowReq.CreateBuilder();
+                req_build.SetDevCode(Info.dev_code);
+                MsgFetchFlowReq req = req_build.Build();
+
+                // Make a synchronous remote call to server.
+                fetch_stub.FetchFlow(null, req, null);
+                rsp = (MsgFetchFlowRsp)fetch_channel.GetResponse();
+
+                return true;
+            }
+            catch (Exception)
+            {
+                rsp = null;
                 return false;
             }
         }

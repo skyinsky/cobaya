@@ -39,7 +39,7 @@ namespace cobaya
             
             //global form
             Info.login_form = new LoginForm();
-            Info.check_form = new CheckForm();
+            //Info.check_form = new CheckForm();
 
             //rpc: dev config
             Info.login_form.splashScreenManager1.ShowWaitForm();

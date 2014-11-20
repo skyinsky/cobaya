@@ -173,7 +173,7 @@ namespace cobaya
 
             ui_worker = new UiWorker();
             ui_thread = new Thread(ui_worker.Routine);
-            ui_thread.Name = "ui_id";
+            ui_thread.Name = "ui_flow";
 
             ui_thread.Start();
             while (!ui_thread.IsAlive) ;

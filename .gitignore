@@ -30,3 +30,4 @@ windows/client/obj
 windows/MedLib
 windows/sql_cobaya/obj
 windows/his_cobaya/obj
+windows/serial_test/obj

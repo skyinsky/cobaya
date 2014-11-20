@@ -66,23 +66,42 @@ message MsgClientRsp {
 
 	required uint32 heartbeat = 3;
 	required uint32 sensor = 4;
-	required uint32 person = 5;
+	required uint32 fetch = 5;
+	required uint32 person = 6;
+}
+
+message MsgFetchFlowReq {
+	required string dev_code = 1;
+}
+
+message UserFlow {
+	required uint64 user_id = 1;
+	required uint64 apply_id = 2;
+	required string user = 3;
+	required string office = 4;
+	required string doctor = 5;
+	repeated string items = 6;
+}
+
+message MsgFetchFlowRsp {
+	repeated UserFlow flows = 1;
 }
 
 message MsgDiscoveryReq {
 	required string host = 1;
+	required string dev_code = 2;
 
 	/* 当前登录客户端的用户 */
-	required string user = 2;
+	required string user = 3;
 
 	/* 传感器是否检测到人 */
-	required bool person = 3;
+	required bool person = 4;
 	
 	/* 当前检查的病人唯一号 */
-	optional string id = 4;
+	optional uint64 id = 5;
 
 	/* 上次检查的病人唯一号 */
-	optional string prev_id = 5;
+	optional uint64 prev_id = 6;
 }
 
 message MsgDiscoveryRsp {
@@ -129,6 +148,7 @@ service RpcService {
 	rpc LoginSystem (MsgLoginReq) returns (MsgLoginRsp);
 	rpc LogoutSystem (MsgLogoutReq) returns (MsgLogoutRsp);
 	rpc AppendInfo (MsgDiscoveryReq) returns (MsgDiscoveryRsp);
+	rpc FetchFlow (MsgFetchFlowReq) returns (MsgFetchFlowRsp);
 
 	/* his operation */
 	rpc AppendFlow (MsgNewFlowReq) returns (MsgNewFlowRsp);

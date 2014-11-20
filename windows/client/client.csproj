@@ -99,6 +99,12 @@
     <Compile Include="Config.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FlowForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FlowForm.Designer.cs">
+      <DependentUpon>FlowForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="PortForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,6 +149,9 @@
       <DependentUpon>CheckForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ui_worker.cs" />
+    <EmbeddedResource Include="FlowForm.resx">
+      <DependentUpon>FlowForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="PortForm.resx">
       <DependentUpon>PortForm.cs</DependentUpon>
     </EmbeddedResource>

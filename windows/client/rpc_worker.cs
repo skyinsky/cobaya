@@ -33,7 +33,7 @@ namespace cobaya
                         }
 
                         if (req != null)
-                            RpcClient.AppendInfo(req);
+                            RpcClient.AppendInfo(ref req);
                     }
                 }
                 catch (Exception)
