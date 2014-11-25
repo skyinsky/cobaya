@@ -19,10 +19,9 @@ OPTIMIZE = -O0 # Comment this line for optimized(-O3) code
 watch_SOURCES  = $(wildcard *.cc) $(wildcard $(DST_PROTO_DIR)/*.cc)
 watch_CXXFLAGS = -I../ -I../librcfproto/RCF/include -Wno-pointer-arith -fpermissive
 watch_CXXFLAGS+= -I../libtoolkit/include -Wno-write-strings
-#watch_LDFLAGS = -L../librcfproto -L../libiniparser -L../libtoolkit
-watch_LDFLAGS = -L../bin/lib
+watch_LDFLAGS = -L../librcfproto -L../libiniparser -L../libtoolkit
 watch_LDLIBS  = -lprotobuf -lrcfproto -liniparser -ltoolkit
-#watch_RPATHS  = ../libtoolkit ../libiniparser ../librcfproto
+watch_RPATHS  = ../libtoolkit ../libiniparser ../librcfproto
 
 # Optional local files to be removed when making 'clean'
 # Objects and libraries are taken care of, they do *not* need to be set here
