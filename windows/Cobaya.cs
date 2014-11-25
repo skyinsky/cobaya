@@ -88,7 +88,7 @@ namespace cobaya {
           "EQoJaGVhcnRiZWF0GAMgAigNEg4KBnNlbnNvchgEIAIoDRINCgVmZXRjaBgF" + 
           "IAIoDRIOCgZwZXJzb24YBiACKA0iIwoPTXNnRmV0Y2hGbG93UmVxEhAKCGRl" + 
           "dl9jb2RlGAEgAigJImoKCFVzZXJGbG93Eg8KB3VzZXJfaWQYASACKAQSEAoI" + 
-          "YXBwbHlfaWQYAiACKAQSDAoEdXNlchgDIAIoCRIOCgZvZmZpY2UYBCACKAkS" + 
+          "YXBwbHlfaWQYAiACKAkSDAoEdXNlchgDIAIoCRIOCgZvZmZpY2UYBCACKAkS" + 
           "DgoGZG9jdG9yGAUgAigJEg0KBWl0ZW1zGAYgAygJIjIKD01zZ0ZldGNoRmxv" + 
           "d1JzcBIfCgVmbG93cxgBIAMoCzIQLmNvYmF5YS5Vc2VyRmxvdyJsCg9Nc2dE" + 
           "aXNjb3ZlcnlSZXESDAoEaG9zdBgBIAIoCRIQCghkZXZfY29kZRgCIAIoCRIM" + 
@@ -4464,7 +4464,7 @@ namespace cobaya {
     private UserFlow() { }
     private static readonly UserFlow defaultInstance = new UserFlow().MakeReadOnly();
     private static readonly string[] _userFlowFieldNames = new string[] { "apply_id", "doctor", "items", "office", "user", "user_id" };
-    private static readonly uint[] _userFlowFieldTags = new uint[] { 16, 42, 50, 34, 26, 8 };
+    private static readonly uint[] _userFlowFieldTags = new uint[] { 18, 42, 50, 34, 26, 8 };
     public static UserFlow DefaultInstance {
       get { return defaultInstance; }
     }
@@ -4498,12 +4498,11 @@ namespace cobaya {
     
     public const int ApplyIdFieldNumber = 2;
     private bool hasApplyId;
-    private ulong applyId_;
+    private string applyId_ = "";
     public bool HasApplyId {
       get { return hasApplyId; }
     }
-    [global::System.CLSCompliant(false)]
-    public ulong ApplyId {
+    public string ApplyId {
       get { return applyId_; }
     }
     
@@ -4567,7 +4566,7 @@ namespace cobaya {
         output.WriteUInt64(1, field_names[5], UserId);
       }
       if (hasApplyId) {
-        output.WriteUInt64(2, field_names[0], ApplyId);
+        output.WriteString(2, field_names[0], ApplyId);
       }
       if (hasUser) {
         output.WriteString(3, field_names[4], User);
@@ -4595,7 +4594,7 @@ namespace cobaya {
           size += pb::CodedOutputStream.ComputeUInt64Size(1, UserId);
         }
         if (hasApplyId) {
-          size += pb::CodedOutputStream.ComputeUInt64Size(2, ApplyId);
+          size += pb::CodedOutputStream.ComputeStringSize(2, ApplyId);
         }
         if (hasUser) {
           size += pb::CodedOutputStream.ComputeStringSize(3, User);
@@ -4806,8 +4805,8 @@ namespace cobaya {
               result.hasUserId = input.ReadUInt64(ref result.userId_);
               break;
             }
-            case 16: {
-              result.hasApplyId = input.ReadUInt64(ref result.applyId_);
+            case 18: {
+              result.hasApplyId = input.ReadString(ref result.applyId_);
               break;
             }
             case 26: {
@@ -4861,13 +4860,12 @@ namespace cobaya {
       public bool HasApplyId {
         get { return result.hasApplyId; }
       }
-      [global::System.CLSCompliant(false)]
-      public ulong ApplyId {
+      public string ApplyId {
         get { return result.ApplyId; }
         set { SetApplyId(value); }
       }
-      [global::System.CLSCompliant(false)]
-      public Builder SetApplyId(ulong value) {
+      public Builder SetApplyId(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
         result.hasApplyId = true;
         result.applyId_ = value;
@@ -4876,7 +4874,7 @@ namespace cobaya {
       public Builder ClearApplyId() {
         PrepareBuilder();
         result.hasApplyId = false;
-        result.applyId_ = 0UL;
+        result.applyId_ = "";
         return this;
       }
       

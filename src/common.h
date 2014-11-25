@@ -16,7 +16,7 @@ namespace cobaya {
 	log_msg("%s:%d, %s(): " fmt "\n",			\
 		__FILE__,  __LINE__, __func__, ##__VA_ARGS__)
 
-#define COBAYA_DEBUG	1
+//#define COBAYA_DEBUG	1
 
 #define USER_ID		11	/* 病人唯一号 */
 #define USER_NAME	20	/* 姓名 */

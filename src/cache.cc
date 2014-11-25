@@ -24,6 +24,7 @@ cache_t* cache_create(const char *name, size_t bufsize, size_t align,
 
     ret->name = nm;
     ret->ptr = ptr;
+    ret->bufsize = bufsize;
     ret->freetotal = initial_pool_size;
     ret->constructor = constructor;
     ret->destructor = destructor;

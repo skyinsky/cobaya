@@ -8,10 +8,10 @@ namespace cobaya {
 
 struct HisDesc {
 	uint64_t user_id;
-	uint64_t apply_id;
 	uint32_t item_id;
 	uint32_t exe_office_id;
 	uint32_t app_office_id;
+	char apply_id[APPLY_ID];
 	char user[USER_NAME];
 	char doctor[USER_NAME];
 };

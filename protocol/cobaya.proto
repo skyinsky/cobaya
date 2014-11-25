@@ -76,7 +76,7 @@ message MsgFetchFlowReq {
 
 message UserFlow {
 	required uint64 user_id = 1;
-	required uint64 apply_id = 2;
+	required string apply_id = 2;
 	required string user = 3;
 	required string office = 4;
 	required string doctor = 5;

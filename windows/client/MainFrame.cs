@@ -153,6 +153,7 @@ namespace cobaya
             MsgDiscoveryReq.Builder req_build;
             req_build = MsgDiscoveryReq.CreateBuilder();
             req_build.SetHost(Info.host);
+            req_build.SetDevCode(Info.dev_code);
             req_build.SetUser(Info.user);
             req_build.SetPerson(false);
 

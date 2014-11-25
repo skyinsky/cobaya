@@ -21,16 +21,28 @@ namespace cobaya
         private SerialPort _serialPort;
         private UInt32 _hit_person;
 
+        private static ComWorker me;
+
         public ComWorker(Queue<MsgDiscoveryReq> q, SyncEvents e)
         {
             _queue = q;
             _syncEvents = e;
             _hit_person = 0;
+
+            me = this;
+        }
+
+        public static void test()
+        {
+            me.find_person();
         }
 
         public void Routine()
         {
             Thread.Sleep(5000);
+
+            //while (true)
+            //    Thread.Sleep(5000);
 
             set_serial_port();
 
@@ -142,15 +154,15 @@ namespace cobaya
             req_build.SetDevCode(Info.dev_code);
             req_build.SetUser(Info.user);
             req_build.SetPerson(true);
-            //if (Info.check_form.this_id != null)
-            //{
-            //    req_build.SetId(Info.check_form.this_id);
-            //}
-            //if (Info.check_form.prev_id != null)
-            //{
-            //    req_build.SetPrevId(Info.check_form.prev_id);
-            //    Info.check_form.prev_id = null;
-            //}
+            if (Info.flow_form.this_id != 0)
+            {
+                req_build.SetId(Info.flow_form.this_id);
+            }
+            if (Info.flow_form.prev_id != 0)
+            {
+                req_build.SetPrevId(Info.flow_form.prev_id);
+                Info.flow_form.prev_id = 0;
+            }
 
             MsgDiscoveryReq req = req_build.Build();
 

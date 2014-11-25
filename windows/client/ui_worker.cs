@@ -26,7 +26,8 @@ namespace cobaya
             UserLookAndFeel.Default.SetSkinStyle("Caramel");
 
             //Application.Run(Info.check_form);
-            Application.Run(new FlowForm());
+            Info.flow_form = new FlowForm();
+            Application.Run(Info.flow_form);
         }
     }
 }

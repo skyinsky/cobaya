@@ -265,31 +265,97 @@ void RpcServiceImpl::RemoveFlow(RpcController *ctl,
 //	done->Run();
 }
 
+//void RpcServiceImpl::SetOrgFlow(RpcController *ctl,
+//				const MsgOrgFlowReq *req,
+//				MsgOrgFlowRsp *rsp, Closure *done)
+//{
+//	int res;
+//	int add;
+//	HisDesc his;
+//
+//	res = sscanf(req->info().c_str(), "%lu:%d:%lu:%s:%d:%d:%d:%s",
+//		     &his.user_id, &add, &his.apply_id,
+//		     (char *)&his.user, &his.item_id, &his.exe_office_id,
+//		     &his.app_office_id, (char *)&his.doctor);
+//	if (res != 8) {
+//		DUMP_LOG("his数据格式错误, %s", req->info().c_str());
+//		rsp->set_status(0);
+//	} else {
+//		if (add) {
+//			new_flow(&his);
+//		} else {
+//			del_flow(&his);
+//		}
+//		rsp->set_status(1);
+//	}
+//
+//	done->Run();
+//}
+
 void RpcServiceImpl::SetOrgFlow(RpcController *ctl,
 				const MsgOrgFlowReq *req,
 				MsgOrgFlowRsp *rsp, Closure *done)
 {
 	int res;
 	int add;
+	int len, f = 0, s = 0, e = 0, count = 0;
+	char *p;
 	HisDesc his;
 
-	res = sscanf(req->info().c_str(), "%lu:%d:%lu:%s:%d:%d:%d:%s",
-		     &his.user_id, &add, &his.apply_id,
-		     (char *)&his.user, &his.item_id, &his.exe_office_id,
-		     &his.app_office_id, (char *)&his.doctor);
-	if (res != 8) {
-		DUMP_LOG("his数据格式错误, %s", req->info().c_str());
-		rsp->set_status(0);
-	} else {
-		if (add) {
-			new_flow(&his);
-		} else {
-			del_flow(&his);
+	memset(&his, 0, sizeof(his));
+
+	p = (char *)req->info().c_str();
+	len = strlen(req->info().c_str());
+	for (int i = 0; i < len; i++) {
+		if (*(p + i) == ':')
+			count++;
+		if (count == 2 && f == 0) {
+			f = i + 1;
+			continue;
 		}
-		rsp->set_status(1);
+		if (count == 3 && s == 0) {
+			s = i + 1;
+			continue;
+		}
+		if (count == 4 && e == 0) {
+			e = i;
+			continue;
+		}
+	}
+	if (count != 7) {
+		goto out;
 	}
 
+	strncpy((char *)&his.apply_id, p + f, s - f - 1);
+	strncpy((char *)&his.user, p + s, e - s);
+
+	res = sscanf(p, "%lu:%d",
+		     &his.user_id, &add);
+	if (res != 2)
+		goto err;
+	
+	res = sscanf(p + e + 1, "%d:%d:%d:%s",
+		     &his.item_id, &his.exe_office_id,
+		     &his.app_office_id, (char *)&his.doctor);
+	if (res != 4)
+		goto err;
+	//DUMP_LOG("user: %s, doctor: %s", his.user, his.doctor);
+
+	if (add) {
+		new_flow(&his);
+	} else {
+		del_flow(&his);
+	}
+	rsp->set_status(1);
+
+out:
 	done->Run();
+	return;
+
+err:
+	DUMP_LOG("his数据格式错误, %s", req->info().c_str());
+	rsp->set_status(0);
+	goto out;
 }
 
 

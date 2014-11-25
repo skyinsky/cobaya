@@ -53,8 +53,8 @@ struct FlowDesc {
 	event life_event;
 
 	uint64_t user_id;
-	uint64_t apply_id;
 	uint32_t office_id;
+	char apply_id[APPLY_ID];
 	char user[USER_NAME];
 	char doctor[USER_NAME];
 
@@ -398,8 +398,8 @@ bool new_flow(const HisDesc *his)
 	kref_init(&desc->ref);
 	INIT_LIST_HEAD(&desc->list);
 	desc->user_id = his->user_id;
-	desc->apply_id = his->apply_id;
 	desc->office_id = his->app_office_id;
+	strcpy(desc->apply_id, his->apply_id);
 	strcpy(desc->user, his->user);
 	strcpy(desc->doctor, his->doctor);
 	desc->items[desc->valid++] = item;
