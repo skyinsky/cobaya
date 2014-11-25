@@ -1,6 +1,6 @@
 ﻿namespace cobaya
 {
-    partial class MainFrame
+    partial class aMainFrame
     {
         /// <summary>
         /// Required designer variable.
@@ -52,10 +52,10 @@
             this.splitContainerControl = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
-            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.devs = new System.Windows.Forms.TreeView();
             this.users = new System.Windows.Forms.TreeView();
+            this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.label2 = new System.Windows.Forms.Label();
@@ -319,11 +319,12 @@
             this.splitContainerControl1.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl1.Panel1.Controls.Add(this.splitContainerControl2);
             this.splitContainerControl1.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            this.splitContainerControl1.Panel2.Controls.Add(this.users);
+            this.splitContainerControl1.Panel2.Controls.Add(this.simpleButton2);
+            this.splitContainerControl1.Panel2.Controls.Add(this.simpleButton1);
             this.splitContainerControl1.Panel2.ShowCaption = true;
-            this.splitContainerControl1.Panel2.Text = "用户列表";
+            this.splitContainerControl1.Panel2.Text = "其他操作";
             this.splitContainerControl1.Size = new System.Drawing.Size(183, 630);
-            this.splitContainerControl1.SplitterPosition = 409;
+            this.splitContainerControl1.SplitterPosition = 483;
             this.splitContainerControl1.TabIndex = 0;
             this.splitContainerControl1.Text = "splitContainerControl1";
             // 
@@ -334,38 +335,17 @@
             this.splitContainerControl2.Location = new System.Drawing.Point(0, 0);
             this.splitContainerControl2.Name = "splitContainerControl2";
             this.splitContainerControl2.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            this.splitContainerControl2.Panel1.Controls.Add(this.simpleButton2);
-            this.splitContainerControl2.Panel1.Controls.Add(this.simpleButton1);
+            this.splitContainerControl2.Panel1.Controls.Add(this.devs);
             this.splitContainerControl2.Panel1.ShowCaption = true;
-            this.splitContainerControl2.Panel1.Text = "其他操作";
+            this.splitContainerControl2.Panel1.Text = "设备列表";
             this.splitContainerControl2.Panel2.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
-            this.splitContainerControl2.Panel2.Controls.Add(this.devs);
+            this.splitContainerControl2.Panel2.Controls.Add(this.users);
             this.splitContainerControl2.Panel2.ShowCaption = true;
-            this.splitContainerControl2.Panel2.Text = "设备列表";
-            this.splitContainerControl2.Size = new System.Drawing.Size(179, 405);
-            this.splitContainerControl2.SplitterPosition = 142;
+            this.splitContainerControl2.Panel2.Text = "用户列表";
+            this.splitContainerControl2.Size = new System.Drawing.Size(179, 479);
+            this.splitContainerControl2.SplitterPosition = 249;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
-            // 
-            // simpleButton2
-            // 
-            this.simpleButton2.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(15, 70);
-            this.simpleButton2.Name = "simpleButton2";
-            this.simpleButton2.Size = new System.Drawing.Size(146, 37);
-            this.simpleButton2.TabIndex = 0;
-            this.simpleButton2.Text = "添加用户";
-            this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
-            // 
-            // simpleButton1
-            // 
-            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(15, 14);
-            this.simpleButton1.Name = "simpleButton1";
-            this.simpleButton1.Size = new System.Drawing.Size(146, 37);
-            this.simpleButton1.TabIndex = 0;
-            this.simpleButton1.Text = "异常查询";
-            this.simpleButton1.Click += new System.EventHandler(this.simpleButton1_Click);
             // 
             // devs
             // 
@@ -376,9 +356,10 @@
             this.devs.Location = new System.Drawing.Point(0, 0);
             this.devs.Name = "devs";
             this.devs.SelectedImageIndex = 0;
-            this.devs.Size = new System.Drawing.Size(175, 234);
-            this.devs.TabIndex = 3;
-            this.devs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.devs_MouseDoubleClick);
+            this.devs.Size = new System.Drawing.Size(175, 225);
+            this.devs.TabIndex = 2;
+            //this.devs.MouseClick += new System.Windows.Forms.MouseEventHandler(this.rooms_MouseClick);
+            //this.devs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.rooms_MouseDoubleClick);
             // 
             // users
             // 
@@ -389,9 +370,30 @@
             this.users.Location = new System.Drawing.Point(0, 0);
             this.users.Name = "users";
             this.users.SelectedImageIndex = 3;
-            this.users.Size = new System.Drawing.Size(179, 192);
-            this.users.TabIndex = 2;
-            this.users.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.users_MouseDoubleClick);
+            this.users.Size = new System.Drawing.Size(175, 201);
+            this.users.TabIndex = 1;
+            this.users.AfterCollapse += new System.Windows.Forms.TreeViewEventHandler(this.devs_AfterCollapse);
+            this.users.AfterExpand += new System.Windows.Forms.TreeViewEventHandler(this.devs_AfterExpand);
+            this.users.MouseClick += new System.Windows.Forms.MouseEventHandler(this.devs_MouseClick);
+            this.users.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.devs_MouseDoubleClick);
+            // 
+            // simpleButton2
+            // 
+            this.simpleButton2.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.Image")));
+            this.simpleButton2.Location = new System.Drawing.Point(16, 67);
+            this.simpleButton2.Name = "simpleButton2";
+            this.simpleButton2.Size = new System.Drawing.Size(146, 37);
+            this.simpleButton2.TabIndex = 0;
+            this.simpleButton2.Text = "添加用户";
+            // 
+            // simpleButton1
+            // 
+            this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
+            this.simpleButton1.Location = new System.Drawing.Point(16, 12);
+            this.simpleButton1.Name = "simpleButton1";
+            this.simpleButton1.Size = new System.Drawing.Size(146, 37);
+            this.simpleButton1.TabIndex = 0;
+            this.simpleButton1.Text = "异常查询";
             // 
             // tableLayoutPanel1
             // 
@@ -554,6 +556,7 @@
         private System.Windows.Forms.ToolStripContentPanel ContentPanel;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl1;
+        private System.Windows.Forms.TreeView users;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private System.Windows.Forms.DateTimePicker dateTimeBegin;
@@ -561,12 +564,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dateTimeEnd;
         private DevExpress.XtraEditors.SplitContainerControl splitContainerControl2;
+        private System.Windows.Forms.TreeView devs;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
-        private System.Windows.Forms.TreeView devs;
-        private System.Windows.Forms.TreeView users;
         public DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

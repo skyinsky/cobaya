@@ -22,287 +22,189 @@ namespace cobaya
         {
             InitializeComponent();           
             InitSkinGallery();
-
-            //InitDB();
-            //InitDataTable();
-            //InitTreeList();
-
-            //关闭数据库连接等待窗口
-            //setting.dlg_login.splashScreenManager1.CloseWaitForm();
-        }
-        void InitDB()
-        {
-
-        }
-
-        void InitDataTable()
-        {
-            try
-            {
-                Info.tlb_rooms = libMySQL.db_query(Info.mysql_con, libsql.sql_get_keshi);
-                Info.tlb_devs = libMySQL.db_query(Info.mysql_con, libsql.sql_get_shebei);
-                Info.tlb_docts = libMySQL.db_query(Info.mysql_con, libsql.sql_get_yisheng);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                Application.Exit();
-            }
         }
 
         void InitSkinGallery()
         {
             SkinHelper.InitSkinGallery(rgbiSkins, true);
         }
-        void InitTreeList()
+
+        public bool InitTreeList()
         {
-            foreach (DataRow room in Info.tlb_rooms.Rows)
-            {
-                string keshi_num = room["科室编号"].ToString();
-                string keshi_name = room["科室名称"].ToString();
-
-                //科室列表
-                TreeNode keshi_ = new TreeNode(keshi_name);
-                //加入科室列表
-                this.rooms.Nodes.Add(keshi_);
-
-                //设备列表
-                DataRow[] devs = Info.tlb_devs.Select("科室编号=" + keshi_num);
-                TreeNode[] dev_nodes = new TreeNode[devs.Length];
-                for (int i = 0; i < devs.Length; i++)
-                {
-                    dev_nodes[i] = new TreeNode();
-                    dev_nodes[i].Name = devs[i]["名称"].ToString();
-                    dev_nodes[i].Text = devs[i]["名称"].ToString();
-                    dev_nodes[i].ImageIndex = 2;
-                    dev_nodes[i].SelectedImageIndex = 2;
-                }
-                TreeNode keshi_dev = new TreeNode("", dev_nodes);
-                keshi_dev.Name = keshi_name;
-                keshi_dev.Text = keshi_name;
-
-                //加入设备列表
-                this.devs.Nodes.Add(keshi_dev);
-
-                //医生列表
-                DataRow[] dots = Info.tlb_docts.Select("科室编号=" + keshi_num);
-                TreeNode[] dot_nodes = new TreeNode[devs.Length];
-                for (int i = 0; i < devs.Length; i++)
-                {
-                    dot_nodes[i] = new TreeNode();
-                    dot_nodes[i].Name = dots[i]["姓名"].ToString();
-                    dot_nodes[i].Text = dots[i]["姓名"].ToString();
-                    dot_nodes[i].ImageIndex = 3;
-                    dot_nodes[i].SelectedImageIndex = 3;
-                }
-                TreeNode keshi_dot = new TreeNode("", dot_nodes);
-                keshi_dot.Name = keshi_name;
-                keshi_dot.Text = keshi_name;
-
-                //加入医生列表
-                this.dots.Nodes.Add(keshi_dot);
-            }
-        }
-
-        private void devs_AfterExpand(object sender, TreeViewEventArgs e)
-        {
-            e.Node.ImageIndex = 1;
-        }
-
-        private void devs_AfterCollapse(object sender, TreeViewEventArgs e)
-        {
-            e.Node.ImageIndex = 0;
-        }
-
-        private void devs_MouseClick(object sender, MouseEventArgs e)
-        {
-            TreeNode node = this.devs.GetNodeAt(new Point(e.X, e.Y));
-            if (node == null)
-                return;
-
-            if (this.rooms.SelectedNode != null && this.rooms.SelectedNode.IsSelected)
-            {
-                this.rooms.SelectedNode.SelectedImageIndex = 4;
-            }
-            if (this.dots.SelectedNode != null && this.dots.SelectedNode.IsSelected)
-            {
-                if (this.dots.SelectedNode.Parent == null)
-                {
-                    if (this.dots.SelectedNode.IsExpanded)
-                        this.dots.SelectedNode.SelectedImageIndex = 1;
-                    else
-                        this.dots.SelectedNode.SelectedImageIndex = 0;
-                }
-                else
-                {
-                    this.dots.SelectedNode.SelectedImageIndex = 3;
-                }
-            }
-
-            node.SelectedImageIndex = 5;
-        }
-
-        private void dots_AfterCollapse(object sender, TreeViewEventArgs e)
-        {
-            e.Node.ImageIndex = 1;
-        }
-
-        private void dots_AfterExpand(object sender, TreeViewEventArgs e)
-        {
-            e.Node.ImageIndex = 0;
-        }
-
-
-        private void dots_MouseClick(object sender, MouseEventArgs e)
-        {
-            TreeNode node = this.dots.GetNodeAt(new Point(e.X, e.Y));
-            if (node == null)
-                return;
-
-            if (this.rooms.SelectedNode != null && this.rooms.SelectedNode.IsSelected)
-            {
-                this.rooms.SelectedNode.SelectedImageIndex = 4;
-            }
-            if (this.devs.SelectedNode != null && this.devs.SelectedNode.IsSelected)
-            {
-                if (this.devs.SelectedNode.Parent == null)
-                {
-                    if (this.devs.SelectedNode.IsExpanded)
-                        this.devs.SelectedNode.SelectedImageIndex = 1;
-                    else
-                        this.devs.SelectedNode.SelectedImageIndex = 0;
-                }
-                else
-                {
-                    this.devs.SelectedNode.SelectedImageIndex = 2;
-                }
-            }
-
-            node.SelectedImageIndex = 5;
-        }
-
-        private void rooms_MouseClick(object sender, MouseEventArgs e)
-        {
-            TreeNode node = this.rooms.GetNodeAt(new Point(e.X, e.Y));
-            if (node == null)
-                return;
-
-            if (this.devs.SelectedNode != null && this.devs.SelectedNode.IsSelected)
-            {
-                if (this.devs.SelectedNode.Parent == null)
-                {
-                    if (this.devs.SelectedNode.IsExpanded)
-                        this.devs.SelectedNode.SelectedImageIndex = 1;
-                    else
-                        this.devs.SelectedNode.SelectedImageIndex = 0;
-                }
-                else
-                {
-                    this.devs.SelectedNode.SelectedImageIndex = 2;
-                }
-            }
-            if (this.dots.SelectedNode != null && this.dots.SelectedNode.IsSelected)
-            {
-                if (this.dots.SelectedNode.Parent == null)
-                {
-                    if (this.dots.SelectedNode.IsExpanded)
-                        this.dots.SelectedNode.SelectedImageIndex = 1;
-                    else
-                        this.dots.SelectedNode.SelectedImageIndex = 0;
-                }
-                else
-                {
-                    this.dots.SelectedNode.SelectedImageIndex = 3;
-                }
-            }
-
-            node.SelectedImageIndex = 5;
-        }
-
-        private string get_room_num(object sender, MouseEventArgs e)
-        {
-            TreeNode node = this.rooms.GetNodeAt(new Point(e.X, e.Y));
-            if (node == null)
-                return null;
-
-            foreach (DataRow room in Info.tlb_rooms.Rows)
-            {
-                if (room["科室名称"] == node.Text)
-                    return room["科室编号"].ToString();
-            }
-            return null;
-        }
-
-        private void rooms_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            DataTable dt = null;
-
-            // |设备编号| 设备名称| 医生姓名| 时间| 备注|
-
-            string room_num = get_room_num(sender, e);
-            if (room_num == null)
-                return;
-
-            string time_begin = "'" + this.dateTimeBegin.Value.ToString() + "'";
-            string time_end = "'" + this.dateTimeEnd.Value.ToString() + "'";
-            string sql = "SELECT `违规`.`设备编号`, `违规`.`设备名称`, `违规`.`医生姓名`, `违规`.`时间`, `违规`.`备注` FROM `违规` WHERE `违规`.`时间` >=  "
-                + time_begin + " AND `违规`.`时间` <=" + time_end + " AND `违规`.`科室编号` =  '" + room_num + "' ORDER BY `违规`.`设备编号` ASC";
-
             try
             {
-                dt = libMySQL.db_query(Info.mysql_con, sql);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
+                //院区
+                Queue<string> areas = new Queue<string>();
+                foreach (DataRow row in Info.tlb_dev.Rows)
+                {
+                    bool hit = false;
 
-            this.gridControl1.DataSource = dt;
-            this.gridView1.PopulateColumns();
-            this.gridView1.Columns["时间"].DisplayFormat.FormatType = FormatType.DateTime;
-            this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-mm-dd hh:mm:ss";
+                    foreach (string area in areas)
+                    {
+                        if (area == row["院区"].ToString())
+                        {
+                            hit = true;
+                            break;
+                        }
+                    }
+
+                    if (!hit)
+                        areas.Enqueue(row["院区"].ToString());
+                }
+
+                //每一个院区
+                foreach (string area in areas)
+                {
+                    List<DataRow> mix = new List<DataRow>();
+                    foreach (DataRow row in Info.tlb_dev.Rows)
+                    {
+                        if (row["院区"].ToString() == area)
+                            mix.Add(row);
+                    }
+
+                    //科室
+                    List<string> offices = new List<string>();
+                    foreach (DataRow row in mix)
+                    {
+                        bool hit = false;
+
+                        foreach (string office in offices)
+                        {
+                            if (office == row["科室名称"].ToString())
+                            {
+                                hit = true;
+                                break;
+                            }
+                        }
+
+                        if (!hit)
+                            offices.Add(row["科室名称"].ToString());
+                    }
+
+                    //科室节点
+                    TreeNode[] office_nodes = new TreeNode[offices.Count];
+
+                    //每一个科室                    
+                    for (int i = 0; i < office_nodes.Length; i++)
+                    {
+                        string office = offices[i];
+                        List<string> _devs = new List<string>();
+
+                        //设备
+                        foreach (DataRow row in mix)
+                        {
+                            if (office != row["科室名称"].ToString())
+                                continue;
+
+                            _devs.Add(row["器械名称"].ToString());
+                        }
+
+                        TreeNode[] dev_nodes = new TreeNode[_devs.Count];
+                        for (int j = 0; j < dev_nodes.Length; j++)
+                        {
+                            string txt = _devs[j];
+
+                            TreeNode node = new TreeNode();
+                            node.Name = txt;
+                            node.Text = txt;
+                            node.ImageIndex = 2;
+                            node.SelectedImageIndex = 2;
+
+                            dev_nodes[j] = node;
+                        }
+
+                        office_nodes[i] = new TreeNode("", dev_nodes);
+                        office_nodes[i].Name = office;
+                        office_nodes[i].Text = office;
+                        office_nodes[i].ImageIndex = 1;
+                        office_nodes[i].SelectedImageIndex = 1;
+                    }
+
+                    TreeNode area_node = new TreeNode("", office_nodes);
+                    area_node.Name = area;
+                    area_node.Text = area;
+                    area_node.ImageIndex = 0;
+                    area_node.SelectedImageIndex = 0;
+
+                    this.devs.Nodes.Add(area_node);
+                }
+
+                //医生列表
+                foreach (DataRow row in Info.tlb_user.Rows)
+                {
+                    TreeNode node = new TreeNode();
+                    node.Name = row["姓名"].ToString();
+                    node.Text = row["姓名"].ToString();
+                    node.ImageIndex = 3;
+                    node.SelectedImageIndex = 3;
+
+                    this.users.Nodes.Add(node);
+                }
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                string err = "请联系管理员\n" + e.ToString();
+
+                MessageBox.Show(err);
+
+                return false;
+            }
         }
 
-        private string get_dev_num(object sender, MouseEventArgs e)
+        private string get_office(object sender, MouseEventArgs e)
         {
             TreeNode node = this.devs.GetNodeAt(new Point(e.X, e.Y));
             if (node == null)
                 return null;
-            if (node.Parent == null)
+
+            if (node.Parent == null || node.Parent.Parent == null)
                 return null;
 
-            foreach (DataRow dev in Info.tlb_devs.Rows)
-            {
-                if (dev["名称"] == node.Text)
-                    return dev["设备编号"].ToString();
-            }
-            return null;
+            return node.Parent.Name;
+        }
+
+        private string get_area(object sender, MouseEventArgs e)
+        {
+            TreeNode node = this.devs.GetNodeAt(new Point(e.X, e.Y));
+            if (node == null)
+                return null;
+
+            if (node.Parent == null || node.Parent.Parent == null)
+                return null;
+
+            return node.Parent.Parent.Name;
         }
 
         private void devs_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            DataTable dt = null;
-
-            string dev_num = get_dev_num(sender, e);
-            if (dev_num == null)
+            string office = get_office(sender, e);
+            if (office == null)
                 return;
 
-            // |科室名称| 医生姓名| 时间| 备注|
+            string area = get_area(sender, e);
+            if (area == null)
+                return;
 
-            //setting.dlg_login.splashScreenManager1.ShowWaitForm();
+            DataTable dt = null;
+
+            splashScreenManager1.ShowWaitForm();
 
             string time_begin = "'" + this.dateTimeBegin.Value.ToString() + "'";
             string time_end = "'" + this.dateTimeEnd.Value.ToString() + "'";
-            string sql = "SELECT `违规`.`科室名称`, `违规`.`医生姓名`, `违规`.`时间`, `违规`.`备注` FROM `违规` WHERE `违规`.`时间` >=  "
-                + time_begin + " AND `违规`.`时间` <=" + time_end + " AND `违规`.`设备编号` =  '" + dev_num + "' ORDER BY `违规`.`科室编号` ASC";
-            
+            string sql = "SELECT `日志`.`操作员`, `日志`.`登录终端`, `日志`.`时间` FROM `日志` WHERE "
+                + " `日志`.`时间` >= " + time_begin + " AND `日志`.`时间` <= " + time_end 
+                + " AND `日志`.`科室名称` = '" + office + "' AND `日志`.`院区` = '" + area
+                + "' ORDER BY `日志`.`时间` ASC";
+
             try
             {
                 dt = libMySQL.db_query(Info.mysql_con, sql);
             }
             catch (Exception ex)
             {
+                splashScreenManager1.CloseWaitForm();
                 MessageBox.Show(ex.Message);
                 return;
             }
@@ -310,50 +212,47 @@ namespace cobaya
             this.gridControl1.DataSource = dt;
             this.gridView1.PopulateColumns();
             this.gridView1.Columns["时间"].DisplayFormat.FormatType = FormatType.DateTime;
-            this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-mm-dd hh:mm:ss";
-
-            //setting.dlg_login.splashScreenManager1.CloseWaitForm();
+            this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-MM-dd hh:mm:ss";
+            splashScreenManager1.CloseWaitForm();
         }
 
-        private string get_dot_num(object sender, MouseEventArgs e)
+        private string get_user(object sender, MouseEventArgs e)
         {
-            TreeNode node = this.dots.GetNodeAt(new Point(e.X, e.Y));
+            TreeNode node = this.users.GetNodeAt(new Point(e.X, e.Y));
             if (node == null)
                 return null;
-            if (node.Parent == null)
-                return null;
 
-            foreach (DataRow dot in Info.tlb_docts.Rows)
-            {
-                if (dot["姓名"] == node.Text)
-                    return dot["医生编号"].ToString();
-            }
-            return null;
+            return node.Name;
         }
 
-        private void dots_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
-            DataTable dt = null;
 
-            string dot_num = get_dot_num(sender, e);
-            if (dot_num == null)
+        private void users_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            string user = get_user(sender, e);
+            if (user == null)
                 return;
 
-            // |科室名称| 设备编号| 设备名称| 时间| 备注|
+            DataTable dt = null;
 
-            //setting.dlg_login.splashScreenManager1.ShowWaitForm();
+            splashScreenManager1.ShowWaitForm();
 
             string time_begin = "'" + this.dateTimeBegin.Value.ToString() + "'";
             string time_end = "'" + this.dateTimeEnd.Value.ToString() + "'";
-            string sql = "SELECT `违规`.`科室名称`, `违规`.`设备编号`, `违规`.`设备名称`, `违规`.`时间`, `违规`.`备注` FROM `违规` WHERE `违规`.`时间` >=  "
-                + time_begin + " AND `违规`.`时间` <=" + time_end + " AND `违规`.`医生编号` =  '" + dot_num + "' ORDER BY `违规`.`科室编号` ASC";
+            string sql = "SELECT `日志`.`登录终端`,`日志`.`时间`," 
+                + "`日志`.`器械名称`,`日志`.`科室名称`,`日志`.`院区`"
+                + " FROM `日志` WHERE "
+                + " `日志`.`时间` >= " + time_begin + " AND `日志`.`时间` <= " + time_end 
+                + " AND `日志`.`操作员` = '" + user
+                + "' ORDER BY `日志`.`时间` ASC";
 
             try
             {
+
                 dt = libMySQL.db_query(Info.mysql_con, sql);
             }
             catch (Exception ex)
             {
+                splashScreenManager1.CloseWaitForm();
                 MessageBox.Show(ex.Message);
                 return;
             }
@@ -361,9 +260,46 @@ namespace cobaya
             this.gridControl1.DataSource = dt;
             this.gridView1.PopulateColumns();
             this.gridView1.Columns["时间"].DisplayFormat.FormatType = FormatType.DateTime;
-            this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-mm-dd hh:mm:ss";
+            this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-MM-dd hh:mm:ss";
+            splashScreenManager1.CloseWaitForm();
+        
+        }
 
-            //setting.dlg_login.splashScreenManager1.CloseWaitForm();
+        private void simpleButton1_Click(object sender, EventArgs e)
+        {
+            DataTable dt = null;
+
+            splashScreenManager1.ShowWaitForm();
+
+            string time_begin = "'" + this.dateTimeBegin.Value.ToString() + "'";
+            string time_end = "'" + this.dateTimeEnd.Value.ToString() + "'";
+            string sql = "SELECT `异常`.`异常时间`, `异常`.`器械名称`, `异常`.`科室名称`, `异常`.`院区` "
+                + "FROM `异常` WHERE `异常`.`异常时间` >= " +  time_begin 
+                +" AND `异常`.`异常时间` <= " + time_end
+                + " ORDER BY `异常`.`异常时间` ASC";
+
+            try
+            {
+
+                dt = libMySQL.db_query(Info.mysql_con, sql);
+            }
+            catch (Exception ex)
+            {
+                splashScreenManager1.CloseWaitForm();
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            this.gridControl1.DataSource = dt;
+            this.gridView1.PopulateColumns();
+            this.gridView1.Columns["异常时间"].DisplayFormat.FormatType = FormatType.DateTime;
+            this.gridView1.Columns["异常时间"].DisplayFormat.FormatString = "yyyy-MM-dd hh:mm:ss";
+            splashScreenManager1.CloseWaitForm();
+        }
+
+        private void simpleButton2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

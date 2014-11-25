@@ -51,6 +51,14 @@ namespace cobaya
             {
                 return;
             }
+            if (!Info.LoadDatabase())
+            {
+                return;
+            }
+            if (!frame.InitTreeList())
+            {
+                return;
+            }
             frame.splashScreenManager1.CloseWaitForm();
 
 

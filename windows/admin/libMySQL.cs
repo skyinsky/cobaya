@@ -14,11 +14,12 @@ namespace cobaya
             //设置连库信息
             MySQLConnection conn = new MySQLConnection(new MySQLConnectionString(server, dbname, user, pass).AsString);
 
+            //防止乱码
+            MySQLCommand commn = new MySQLCommand("set names gb2312", conn);
+
             //打开数据库
             conn.Open();
 
-            //防止乱码
-            MySQLCommand commn = new MySQLCommand("set names gb2312", conn);
             commn.ExecuteNonQuery();
 
             return conn;
