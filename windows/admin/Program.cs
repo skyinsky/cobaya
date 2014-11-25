@@ -25,7 +25,7 @@ namespace cobaya
 
             //确保只有一份运行实例
             bool enable_run;
-            Mutex mtx = new Mutex(false, "cobaya_client", out enable_run);
+            Mutex mtx = new Mutex(false, "cobaya_admin", out enable_run);
             if (!enable_run)
             {
                 MessageBox.Show("已经有一个程序的实例在运行，请查看系统任务栏！");
@@ -42,7 +42,7 @@ namespace cobaya
             frame = new MainFrame();
 
             //rpc: mysql config
-            //frame.splashScreenManager1.ShowWaitForm();
+            frame.splashScreenManager1.ShowWaitForm();
             if (!RpcClient.Init())
             {
                 return;
@@ -51,7 +51,7 @@ namespace cobaya
             {
                 return;
             }
-            //Info.login_form.splashScreenManager1.CloseWaitForm();
+            frame.splashScreenManager1.CloseWaitForm();
 
 
 

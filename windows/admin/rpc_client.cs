@@ -12,6 +12,9 @@ namespace cobaya
 {
     class RpcClient
     {
+        private static RcfProtoChannel _channel;
+        private static RpcService.Stub _stub;
+
         public static bool Init()
         {
             try
@@ -24,6 +27,15 @@ namespace cobaya
 
                 // Initialize RCFProto.
                 RCFProto.Init();
+
+                // Create channel.
+                _channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
+                // 5s connect timeout.
+                _channel.SetConnectTimeoutMs(5 * 1000);
+                // 10s remote call timeout.
+                _channel.SetRemoteCallTimeoutMs(10 * 1000);
+                // Create service stub.
+                _stub = new RpcService.Stub(_channel);
 
                 return true;
             }
@@ -50,21 +62,9 @@ namespace cobaya
                 MsgAdminReq req;
                 req = req_build.Build();
 
-                // Create channel.
-                RcfProtoChannel channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
-
-                // 5s connect timeout.
-                channel.SetConnectTimeoutMs(5 * 1000);
-
-                // 10s remote call timeout.
-                channel.SetRemoteCallTimeoutMs(10 * 1000);
-
-                // Create service stub.
-                RpcService.Stub stub = new RpcService.Stub(channel);
-
                 // Make a synchronous remote call to server.
-                stub.GetAdminInfo(null, req, null);
-                MsgAdminRsp rsp = (MsgAdminRsp)channel.GetResponse();
+                _stub.GetAdminInfo(null, req, null);
+                MsgAdminRsp rsp = (MsgAdminRsp)_channel.GetResponse();
 
                 Info.ip = rsp.Ip;
                 Info.user = rsp.User;

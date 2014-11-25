@@ -28,20 +28,20 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrame));
-            this.imageList = new System.Windows.Forms.ImageList(this.components);
-            this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
-            this.navbarImageCollection = new DevExpress.Utils.ImageCollection(this.components);
-            this.appMenu = new DevExpress.XtraBars.Ribbon.ApplicationMenu(this.components);
-            this.popupControlContainer2 = new DevExpress.XtraBars.PopupControlContainer(this.components);
+            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::cobaya.RWaitForm), true, true);
+            this.imageList = new System.Windows.Forms.ImageList();
+            this.navbarImageCollectionLarge = new DevExpress.Utils.ImageCollection();
+            this.navbarImageCollection = new DevExpress.Utils.ImageCollection();
+            this.appMenu = new DevExpress.XtraBars.Ribbon.ApplicationMenu();
+            this.popupControlContainer2 = new DevExpress.XtraBars.PopupControlContainer();
             this.buttonEdit = new DevExpress.XtraEditors.ButtonEdit();
             this.ribbonControl = new DevExpress.XtraBars.Ribbon.RibbonControl();
-            this.ribbonImageCollection = new DevExpress.Utils.ImageCollection(this.components);
+            this.ribbonImageCollection = new DevExpress.Utils.ImageCollection();
             this.rgbiSkins = new DevExpress.XtraBars.RibbonGalleryBarItem();
-            this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection(this.components);
+            this.ribbonImageCollectionLarge = new DevExpress.Utils.ImageCollection();
             this.ribbonStatusBar = new DevExpress.XtraBars.Ribbon.RibbonStatusBar();
-            this.popupControlContainer1 = new DevExpress.XtraBars.PopupControlContainer(this.components);
+            this.popupControlContainer1 = new DevExpress.XtraBars.PopupControlContainer();
             this.someLabelControl2 = new DevExpress.XtraEditors.LabelControl();
             this.someLabelControl1 = new DevExpress.XtraEditors.LabelControl();
             this.BottomToolStripPanel = new System.Windows.Forms.ToolStripPanel();
@@ -62,7 +62,6 @@
             this.dateTimeBegin = new System.Windows.Forms.DateTimePicker();
             this.gridControl1 = new DevExpress.XtraGrid.GridControl();
             this.gridView1 = new DevExpress.XtraGrid.Views.Grid.GridView();
-            this.splashScreenManager1 = new DevExpress.XtraSplashScreen.SplashScreenManager(this, typeof(global::cobaya.RWaitForm), true, true);
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).BeginInit();
@@ -499,7 +498,7 @@
             this.Ribbon = this.ribbonControl;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.StatusBar = this.ribbonStatusBar;
-            this.Text = "香河人民医院漏费查询系统";
+            this.Text = "香河县人民医院医疗设备漏费查询系统";
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollectionLarge)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.navbarImageCollection)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.appMenu)).EndInit();
@@ -563,6 +562,6 @@
         private System.Windows.Forms.TreeView rooms;
         private DevExpress.XtraGrid.GridControl gridControl1;
         private DevExpress.XtraGrid.Views.Grid.GridView gridView1;
-        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        public DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

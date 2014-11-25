@@ -23,9 +23,9 @@ namespace cobaya
             InitializeComponent();           
             InitSkinGallery();
 
-            InitDB();
-            InitDataTable();
-            InitTreeList();
+            //InitDB();
+            //InitDataTable();
+            //InitTreeList();
 
             //关闭数据库连接等待窗口
             //setting.dlg_login.splashScreenManager1.CloseWaitForm();
@@ -39,9 +39,9 @@ namespace cobaya
         {
             try
             {
-                setting.tlb_rooms = libMySQL.db_query(setting.db_conn, libsql.sql_get_keshi);
-                setting.tlb_devs = libMySQL.db_query(setting.db_conn, libsql.sql_get_shebei);
-                setting.tlb_dots = libMySQL.db_query(setting.db_conn, libsql.sql_get_yisheng);
+                Info.tlb_rooms = libMySQL.db_query(Info.mysql_con, libsql.sql_get_keshi);
+                Info.tlb_devs = libMySQL.db_query(Info.mysql_con, libsql.sql_get_shebei);
+                Info.tlb_docts = libMySQL.db_query(Info.mysql_con, libsql.sql_get_yisheng);
             }
             catch (Exception ex)
             {
@@ -56,7 +56,7 @@ namespace cobaya
         }
         void InitTreeList()
         {
-            foreach (DataRow room in setting.tlb_rooms.Rows)
+            foreach (DataRow room in Info.tlb_rooms.Rows)
             {
                 string keshi_num = room["科室编号"].ToString();
                 string keshi_name = room["科室名称"].ToString();
@@ -67,7 +67,7 @@ namespace cobaya
                 this.rooms.Nodes.Add(keshi_);
 
                 //设备列表
-                DataRow[] devs = setting.tlb_devs.Select("科室编号=" + keshi_num);
+                DataRow[] devs = Info.tlb_devs.Select("科室编号=" + keshi_num);
                 TreeNode[] dev_nodes = new TreeNode[devs.Length];
                 for (int i = 0; i < devs.Length; i++)
                 {
@@ -85,7 +85,7 @@ namespace cobaya
                 this.devs.Nodes.Add(keshi_dev);
 
                 //医生列表
-                DataRow[] dots = setting.tlb_dots.Select("科室编号=" + keshi_num);
+                DataRow[] dots = Info.tlb_docts.Select("科室编号=" + keshi_num);
                 TreeNode[] dot_nodes = new TreeNode[devs.Length];
                 for (int i = 0; i < devs.Length; i++)
                 {
@@ -225,7 +225,7 @@ namespace cobaya
             if (node == null)
                 return null;
 
-            foreach (DataRow room in setting.tlb_rooms.Rows)
+            foreach (DataRow room in Info.tlb_rooms.Rows)
             {
                 if (room["科室名称"] == node.Text)
                     return room["科室编号"].ToString();
@@ -239,8 +239,6 @@ namespace cobaya
 
             // |设备编号| 设备名称| 医生姓名| 时间| 备注|
 
-            setting.dlg_login.splashScreenManager1.ShowWaitForm();
-
             string room_num = get_room_num(sender, e);
             if (room_num == null)
                 return;
@@ -252,7 +250,7 @@ namespace cobaya
 
             try
             {
-                dt = libMySQL.db_query(setting.db_conn, sql);
+                dt = libMySQL.db_query(Info.mysql_con, sql);
             }
             catch (Exception ex)
             {
@@ -264,8 +262,6 @@ namespace cobaya
             this.gridView1.PopulateColumns();
             this.gridView1.Columns["时间"].DisplayFormat.FormatType = FormatType.DateTime;
             this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-mm-dd hh:mm:ss";
-
-            setting.dlg_login.splashScreenManager1.CloseWaitForm();
         }
 
         private string get_dev_num(object sender, MouseEventArgs e)
@@ -276,7 +272,7 @@ namespace cobaya
             if (node.Parent == null)
                 return null;
 
-            foreach (DataRow dev in setting.tlb_devs.Rows)
+            foreach (DataRow dev in Info.tlb_devs.Rows)
             {
                 if (dev["名称"] == node.Text)
                     return dev["设备编号"].ToString();
@@ -294,7 +290,7 @@ namespace cobaya
 
             // |科室名称| 医生姓名| 时间| 备注|
 
-            setting.dlg_login.splashScreenManager1.ShowWaitForm();
+            //setting.dlg_login.splashScreenManager1.ShowWaitForm();
 
             string time_begin = "'" + this.dateTimeBegin.Value.ToString() + "'";
             string time_end = "'" + this.dateTimeEnd.Value.ToString() + "'";
@@ -303,7 +299,7 @@ namespace cobaya
             
             try
             {
-                dt = libMySQL.db_query(setting.db_conn, sql);
+                dt = libMySQL.db_query(Info.mysql_con, sql);
             }
             catch (Exception ex)
             {
@@ -316,7 +312,7 @@ namespace cobaya
             this.gridView1.Columns["时间"].DisplayFormat.FormatType = FormatType.DateTime;
             this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-mm-dd hh:mm:ss";
 
-            setting.dlg_login.splashScreenManager1.CloseWaitForm();
+            //setting.dlg_login.splashScreenManager1.CloseWaitForm();
         }
 
         private string get_dot_num(object sender, MouseEventArgs e)
@@ -327,7 +323,7 @@ namespace cobaya
             if (node.Parent == null)
                 return null;
 
-            foreach (DataRow dot in setting.tlb_dots.Rows)
+            foreach (DataRow dot in Info.tlb_docts.Rows)
             {
                 if (dot["姓名"] == node.Text)
                     return dot["医生编号"].ToString();
@@ -345,7 +341,7 @@ namespace cobaya
 
             // |科室名称| 设备编号| 设备名称| 时间| 备注|
 
-            setting.dlg_login.splashScreenManager1.ShowWaitForm();
+            //setting.dlg_login.splashScreenManager1.ShowWaitForm();
 
             string time_begin = "'" + this.dateTimeBegin.Value.ToString() + "'";
             string time_end = "'" + this.dateTimeEnd.Value.ToString() + "'";
@@ -354,7 +350,7 @@ namespace cobaya
 
             try
             {
-                dt = libMySQL.db_query(setting.db_conn, sql);
+                dt = libMySQL.db_query(Info.mysql_con, sql);
             }
             catch (Exception ex)
             {
@@ -367,7 +363,7 @@ namespace cobaya
             this.gridView1.Columns["时间"].DisplayFormat.FormatType = FormatType.DateTime;
             this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-mm-dd hh:mm:ss";
 
-            setting.dlg_login.splashScreenManager1.CloseWaitForm();
+            //setting.dlg_login.splashScreenManager1.CloseWaitForm();
         }
     }
 }

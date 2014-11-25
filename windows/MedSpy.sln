@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client", "client\client.csproj", "{83BEF190-1630-4C7D-BDF7-5D099F761F03}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "admin", "admin\admin.csproj", "{5ED1B146-5D1C-4F9A-861D-4AFA83734541}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sql_cobaya", "sql_cobaya\sql_cobaya.csproj", "{A03D237B-973E-4148-81EE-0375963CDC97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "serial_test", "serial_test\serial_test.csproj", "{8A386441-7674-44CF-AAA0-828FFC4265ED}"
@@ -12,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "his_cobaya", "his_cobaya\his_cobaya.csproj", "{1A8A677F-8830-4711-9817-C42BCBB8BDFC}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "install_client", "install_client\install_client.vdproj", "{79ADCDAD-A657-4953-A09A-092F6B6E70C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "admin", "admin\admin.csproj", "{6644E5C8-97A4-4709-9D08-4690A42C72E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,16 +34,6 @@ Global
 		{83BEF190-1630-4C7D-BDF7-5D099F761F03}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{83BEF190-1630-4C7D-BDF7-5D099F761F03}.Release|x86.ActiveCfg = Release|Any CPU
 		{83BEF190-1630-4C7D-BDF7-5D099F761F03}.Release|x86.Deploy.0 = Release|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{5ED1B146-5D1C-4F9A-861D-4AFA83734541}.Release|x86.ActiveCfg = Release|Any CPU
 		{A03D237B-973E-4148-81EE-0375963CDC97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A03D237B-973E-4148-81EE-0375963CDC97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A03D237B-973E-4148-81EE-0375963CDC97}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
@@ -84,6 +74,16 @@ Global
 		{79ADCDAD-A657-4953-A09A-092F6B6E70C9}.Release|Any CPU.ActiveCfg = Release
 		{79ADCDAD-A657-4953-A09A-092F6B6E70C9}.Release|Mixed Platforms.ActiveCfg = Release
 		{79ADCDAD-A657-4953-A09A-092F6B6E70C9}.Release|x86.ActiveCfg = Release
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
