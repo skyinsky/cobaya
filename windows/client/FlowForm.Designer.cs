@@ -76,6 +76,7 @@
             this.gridView1.OptionsLayout.Columns.AddNewColumns = false;
             this.gridView1.OptionsLayout.Columns.RemoveOldColumns = false;
             this.gridView1.OptionsMenu.EnableColumnMenu = false;
+            this.gridView1.OptionsSelection.EnableAppearanceFocusedCell = false;
             this.gridView1.OptionsView.ShowGroupPanel = false;
             // 
             // user_id
