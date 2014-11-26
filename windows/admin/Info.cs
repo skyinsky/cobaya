@@ -21,13 +21,14 @@ namespace cobaya
         public static DataTable tlb_user;
         public static DataTable tlb_dev;
 
-        public static MySQLConnection mysql_con;
-
         public static bool LoadDatabase()
         {
             try
             {
-                mysql_con = libMySQL.db_conn(ip, db, user, passwd);
+                if (!libMySQL.db_conn(ip, db, user, passwd))
+                {
+                    return false;
+                }
 
                 Load_dev();
                 Load_user();
@@ -55,14 +56,14 @@ namespace cobaya
         {
             string sql = "SELECT * FROM `用户`";
 
-            tlb_user = libMySQL.db_query(mysql_con, sql);
+            tlb_user = libMySQL.db_query(sql);
         }
 
         private static void Load_dev()
         {
             string sql = "SELECT * FROM `设备`";
 
-            tlb_dev = libMySQL.db_query(mysql_con, sql);
+            tlb_dev = libMySQL.db_query(sql);
         }
     }
 }

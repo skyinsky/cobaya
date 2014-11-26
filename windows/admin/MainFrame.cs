@@ -22,6 +22,9 @@ namespace cobaya
         {
             InitializeComponent();           
             InitSkinGallery();
+
+            this.dateTimeEnd.Value = DateTime.Now;
+            this.dateTimeBegin.Value = DateTime.Now.AddDays(-30);
         }
 
         void InitSkinGallery()
@@ -153,6 +156,12 @@ namespace cobaya
             }
         }
 
+        private void ClearTreeList()
+        {
+            this.users.Nodes.Clear();
+            this.devs.Nodes.Clear();
+        }
+
         private string get_office(object sender, MouseEventArgs e)
         {
             TreeNode node = this.devs.GetNodeAt(new Point(e.X, e.Y));
@@ -200,7 +209,7 @@ namespace cobaya
 
             try
             {
-                dt = libMySQL.db_query(Info.mysql_con, sql);
+                dt = libMySQL.db_query(sql);
             }
             catch (Exception ex)
             {
@@ -248,7 +257,7 @@ namespace cobaya
             try
             {
 
-                dt = libMySQL.db_query(Info.mysql_con, sql);
+                dt = libMySQL.db_query(sql);
             }
             catch (Exception ex)
             {
@@ -281,7 +290,7 @@ namespace cobaya
             try
             {
 
-                dt = libMySQL.db_query(Info.mysql_con, sql);
+                dt = libMySQL.db_query(sql);
             }
             catch (Exception ex)
             {
@@ -299,7 +308,26 @@ namespace cobaya
 
         private void simpleButton2_Click(object sender, EventArgs e)
         {
+            UserForm form = new UserForm();
 
+            form.ShowDialog();
+
+            if (!form.res)
+                return;
+
+            splashScreenManager1.ShowWaitForm();
+            if (!Info.LoadDatabase())
+            {
+                splashScreenManager1.CloseWaitForm();
+                return;
+            }
+            ClearTreeList();
+            if (!InitTreeList())
+            {
+                splashScreenManager1.CloseWaitForm();
+                return;
+            }
+            splashScreenManager1.CloseWaitForm();
         }
     }
 }

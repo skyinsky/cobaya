@@ -7,7 +7,7 @@ namespace cobaya
 {
     class Info
     {
-        public static string user = "未知";
+        public static string user = "AA_匿名";
         public static string passwd;
 
         public static string host;

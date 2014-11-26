@@ -27,6 +27,11 @@ namespace cobaya
             user = this.userbox.Text;
             passwd = this.passbox.Text;
 
+            if (user == "AA_匿名")
+            {
+                MessageBox.Show("'AA_匿名' 是系统保留用户名，您无权操作");
+                return;
+            }
             if (user == "" || passwd == "")
             {
                 MessageBox.Show("请输入用户名与密码");

@@ -354,7 +354,7 @@
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(146, 37);
             this.simpleButton2.TabIndex = 0;
-            this.simpleButton2.Text = "添加用户";
+            this.simpleButton2.Text = "管理用户";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
             // simpleButton1
@@ -450,7 +450,7 @@
             this.dateTimeEnd.Name = "dateTimeEnd";
             this.dateTimeEnd.Size = new System.Drawing.Size(166, 22);
             this.dateTimeEnd.TabIndex = 0;
-            this.dateTimeEnd.Value = new System.DateTime(2014, 5, 3, 23, 59, 59, 0);
+            this.dateTimeEnd.Value = new System.DateTime(2014, 11, 26, 0, 0, 0, 0);
             // 
             // dateTimeBegin
             // 

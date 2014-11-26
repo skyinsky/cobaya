@@ -113,7 +113,7 @@ namespace cobaya
             }
 
             login_yes = false;
-            Info.user = "未知";
+            Info.user = "AA_匿名";
 
             Info.login_form.splashScreenManager1.ShowWaitForm();
             grant = RpcClient.LogoutSystem(user);

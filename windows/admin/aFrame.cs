@@ -235,7 +235,7 @@ namespace cobaya
 
             try
             {
-                dt = libMySQL.db_query(Info.mysql_con, sql);
+                dt = libMySQL.db_query(sql);
             }
             catch (Exception ex)
             {
