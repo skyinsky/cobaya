@@ -54,7 +54,7 @@
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>video_chat.ico</ApplicationIcon>
+    <ApplicationIcon>Fine.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.BonusSkins.v13.2, Version=13.2.8.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -236,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Images\香河人民医院.gif" />
+    <Content Include="Fine.ico" />
     <Content Include="video_chat.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />

@@ -142,7 +142,7 @@ namespace cobaya
 
                 string msg = "传感器设置错误，请联系管理员！\n\n" + e.Message;
 
-                Application.Run(new PortForm(msg, 30));
+                Application.Run(new PortForm(msg, 60));
             }
         }
 

@@ -13,6 +13,10 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "install_client", "install_c
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "admin", "admin\admin.csproj", "{6644E5C8-97A4-4709-9D08-4690A42C72E0}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "install_admin", "install_admin\install_admin.vdproj", "{E6EAE7C9-D8BC-4289-9DB1-CA9FF094A093}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "install_his", "install_his\install_his.vdproj", "{4F31A22F-2115-4E78-AB12-3D09256B4783}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -84,6 +88,18 @@ Global
 		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{6644E5C8-97A4-4709-9D08-4690A42C72E0}.Release|x86.ActiveCfg = Release|Any CPU
+		{E6EAE7C9-D8BC-4289-9DB1-CA9FF094A093}.Debug|Any CPU.ActiveCfg = Debug
+		{E6EAE7C9-D8BC-4289-9DB1-CA9FF094A093}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{E6EAE7C9-D8BC-4289-9DB1-CA9FF094A093}.Debug|x86.ActiveCfg = Debug
+		{E6EAE7C9-D8BC-4289-9DB1-CA9FF094A093}.Release|Any CPU.ActiveCfg = Release
+		{E6EAE7C9-D8BC-4289-9DB1-CA9FF094A093}.Release|Mixed Platforms.ActiveCfg = Release
+		{E6EAE7C9-D8BC-4289-9DB1-CA9FF094A093}.Release|x86.ActiveCfg = Release
+		{4F31A22F-2115-4E78-AB12-3D09256B4783}.Debug|Any CPU.ActiveCfg = Debug
+		{4F31A22F-2115-4E78-AB12-3D09256B4783}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{4F31A22F-2115-4E78-AB12-3D09256B4783}.Debug|x86.ActiveCfg = Debug
+		{4F31A22F-2115-4E78-AB12-3D09256B4783}.Release|Any CPU.ActiveCfg = Release
+		{4F31A22F-2115-4E78-AB12-3D09256B4783}.Release|Mixed Platforms.ActiveCfg = Release
+		{4F31A22F-2115-4E78-AB12-3D09256B4783}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

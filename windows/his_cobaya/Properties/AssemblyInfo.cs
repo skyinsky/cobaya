@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("his_cobaya")]
-[assembly: AssemblyDescription("香河县人民医院医疗设备监控服务")]
+[assembly: AssemblyTitle("cobaya")]
+[assembly: AssemblyDescription("香河县人民医院医疗设备监控系统")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("香河县人民医院")]
-[assembly: AssemblyProduct("his_cobaya")]
+[assembly: AssemblyProduct("香河县人民医院医疗设备监控系统")]
 [assembly: AssemblyCopyright("Copyright © 香河县人民医院 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

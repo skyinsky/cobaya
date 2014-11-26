@@ -25,6 +25,7 @@ bin
 log
 
 windows/bin
+windows/release
 windows/admin/obj
 windows/client/obj
 windows/MedLib
