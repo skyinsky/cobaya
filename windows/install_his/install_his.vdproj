@@ -45,6 +45,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C1B8A6C2ACAD49E4814A4762DE8A2BDB"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C1E665B3F7B02C0388472EB214DF3A94"
         "OwnerKey" = "8:_84AE85650BB94F0EA7BFDF7D849AD2AC"
         "MsmSig" = "8:_UNDEFINED"
@@ -52,13 +58,13 @@
         "Entry"
         {
         "MsmKey" = "8:_C1E665B3F7B02C0388472EB214DF3A94"
-        "OwnerKey" = "8:_AFC6659B4AFBECF6684253E1B3F340FF"
+        "OwnerKey" = "8:_EBD26BC36D464989A0CF9FCBEBEF3233"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_C1E665B3F7B02C0388472EB214DF3A94"
-        "OwnerKey" = "8:_EBD26BC36D464989A0CF9FCBEBEF3233"
+        "OwnerKey" = "8:_AFC6659B4AFBECF6684253E1B3F340FF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,13 +94,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C1E665B3F7B02C0388472EB214DF3A94"
+        "OwnerKey" = "8:_EBD26BC36D464989A0CF9FCBEBEF3233"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_AFC6659B4AFBECF6684253E1B3F340FF"
+        "OwnerKey" = "8:_C209886019DB414A9023F2FC9477DCE7"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -106,13 +112,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EBD26BC36D464989A0CF9FCBEBEF3233"
+        "OwnerKey" = "8:_AFC6659B4AFBECF6684253E1B3F340FF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C209886019DB414A9023F2FC9477DCE7"
+        "OwnerKey" = "8:_C1E665B3F7B02C0388472EB214DF3A94"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -140,6 +146,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
         "Release"
@@ -164,6 +183,19 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.0,Profile=Client"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4 Client Profile (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.0,Profile=Client"
+                    }
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
+                    {
+                    "Name" = "8:Windows Installer 3.1"
+                    "ProductCode" = "8:Microsoft.Windows.Installer.3.1"
+                    }
+                }
             }
         }
     }
@@ -303,6 +335,11 @@
             "AssemblyAsmDisplayName" = "8:RCFProto_NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_AFC6659B4AFBECF6684253E1B3F340FF"
+                    {
+                    "Name" = "8:RCFProto_NET.DLL"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:RCFProto_NET.DLL"
             "TargetName" = "8:"
@@ -322,6 +359,26 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C1B8A6C2ACAD49E4814A4762DE8A2BDB"
+            {
+            "SourcePath" = "8:..\\release\\help"
+            "TargetName" = "8:help"
+            "Tag" = "8:"
+            "Folder" = "8:_1AC038D5529C4E4DA2433C12F2AEF580"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_C1E665B3F7B02C0388472EB214DF3A94"
             {
             "AssemblyRegister" = "3:1"
@@ -329,6 +386,11 @@
             "AssemblyAsmDisplayName" = "8:Google.ProtocolBuffers, Version=2.4.1.473, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_C1E665B3F7B02C0388472EB214DF3A94"
+                    {
+                    "Name" = "8:Google.ProtocolBuffers.DLL"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Google.ProtocolBuffers.DLL"
             "TargetName" = "8:"
@@ -531,7 +593,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:cobaya_his"
         "ProductCode" = "8:{907F54A6-F6E3-4D9D-9622-B20479F31FCB}"
-        "PackageCode" = "8:{5A39B609-96F6-4A52-BCAB-E7F5F63962F7}"
+        "PackageCode" = "8:{95BEE762-3EF1-439F-87D5-EE34CDFA7D04}"
         "UpgradeCode" = "8:{50CFEA55-EE39-42A5-ABC0-2E09CB5BDD8A}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
