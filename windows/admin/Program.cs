@@ -8,6 +8,8 @@ namespace cobaya
 {
     static class Program
     {
+        private static Mutex mtx;
+
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -25,7 +27,7 @@ namespace cobaya
 
             //确保只有一份运行实例
             bool enable_run;
-            Mutex mtx = new Mutex(false, "cobaya_admin", out enable_run);
+            mtx = new Mutex(false, "cobaya_admin", out enable_run);
             if (!enable_run)
             {
                 MessageBox.Show("已经有一个程序的实例在运行，请查看系统任务栏！");

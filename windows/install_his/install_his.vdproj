@@ -52,13 +52,13 @@
         "Entry"
         {
         "MsmKey" = "8:_C1E665B3F7B02C0388472EB214DF3A94"
-        "OwnerKey" = "8:_EBD26BC36D464989A0CF9FCBEBEF3233"
+        "OwnerKey" = "8:_AFC6659B4AFBECF6684253E1B3F340FF"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_C1E665B3F7B02C0388472EB214DF3A94"
-        "OwnerKey" = "8:_AFC6659B4AFBECF6684253E1B3F340FF"
+        "OwnerKey" = "8:_EBD26BC36D464989A0CF9FCBEBEF3233"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -88,19 +88,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C209886019DB414A9023F2FC9477DCE7"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_EBD26BC36D464989A0CF9FCBEBEF3233"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_84AE85650BB94F0EA7BFDF7D849AD2AC"
+        "OwnerKey" = "8:_C1E665B3F7B02C0388472EB214DF3A94"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -112,7 +100,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C1E665B3F7B02C0388472EB214DF3A94"
+        "OwnerKey" = "8:_84AE85650BB94F0EA7BFDF7D849AD2AC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_EBD26BC36D464989A0CF9FCBEBEF3233"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_C209886019DB414A9023F2FC9477DCE7"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -133,6 +133,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
         "Release"
         {
@@ -149,6 +157,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -287,11 +303,6 @@
             "AssemblyAsmDisplayName" = "8:RCFProto_NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_AFC6659B4AFBECF6684253E1B3F340FF"
-                    {
-                    "Name" = "8:RCFProto_NET.DLL"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:RCFProto_NET.DLL"
             "TargetName" = "8:"
@@ -318,11 +329,6 @@
             "AssemblyAsmDisplayName" = "8:Google.ProtocolBuffers, Version=2.4.1.473, Culture=neutral, PublicKeyToken=55f7125234beb589, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_C1E665B3F7B02C0388472EB214DF3A94"
-                    {
-                    "Name" = "8:Google.ProtocolBuffers.DLL"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:Google.ProtocolBuffers.DLL"
             "TargetName" = "8:"
@@ -346,7 +352,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:sql_cobaya, Version=1.0.5443.37666, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:sql_cobaya, Version=1.0.5443.41434, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_C209886019DB414A9023F2FC9477DCE7"
@@ -523,7 +529,7 @@
         "Product"
         {
         "Name" = "8:Microsoft Visual Studio"
-        "ProductName" = "8:cobaya"
+        "ProductName" = "8:cobaya_his"
         "ProductCode" = "8:{907F54A6-F6E3-4D9D-9622-B20479F31FCB}"
         "PackageCode" = "8:{5A39B609-96F6-4A52-BCAB-E7F5F63962F7}"
         "UpgradeCode" = "8:{50CFEA55-EE39-42A5-ABC0-2E09CB5BDD8A}"
