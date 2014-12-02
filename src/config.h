@@ -10,8 +10,10 @@ struct Config {
 	int worker;
 	char *dir;
 
-	char *rpc_ip;
-	uint16_t rpc_port;
+	char *ip_in;
+	uint16_t port_in;
+	char *ip_ext;
+	uint16_t port_ext;
 
 	char *mysql_cobaya_ip;
 	char *mysql_remote_ip;

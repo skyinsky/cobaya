@@ -258,10 +258,18 @@ int start_rpc_server()
 		DUMP_LOG("init rpc error");
 		return -1;
 	}
-	if (g_server.AddEndpoint(g_config.rpc_ip,
-				 g_config.rpc_port)) {
+	if (g_server.AddEndpoint(g_config.ip_in,
+				 g_config.port_in)) {
 		DUMP_LOG("listen %s:%d error",
-			 g_config.rpc_ip, g_config.rpc_port);
+			 g_config.ip_in, g_config.port_in);
+		return -1;
+	}
+	if ((strcmp(g_config.ip_in, g_config.ip_ext)
+	    || g_config.port_in != g_config.port_ext)
+	    && g_server.AddEndpoint(g_config.ip_ext,
+		    		    g_config.port_ext)) {
+		DUMP_LOG("listen %s:%d error",
+			 g_config.ip_ext, g_config.port_ext);
 		return -1;
 	}
 	if (g_server.CreateThreadPool(g_config.worker)) {
