@@ -325,6 +325,17 @@ static inline ItemDesc* head_search(rb_root *root, uint32_t item_id)
 	return NULL;
 }
 
+static inline ItemDesc* head_search(OfficeCtl *office, const char *item_name)
+{
+	for (ItemDesc *item = office->list_head.next;
+	     item != &office->list_head; item = item->next) {
+		if (!strcmp(item_name, item->name)) {
+			return item;
+		}
+	}
+	return NULL;
+}
+
 static inline FlowHead* get_flow_head(const HisDesc *his, ItemDesc **item)
 {
 	FlowHead *head = NULL;
@@ -334,12 +345,15 @@ static inline FlowHead* get_flow_head(const HisDesc *his, ItemDesc **item)
 		if (office->id != his->exe_office_id) {
 			continue;
 		}
-		*item = head_search(&office->tree, his->item_id);
+		//*item = head_search(&office->tree, his->item_id);
+		*item = head_search(office, his->item_name);
 		if (*item != NULL) {
 			head = (FlowHead *)office->head[(*item)->code];
 		} else {
-			DUMP_LOG("[cobaya.监控科室] %s:%s 不存在执行项目%d",
-				 office->strid, office->name, his->item_id);
+//			DUMP_LOG("[cobaya.监控科室] %s:%s 不存在执行项目%d",
+//				 office->strid, office->name, his->item_id);
+			DUMP_LOG("[cobaya.监控科室] %s:%s 不存在执行项目%s",
+				 office->strid, office->name, his->item_name);
 		}
 		break;
 	}

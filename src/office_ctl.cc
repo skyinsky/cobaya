@@ -152,6 +152,8 @@ static int load_office_ctl(OfficeCtl *office)
 			err = -1;
 			goto out;
 		}
+		item->next = office->list_head.next;
+		office->list_head.next = item;
 	}
 
 out:
@@ -202,6 +204,7 @@ int load_officectl_list()
 
 		office->id = atoi(row[0]);
 		RB_EMPTY_ROOT(&office->tree);
+		office->list_head.next = &office->list_head;
 	}
 
 	for (OfficeCtl *office = officectl_head.next;

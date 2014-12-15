@@ -298,7 +298,7 @@ void RpcServiceImpl::SetOrgFlow(RpcController *ctl,
 {
 	int res;
 	int add;
-	int len, f = 0, s = 0, e = 0, count = 0;
+	int len, f = 0, s = 0, t = 0, e = 0, count = 0;
 	char *p;
 	HisDesc his;
 
@@ -317,27 +317,32 @@ void RpcServiceImpl::SetOrgFlow(RpcController *ctl,
 			s = i + 1;
 			continue;
 		}
-		if (count == 4 && e == 0) {
+		if (count == 4 && t == 0) {
+			t = i + 1;
+			continue;
+		}
+		if (count == 5 && e == 0) {
 			e = i;
 			continue;
 		}
 	}
 	if (count != 7) {
-		goto out;
+		goto err;
 	}
 
 	strncpy((char *)&his.apply_id, p + f, s - f - 1);
-	strncpy((char *)&his.user, p + s, e - s);
+	strncpy((char *)&his.user, p + s, t - s - 1);
+	strncpy((char *)&his.item_name, p + t, e - t);
 
 	res = sscanf(p, "%lu:%d",
 		     &his.user_id, &add);
 	if (res != 2)
 		goto err;
 	
-	res = sscanf(p + e + 1, "%d:%d:%d:%s",
-		     &his.item_id, &his.exe_office_id,
+	res = sscanf(p + e + 1, "%d:%d:%s",
+		     &his.exe_office_id,
 		     &his.app_office_id, (char *)&his.doctor);
-	if (res != 4)
+	if (res != 3)
 		goto err;
 	//DUMP_LOG("user: %s, doctor: %s", his.user, his.doctor);
 

@@ -12,6 +12,7 @@ struct ItemDesc {
 	char name[ITEM_NAME];
 
 	rb_node node;
+	ItemDesc *next;
 };
 
 struct OfficeCtl {
@@ -19,6 +20,7 @@ struct OfficeCtl {
 
 	uint32_t id;
 	rb_root tree;
+	ItemDesc list_head;
 	void *head[ITEM_SIZE];
 
 	char strid[OFFICE_ID];
