@@ -20,7 +20,7 @@
 *.out
 *.app
 
-deps
+#deps
 bin
 log
 
