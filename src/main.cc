@@ -3,7 +3,6 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <event.h>
-#include <libtoolkit/daemon.h>
 #include "mysql_wrapper.h"
 #include "common.h"
 #include "config.h"
@@ -62,14 +61,6 @@ int main(int argc, char *argv[])
 
 	if (load_config("cobaya.ini")) {
 		DUMP_LOG("init config error");
-		return -1;
-	}
-	if (g_config.daemon && sigignore(SIGHUP)) {
-		DUMP_LOG("ignore signal SIGHUP error");
-		return -1;
-	}
-	if (g_config.daemon && daemonize(1, 1)) {
-		DUMP_LOG("daemon error");
 		return -1;
 	}
 	if (load_log_manager()) {

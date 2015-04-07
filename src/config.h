@@ -6,14 +6,11 @@
 namespace cobaya {
 
 struct Config {
-	bool daemon;
 	int worker;
 	char *dir;
 
-	char *ip_in;
-	uint16_t port_in;
-	char *ip_ext;
-	uint16_t port_ext;
+	char *rpc_ip;
+	uint16_t rpc_port;
 
 	char *mysql_cobaya_ip;
 	char *mysql_remote_ip;

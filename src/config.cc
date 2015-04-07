@@ -22,14 +22,11 @@ int load_config(const char *path)
 		return -1;
 	}
 
-	config.daemon = iniparser_getboolean(ini, "cobaya:daemon", false);
 	config.worker = iniparser_getint(ini, "cobaya:worker", 4);
 	config.dir = iniparser_getstring(ini, "cobaya:dir", NULL);
 
-	config.ip_in = iniparser_getstring(ini, "rpc:ip_in", NULL);
-	config.port_in = iniparser_getint(ini, "rpc:port_in", 11611);
-	config.ip_ext = iniparser_getstring(ini, "rpc:ip_ext", NULL);
-	config.port_ext = iniparser_getint(ini, "rpc:port_ext", 11611);
+	config.rpc_ip = iniparser_getstring(ini, "rpc:ip", "192.168.1.200");
+	config.rpc_port = iniparser_getint(ini, "rpc:port", 11611);
 
 	config.mysql_cobaya_ip = iniparser_getstring(ini, "mysql:cobaya_ip", NULL);
 	config.mysql_remote_ip = iniparser_getstring(ini, "mysql:remote_ip", NULL);
@@ -60,7 +57,7 @@ int load_config(const char *path)
 	g_config.mysql_passwd = strdup(config.mysql_passwd);
 	g_config.mysql_db = strdup(config.mysql_db);
 
-	if (!g_config.ip_in || !g_config.ip_ext || !g_config.mysql_cobaya_ip ||
+	if (!g_config.rpc_ip || !g_config.rpc_port || !g_config.mysql_cobaya_ip ||
 	    !g_config.mysql_remote_ip || !g_config.mysql_user ||
 	    !g_config.mysql_passwd || !g_config.mysql_db ||
 	    !g_config.dir) {
