@@ -26,6 +26,10 @@ struct DevDesc {
 
 	/* FlowHead */
 	void *head;
+
+	/* 机器正在作检查 */
+	bool check_flow;
+	Timer check_timer;
 };
 
 extern DevDesc dev_head;

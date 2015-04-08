@@ -17,7 +17,6 @@
 
 namespace cobaya {
 
-bool g_start_monitor;
 event_base *main_base;
 MysqlWrapper *main_mysql;
 

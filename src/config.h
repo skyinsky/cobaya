@@ -19,6 +19,7 @@ struct Config {
 	char *mysql_db;
 
 	int client_timeout;
+	int client_check;
 	int client_heartbeat;
 	int client_sensor;
 	int client_fetch;
@@ -27,9 +28,6 @@ struct Config {
 	bool compact_allow;
 	int compact_mysql;
 	int compact_flow;
-
-	bool watch_allow;
-	int watch_flow_life;
 };
 
 extern Config g_config;

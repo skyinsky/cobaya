@@ -25,7 +25,7 @@ int load_config(const char *path)
 	config.worker = iniparser_getint(ini, "cobaya:worker", 4);
 	config.dir = iniparser_getstring(ini, "cobaya:dir", NULL);
 
-	config.rpc_ip = iniparser_getstring(ini, "rpc:ip", "192.168.1.200");
+	config.rpc_ip = iniparser_getstring(ini, "rpc:ip", NULL);
 	config.rpc_port = iniparser_getint(ini, "rpc:port", 11611);
 
 	config.mysql_cobaya_ip = iniparser_getstring(ini, "mysql:cobaya_ip", NULL);
@@ -35,6 +35,7 @@ int load_config(const char *path)
 	config.mysql_db = iniparser_getstring(ini, "mysql:db", NULL);
 
 	config.client_timeout = iniparser_getint(ini, "client:timeout", 60);
+	config.client_check = iniparser_getint(ini, "client:check", 15);
 	config.client_heartbeat = iniparser_getint(ini, "client:heartbeat", 10);
 	config.client_sensor = iniparser_getint(ini, "client:sensor", 10);
 	config.client_fetch = iniparser_getint(ini, "client:fetch", 10);
@@ -44,13 +45,9 @@ int load_config(const char *path)
 	config.compact_mysql = iniparser_getint(ini, "compact:mysql", 90);
 	config.compact_flow = iniparser_getint(ini, "compact:flow", 2);
 
-	config.watch_allow = iniparser_getboolean(ini, "watch:allow", false);
-	config.watch_flow_life = iniparser_getint(ini, "watch:flow_life", 10);
-
 	g_config = config;
 	g_config.dir = strdup(config.dir);
-	g_config.ip_in = strdup(config.ip_in);
-	g_config.ip_ext = strdup(config.ip_ext);
+	g_config.rpc_ip = strdup(config.rpc_ip);
 	g_config.mysql_cobaya_ip = strdup(config.mysql_cobaya_ip);
 	g_config.mysql_remote_ip = strdup(config.mysql_remote_ip);
 	g_config.mysql_user = strdup(config.mysql_user);

@@ -153,11 +153,6 @@ void RpcServer::SlaveInit()
 		exit(EXIT_FAILURE);
 	}
 
-	if (load_flow_monitor()) {
-		DUMP_LOG("load flow monitor error");
-		exit(EXIT_FAILURE);
-	}
-
 	register_thread_initialized();
 }
 

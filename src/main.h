@@ -7,7 +7,6 @@ namespace cobaya {
 
 class MysqlWrapper;
 
-extern bool g_start_monitor;
 extern event_base *main_base;
 extern MysqlWrapper *main_mysql;
 

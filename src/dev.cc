@@ -11,6 +11,13 @@ namespace cobaya {
 
 DevDesc dev_head;
 
+static void handle_check_timeout(void *arg)
+{
+	DevDesc *dev = (DevDesc *)arg;
+
+	dev->check_flow = false;
+}
+
 int load_dev_list()
 {
 	int err = 0, count;
@@ -87,6 +94,9 @@ int load_dev_list()
 
 		dev->next = dev_head.next;
 		dev_head.next = dev;
+
+		dev->timer.Set(main_base, g_config.client_check * 60 * 1000,
+			       handle_check_timeout, dev);
 	}
 
 out:

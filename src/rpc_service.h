@@ -20,24 +20,20 @@ public:
 			   MsgMonitorRsp *rsp, Closure *done);
 
 	/* client operations */
-	void GetClientInfo(RpcController *ctl, const MsgClientReq *req,
-			   MsgClientRsp *rsp, Closure *done);
-	void UpdateUser(RpcController *ctl, const MsgUpdateUserReq *req,
-			MsgUpdateUserRsp *rsp, Closure *done);
 	void LoginSystem(RpcController *ctl, const MsgLoginReq *req,
 			 MsgLoginRsp *rsp, Closure *done);
 	void LogoutSystem(RpcController *ctl, const MsgLogoutReq *req,
 			  MsgLogoutRsp *rsp, Closure *done);
-	void AppendInfo(RpcController *ctl, const MsgDiscoveryReq *req,
-			MsgDiscoveryRsp *rsp, Closure *done);
+	void UpdateUser(RpcController *ctl, const MsgUpdateUserReq *req,
+			MsgUpdateUserRsp *rsp, Closure *done);
+	void GetClientInfo(RpcController *ctl, const MsgClientReq *req,
+			   MsgClientRsp *rsp, Closure *done);
 	void FetchFlow(RpcController *ctl, const MsgFetchFlowReq *req,
 			MsgFetchFlowRsp *rsp, Closure *done);
+	void CheckFlow(RpcController *ctl, const MsgCheckFlowReq *req,
+			MsgCheckFlowRsp *rsp, Closure *done);
 
 	/* his operations */
-	void AppendFlow(RpcController *ctl, const MsgNewFlowReq *req,
-			MsgNewFlowRsp *rsp, Closure *done);
-	void RemoveFlow(RpcController *ctl, const MsgDelFlowReq *req,
-			MsgDelFlowRsp *rsp, Closure *done);
 	void SetOrgFlow(RpcController *ctl, const MsgOrgFlowReq *req,
 			MsgOrgFlowRsp *rsp, Closure *done);
 };
