@@ -16,7 +16,6 @@ using namespace RCF;
 using namespace boost;
 using namespace google::protobuf;
 
-__thread int notify_fd;
 __thread MysqlWrapper *mysql;
 
 class RpcServer {
@@ -154,6 +153,19 @@ void RpcServer::SlaveInit()
 	}
 
 	register_thread_initialized();
+}
+
+void init_mysql_for_sensor()
+{
+	mysql = new MysqlWrapper();
+	if (mysql == NULL) {
+		DUMP_LOG("no memory");
+		exit(EXIT_FAILURE);
+	}
+	if (mysql->Connect()) {
+		DUMP_LOG("connect mysql error");
+		exit(EXIT_FAILURE);
+	}
 }
 
 void RpcServer::SlaveExit()

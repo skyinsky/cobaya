@@ -106,14 +106,27 @@ void RpcServiceImpl::LoginSystem(RpcController *ctl,
 				 const MsgLoginReq *req,
 				 MsgLoginRsp *rsp, Closure *done)
 {
+	DevDesc *dev;
+
 	if (logon_client(req->user().c_str(),
 			 req->passwd().c_str(),
 			 req->host().c_str())) {
 		rsp->set_grant(false);
+		goto out;
 	} else {
 		rsp->set_grant(true);
 	}
 
+	dev = find_dev_by_host(req->host().c_str());
+	if (dev == NULL) {
+		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
+
+		rcfctl->SetFailed("host not register");
+		goto out;
+	}
+	strcpy(dev->doct_name, req->user().c_str());
+
+out:
 	done->Run();
 }
 
@@ -121,11 +134,25 @@ void RpcServiceImpl::LogoutSystem(RpcController *ctl,
 				  const MsgLogoutReq *req,
 				  MsgLogoutRsp *rsp, Closure *done)
 {
+	DevDesc *dev;
+
 	if (logout_client(req->user().c_str())) {
 		rsp->set_grant(false);
+		goto out;
 	} else {
 		rsp->set_grant(true);
 	}
+
+	dev = find_dev_by_host(req->host().c_str());
+	if (dev == NULL) {
+		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
+
+		rcfctl->SetFailed("host not register");
+		goto out;
+	}
+	strcpy(dev->doct_name, "AA_匿名");
+
+out:
 
 	done->Run();
 }
@@ -184,50 +211,12 @@ void RpcServiceImpl::CheckFlow(RpcController *ctl, const MsgCheckFlowReq *req,
 	} else {
 		rsp->set_grant(true);
 		dev->check_flow = true;
+		dev->sensor_last = 0;
 		Timer::SchedOneshot(&dev->check_timer);
 	}
 
 out:	done->Run();
 }
-
-//void RpcServiceImpl::CheckFlow(RpcController *ctl, const MsgCheckFlowReq *req,
-//			       MsgCheckFlowRsp *rsp, Closure *done)
-//{
-//	DevDesc *dev;
-//
-//	dev = find_dev_by_code(req->dev_code().c_str());
-//	if (dev == NULL) {
-//		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
-//
-//		rcfctl->SetFailed("host not register");
-//		goto out;
-//	} else {
-//		/* update alive heartbeat */
-//		if (clock_gettime(CLOCK_MONOTONIC, &dev->client_update)) {
-//			DUMP_LOG("clock_gettime() error");
-//		}
-//	}
-//
-//	if (req->has_prev_id()) {
-//		del_flow(dev->head, req->prev_id());
-//	}
-//
-//	if (req->person()) {
-//		if (!req->has_id()) {
-//			store_doubt_flow(dev, req);
-//			rsp->set_grant(false);
-//		} else if (!hit_flow(dev->head, req->id())) {
-//			store_doubt_flow(dev, req);
-//			rsp->set_grant(false);
-//		} else {
-//			rsp->set_grant(true);
-//		}
-//	} else {
-//		rsp->set_grant(true);
-//	}
-//
-//out:	done->Run();
-//}
 
 void RpcServiceImpl::FetchFlow(RpcController *ctl,
 			       const MsgFetchFlowReq *req,

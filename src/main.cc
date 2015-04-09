@@ -14,6 +14,7 @@
 #include "compact.h"
 #include "main.h"
 #include "office_ctl.h"
+#include "sensor_server.h"
 
 namespace cobaya {
 
@@ -49,6 +50,7 @@ static int load_main_context()
 		DUMP_LOG("connect mysql error");
 		return -1;
 	}
+	mysql = main_mysql;
 
 	return 0;
 }
@@ -88,6 +90,10 @@ int main(int argc, char *argv[])
 	}
 	if (start_rpc_server()) {
 		DUMP_LOG("start rpc error");
+		return -1;
+	}
+	if (start_sensor_server()) {
+		DUMP_LOG("start sensor server error");
 		return -1;
 	}
 	if (load_compaction()) {

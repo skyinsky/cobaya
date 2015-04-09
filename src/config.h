@@ -11,6 +11,7 @@ struct Config {
 
 	char *rpc_ip;
 	uint16_t rpc_port;
+	uint16_t rpc_sport;
 
 	char *mysql_cobaya_ip;
 	char *mysql_remote_ip;
@@ -20,10 +21,7 @@ struct Config {
 
 	int client_timeout;
 	int client_check;
-	int client_heartbeat;
 	int client_sensor;
-	int client_fetch;
-	int client_person;
 
 	bool compact_allow;
 	int compact_mysql;

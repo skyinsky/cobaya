@@ -6,11 +6,12 @@ namespace cobaya {
 class MysqlWrapper;
 
 /* rpc worker's connection */
-extern __thread int notify_fd;
 extern __thread MysqlWrapper *mysql;
 
 int  start_rpc_server();
 void stop_rpc_server();
+
+void init_mysql_for_sensor();
 
 } // namespace cobaya
 

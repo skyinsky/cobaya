@@ -24,12 +24,16 @@ struct DevDesc {
 	char office_name[OFFICE_NAME];
 	char office_owner[OFFICE_OWNER];
 
+	/* 当前登录医生 */
+	char doct_name[USER_NAME];
+
 	/* FlowHead */
 	void *head;
 
 	/* 机器正在作检查 */
 	bool check_flow;
 	Timer check_timer;
+	time_t sensor_last;
 };
 
 extern DevDesc dev_head;
@@ -38,6 +42,8 @@ int load_dev_list();
 
 DevDesc* find_dev_by_host(const char *host);
 DevDesc* find_dev_by_code(const char *code);
+
+void hit_person_from_sensor(DevDesc *dev);
 
 } // namespace cobaya
 

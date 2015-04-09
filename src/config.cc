@@ -27,6 +27,7 @@ int load_config(const char *path)
 
 	config.rpc_ip = iniparser_getstring(ini, "rpc:ip", NULL);
 	config.rpc_port = iniparser_getint(ini, "rpc:port", 11611);
+	config.rpc_sport = iniparser_getint(ini, "rpc:sport", 11612);
 
 	config.mysql_cobaya_ip = iniparser_getstring(ini, "mysql:cobaya_ip", NULL);
 	config.mysql_remote_ip = iniparser_getstring(ini, "mysql:remote_ip", NULL);
@@ -36,10 +37,7 @@ int load_config(const char *path)
 
 	config.client_timeout = iniparser_getint(ini, "client:timeout", 60);
 	config.client_check = iniparser_getint(ini, "client:check", 15);
-	config.client_heartbeat = iniparser_getint(ini, "client:heartbeat", 10);
-	config.client_sensor = iniparser_getint(ini, "client:sensor", 10);
-	config.client_fetch = iniparser_getint(ini, "client:fetch", 10);
-	config.client_person = iniparser_getint(ini, "client:person", 5);
+	config.client_sensor = iniparser_getint(ini, "client:sensor", 1);
 
 	config.compact_allow = iniparser_getboolean(ini, "compact:allow", true);
 	config.compact_mysql = iniparser_getint(ini, "compact:mysql", 90);

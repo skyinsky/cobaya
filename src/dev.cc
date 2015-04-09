@@ -1,11 +1,13 @@
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 #include "common.h"
 #include "dev.h"
 #include "config.h"
 #include "mysql_wrapper.h"
 #include "timer.h"
 #include "main.h"
+#include "rpc.h"
 
 namespace cobaya {
 
@@ -90,6 +92,7 @@ int load_dev_list()
 		strcpy(dev->office_id, row[3]);
 		strcpy(dev->office_name, row[4]);
 		strcpy(dev->office_owner, row[5]);
+		strcpy(dev->doct_name, "AA_匿名");
 		dev->item_code = ITEM_HEAD(dev->code);
 
 		dev->next = dev_head.next;
@@ -131,6 +134,59 @@ DevDesc* find_dev_by_code(const char *code)
 	}
 
 	return dev;
+}
+
+static void store_doubt_flow(DevDesc *dev)
+{
+	struct tm *date;
+	struct timeval now;
+	char datetmp[128] = {0};
+	char sql[512] = {0};
+
+	if (gettimeofday(&now, NULL)) {
+		DUMP_LOG("gettimeofday() error");
+		return;
+	}
+	date = localtime(&now.tv_sec);
+	if (date == NULL) {
+		DUMP_LOG("localtime() error");
+		return;
+	}
+	strftime(datetmp, 128, "%F %T", date);
+
+	sprintf(sql, "INSERT INTO `日志` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+		dev->doct_name, dev->host, datetmp,
+		dev->code, dev->name, dev->office_id, dev->office_name, dev->office_owner);
+	if (mysql->ModifyQuery(sql)) {
+		DUMP_LOG("insert log table (dev_code:%s) error", dev->code);
+	}
+}
+
+void hit_person_from_sensor(DevDesc *dev)
+{
+	timespec cur_time;
+
+	if (clock_gettime(CLOCK_MONOTONIC, &dev->client_update)) {
+		DUMP_LOG("clock_gettime() error");
+		return;
+	}
+	cur_time = dev->client_update;
+
+	if (!dev->check_flow) {
+		store_doubt_flow(dev);
+		return;
+	}
+
+	if (dev->sensor_last == 0) {
+		dev->sensor_last = cur_time.tv_sec;
+		return;
+	}
+
+	if (cur_time.tv_sec - dev->sensor_last > 60 * g_config.client_sensor) {
+		store_doubt_flow(dev);
+	}
+
+	dev->sensor_last = cur_time.tv_sec;
 }
 
 } // namespace cobaya
