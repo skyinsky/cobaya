@@ -32,6 +32,10 @@ public:
 			MsgFetchFlowRsp *rsp, Closure *done);
 	void CheckFlow(RpcController *ctl, const MsgCheckFlowReq *req,
 			MsgCheckFlowRsp *rsp, Closure *done);
+	void FriendFlow(RpcController *ctl, const MsgFriendFlowReq *req,
+			MsgFriendFlowRsp *rsp, Closure *done);
+	void AheadFlow(RpcController *ctl, const MsgAheadFlowReq *req,
+			MsgAheadFlowRsp *rsp, Closure *done);
 
 	/* his operations */
 	void SetOrgFlow(RpcController *ctl, const MsgOrgFlowReq *req,

@@ -157,32 +157,6 @@ out:
 	done->Run();
 }
 
-//static void store_doubt_flow(DevDesc *dev, const MsgDiscoveryReq *req)
-//{
-//	struct tm *date;
-//	struct timeval now;
-//	char datetmp[128] = {0};
-//	char sql[512] = {0};
-//
-//	if (gettimeofday(&now, NULL)) {
-//		DUMP_LOG("gettimeofday() error");
-//		return;
-//	}
-//	date = localtime(&now.tv_sec);
-//	if (date == NULL) {
-//		DUMP_LOG("localtime() error");
-//		return;
-//	}
-//	strftime(datetmp, 128, "%F %T", date);
-//
-//	sprintf(sql, "INSERT INTO `日志` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
-//		req->user().c_str(), req->host().c_str(), datetmp,
-//		dev->code, dev->name, dev->office_id, dev->office_name, dev->office_owner);
-//	if (mysql->ModifyQuery(sql)) {
-//		DUMP_LOG("insert log table (user:%s) error", req->user().c_str());
-//	}
-//}
-
 void RpcServiceImpl::CheckFlow(RpcController *ctl, const MsgCheckFlowReq *req,
 			       MsgCheckFlowRsp *rsp, Closure *done)
 {
@@ -216,6 +190,118 @@ void RpcServiceImpl::CheckFlow(RpcController *ctl, const MsgCheckFlowReq *req,
 	}
 
 out:	done->Run();
+}
+
+static void store_friend_flow(DevDesc *dev, const char *info)
+{
+	struct tm *date;
+	struct timeval now;
+	char datetmp[128] = {0};
+	char tmp[512] = {0};
+
+	if (gettimeofday(&now, NULL)) {
+		DUMP_LOG("gettimeofday() error");
+		return;
+	}
+
+	date = localtime(&now.tv_sec);
+	if (date == NULL) {
+		DUMP_LOG("localtime() error");
+		return;
+	}
+	strftime(datetmp, 128, "%F %T", date);
+
+	sprintf(tmp, "INSERT INTO `亲属` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+		dev->code, dev->name, dev->host,
+		dev->office_id, dev->office_name, dev->office_owner, datetmp,
+		dev->doct_name, info);
+	if (main_mysql->ModifyQuery(tmp)) {
+		DUMP_LOG("insert value error");
+	}
+}
+
+void RpcServiceImpl::FriendFlow(RpcController *ctl,
+				const MsgFriendFlowReq *req,
+				MsgFriendFlowRsp *rsp, Closure *done)
+{
+	DevDesc *dev;
+
+	dev = find_dev_by_code(req->dev_code().c_str());
+	if (dev == NULL) {
+		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
+
+		rcfctl->SetFailed("host not register");
+		goto out;
+	}
+	if (dev->check_flow) {
+		Timer::SchedCancel(&dev->check_timer);
+	}
+
+	store_friend_flow(dev, req->info().c_str());
+
+	dev->check_flow = true;
+	dev->sensor_last = 0;
+	Timer::SchedOneshot(&dev->check_timer);
+
+	rsp->set_grant(true);
+out:
+	done->Run();
+}
+
+static void store_ahead_flow(DevDesc *dev, const char *info)
+{
+	struct tm *date;
+	struct timeval now;
+	char datetmp[128] = {0};
+	char tmp[512] = {0};
+
+	if (gettimeofday(&now, NULL)) {
+		DUMP_LOG("gettimeofday() error");
+		return;
+	}
+
+	date = localtime(&now.tv_sec);
+	if (date == NULL) {
+		DUMP_LOG("localtime() error");
+		return;
+	}
+	strftime(datetmp, 128, "%F %T", date);
+
+	sprintf(tmp, "INSERT INTO `紧急` VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+		dev->code, dev->name, dev->host,
+		dev->office_id, dev->office_name, dev->office_owner, datetmp,
+		dev->doct_name, info);
+	if (main_mysql->ModifyQuery(tmp)) {
+		DUMP_LOG("insert value error");
+	}
+}
+
+void RpcServiceImpl::AheadFlow(RpcController *ctl,
+			       const MsgAheadFlowReq *req,
+			       MsgAheadFlowRsp *rsp, Closure *done)
+{
+	DevDesc *dev;
+
+	dev = find_dev_by_code(req->dev_code().c_str());
+	if (dev == NULL) {
+		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
+
+		rcfctl->SetFailed("host not register");
+		goto out;
+	}
+	if (dev->check_flow) {
+		Timer::SchedCancel(&dev->check_timer);
+	}
+
+	store_ahead_flow(dev, req->info().c_str());
+
+	dev->check_flow = true;
+	dev->sensor_last = 0;
+	Timer::SchedOneshot(&dev->check_timer);
+
+	rsp->set_grant(true);
+out:
+	done->Run();
 }
 
 void RpcServiceImpl::FetchFlow(RpcController *ctl,

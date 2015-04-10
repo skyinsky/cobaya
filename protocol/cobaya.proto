@@ -101,6 +101,32 @@ message MsgCheckFlowRsp {
 	optional bool grant = 1;
 }
 
+/* 家属检查案例，即未挂号 */
+message MsgFriendFlowReq {
+	required string host = 1;
+	required string dev_code = 2;
+
+	required string info = 3;
+}
+
+message MsgFriendFlowRsp {
+	/* 这台仪器是否登记使用权限 */
+	optional bool grant = 1;
+}
+
+/* 紧急检查案例，即未挂号 */
+message MsgAheadFlowReq {
+	required string host = 1;
+	required string dev_code = 2;
+
+	required string info = 3;
+}
+
+message MsgAheadFlowRsp {
+	/* 这台仪器是否登记使用权限 */
+	optional bool grant = 1;
+}
+
 /* his 系统对接通讯协议 */
 message MsgOrgFlowReq {
 	required string info = 1;
@@ -123,6 +149,8 @@ service RpcService {
 	rpc GetClientInfo (MsgClientReq) returns (MsgClientRsp);
 	rpc FetchFlow (MsgFetchFlowReq) returns (MsgFetchFlowRsp);
 	rpc CheckFlow (MsgCheckFlowReq) returns (MsgCheckFlowRsp);
+	rpc FriendFlow (MsgFriendFlowReq) returns (MsgFriendFlowRsp);
+	rpc AheadFlow (MsgAheadFlowReq) returns (MsgAheadFlowRsp);
 
 	/* his operation */
 	rpc SetOrgFlow (MsgOrgFlowReq) returns (MsgOrgFlowRsp);

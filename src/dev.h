@@ -31,7 +31,7 @@ struct DevDesc {
 	void *head;
 
 	/* 机器正在作检查 */
-	bool check_flow;
+	bool check_flow;	// 标示设备开启允许检查病人流程
 	Timer check_timer;
 	time_t sensor_last;
 };

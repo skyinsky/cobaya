@@ -2,18 +2,38 @@
 Navicat MySQL Data Transfer
 
 Source Server         : mysql
-Source Server Version : 50538
+Source Server Version : 50541
 Source Host           : localhost:3306
 Source Database       : cobaya
 
 Target Server Type    : MYSQL
-Target Server Version : 50538
+Target Server Version : 50541
 File Encoding         : 65001
 
-Date: 2014-11-26 12:14:25
+Date: 2015-04-10 13:41:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for 亲属
+-- ----------------------------
+DROP TABLE IF EXISTS `亲属`;
+CREATE TABLE `亲属` (
+  `器械编码` varchar(10) NOT NULL,
+  `器械名称` varchar(20) NOT NULL,
+  `管理终端` varchar(20) NOT NULL,
+  `科室编号` varchar(20) NOT NULL,
+  `科室名称` varchar(20) NOT NULL,
+  `院区` varchar(20) NOT NULL,
+  `时间` datetime NOT NULL,
+  `操作医生` varchar(10) NOT NULL,
+  `备注` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of 亲属
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for 异常
@@ -33,6 +53,16 @@ CREATE TABLE `异常` (
 -- Records of 异常
 -- ----------------------------
 INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2014-11-26 12:14:17');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 14:30:53');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 14:31:53');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 14:32:53');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 14:33:53');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 14:34:53');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 14:35:53');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 14:36:53');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 14:37:53');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 14:38:53');
+INSERT INTO `异常` VALUES ('CT_001', 'CT机', '10.0.2.15', '0000096', 'CT室', '人民医院', '2015-04-09 15:03:00');
 
 -- ----------------------------
 -- Table structure for 日志
@@ -276,6 +306,26 @@ INSERT INTO `科室` VALUES ('0000138', '总院心内科门诊', '人民医院')
 INSERT INTO `科室` VALUES ('0000139', '信息化管理中心', 'NULL');
 INSERT INTO `科室` VALUES ('0000140', '专家公寓', '二院');
 INSERT INTO `科室` VALUES ('0000141', '食堂', '二院');
+
+-- ----------------------------
+-- Table structure for 紧急
+-- ----------------------------
+DROP TABLE IF EXISTS `紧急`;
+CREATE TABLE `紧急` (
+  `器械编码` varchar(10) NOT NULL,
+  `器械名称` varchar(20) NOT NULL,
+  `管理终端` varchar(20) NOT NULL,
+  `科室编号` varchar(20) NOT NULL,
+  `科室名称` varchar(20) NOT NULL,
+  `院区` varchar(20) NOT NULL,
+  `时间` datetime NOT NULL,
+  `操作医生` varchar(10) NOT NULL,
+  `备注` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of 紧急
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for 设备
