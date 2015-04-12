@@ -16,6 +16,16 @@ namespace cobaya {
 	log_msg("%s:%d, %s(): " fmt "\n",			\
 		__FILE__,  __LINE__, __func__, ##__VA_ARGS__)
 
+#define _DEBUG	1
+
+#ifdef _DEBUG
+#define DUMP_DEBUG(fmt, ...)					\
+	printf("%s:%d, %s(): " fmt "\n",			\
+		__FILE__,  __LINE__, __func__, ##__VA_ARGS__)
+#else
+#define DUMP_DEBUG(fmt. ...)
+#endif
+
 //#define COBAYA_DEBUG	1
 
 #define USER_ID		11	/* 病人唯一号 */

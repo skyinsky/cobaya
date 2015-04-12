@@ -75,9 +75,13 @@ out_free:
 
 void close_conn(Conn *conn)
 {
+	DUMP_DEBUG("close connection fd: %d", conn->sfd);
+
 	event_del(&conn->ev);
 	close(conn->sfd);
 	cache_free(conn_cache, conn);
+
+	printf("++++++++++++++++++++++++++++++++++++++++++++++++\n");
 }
 
 /*

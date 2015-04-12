@@ -277,10 +277,10 @@ static void parse_sensor_cmd(Conn *c)
 		c->state = CONN_CLOSING;
 		return;
 	}
+	strncpy(dev_code, c->rbuf, p - c->rbuf);
 	if (*(++p) == '1') {
 		has_person = true;
 	}
-	strncpy(dev_code, c->rbuf, p - c->rbuf);
 
 	dev = find_dev_by_code(dev_code);
 	if (!dev) {
@@ -310,6 +310,7 @@ static void sensor_event_handle(Conn *c)
 			break;
 		case CONN_READ:
 			read_conn(c);
+			DUMP_DEBUG("read connection res: %s", c->rbuf);
 			break;
 		case CONN_PARSE_CMD:
 			parse_sensor_cmd(c);

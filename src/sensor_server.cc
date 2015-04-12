@@ -58,6 +58,8 @@ retry:
 		goto out;
 	}
 
+	DUMP_DEBUG("new connect fd: %d", sfd);
+
 	dispatch_conn_new(sfd);
 
 out:
