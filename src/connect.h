@@ -13,7 +13,7 @@ enum State {
 struct Conn;
 typedef void (*event_callback)(Conn *conn);
 
-#define BUF_DEF_SIZE	32
+#define BUF_DEF_SIZE	8
 #define MSG_SIZE	8	
 
 struct Conn {

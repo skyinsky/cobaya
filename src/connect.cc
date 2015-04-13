@@ -96,37 +96,25 @@ void close_conn(Conn *conn)
 void read_conn(Conn *c)
 {
 	int res, avail;
-	bool gotdata = false;
 
-	while (1) {
-		avail = BUF_DEF_SIZE - c->rsize;
+	avail = BUF_DEF_SIZE - c->rsize;
 
-		res = read(c->sfd, c->rbuf + c->rsize, avail);
-		if (res > 0) {
-			gotdata = true;
-			c->rsize += res;
-			if (res == avail) {
-				continue;
-			} else {
-				break;
-			}
-		} else if (res == 0) {
-			goto err_out;
-		} else {
-			if (errno == EAGAIN || errno == EWOULDBLOCK) {
-				break;
-			} else {
-				DUMP_LOG("read() error");
-				goto err_out;
-			}
-		}
+	res = read(c->sfd, c->rbuf + c->rsize, avail);
+	if (res > 0) {
+		c->rsize += res;
+	} else if (res == 0) {
+		goto err_out;
+	} else if (errno != EAGAIN && errno != EWOULDBLOCK) {
+		DUMP_LOG("read() error");
+		goto err_out;
 	}
 
-	if (gotdata)
+	if (c->rsize == MSG_SIZE)
 		c->state = CONN_PARSE_CMD;
 	else
 		c->state = CONN_WAITING;
 	return;
+
 err_out:
 	c->state = CONN_CLOSING;
 }
