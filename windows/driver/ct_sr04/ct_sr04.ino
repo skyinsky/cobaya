@@ -13,8 +13,8 @@
 #define SR_TRIG_PORT	5
 #define SR_ECHO_PORT	6
 
-#define SR_INIT_DIST	40
-#define SR_HAS_PERSON	5
+#define SR_INIT_DIST	40	//没有人时，探头探测的距离
+#define SR_HAS_PERSON	5	//人躺下的平均厚度
 #define SR_MAX_DIST	400 // Maximum sensor distance is rated at 400-500cm.
 
 #define SSID        "ubuntu"
