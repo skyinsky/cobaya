@@ -82,6 +82,7 @@ void RpcServiceImpl::GetClientInfo(RpcController *ctl,
 	} else {
 		rsp->set_host(dev->host);
 		rsp->set_dev_code(dev->code);
+		rsp->set_fetch(g_config.client_fetch);
 	}
 
 	done->Run();

@@ -37,7 +37,6 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.修改密码 = new System.Windows.Forms.ToolStripMenuItem();
             this.labelControl1 = new DevExpress.XtraEditors.LabelControl();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.contextMenuStrip.SuspendLayout();
             this.SuspendLayout();
@@ -103,10 +102,6 @@
             this.labelControl1.TabIndex = 1;
             this.labelControl1.Text = "香河县人民医院医疗设备监控服务";
             // 
-            // timer1
-            // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // timer2
             // 
             this.timer2.Enabled = true;
@@ -147,7 +142,6 @@
         private System.Windows.Forms.ToolStripMenuItem 修改密码;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private DevExpress.XtraEditors.LabelControl labelControl1;
-        private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
     }
 }

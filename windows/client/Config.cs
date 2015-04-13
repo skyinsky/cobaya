@@ -11,8 +11,6 @@ namespace cobaya
         public static string ip;
         public static string port;
 
-        public static string dev_port;
-
         private static string path;
 
         #region
@@ -42,9 +40,8 @@ namespace cobaya
             Config.path = inipath;
             Config.ip = Read("server", "ip");
             Config.port = Read("server", "port");
-            Config.dev_port = Read("device", "port");
 
-            if (Config.ip == "" || Config.port == "" || Config.dev_port == "")
+            if (Config.ip == "" || Config.port == "")
             {
                 return false;
             }

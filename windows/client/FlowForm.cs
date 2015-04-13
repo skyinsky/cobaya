@@ -152,7 +152,10 @@ namespace cobaya
                 show = "申请单号: " + dt.Rows[info.RowHandle][1] + "  姓名：" + dt.Rows[info.RowHandle][2];
                 str = "单号: " + dt.Rows[info.RowHandle][1] + "\n姓名：" + dt.Rows[info.RowHandle][2];
 
-                OKForm form = new OKForm(str);
+                UInt64 previd = prev_id;
+                UInt64 thisid = (UInt64)dt.Rows[info.RowHandle][0];
+
+                OKForm form = new OKForm(str, previd, thisid);
                 form.ShowDialog();
                 if (form.click == false)
                     return;
@@ -164,8 +167,6 @@ namespace cobaya
                 if (prev_row != null)
                     prev_id = (UInt64)prev_row[0];
                 this_id = (UInt64)this_row[0];
-
-                //ComWorker.test();
             }
 
         }

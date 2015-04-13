@@ -25,16 +25,6 @@ message MsgMonitorRsp {
 }
 
 /* 客户端通信协议 */
-message MsgUpdateUserReq {
-	required string host = 1;
-	required string user = 2;
-	required string passwd = 3;
-}
-
-message MsgUpdateUserRsp {
-	required bool grant = 1;
-}
-
 message MsgLoginReq {
 	required string host = 1;
 	required string user = 2;
@@ -54,6 +44,16 @@ message MsgLogoutRsp {
 	optional bool grant = 1;
 }
 
+message MsgUpdateUserReq {
+	required string host = 1;
+	required string user = 2;
+	required string passwd = 3;
+}
+
+message MsgUpdateUserRsp {
+	required bool grant = 1;
+}
+
 message MsgClientReq {
 	/* 主机ip地址列表 */
 	repeated string hosts = 1;
@@ -63,11 +63,7 @@ message MsgClientRsp {
 	/* 管理医疗设备的注册ip */
 	required string host = 1;
 	required string dev_code = 2;
-
-	required uint32 heartbeat = 3;
-	required uint32 sensor = 4;
-	required uint32 fetch = 5;
-	required uint32 person = 6;
+	required uint32 fetch = 3;
 }
 
 message MsgFetchFlowReq {
@@ -87,47 +83,52 @@ message MsgFetchFlowRsp {
 	repeated UserFlow flows = 1;
 }
 
-message MsgDiscoveryReq {
+message MsgCheckFlowReq {
 	required string host = 1;
 	required string dev_code = 2;
 
 	/* 当前登录客户端的用户 */
 	required string user = 3;
 
-	/* 传感器是否检测到人 */
-	required bool person = 4;
-	
 	/* 当前检查的病人唯一号 */
-	optional uint64 id = 5;
+	required uint64 id = 4;
 
 	/* 上次检查的病人唯一号 */
-	optional uint64 prev_id = 6;
+	optional uint64 prev_id = 5;
 }
 
-message MsgDiscoveryRsp {
+message MsgCheckFlowRsp {
+	/* 这台仪器是否登记使用权限 */
+	optional bool grant = 1;
+}
+
+/* 家属检查案例，即未挂号 */
+message MsgFriendFlowReq {
+	required string host = 1;
+	required string dev_code = 2;
+
+	required string info = 3;
+}
+
+message MsgFriendFlowRsp {
+	/* 这台仪器是否登记使用权限 */
+	optional bool grant = 1;
+}
+
+/* 紧急检查案例，即未挂号 */
+message MsgAheadFlowReq {
+	required string host = 1;
+	required string dev_code = 2;
+
+	required string info = 3;
+}
+
+message MsgAheadFlowRsp {
 	/* 这台仪器是否登记使用权限 */
 	optional bool grant = 1;
 }
 
 /* his 系统对接通讯协议 */
-message MsgNewFlowReq {
-	required string id = 1;
-	repeated string hosts = 2;
-}
-
-message MsgNewFlowRsp {
-	optional uint32 status = 1;
-}
-
-message MsgDelFlowReq {
-	required string id = 1;
-	repeated string hosts = 2;
-}
-
-message MsgDelFlowRsp {
-	optional uint32 status = 1;
-}
-
 message MsgOrgFlowReq {
 	required string info = 1;
 }
@@ -143,15 +144,15 @@ service RpcService {
 	rpc ControlSystem (MsgMonitorReq) returns (MsgMonitorRsp);
 
 	/* client operation */
-	rpc GetClientInfo (MsgClientReq) returns (MsgClientRsp);
-	rpc UpdateUser (MsgUpdateUserReq) returns (MsgUpdateUserRsp);
 	rpc LoginSystem (MsgLoginReq) returns (MsgLoginRsp);
 	rpc LogoutSystem (MsgLogoutReq) returns (MsgLogoutRsp);
-	rpc AppendInfo (MsgDiscoveryReq) returns (MsgDiscoveryRsp);
+	rpc UpdateUser (MsgUpdateUserReq) returns (MsgUpdateUserRsp);
+	rpc GetClientInfo (MsgClientReq) returns (MsgClientRsp);
 	rpc FetchFlow (MsgFetchFlowReq) returns (MsgFetchFlowRsp);
+	rpc CheckFlow (MsgCheckFlowReq) returns (MsgCheckFlowRsp);
+	rpc FriendFlow (MsgFriendFlowReq) returns (MsgFriendFlowRsp);
+	rpc AheadFlow (MsgAheadFlowReq) returns (MsgAheadFlowRsp);
 
 	/* his operation */
-	rpc AppendFlow (MsgNewFlowReq) returns (MsgNewFlowRsp);
-	rpc RemoveFlow (MsgDelFlowReq) returns (MsgDelFlowRsp);
 	rpc SetOrgFlow (MsgOrgFlowReq) returns (MsgOrgFlowRsp);
 }

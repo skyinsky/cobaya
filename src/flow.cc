@@ -340,7 +340,9 @@ void del_flow(const HisDesc *his)
 	}
 	spin_unlock(&head->lock);
 
-	cache_free(flow_cache, flow);
+	if (flow != NULL) {
+		cache_free(flow_cache, flow);
+	}
 }
 
 void del_flow(void *_head, uint64_t user_id)

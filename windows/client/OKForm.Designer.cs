@@ -80,7 +80,7 @@
         private System.Windows.Forms.Button oklogin;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label check_show;
-        private DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
+        public DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
 
     }
 }

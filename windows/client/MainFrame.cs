@@ -25,13 +25,10 @@ namespace cobaya
 
         public bool login_yes;
 
-        private Queue<MsgDiscoveryReq> _queue;
-        private SyncEvents _syncEvents;
-
         private static UiWorker ui_worker;
         private static Thread ui_thread;
 
-        public MainFrame(Queue<MsgDiscoveryReq> q, SyncEvents e)
+        public MainFrame()
         {
             InitializeComponent();
 
@@ -43,12 +40,6 @@ namespace cobaya
             timer.Elapsed += new ElapsedEventHandler(timer_hide_main_frame);
             timer.Interval = 3000;
             timer.Enabled = true;
-
-            timer1.Interval = (int)Info.heartbeat * 1000;
-            timer1.Enabled = true;
-
-            _queue = q;
-            _syncEvents = e;
 
             mframe = this;
 
@@ -146,24 +137,6 @@ namespace cobaya
 
             this.notifyIcon.BalloonTipText = show;
             this.notifyIcon.Text = show;
-        }
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            MsgDiscoveryReq.Builder req_build;
-            req_build = MsgDiscoveryReq.CreateBuilder();
-            req_build.SetHost(Info.host);
-            req_build.SetDevCode(Info.dev_code);
-            req_build.SetUser(Info.user);
-            req_build.SetPerson(false);
-
-            MsgDiscoveryReq req = req_build.Build();
-
-            lock (((ICollection)_queue).SyncRoot)
-            {
-                _queue.Enqueue(req);
-                _syncEvents.NewItemEvent.Set();
-            }
         }
 
         private void timer2_Tick(object sender, EventArgs e)

@@ -74,6 +74,8 @@ inline int Timer::SchedOneshot(Timer *t)
 	base = event_get_base(&t->ev);
 	if (unlikely(evtimer_assign(&t->ev, base,
 				    oneshot_callback, t))) {
+		evtimer_assign(&t->ev, base,
+			       default_callback, NULL);
 		DUMP_LOG("assign timer error");
 		err = -1;
 		goto out;
@@ -106,6 +108,8 @@ inline int Timer::SchedPersist(Timer *t)
 	base = event_get_base(&t->ev);
 	if (unlikely(event_assign(&t->ev, base, -1, EV_PERSIST,
 				  persist_callback, t))) {
+		evtimer_assign(&t->ev, base,
+			       default_callback, NULL);
 		DUMP_LOG("assign timer error");
 		err = -1;
 		goto out;

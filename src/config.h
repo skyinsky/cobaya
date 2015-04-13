@@ -22,6 +22,7 @@ struct Config {
 	int client_timeout;
 	int client_check;
 	int client_sensor;
+	int client_fetch;
 
 	bool compact_allow;
 	int compact_mysql;

@@ -98,7 +98,7 @@ int load_dev_list()
 		dev->next = dev_head.next;
 		dev_head.next = dev;
 
-		dev->timer.Set(main_base, g_config.client_check * 60 * 1000,
+		dev->check_timer.Set(main_base, g_config.client_check * 60 * 1000,
 			       handle_check_timeout, dev);
 	}
 

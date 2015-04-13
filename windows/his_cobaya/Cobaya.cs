@@ -26,10 +26,6 @@ namespace cobaya {
     internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgMonitorReq, global::cobaya.MsgMonitorReq.Builder> internal__static_cobaya_MsgMonitorReq__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_cobaya_MsgMonitorRsp__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgMonitorRsp, global::cobaya.MsgMonitorRsp.Builder> internal__static_cobaya_MsgMonitorRsp__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_cobaya_MsgUpdateUserReq__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgUpdateUserReq, global::cobaya.MsgUpdateUserReq.Builder> internal__static_cobaya_MsgUpdateUserReq__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_cobaya_MsgUpdateUserRsp__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgUpdateUserRsp, global::cobaya.MsgUpdateUserRsp.Builder> internal__static_cobaya_MsgUpdateUserRsp__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_cobaya_MsgLoginReq__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgLoginReq, global::cobaya.MsgLoginReq.Builder> internal__static_cobaya_MsgLoginReq__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_cobaya_MsgLoginRsp__Descriptor;
@@ -38,6 +34,10 @@ namespace cobaya {
     internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgLogoutReq, global::cobaya.MsgLogoutReq.Builder> internal__static_cobaya_MsgLogoutReq__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_cobaya_MsgLogoutRsp__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgLogoutRsp, global::cobaya.MsgLogoutRsp.Builder> internal__static_cobaya_MsgLogoutRsp__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_cobaya_MsgUpdateUserReq__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgUpdateUserReq, global::cobaya.MsgUpdateUserReq.Builder> internal__static_cobaya_MsgUpdateUserReq__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_cobaya_MsgUpdateUserRsp__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgUpdateUserRsp, global::cobaya.MsgUpdateUserRsp.Builder> internal__static_cobaya_MsgUpdateUserRsp__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_cobaya_MsgClientReq__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgClientReq, global::cobaya.MsgClientReq.Builder> internal__static_cobaya_MsgClientReq__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_cobaya_MsgClientRsp__Descriptor;
@@ -48,18 +48,18 @@ namespace cobaya {
     internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.UserFlow, global::cobaya.UserFlow.Builder> internal__static_cobaya_UserFlow__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_cobaya_MsgFetchFlowRsp__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgFetchFlowRsp, global::cobaya.MsgFetchFlowRsp.Builder> internal__static_cobaya_MsgFetchFlowRsp__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_cobaya_MsgDiscoveryReq__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgDiscoveryReq, global::cobaya.MsgDiscoveryReq.Builder> internal__static_cobaya_MsgDiscoveryReq__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_cobaya_MsgDiscoveryRsp__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgDiscoveryRsp, global::cobaya.MsgDiscoveryRsp.Builder> internal__static_cobaya_MsgDiscoveryRsp__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_cobaya_MsgNewFlowReq__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgNewFlowReq, global::cobaya.MsgNewFlowReq.Builder> internal__static_cobaya_MsgNewFlowReq__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_cobaya_MsgNewFlowRsp__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgNewFlowRsp, global::cobaya.MsgNewFlowRsp.Builder> internal__static_cobaya_MsgNewFlowRsp__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_cobaya_MsgDelFlowReq__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgDelFlowReq, global::cobaya.MsgDelFlowReq.Builder> internal__static_cobaya_MsgDelFlowReq__FieldAccessorTable;
-    internal static pbd::MessageDescriptor internal__static_cobaya_MsgDelFlowRsp__Descriptor;
-    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgDelFlowRsp, global::cobaya.MsgDelFlowRsp.Builder> internal__static_cobaya_MsgDelFlowRsp__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_cobaya_MsgCheckFlowReq__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgCheckFlowReq, global::cobaya.MsgCheckFlowReq.Builder> internal__static_cobaya_MsgCheckFlowReq__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_cobaya_MsgCheckFlowRsp__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgCheckFlowRsp, global::cobaya.MsgCheckFlowRsp.Builder> internal__static_cobaya_MsgCheckFlowRsp__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_cobaya_MsgFriendFlowReq__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgFriendFlowReq, global::cobaya.MsgFriendFlowReq.Builder> internal__static_cobaya_MsgFriendFlowReq__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_cobaya_MsgFriendFlowRsp__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgFriendFlowRsp, global::cobaya.MsgFriendFlowRsp.Builder> internal__static_cobaya_MsgFriendFlowRsp__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_cobaya_MsgAheadFlowReq__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgAheadFlowReq, global::cobaya.MsgAheadFlowReq.Builder> internal__static_cobaya_MsgAheadFlowReq__FieldAccessorTable;
+    internal static pbd::MessageDescriptor internal__static_cobaya_MsgAheadFlowRsp__Descriptor;
+    internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgAheadFlowRsp, global::cobaya.MsgAheadFlowRsp.Builder> internal__static_cobaya_MsgAheadFlowRsp__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_cobaya_MsgOrgFlowReq__Descriptor;
     internal static pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgOrgFlowReq, global::cobaya.MsgOrgFlowReq.Builder> internal__static_cobaya_MsgOrgFlowReq__FieldAccessorTable;
     internal static pbd::MessageDescriptor internal__static_cobaya_MsgOrgFlowRsp__Descriptor;
@@ -77,44 +77,43 @@ namespace cobaya {
           "ASACKAkiQwoLTXNnQWRtaW5Sc3ASCgoCaXAYASACKAkSDAoEdXNlchgCIAIo" + 
           "CRIOCgZwYXNzd2QYAyACKAkSCgoCZGIYBCACKAkiKwoNTXNnTW9uaXRvclJl" + 
           "cRILCgNrZXkYASACKAkSDQoFc3RhcnQYAiACKAgiHwoNTXNnTW9uaXRvclJz" + 
-          "cBIOCgZzdGF0dXMYASACKAgiPgoQTXNnVXBkYXRlVXNlclJlcRIMCgRob3N0" + 
-          "GAEgAigJEgwKBHVzZXIYAiACKAkSDgoGcGFzc3dkGAMgAigJIiEKEE1zZ1Vw" + 
-          "ZGF0ZVVzZXJSc3ASDQoFZ3JhbnQYASACKAgiOQoLTXNnTG9naW5SZXESDAoE" + 
-          "aG9zdBgBIAIoCRIMCgR1c2VyGAIgAigJEg4KBnBhc3N3ZBgDIAIoCSIcCgtN" + 
-          "c2dMb2dpblJzcBINCgVncmFudBgBIAIoCCIqCgxNc2dMb2dvdXRSZXESDAoE" + 
-          "aG9zdBgBIAIoCRIMCgR1c2VyGAIgAigJIh0KDE1zZ0xvZ291dFJzcBINCgVn" + 
-          "cmFudBgBIAEoCCIdCgxNc2dDbGllbnRSZXESDQoFaG9zdHMYASADKAkicAoM" + 
+          "cBIOCgZzdGF0dXMYASACKAgiOQoLTXNnTG9naW5SZXESDAoEaG9zdBgBIAIo" + 
+          "CRIMCgR1c2VyGAIgAigJEg4KBnBhc3N3ZBgDIAIoCSIcCgtNc2dMb2dpblJz" + 
+          "cBINCgVncmFudBgBIAIoCCIqCgxNc2dMb2dvdXRSZXESDAoEaG9zdBgBIAIo" + 
+          "CRIMCgR1c2VyGAIgAigJIh0KDE1zZ0xvZ291dFJzcBINCgVncmFudBgBIAEo" + 
+          "CCI+ChBNc2dVcGRhdGVVc2VyUmVxEgwKBGhvc3QYASACKAkSDAoEdXNlchgC" + 
+          "IAIoCRIOCgZwYXNzd2QYAyACKAkiIQoQTXNnVXBkYXRlVXNlclJzcBINCgVn" + 
+          "cmFudBgBIAIoCCIdCgxNc2dDbGllbnRSZXESDQoFaG9zdHMYASADKAkiPQoM" + 
           "TXNnQ2xpZW50UnNwEgwKBGhvc3QYASACKAkSEAoIZGV2X2NvZGUYAiACKAkS" + 
-          "EQoJaGVhcnRiZWF0GAMgAigNEg4KBnNlbnNvchgEIAIoDRINCgVmZXRjaBgF" + 
-          "IAIoDRIOCgZwZXJzb24YBiACKA0iIwoPTXNnRmV0Y2hGbG93UmVxEhAKCGRl" + 
-          "dl9jb2RlGAEgAigJImoKCFVzZXJGbG93Eg8KB3VzZXJfaWQYASACKAQSEAoI" + 
-          "YXBwbHlfaWQYAiACKAkSDAoEdXNlchgDIAIoCRIOCgZvZmZpY2UYBCACKAkS" + 
-          "DgoGZG9jdG9yGAUgAigJEg0KBWl0ZW1zGAYgAygJIjIKD01zZ0ZldGNoRmxv" + 
-          "d1JzcBIfCgVmbG93cxgBIAMoCzIQLmNvYmF5YS5Vc2VyRmxvdyJsCg9Nc2dE" + 
-          "aXNjb3ZlcnlSZXESDAoEaG9zdBgBIAIoCRIQCghkZXZfY29kZRgCIAIoCRIM" + 
-          "CgR1c2VyGAMgAigJEg4KBnBlcnNvbhgEIAIoCBIKCgJpZBgFIAEoBBIPCgdw" + 
-          "cmV2X2lkGAYgASgEIiAKD01zZ0Rpc2NvdmVyeVJzcBINCgVncmFudBgBIAEo" + 
-          "CCIqCg1Nc2dOZXdGbG93UmVxEgoKAmlkGAEgAigJEg0KBWhvc3RzGAIgAygJ" + 
-          "Ih8KDU1zZ05ld0Zsb3dSc3ASDgoGc3RhdHVzGAEgASgNIioKDU1zZ0RlbEZs" + 
-          "b3dSZXESCgoCaWQYASACKAkSDQoFaG9zdHMYAiADKAkiHwoNTXNnRGVsRmxv" + 
-          "d1JzcBIOCgZzdGF0dXMYASABKA0iHQoNTXNnT3JnRmxvd1JlcRIMCgRpbmZv" + 
-          "GAEgAigJIh8KDU1zZ09yZ0Zsb3dSc3ASDgoGc3RhdHVzGAEgASgNMqwFCgpS" + 
-          "cGNTZXJ2aWNlEjgKDEdldEFkbWluSW5mbxITLmNvYmF5YS5Nc2dBZG1pblJl" + 
-          "cRoTLmNvYmF5YS5Nc2dBZG1pblJzcBI9Cg1Db250cm9sU3lzdGVtEhUuY29i" + 
-          "YXlhLk1zZ01vbml0b3JSZXEaFS5jb2JheWEuTXNnTW9uaXRvclJzcBI7Cg1H" + 
-          "ZXRDbGllbnRJbmZvEhQuY29iYXlhLk1zZ0NsaWVudFJlcRoULmNvYmF5YS5N" + 
-          "c2dDbGllbnRSc3ASQAoKVXBkYXRlVXNlchIYLmNvYmF5YS5Nc2dVcGRhdGVV" + 
-          "c2VyUmVxGhguY29iYXlhLk1zZ1VwZGF0ZVVzZXJSc3ASNwoLTG9naW5TeXN0" + 
-          "ZW0SEy5jb2JheWEuTXNnTG9naW5SZXEaEy5jb2JheWEuTXNnTG9naW5Sc3AS" + 
-          "OgoMTG9nb3V0U3lzdGVtEhQuY29iYXlhLk1zZ0xvZ291dFJlcRoULmNvYmF5" + 
-          "YS5Nc2dMb2dvdXRSc3ASPgoKQXBwZW5kSW5mbxIXLmNvYmF5YS5Nc2dEaXNj" + 
-          "b3ZlcnlSZXEaFy5jb2JheWEuTXNnRGlzY292ZXJ5UnNwEj0KCUZldGNoRmxv" + 
-          "dxIXLmNvYmF5YS5Nc2dGZXRjaEZsb3dSZXEaFy5jb2JheWEuTXNnRmV0Y2hG" + 
-          "bG93UnNwEjoKCkFwcGVuZEZsb3cSFS5jb2JheWEuTXNnTmV3Rmxvd1JlcRoV" + 
-          "LmNvYmF5YS5Nc2dOZXdGbG93UnNwEjoKClJlbW92ZUZsb3cSFS5jb2JheWEu" + 
-          "TXNnRGVsRmxvd1JlcRoVLmNvYmF5YS5Nc2dEZWxGbG93UnNwEjoKClNldE9y" + 
-          "Z0Zsb3cSFS5jb2JheWEuTXNnT3JnRmxvd1JlcRoVLmNvYmF5YS5Nc2dPcmdG" + 
-          "bG93UnNwQgOAAQE=");
+          "DQoFZmV0Y2gYAyACKA0iIwoPTXNnRmV0Y2hGbG93UmVxEhAKCGRldl9jb2Rl" + 
+          "GAEgAigJImoKCFVzZXJGbG93Eg8KB3VzZXJfaWQYASACKAQSEAoIYXBwbHlf" + 
+          "aWQYAiACKAkSDAoEdXNlchgDIAIoCRIOCgZvZmZpY2UYBCACKAkSDgoGZG9j" + 
+          "dG9yGAUgAigJEg0KBWl0ZW1zGAYgAygJIjIKD01zZ0ZldGNoRmxvd1JzcBIf" + 
+          "CgVmbG93cxgBIAMoCzIQLmNvYmF5YS5Vc2VyRmxvdyJcCg9Nc2dDaGVja0Zs" + 
+          "b3dSZXESDAoEaG9zdBgBIAIoCRIQCghkZXZfY29kZRgCIAIoCRIMCgR1c2Vy" + 
+          "GAMgAigJEgoKAmlkGAQgAigEEg8KB3ByZXZfaWQYBSABKAQiIAoPTXNnQ2hl" + 
+          "Y2tGbG93UnNwEg0KBWdyYW50GAEgASgIIkAKEE1zZ0ZyaWVuZEZsb3dSZXES" + 
+          "DAoEaG9zdBgBIAIoCRIQCghkZXZfY29kZRgCIAIoCRIMCgRpbmZvGAMgAigJ" + 
+          "IiEKEE1zZ0ZyaWVuZEZsb3dSc3ASDQoFZ3JhbnQYASABKAgiPwoPTXNnQWhl" + 
+          "YWRGbG93UmVxEgwKBGhvc3QYASACKAkSEAoIZGV2X2NvZGUYAiACKAkSDAoE" + 
+          "aW5mbxgDIAIoCSIgCg9Nc2dBaGVhZEZsb3dSc3ASDQoFZ3JhbnQYASABKAgi" + 
+          "HQoNTXNnT3JnRmxvd1JlcRIMCgRpbmZvGAEgAigJIh8KDU1zZ09yZ0Zsb3dS" + 
+          "c3ASDgoGc3RhdHVzGAEgASgNMrQFCgpScGNTZXJ2aWNlEjgKDEdldEFkbWlu" + 
+          "SW5mbxITLmNvYmF5YS5Nc2dBZG1pblJlcRoTLmNvYmF5YS5Nc2dBZG1pblJz" + 
+          "cBI9Cg1Db250cm9sU3lzdGVtEhUuY29iYXlhLk1zZ01vbml0b3JSZXEaFS5j" + 
+          "b2JheWEuTXNnTW9uaXRvclJzcBI3CgtMb2dpblN5c3RlbRITLmNvYmF5YS5N" + 
+          "c2dMb2dpblJlcRoTLmNvYmF5YS5Nc2dMb2dpblJzcBI6CgxMb2dvdXRTeXN0" + 
+          "ZW0SFC5jb2JheWEuTXNnTG9nb3V0UmVxGhQuY29iYXlhLk1zZ0xvZ291dFJz" + 
+          "cBJACgpVcGRhdGVVc2VyEhguY29iYXlhLk1zZ1VwZGF0ZVVzZXJSZXEaGC5j" + 
+          "b2JheWEuTXNnVXBkYXRlVXNlclJzcBI7Cg1HZXRDbGllbnRJbmZvEhQuY29i" + 
+          "YXlhLk1zZ0NsaWVudFJlcRoULmNvYmF5YS5Nc2dDbGllbnRSc3ASPQoJRmV0" + 
+          "Y2hGbG93EhcuY29iYXlhLk1zZ0ZldGNoRmxvd1JlcRoXLmNvYmF5YS5Nc2dG" + 
+          "ZXRjaEZsb3dSc3ASPQoJQ2hlY2tGbG93EhcuY29iYXlhLk1zZ0NoZWNrRmxv" + 
+          "d1JlcRoXLmNvYmF5YS5Nc2dDaGVja0Zsb3dSc3ASQAoKRnJpZW5kRmxvdxIY" + 
+          "LmNvYmF5YS5Nc2dGcmllbmRGbG93UmVxGhguY29iYXlhLk1zZ0ZyaWVuZEZs" + 
+          "b3dSc3ASPQoJQWhlYWRGbG93EhcuY29iYXlhLk1zZ0FoZWFkRmxvd1JlcRoX" + 
+          "LmNvYmF5YS5Nc2dBaGVhZEZsb3dSc3ASOgoKU2V0T3JnRmxvdxIVLmNvYmF5" + 
+          "YS5Nc2dPcmdGbG93UmVxGhUuY29iYXlhLk1zZ09yZ0Zsb3dSc3BCA4ABAQ==");
       pbd::FileDescriptor.InternalDescriptorAssigner assigner = delegate(pbd::FileDescriptor root) {
         descriptor = root;
         internal__static_cobaya_MsgAdminReq__Descriptor = Descriptor.MessageTypes[0];
@@ -133,29 +132,29 @@ namespace cobaya {
         internal__static_cobaya_MsgMonitorRsp__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgMonitorRsp, global::cobaya.MsgMonitorRsp.Builder>(internal__static_cobaya_MsgMonitorRsp__Descriptor,
                 new string[] { "Status", });
-        internal__static_cobaya_MsgUpdateUserReq__Descriptor = Descriptor.MessageTypes[4];
-        internal__static_cobaya_MsgUpdateUserReq__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgUpdateUserReq, global::cobaya.MsgUpdateUserReq.Builder>(internal__static_cobaya_MsgUpdateUserReq__Descriptor,
-                new string[] { "Host", "User", "Passwd", });
-        internal__static_cobaya_MsgUpdateUserRsp__Descriptor = Descriptor.MessageTypes[5];
-        internal__static_cobaya_MsgUpdateUserRsp__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgUpdateUserRsp, global::cobaya.MsgUpdateUserRsp.Builder>(internal__static_cobaya_MsgUpdateUserRsp__Descriptor,
-                new string[] { "Grant", });
-        internal__static_cobaya_MsgLoginReq__Descriptor = Descriptor.MessageTypes[6];
+        internal__static_cobaya_MsgLoginReq__Descriptor = Descriptor.MessageTypes[4];
         internal__static_cobaya_MsgLoginReq__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgLoginReq, global::cobaya.MsgLoginReq.Builder>(internal__static_cobaya_MsgLoginReq__Descriptor,
                 new string[] { "Host", "User", "Passwd", });
-        internal__static_cobaya_MsgLoginRsp__Descriptor = Descriptor.MessageTypes[7];
+        internal__static_cobaya_MsgLoginRsp__Descriptor = Descriptor.MessageTypes[5];
         internal__static_cobaya_MsgLoginRsp__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgLoginRsp, global::cobaya.MsgLoginRsp.Builder>(internal__static_cobaya_MsgLoginRsp__Descriptor,
                 new string[] { "Grant", });
-        internal__static_cobaya_MsgLogoutReq__Descriptor = Descriptor.MessageTypes[8];
+        internal__static_cobaya_MsgLogoutReq__Descriptor = Descriptor.MessageTypes[6];
         internal__static_cobaya_MsgLogoutReq__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgLogoutReq, global::cobaya.MsgLogoutReq.Builder>(internal__static_cobaya_MsgLogoutReq__Descriptor,
                 new string[] { "Host", "User", });
-        internal__static_cobaya_MsgLogoutRsp__Descriptor = Descriptor.MessageTypes[9];
+        internal__static_cobaya_MsgLogoutRsp__Descriptor = Descriptor.MessageTypes[7];
         internal__static_cobaya_MsgLogoutRsp__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgLogoutRsp, global::cobaya.MsgLogoutRsp.Builder>(internal__static_cobaya_MsgLogoutRsp__Descriptor,
+                new string[] { "Grant", });
+        internal__static_cobaya_MsgUpdateUserReq__Descriptor = Descriptor.MessageTypes[8];
+        internal__static_cobaya_MsgUpdateUserReq__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgUpdateUserReq, global::cobaya.MsgUpdateUserReq.Builder>(internal__static_cobaya_MsgUpdateUserReq__Descriptor,
+                new string[] { "Host", "User", "Passwd", });
+        internal__static_cobaya_MsgUpdateUserRsp__Descriptor = Descriptor.MessageTypes[9];
+        internal__static_cobaya_MsgUpdateUserRsp__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgUpdateUserRsp, global::cobaya.MsgUpdateUserRsp.Builder>(internal__static_cobaya_MsgUpdateUserRsp__Descriptor,
                 new string[] { "Grant", });
         internal__static_cobaya_MsgClientReq__Descriptor = Descriptor.MessageTypes[10];
         internal__static_cobaya_MsgClientReq__FieldAccessorTable = 
@@ -164,7 +163,7 @@ namespace cobaya {
         internal__static_cobaya_MsgClientRsp__Descriptor = Descriptor.MessageTypes[11];
         internal__static_cobaya_MsgClientRsp__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgClientRsp, global::cobaya.MsgClientRsp.Builder>(internal__static_cobaya_MsgClientRsp__Descriptor,
-                new string[] { "Host", "DevCode", "Heartbeat", "Sensor", "Fetch", "Person", });
+                new string[] { "Host", "DevCode", "Fetch", });
         internal__static_cobaya_MsgFetchFlowReq__Descriptor = Descriptor.MessageTypes[12];
         internal__static_cobaya_MsgFetchFlowReq__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgFetchFlowReq, global::cobaya.MsgFetchFlowReq.Builder>(internal__static_cobaya_MsgFetchFlowReq__Descriptor,
@@ -177,30 +176,30 @@ namespace cobaya {
         internal__static_cobaya_MsgFetchFlowRsp__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgFetchFlowRsp, global::cobaya.MsgFetchFlowRsp.Builder>(internal__static_cobaya_MsgFetchFlowRsp__Descriptor,
                 new string[] { "Flows", });
-        internal__static_cobaya_MsgDiscoveryReq__Descriptor = Descriptor.MessageTypes[15];
-        internal__static_cobaya_MsgDiscoveryReq__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgDiscoveryReq, global::cobaya.MsgDiscoveryReq.Builder>(internal__static_cobaya_MsgDiscoveryReq__Descriptor,
-                new string[] { "Host", "DevCode", "User", "Person", "Id", "PrevId", });
-        internal__static_cobaya_MsgDiscoveryRsp__Descriptor = Descriptor.MessageTypes[16];
-        internal__static_cobaya_MsgDiscoveryRsp__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgDiscoveryRsp, global::cobaya.MsgDiscoveryRsp.Builder>(internal__static_cobaya_MsgDiscoveryRsp__Descriptor,
+        internal__static_cobaya_MsgCheckFlowReq__Descriptor = Descriptor.MessageTypes[15];
+        internal__static_cobaya_MsgCheckFlowReq__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgCheckFlowReq, global::cobaya.MsgCheckFlowReq.Builder>(internal__static_cobaya_MsgCheckFlowReq__Descriptor,
+                new string[] { "Host", "DevCode", "User", "Id", "PrevId", });
+        internal__static_cobaya_MsgCheckFlowRsp__Descriptor = Descriptor.MessageTypes[16];
+        internal__static_cobaya_MsgCheckFlowRsp__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgCheckFlowRsp, global::cobaya.MsgCheckFlowRsp.Builder>(internal__static_cobaya_MsgCheckFlowRsp__Descriptor,
                 new string[] { "Grant", });
-        internal__static_cobaya_MsgNewFlowReq__Descriptor = Descriptor.MessageTypes[17];
-        internal__static_cobaya_MsgNewFlowReq__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgNewFlowReq, global::cobaya.MsgNewFlowReq.Builder>(internal__static_cobaya_MsgNewFlowReq__Descriptor,
-                new string[] { "Id", "Hosts", });
-        internal__static_cobaya_MsgNewFlowRsp__Descriptor = Descriptor.MessageTypes[18];
-        internal__static_cobaya_MsgNewFlowRsp__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgNewFlowRsp, global::cobaya.MsgNewFlowRsp.Builder>(internal__static_cobaya_MsgNewFlowRsp__Descriptor,
-                new string[] { "Status", });
-        internal__static_cobaya_MsgDelFlowReq__Descriptor = Descriptor.MessageTypes[19];
-        internal__static_cobaya_MsgDelFlowReq__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgDelFlowReq, global::cobaya.MsgDelFlowReq.Builder>(internal__static_cobaya_MsgDelFlowReq__Descriptor,
-                new string[] { "Id", "Hosts", });
-        internal__static_cobaya_MsgDelFlowRsp__Descriptor = Descriptor.MessageTypes[20];
-        internal__static_cobaya_MsgDelFlowRsp__FieldAccessorTable = 
-            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgDelFlowRsp, global::cobaya.MsgDelFlowRsp.Builder>(internal__static_cobaya_MsgDelFlowRsp__Descriptor,
-                new string[] { "Status", });
+        internal__static_cobaya_MsgFriendFlowReq__Descriptor = Descriptor.MessageTypes[17];
+        internal__static_cobaya_MsgFriendFlowReq__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgFriendFlowReq, global::cobaya.MsgFriendFlowReq.Builder>(internal__static_cobaya_MsgFriendFlowReq__Descriptor,
+                new string[] { "Host", "DevCode", "Info", });
+        internal__static_cobaya_MsgFriendFlowRsp__Descriptor = Descriptor.MessageTypes[18];
+        internal__static_cobaya_MsgFriendFlowRsp__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgFriendFlowRsp, global::cobaya.MsgFriendFlowRsp.Builder>(internal__static_cobaya_MsgFriendFlowRsp__Descriptor,
+                new string[] { "Grant", });
+        internal__static_cobaya_MsgAheadFlowReq__Descriptor = Descriptor.MessageTypes[19];
+        internal__static_cobaya_MsgAheadFlowReq__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgAheadFlowReq, global::cobaya.MsgAheadFlowReq.Builder>(internal__static_cobaya_MsgAheadFlowReq__Descriptor,
+                new string[] { "Host", "DevCode", "Info", });
+        internal__static_cobaya_MsgAheadFlowRsp__Descriptor = Descriptor.MessageTypes[20];
+        internal__static_cobaya_MsgAheadFlowRsp__FieldAccessorTable = 
+            new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgAheadFlowRsp, global::cobaya.MsgAheadFlowRsp.Builder>(internal__static_cobaya_MsgAheadFlowRsp__Descriptor,
+                new string[] { "Grant", });
         internal__static_cobaya_MsgOrgFlowReq__Descriptor = Descriptor.MessageTypes[21];
         internal__static_cobaya_MsgOrgFlowReq__FieldAccessorTable = 
             new pb::FieldAccess.FieldAccessorTable<global::cobaya.MsgOrgFlowReq, global::cobaya.MsgOrgFlowReq.Builder>(internal__static_cobaya_MsgOrgFlowReq__Descriptor,
@@ -1504,647 +1503,6 @@ namespace cobaya {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-  public sealed partial class MsgUpdateUserReq : pb::GeneratedMessage<MsgUpdateUserReq, MsgUpdateUserReq.Builder> {
-    private MsgUpdateUserReq() { }
-    private static readonly MsgUpdateUserReq defaultInstance = new MsgUpdateUserReq().MakeReadOnly();
-    private static readonly string[] _msgUpdateUserReqFieldNames = new string[] { "host", "passwd", "user" };
-    private static readonly uint[] _msgUpdateUserReqFieldTags = new uint[] { 10, 26, 18 };
-    public static MsgUpdateUserReq DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override MsgUpdateUserReq DefaultInstanceForType {
-      get { return DefaultInstance; }
-    }
-    
-    protected override MsgUpdateUserReq ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgUpdateUserReq__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<MsgUpdateUserReq, MsgUpdateUserReq.Builder> InternalFieldAccessors {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgUpdateUserReq__FieldAccessorTable; }
-    }
-    
-    public const int HostFieldNumber = 1;
-    private bool hasHost;
-    private string host_ = "";
-    public bool HasHost {
-      get { return hasHost; }
-    }
-    public string Host {
-      get { return host_; }
-    }
-    
-    public const int UserFieldNumber = 2;
-    private bool hasUser;
-    private string user_ = "";
-    public bool HasUser {
-      get { return hasUser; }
-    }
-    public string User {
-      get { return user_; }
-    }
-    
-    public const int PasswdFieldNumber = 3;
-    private bool hasPasswd;
-    private string passwd_ = "";
-    public bool HasPasswd {
-      get { return hasPasswd; }
-    }
-    public string Passwd {
-      get { return passwd_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasHost) return false;
-        if (!hasUser) return false;
-        if (!hasPasswd) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::ICodedOutputStream output) {
-      int size = SerializedSize;
-      string[] field_names = _msgUpdateUserReqFieldNames;
-      if (hasHost) {
-        output.WriteString(1, field_names[0], Host);
-      }
-      if (hasUser) {
-        output.WriteString(2, field_names[2], User);
-      }
-      if (hasPasswd) {
-        output.WriteString(3, field_names[1], Passwd);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (hasHost) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, Host);
-        }
-        if (hasUser) {
-          size += pb::CodedOutputStream.ComputeStringSize(2, User);
-        }
-        if (hasPasswd) {
-          size += pb::CodedOutputStream.ComputeStringSize(3, Passwd);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static MsgUpdateUserReq ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static MsgUpdateUserReq ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static MsgUpdateUserReq ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static MsgUpdateUserReq ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static MsgUpdateUserReq ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static MsgUpdateUserReq ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static MsgUpdateUserReq ParseDelimitedFrom(global::System.IO.Stream input) {
-      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
-    }
-    public static MsgUpdateUserReq ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
-    }
-    public static MsgUpdateUserReq ParseFrom(pb::ICodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static MsgUpdateUserReq ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    private MsgUpdateUserReq MakeReadOnly() {
-      return this;
-    }
-    
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(MsgUpdateUserReq prototype) {
-      return new Builder(prototype);
-    }
-    
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-    public sealed partial class Builder : pb::GeneratedBuilder<MsgUpdateUserReq, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {
-        result = DefaultInstance;
-        resultIsReadOnly = true;
-      }
-      internal Builder(MsgUpdateUserReq cloneFrom) {
-        result = cloneFrom;
-        resultIsReadOnly = true;
-      }
-      
-      private bool resultIsReadOnly;
-      private MsgUpdateUserReq result;
-      
-      private MsgUpdateUserReq PrepareBuilder() {
-        if (resultIsReadOnly) {
-          MsgUpdateUserReq original = result;
-          result = new MsgUpdateUserReq();
-          resultIsReadOnly = false;
-          MergeFrom(original);
-        }
-        return result;
-      }
-      
-      public override bool IsInitialized {
-        get { return result.IsInitialized; }
-      }
-      
-      protected override MsgUpdateUserReq MessageBeingBuilt {
-        get { return PrepareBuilder(); }
-      }
-      
-      public override Builder Clear() {
-        result = DefaultInstance;
-        resultIsReadOnly = true;
-        return this;
-      }
-      
-      public override Builder Clone() {
-        if (resultIsReadOnly) {
-          return new Builder(result);
-        } else {
-          return new Builder().MergeFrom(result);
-        }
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::cobaya.MsgUpdateUserReq.Descriptor; }
-      }
-      
-      public override MsgUpdateUserReq DefaultInstanceForType {
-        get { return global::cobaya.MsgUpdateUserReq.DefaultInstance; }
-      }
-      
-      public override MsgUpdateUserReq BuildPartial() {
-        if (resultIsReadOnly) {
-          return result;
-        }
-        resultIsReadOnly = true;
-        return result.MakeReadOnly();
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is MsgUpdateUserReq) {
-          return MergeFrom((MsgUpdateUserReq) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(MsgUpdateUserReq other) {
-        if (other == global::cobaya.MsgUpdateUserReq.DefaultInstance) return this;
-        PrepareBuilder();
-        if (other.HasHost) {
-          Host = other.Host;
-        }
-        if (other.HasUser) {
-          User = other.User;
-        }
-        if (other.HasPasswd) {
-          Passwd = other.Passwd;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::ICodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        PrepareBuilder();
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        uint tag;
-        string field_name;
-        while (input.ReadTag(out tag, out field_name)) {
-          if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_msgUpdateUserReqFieldNames, field_name, global::System.StringComparer.Ordinal);
-            if(field_ordinal >= 0)
-              tag = _msgUpdateUserReqFieldTags[field_ordinal];
-            else {
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-              continue;
-            }
-          }
-          switch (tag) {
-            case 0: {
-              throw pb::InvalidProtocolBufferException.InvalidTag();
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-              break;
-            }
-            case 10: {
-              result.hasHost = input.ReadString(ref result.host_);
-              break;
-            }
-            case 18: {
-              result.hasUser = input.ReadString(ref result.user_);
-              break;
-            }
-            case 26: {
-              result.hasPasswd = input.ReadString(ref result.passwd_);
-              break;
-            }
-          }
-        }
-        
-        if (unknownFields != null) {
-          this.UnknownFields = unknownFields.Build();
-        }
-        return this;
-      }
-      
-      
-      public bool HasHost {
-        get { return result.hasHost; }
-      }
-      public string Host {
-        get { return result.Host; }
-        set { SetHost(value); }
-      }
-      public Builder SetHost(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasHost = true;
-        result.host_ = value;
-        return this;
-      }
-      public Builder ClearHost() {
-        PrepareBuilder();
-        result.hasHost = false;
-        result.host_ = "";
-        return this;
-      }
-      
-      public bool HasUser {
-        get { return result.hasUser; }
-      }
-      public string User {
-        get { return result.User; }
-        set { SetUser(value); }
-      }
-      public Builder SetUser(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasUser = true;
-        result.user_ = value;
-        return this;
-      }
-      public Builder ClearUser() {
-        PrepareBuilder();
-        result.hasUser = false;
-        result.user_ = "";
-        return this;
-      }
-      
-      public bool HasPasswd {
-        get { return result.hasPasswd; }
-      }
-      public string Passwd {
-        get { return result.Passwd; }
-        set { SetPasswd(value); }
-      }
-      public Builder SetPasswd(string value) {
-        pb::ThrowHelper.ThrowIfNull(value, "value");
-        PrepareBuilder();
-        result.hasPasswd = true;
-        result.passwd_ = value;
-        return this;
-      }
-      public Builder ClearPasswd() {
-        PrepareBuilder();
-        result.hasPasswd = false;
-        result.passwd_ = "";
-        return this;
-      }
-    }
-    static MsgUpdateUserReq() {
-      object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
-    }
-  }
-  
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-  public sealed partial class MsgUpdateUserRsp : pb::GeneratedMessage<MsgUpdateUserRsp, MsgUpdateUserRsp.Builder> {
-    private MsgUpdateUserRsp() { }
-    private static readonly MsgUpdateUserRsp defaultInstance = new MsgUpdateUserRsp().MakeReadOnly();
-    private static readonly string[] _msgUpdateUserRspFieldNames = new string[] { "grant" };
-    private static readonly uint[] _msgUpdateUserRspFieldTags = new uint[] { 8 };
-    public static MsgUpdateUserRsp DefaultInstance {
-      get { return defaultInstance; }
-    }
-    
-    public override MsgUpdateUserRsp DefaultInstanceForType {
-      get { return DefaultInstance; }
-    }
-    
-    protected override MsgUpdateUserRsp ThisMessage {
-      get { return this; }
-    }
-    
-    public static pbd::MessageDescriptor Descriptor {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgUpdateUserRsp__Descriptor; }
-    }
-    
-    protected override pb::FieldAccess.FieldAccessorTable<MsgUpdateUserRsp, MsgUpdateUserRsp.Builder> InternalFieldAccessors {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgUpdateUserRsp__FieldAccessorTable; }
-    }
-    
-    public const int GrantFieldNumber = 1;
-    private bool hasGrant;
-    private bool grant_;
-    public bool HasGrant {
-      get { return hasGrant; }
-    }
-    public bool Grant {
-      get { return grant_; }
-    }
-    
-    public override bool IsInitialized {
-      get {
-        if (!hasGrant) return false;
-        return true;
-      }
-    }
-    
-    public override void WriteTo(pb::ICodedOutputStream output) {
-      int size = SerializedSize;
-      string[] field_names = _msgUpdateUserRspFieldNames;
-      if (hasGrant) {
-        output.WriteBool(1, field_names[0], Grant);
-      }
-      UnknownFields.WriteTo(output);
-    }
-    
-    private int memoizedSerializedSize = -1;
-    public override int SerializedSize {
-      get {
-        int size = memoizedSerializedSize;
-        if (size != -1) return size;
-        
-        size = 0;
-        if (hasGrant) {
-          size += pb::CodedOutputStream.ComputeBoolSize(1, Grant);
-        }
-        size += UnknownFields.SerializedSize;
-        memoizedSerializedSize = size;
-        return size;
-      }
-    }
-    
-    public static MsgUpdateUserRsp ParseFrom(pb::ByteString data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static MsgUpdateUserRsp ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static MsgUpdateUserRsp ParseFrom(byte[] data) {
-      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
-    }
-    public static MsgUpdateUserRsp ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
-    }
-    public static MsgUpdateUserRsp ParseFrom(global::System.IO.Stream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static MsgUpdateUserRsp ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    public static MsgUpdateUserRsp ParseDelimitedFrom(global::System.IO.Stream input) {
-      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
-    }
-    public static MsgUpdateUserRsp ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
-      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
-    }
-    public static MsgUpdateUserRsp ParseFrom(pb::ICodedInputStream input) {
-      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
-    }
-    public static MsgUpdateUserRsp ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
-    }
-    private MsgUpdateUserRsp MakeReadOnly() {
-      return this;
-    }
-    
-    public static Builder CreateBuilder() { return new Builder(); }
-    public override Builder ToBuilder() { return CreateBuilder(this); }
-    public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(MsgUpdateUserRsp prototype) {
-      return new Builder(prototype);
-    }
-    
-    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-    public sealed partial class Builder : pb::GeneratedBuilder<MsgUpdateUserRsp, Builder> {
-      protected override Builder ThisBuilder {
-        get { return this; }
-      }
-      public Builder() {
-        result = DefaultInstance;
-        resultIsReadOnly = true;
-      }
-      internal Builder(MsgUpdateUserRsp cloneFrom) {
-        result = cloneFrom;
-        resultIsReadOnly = true;
-      }
-      
-      private bool resultIsReadOnly;
-      private MsgUpdateUserRsp result;
-      
-      private MsgUpdateUserRsp PrepareBuilder() {
-        if (resultIsReadOnly) {
-          MsgUpdateUserRsp original = result;
-          result = new MsgUpdateUserRsp();
-          resultIsReadOnly = false;
-          MergeFrom(original);
-        }
-        return result;
-      }
-      
-      public override bool IsInitialized {
-        get { return result.IsInitialized; }
-      }
-      
-      protected override MsgUpdateUserRsp MessageBeingBuilt {
-        get { return PrepareBuilder(); }
-      }
-      
-      public override Builder Clear() {
-        result = DefaultInstance;
-        resultIsReadOnly = true;
-        return this;
-      }
-      
-      public override Builder Clone() {
-        if (resultIsReadOnly) {
-          return new Builder(result);
-        } else {
-          return new Builder().MergeFrom(result);
-        }
-      }
-      
-      public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::cobaya.MsgUpdateUserRsp.Descriptor; }
-      }
-      
-      public override MsgUpdateUserRsp DefaultInstanceForType {
-        get { return global::cobaya.MsgUpdateUserRsp.DefaultInstance; }
-      }
-      
-      public override MsgUpdateUserRsp BuildPartial() {
-        if (resultIsReadOnly) {
-          return result;
-        }
-        resultIsReadOnly = true;
-        return result.MakeReadOnly();
-      }
-      
-      public override Builder MergeFrom(pb::IMessage other) {
-        if (other is MsgUpdateUserRsp) {
-          return MergeFrom((MsgUpdateUserRsp) other);
-        } else {
-          base.MergeFrom(other);
-          return this;
-        }
-      }
-      
-      public override Builder MergeFrom(MsgUpdateUserRsp other) {
-        if (other == global::cobaya.MsgUpdateUserRsp.DefaultInstance) return this;
-        PrepareBuilder();
-        if (other.HasGrant) {
-          Grant = other.Grant;
-        }
-        this.MergeUnknownFields(other.UnknownFields);
-        return this;
-      }
-      
-      public override Builder MergeFrom(pb::ICodedInputStream input) {
-        return MergeFrom(input, pb::ExtensionRegistry.Empty);
-      }
-      
-      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
-        PrepareBuilder();
-        pb::UnknownFieldSet.Builder unknownFields = null;
-        uint tag;
-        string field_name;
-        while (input.ReadTag(out tag, out field_name)) {
-          if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_msgUpdateUserRspFieldNames, field_name, global::System.StringComparer.Ordinal);
-            if(field_ordinal >= 0)
-              tag = _msgUpdateUserRspFieldTags[field_ordinal];
-            else {
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-              continue;
-            }
-          }
-          switch (tag) {
-            case 0: {
-              throw pb::InvalidProtocolBufferException.InvalidTag();
-            }
-            default: {
-              if (pb::WireFormat.IsEndGroupTag(tag)) {
-                if (unknownFields != null) {
-                  this.UnknownFields = unknownFields.Build();
-                }
-                return this;
-              }
-              if (unknownFields == null) {
-                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
-              }
-              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
-              break;
-            }
-            case 8: {
-              result.hasGrant = input.ReadBool(ref result.grant_);
-              break;
-            }
-          }
-        }
-        
-        if (unknownFields != null) {
-          this.UnknownFields = unknownFields.Build();
-        }
-        return this;
-      }
-      
-      
-      public bool HasGrant {
-        get { return result.hasGrant; }
-      }
-      public bool Grant {
-        get { return result.Grant; }
-        set { SetGrant(value); }
-      }
-      public Builder SetGrant(bool value) {
-        PrepareBuilder();
-        result.hasGrant = true;
-        result.grant_ = value;
-        return this;
-      }
-      public Builder ClearGrant() {
-        PrepareBuilder();
-        result.hasGrant = false;
-        result.grant_ = false;
-        return this;
-      }
-    }
-    static MsgUpdateUserRsp() {
-      object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
-    }
-  }
-  
-  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
   public sealed partial class MsgLoginReq : pb::GeneratedMessage<MsgLoginReq, MsgLoginReq.Builder> {
     private MsgLoginReq() { }
     private static readonly MsgLoginReq defaultInstance = new MsgLoginReq().MakeReadOnly();
@@ -3381,6 +2739,647 @@ namespace cobaya {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class MsgUpdateUserReq : pb::GeneratedMessage<MsgUpdateUserReq, MsgUpdateUserReq.Builder> {
+    private MsgUpdateUserReq() { }
+    private static readonly MsgUpdateUserReq defaultInstance = new MsgUpdateUserReq().MakeReadOnly();
+    private static readonly string[] _msgUpdateUserReqFieldNames = new string[] { "host", "passwd", "user" };
+    private static readonly uint[] _msgUpdateUserReqFieldTags = new uint[] { 10, 26, 18 };
+    public static MsgUpdateUserReq DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override MsgUpdateUserReq DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override MsgUpdateUserReq ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgUpdateUserReq__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<MsgUpdateUserReq, MsgUpdateUserReq.Builder> InternalFieldAccessors {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgUpdateUserReq__FieldAccessorTable; }
+    }
+    
+    public const int HostFieldNumber = 1;
+    private bool hasHost;
+    private string host_ = "";
+    public bool HasHost {
+      get { return hasHost; }
+    }
+    public string Host {
+      get { return host_; }
+    }
+    
+    public const int UserFieldNumber = 2;
+    private bool hasUser;
+    private string user_ = "";
+    public bool HasUser {
+      get { return hasUser; }
+    }
+    public string User {
+      get { return user_; }
+    }
+    
+    public const int PasswdFieldNumber = 3;
+    private bool hasPasswd;
+    private string passwd_ = "";
+    public bool HasPasswd {
+      get { return hasPasswd; }
+    }
+    public string Passwd {
+      get { return passwd_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasHost) return false;
+        if (!hasUser) return false;
+        if (!hasPasswd) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _msgUpdateUserReqFieldNames;
+      if (hasHost) {
+        output.WriteString(1, field_names[0], Host);
+      }
+      if (hasUser) {
+        output.WriteString(2, field_names[2], User);
+      }
+      if (hasPasswd) {
+        output.WriteString(3, field_names[1], Passwd);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasHost) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Host);
+        }
+        if (hasUser) {
+          size += pb::CodedOutputStream.ComputeStringSize(2, User);
+        }
+        if (hasPasswd) {
+          size += pb::CodedOutputStream.ComputeStringSize(3, Passwd);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static MsgUpdateUserReq ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static MsgUpdateUserReq ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static MsgUpdateUserReq ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static MsgUpdateUserReq ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static MsgUpdateUserReq ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static MsgUpdateUserReq ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static MsgUpdateUserReq ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static MsgUpdateUserReq ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static MsgUpdateUserReq ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static MsgUpdateUserReq ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private MsgUpdateUserReq MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(MsgUpdateUserReq prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<MsgUpdateUserReq, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(MsgUpdateUserReq cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private MsgUpdateUserReq result;
+      
+      private MsgUpdateUserReq PrepareBuilder() {
+        if (resultIsReadOnly) {
+          MsgUpdateUserReq original = result;
+          result = new MsgUpdateUserReq();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override MsgUpdateUserReq MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::cobaya.MsgUpdateUserReq.Descriptor; }
+      }
+      
+      public override MsgUpdateUserReq DefaultInstanceForType {
+        get { return global::cobaya.MsgUpdateUserReq.DefaultInstance; }
+      }
+      
+      public override MsgUpdateUserReq BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is MsgUpdateUserReq) {
+          return MergeFrom((MsgUpdateUserReq) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(MsgUpdateUserReq other) {
+        if (other == global::cobaya.MsgUpdateUserReq.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasHost) {
+          Host = other.Host;
+        }
+        if (other.HasUser) {
+          User = other.User;
+        }
+        if (other.HasPasswd) {
+          Passwd = other.Passwd;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_msgUpdateUserReqFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _msgUpdateUserReqFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 10: {
+              result.hasHost = input.ReadString(ref result.host_);
+              break;
+            }
+            case 18: {
+              result.hasUser = input.ReadString(ref result.user_);
+              break;
+            }
+            case 26: {
+              result.hasPasswd = input.ReadString(ref result.passwd_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasHost {
+        get { return result.hasHost; }
+      }
+      public string Host {
+        get { return result.Host; }
+        set { SetHost(value); }
+      }
+      public Builder SetHost(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasHost = true;
+        result.host_ = value;
+        return this;
+      }
+      public Builder ClearHost() {
+        PrepareBuilder();
+        result.hasHost = false;
+        result.host_ = "";
+        return this;
+      }
+      
+      public bool HasUser {
+        get { return result.hasUser; }
+      }
+      public string User {
+        get { return result.User; }
+        set { SetUser(value); }
+      }
+      public Builder SetUser(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasUser = true;
+        result.user_ = value;
+        return this;
+      }
+      public Builder ClearUser() {
+        PrepareBuilder();
+        result.hasUser = false;
+        result.user_ = "";
+        return this;
+      }
+      
+      public bool HasPasswd {
+        get { return result.hasPasswd; }
+      }
+      public string Passwd {
+        get { return result.Passwd; }
+        set { SetPasswd(value); }
+      }
+      public Builder SetPasswd(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.hasPasswd = true;
+        result.passwd_ = value;
+        return this;
+      }
+      public Builder ClearPasswd() {
+        PrepareBuilder();
+        result.hasPasswd = false;
+        result.passwd_ = "";
+        return this;
+      }
+    }
+    static MsgUpdateUserReq() {
+      object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+  public sealed partial class MsgUpdateUserRsp : pb::GeneratedMessage<MsgUpdateUserRsp, MsgUpdateUserRsp.Builder> {
+    private MsgUpdateUserRsp() { }
+    private static readonly MsgUpdateUserRsp defaultInstance = new MsgUpdateUserRsp().MakeReadOnly();
+    private static readonly string[] _msgUpdateUserRspFieldNames = new string[] { "grant" };
+    private static readonly uint[] _msgUpdateUserRspFieldTags = new uint[] { 8 };
+    public static MsgUpdateUserRsp DefaultInstance {
+      get { return defaultInstance; }
+    }
+    
+    public override MsgUpdateUserRsp DefaultInstanceForType {
+      get { return DefaultInstance; }
+    }
+    
+    protected override MsgUpdateUserRsp ThisMessage {
+      get { return this; }
+    }
+    
+    public static pbd::MessageDescriptor Descriptor {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgUpdateUserRsp__Descriptor; }
+    }
+    
+    protected override pb::FieldAccess.FieldAccessorTable<MsgUpdateUserRsp, MsgUpdateUserRsp.Builder> InternalFieldAccessors {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgUpdateUserRsp__FieldAccessorTable; }
+    }
+    
+    public const int GrantFieldNumber = 1;
+    private bool hasGrant;
+    private bool grant_;
+    public bool HasGrant {
+      get { return hasGrant; }
+    }
+    public bool Grant {
+      get { return grant_; }
+    }
+    
+    public override bool IsInitialized {
+      get {
+        if (!hasGrant) return false;
+        return true;
+      }
+    }
+    
+    public override void WriteTo(pb::ICodedOutputStream output) {
+      int size = SerializedSize;
+      string[] field_names = _msgUpdateUserRspFieldNames;
+      if (hasGrant) {
+        output.WriteBool(1, field_names[0], Grant);
+      }
+      UnknownFields.WriteTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public override int SerializedSize {
+      get {
+        int size = memoizedSerializedSize;
+        if (size != -1) return size;
+        
+        size = 0;
+        if (hasGrant) {
+          size += pb::CodedOutputStream.ComputeBoolSize(1, Grant);
+        }
+        size += UnknownFields.SerializedSize;
+        memoizedSerializedSize = size;
+        return size;
+      }
+    }
+    
+    public static MsgUpdateUserRsp ParseFrom(pb::ByteString data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static MsgUpdateUserRsp ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static MsgUpdateUserRsp ParseFrom(byte[] data) {
+      return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
+    }
+    public static MsgUpdateUserRsp ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
+    }
+    public static MsgUpdateUserRsp ParseFrom(global::System.IO.Stream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static MsgUpdateUserRsp ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    public static MsgUpdateUserRsp ParseDelimitedFrom(global::System.IO.Stream input) {
+      return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
+    }
+    public static MsgUpdateUserRsp ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+      return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
+    }
+    public static MsgUpdateUserRsp ParseFrom(pb::ICodedInputStream input) {
+      return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
+    }
+    public static MsgUpdateUserRsp ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+      return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
+    }
+    private MsgUpdateUserRsp MakeReadOnly() {
+      return this;
+    }
+    
+    public static Builder CreateBuilder() { return new Builder(); }
+    public override Builder ToBuilder() { return CreateBuilder(this); }
+    public override Builder CreateBuilderForType() { return new Builder(); }
+    public static Builder CreateBuilder(MsgUpdateUserRsp prototype) {
+      return new Builder(prototype);
+    }
+    
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
+    public sealed partial class Builder : pb::GeneratedBuilder<MsgUpdateUserRsp, Builder> {
+      protected override Builder ThisBuilder {
+        get { return this; }
+      }
+      public Builder() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+      }
+      internal Builder(MsgUpdateUserRsp cloneFrom) {
+        result = cloneFrom;
+        resultIsReadOnly = true;
+      }
+      
+      private bool resultIsReadOnly;
+      private MsgUpdateUserRsp result;
+      
+      private MsgUpdateUserRsp PrepareBuilder() {
+        if (resultIsReadOnly) {
+          MsgUpdateUserRsp original = result;
+          result = new MsgUpdateUserRsp();
+          resultIsReadOnly = false;
+          MergeFrom(original);
+        }
+        return result;
+      }
+      
+      public override bool IsInitialized {
+        get { return result.IsInitialized; }
+      }
+      
+      protected override MsgUpdateUserRsp MessageBeingBuilt {
+        get { return PrepareBuilder(); }
+      }
+      
+      public override Builder Clear() {
+        result = DefaultInstance;
+        resultIsReadOnly = true;
+        return this;
+      }
+      
+      public override Builder Clone() {
+        if (resultIsReadOnly) {
+          return new Builder(result);
+        } else {
+          return new Builder().MergeFrom(result);
+        }
+      }
+      
+      public override pbd::MessageDescriptor DescriptorForType {
+        get { return global::cobaya.MsgUpdateUserRsp.Descriptor; }
+      }
+      
+      public override MsgUpdateUserRsp DefaultInstanceForType {
+        get { return global::cobaya.MsgUpdateUserRsp.DefaultInstance; }
+      }
+      
+      public override MsgUpdateUserRsp BuildPartial() {
+        if (resultIsReadOnly) {
+          return result;
+        }
+        resultIsReadOnly = true;
+        return result.MakeReadOnly();
+      }
+      
+      public override Builder MergeFrom(pb::IMessage other) {
+        if (other is MsgUpdateUserRsp) {
+          return MergeFrom((MsgUpdateUserRsp) other);
+        } else {
+          base.MergeFrom(other);
+          return this;
+        }
+      }
+      
+      public override Builder MergeFrom(MsgUpdateUserRsp other) {
+        if (other == global::cobaya.MsgUpdateUserRsp.DefaultInstance) return this;
+        PrepareBuilder();
+        if (other.HasGrant) {
+          Grant = other.Grant;
+        }
+        this.MergeUnknownFields(other.UnknownFields);
+        return this;
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input) {
+        return MergeFrom(input, pb::ExtensionRegistry.Empty);
+      }
+      
+      public override Builder MergeFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+        PrepareBuilder();
+        pb::UnknownFieldSet.Builder unknownFields = null;
+        uint tag;
+        string field_name;
+        while (input.ReadTag(out tag, out field_name)) {
+          if(tag == 0 && field_name != null) {
+            int field_ordinal = global::System.Array.BinarySearch(_msgUpdateUserRspFieldNames, field_name, global::System.StringComparer.Ordinal);
+            if(field_ordinal >= 0)
+              tag = _msgUpdateUserRspFieldTags[field_ordinal];
+            else {
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              continue;
+            }
+          }
+          switch (tag) {
+            case 0: {
+              throw pb::InvalidProtocolBufferException.InvalidTag();
+            }
+            default: {
+              if (pb::WireFormat.IsEndGroupTag(tag)) {
+                if (unknownFields != null) {
+                  this.UnknownFields = unknownFields.Build();
+                }
+                return this;
+              }
+              if (unknownFields == null) {
+                unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
+              }
+              ParseUnknownField(input, unknownFields, extensionRegistry, tag, field_name);
+              break;
+            }
+            case 8: {
+              result.hasGrant = input.ReadBool(ref result.grant_);
+              break;
+            }
+          }
+        }
+        
+        if (unknownFields != null) {
+          this.UnknownFields = unknownFields.Build();
+        }
+        return this;
+      }
+      
+      
+      public bool HasGrant {
+        get { return result.hasGrant; }
+      }
+      public bool Grant {
+        get { return result.Grant; }
+        set { SetGrant(value); }
+      }
+      public Builder SetGrant(bool value) {
+        PrepareBuilder();
+        result.hasGrant = true;
+        result.grant_ = value;
+        return this;
+      }
+      public Builder ClearGrant() {
+        PrepareBuilder();
+        result.hasGrant = false;
+        result.grant_ = false;
+        return this;
+      }
+    }
+    static MsgUpdateUserRsp() {
+      object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
+    }
+  }
+  
+  [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+  [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+  [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
   public sealed partial class MsgClientReq : pb::GeneratedMessage<MsgClientReq, MsgClientReq.Builder> {
     private MsgClientReq() { }
     private static readonly MsgClientReq defaultInstance = new MsgClientReq().MakeReadOnly();
@@ -3678,8 +3677,8 @@ namespace cobaya {
   public sealed partial class MsgClientRsp : pb::GeneratedMessage<MsgClientRsp, MsgClientRsp.Builder> {
     private MsgClientRsp() { }
     private static readonly MsgClientRsp defaultInstance = new MsgClientRsp().MakeReadOnly();
-    private static readonly string[] _msgClientRspFieldNames = new string[] { "dev_code", "fetch", "heartbeat", "host", "person", "sensor" };
-    private static readonly uint[] _msgClientRspFieldTags = new uint[] { 18, 40, 24, 10, 48, 32 };
+    private static readonly string[] _msgClientRspFieldNames = new string[] { "dev_code", "fetch", "host" };
+    private static readonly uint[] _msgClientRspFieldTags = new uint[] { 18, 24, 10 };
     public static MsgClientRsp DefaultInstance {
       get { return defaultInstance; }
     }
@@ -3720,29 +3719,7 @@ namespace cobaya {
       get { return devCode_; }
     }
     
-    public const int HeartbeatFieldNumber = 3;
-    private bool hasHeartbeat;
-    private uint heartbeat_;
-    public bool HasHeartbeat {
-      get { return hasHeartbeat; }
-    }
-    [global::System.CLSCompliant(false)]
-    public uint Heartbeat {
-      get { return heartbeat_; }
-    }
-    
-    public const int SensorFieldNumber = 4;
-    private bool hasSensor;
-    private uint sensor_;
-    public bool HasSensor {
-      get { return hasSensor; }
-    }
-    [global::System.CLSCompliant(false)]
-    public uint Sensor {
-      get { return sensor_; }
-    }
-    
-    public const int FetchFieldNumber = 5;
+    public const int FetchFieldNumber = 3;
     private bool hasFetch;
     private uint fetch_;
     public bool HasFetch {
@@ -3753,25 +3730,11 @@ namespace cobaya {
       get { return fetch_; }
     }
     
-    public const int PersonFieldNumber = 6;
-    private bool hasPerson;
-    private uint person_;
-    public bool HasPerson {
-      get { return hasPerson; }
-    }
-    [global::System.CLSCompliant(false)]
-    public uint Person {
-      get { return person_; }
-    }
-    
     public override bool IsInitialized {
       get {
         if (!hasHost) return false;
         if (!hasDevCode) return false;
-        if (!hasHeartbeat) return false;
-        if (!hasSensor) return false;
         if (!hasFetch) return false;
-        if (!hasPerson) return false;
         return true;
       }
     }
@@ -3780,22 +3743,13 @@ namespace cobaya {
       int size = SerializedSize;
       string[] field_names = _msgClientRspFieldNames;
       if (hasHost) {
-        output.WriteString(1, field_names[3], Host);
+        output.WriteString(1, field_names[2], Host);
       }
       if (hasDevCode) {
         output.WriteString(2, field_names[0], DevCode);
       }
-      if (hasHeartbeat) {
-        output.WriteUInt32(3, field_names[2], Heartbeat);
-      }
-      if (hasSensor) {
-        output.WriteUInt32(4, field_names[5], Sensor);
-      }
       if (hasFetch) {
-        output.WriteUInt32(5, field_names[1], Fetch);
-      }
-      if (hasPerson) {
-        output.WriteUInt32(6, field_names[4], Person);
+        output.WriteUInt32(3, field_names[1], Fetch);
       }
       UnknownFields.WriteTo(output);
     }
@@ -3813,17 +3767,8 @@ namespace cobaya {
         if (hasDevCode) {
           size += pb::CodedOutputStream.ComputeStringSize(2, DevCode);
         }
-        if (hasHeartbeat) {
-          size += pb::CodedOutputStream.ComputeUInt32Size(3, Heartbeat);
-        }
-        if (hasSensor) {
-          size += pb::CodedOutputStream.ComputeUInt32Size(4, Sensor);
-        }
         if (hasFetch) {
-          size += pb::CodedOutputStream.ComputeUInt32Size(5, Fetch);
-        }
-        if (hasPerson) {
-          size += pb::CodedOutputStream.ComputeUInt32Size(6, Person);
+          size += pb::CodedOutputStream.ComputeUInt32Size(3, Fetch);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -3957,17 +3902,8 @@ namespace cobaya {
         if (other.HasDevCode) {
           DevCode = other.DevCode;
         }
-        if (other.HasHeartbeat) {
-          Heartbeat = other.Heartbeat;
-        }
-        if (other.HasSensor) {
-          Sensor = other.Sensor;
-        }
         if (other.HasFetch) {
           Fetch = other.Fetch;
-        }
-        if (other.HasPerson) {
-          Person = other.Person;
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -4021,19 +3957,7 @@ namespace cobaya {
               break;
             }
             case 24: {
-              result.hasHeartbeat = input.ReadUInt32(ref result.heartbeat_);
-              break;
-            }
-            case 32: {
-              result.hasSensor = input.ReadUInt32(ref result.sensor_);
-              break;
-            }
-            case 40: {
               result.hasFetch = input.ReadUInt32(ref result.fetch_);
-              break;
-            }
-            case 48: {
-              result.hasPerson = input.ReadUInt32(ref result.person_);
               break;
             }
           }
@@ -4088,50 +4012,6 @@ namespace cobaya {
         return this;
       }
       
-      public bool HasHeartbeat {
-        get { return result.hasHeartbeat; }
-      }
-      [global::System.CLSCompliant(false)]
-      public uint Heartbeat {
-        get { return result.Heartbeat; }
-        set { SetHeartbeat(value); }
-      }
-      [global::System.CLSCompliant(false)]
-      public Builder SetHeartbeat(uint value) {
-        PrepareBuilder();
-        result.hasHeartbeat = true;
-        result.heartbeat_ = value;
-        return this;
-      }
-      public Builder ClearHeartbeat() {
-        PrepareBuilder();
-        result.hasHeartbeat = false;
-        result.heartbeat_ = 0;
-        return this;
-      }
-      
-      public bool HasSensor {
-        get { return result.hasSensor; }
-      }
-      [global::System.CLSCompliant(false)]
-      public uint Sensor {
-        get { return result.Sensor; }
-        set { SetSensor(value); }
-      }
-      [global::System.CLSCompliant(false)]
-      public Builder SetSensor(uint value) {
-        PrepareBuilder();
-        result.hasSensor = true;
-        result.sensor_ = value;
-        return this;
-      }
-      public Builder ClearSensor() {
-        PrepareBuilder();
-        result.hasSensor = false;
-        result.sensor_ = 0;
-        return this;
-      }
-      
       public bool HasFetch {
         get { return result.hasFetch; }
       }
@@ -4151,28 +4031,6 @@ namespace cobaya {
         PrepareBuilder();
         result.hasFetch = false;
         result.fetch_ = 0;
-        return this;
-      }
-      
-      public bool HasPerson {
-        get { return result.hasPerson; }
-      }
-      [global::System.CLSCompliant(false)]
-      public uint Person {
-        get { return result.Person; }
-        set { SetPerson(value); }
-      }
-      [global::System.CLSCompliant(false)]
-      public Builder SetPerson(uint value) {
-        PrepareBuilder();
-        result.hasPerson = true;
-        result.person_ = value;
-        return this;
-      }
-      public Builder ClearPerson() {
-        PrepareBuilder();
-        result.hasPerson = false;
-        result.person_ = 0;
         return this;
       }
     }
@@ -5285,29 +5143,29 @@ namespace cobaya {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-  public sealed partial class MsgDiscoveryReq : pb::GeneratedMessage<MsgDiscoveryReq, MsgDiscoveryReq.Builder> {
-    private MsgDiscoveryReq() { }
-    private static readonly MsgDiscoveryReq defaultInstance = new MsgDiscoveryReq().MakeReadOnly();
-    private static readonly string[] _msgDiscoveryReqFieldNames = new string[] { "dev_code", "host", "id", "person", "prev_id", "user" };
-    private static readonly uint[] _msgDiscoveryReqFieldTags = new uint[] { 18, 10, 40, 32, 48, 26 };
-    public static MsgDiscoveryReq DefaultInstance {
+  public sealed partial class MsgCheckFlowReq : pb::GeneratedMessage<MsgCheckFlowReq, MsgCheckFlowReq.Builder> {
+    private MsgCheckFlowReq() { }
+    private static readonly MsgCheckFlowReq defaultInstance = new MsgCheckFlowReq().MakeReadOnly();
+    private static readonly string[] _msgCheckFlowReqFieldNames = new string[] { "dev_code", "host", "id", "prev_id", "user" };
+    private static readonly uint[] _msgCheckFlowReqFieldTags = new uint[] { 18, 10, 32, 40, 26 };
+    public static MsgCheckFlowReq DefaultInstance {
       get { return defaultInstance; }
     }
     
-    public override MsgDiscoveryReq DefaultInstanceForType {
+    public override MsgCheckFlowReq DefaultInstanceForType {
       get { return DefaultInstance; }
     }
     
-    protected override MsgDiscoveryReq ThisMessage {
+    protected override MsgCheckFlowReq ThisMessage {
       get { return this; }
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgDiscoveryReq__Descriptor; }
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgCheckFlowReq__Descriptor; }
     }
     
-    protected override pb::FieldAccess.FieldAccessorTable<MsgDiscoveryReq, MsgDiscoveryReq.Builder> InternalFieldAccessors {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgDiscoveryReq__FieldAccessorTable; }
+    protected override pb::FieldAccess.FieldAccessorTable<MsgCheckFlowReq, MsgCheckFlowReq.Builder> InternalFieldAccessors {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgCheckFlowReq__FieldAccessorTable; }
     }
     
     public const int HostFieldNumber = 1;
@@ -5340,17 +5198,7 @@ namespace cobaya {
       get { return user_; }
     }
     
-    public const int PersonFieldNumber = 4;
-    private bool hasPerson;
-    private bool person_;
-    public bool HasPerson {
-      get { return hasPerson; }
-    }
-    public bool Person {
-      get { return person_; }
-    }
-    
-    public const int IdFieldNumber = 5;
+    public const int IdFieldNumber = 4;
     private bool hasId;
     private ulong id_;
     public bool HasId {
@@ -5361,7 +5209,7 @@ namespace cobaya {
       get { return id_; }
     }
     
-    public const int PrevIdFieldNumber = 6;
+    public const int PrevIdFieldNumber = 5;
     private bool hasPrevId;
     private ulong prevId_;
     public bool HasPrevId {
@@ -5377,14 +5225,14 @@ namespace cobaya {
         if (!hasHost) return false;
         if (!hasDevCode) return false;
         if (!hasUser) return false;
-        if (!hasPerson) return false;
+        if (!hasId) return false;
         return true;
       }
     }
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _msgDiscoveryReqFieldNames;
+      string[] field_names = _msgCheckFlowReqFieldNames;
       if (hasHost) {
         output.WriteString(1, field_names[1], Host);
       }
@@ -5392,16 +5240,13 @@ namespace cobaya {
         output.WriteString(2, field_names[0], DevCode);
       }
       if (hasUser) {
-        output.WriteString(3, field_names[5], User);
-      }
-      if (hasPerson) {
-        output.WriteBool(4, field_names[3], Person);
+        output.WriteString(3, field_names[4], User);
       }
       if (hasId) {
-        output.WriteUInt64(5, field_names[2], Id);
+        output.WriteUInt64(4, field_names[2], Id);
       }
       if (hasPrevId) {
-        output.WriteUInt64(6, field_names[4], PrevId);
+        output.WriteUInt64(5, field_names[3], PrevId);
       }
       UnknownFields.WriteTo(output);
     }
@@ -5422,14 +5267,11 @@ namespace cobaya {
         if (hasUser) {
           size += pb::CodedOutputStream.ComputeStringSize(3, User);
         }
-        if (hasPerson) {
-          size += pb::CodedOutputStream.ComputeBoolSize(4, Person);
-        }
         if (hasId) {
-          size += pb::CodedOutputStream.ComputeUInt64Size(5, Id);
+          size += pb::CodedOutputStream.ComputeUInt64Size(4, Id);
         }
         if (hasPrevId) {
-          size += pb::CodedOutputStream.ComputeUInt64Size(6, PrevId);
+          size += pb::CodedOutputStream.ComputeUInt64Size(5, PrevId);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -5437,51 +5279,51 @@ namespace cobaya {
       }
     }
     
-    public static MsgDiscoveryReq ParseFrom(pb::ByteString data) {
+    public static MsgCheckFlowReq ParseFrom(pb::ByteString data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgDiscoveryReq ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowReq ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgDiscoveryReq ParseFrom(byte[] data) {
+    public static MsgCheckFlowReq ParseFrom(byte[] data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgDiscoveryReq ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowReq ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgDiscoveryReq ParseFrom(global::System.IO.Stream input) {
+    public static MsgCheckFlowReq ParseFrom(global::System.IO.Stream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgDiscoveryReq ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowReq ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    public static MsgDiscoveryReq ParseDelimitedFrom(global::System.IO.Stream input) {
+    public static MsgCheckFlowReq ParseDelimitedFrom(global::System.IO.Stream input) {
       return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
     }
-    public static MsgDiscoveryReq ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowReq ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
     }
-    public static MsgDiscoveryReq ParseFrom(pb::ICodedInputStream input) {
+    public static MsgCheckFlowReq ParseFrom(pb::ICodedInputStream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgDiscoveryReq ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowReq ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    private MsgDiscoveryReq MakeReadOnly() {
+    private MsgCheckFlowReq MakeReadOnly() {
       return this;
     }
     
     public static Builder CreateBuilder() { return new Builder(); }
     public override Builder ToBuilder() { return CreateBuilder(this); }
     public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(MsgDiscoveryReq prototype) {
+    public static Builder CreateBuilder(MsgCheckFlowReq prototype) {
       return new Builder(prototype);
     }
     
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-    public sealed partial class Builder : pb::GeneratedBuilder<MsgDiscoveryReq, Builder> {
+    public sealed partial class Builder : pb::GeneratedBuilder<MsgCheckFlowReq, Builder> {
       protected override Builder ThisBuilder {
         get { return this; }
       }
@@ -5489,18 +5331,18 @@ namespace cobaya {
         result = DefaultInstance;
         resultIsReadOnly = true;
       }
-      internal Builder(MsgDiscoveryReq cloneFrom) {
+      internal Builder(MsgCheckFlowReq cloneFrom) {
         result = cloneFrom;
         resultIsReadOnly = true;
       }
       
       private bool resultIsReadOnly;
-      private MsgDiscoveryReq result;
+      private MsgCheckFlowReq result;
       
-      private MsgDiscoveryReq PrepareBuilder() {
+      private MsgCheckFlowReq PrepareBuilder() {
         if (resultIsReadOnly) {
-          MsgDiscoveryReq original = result;
-          result = new MsgDiscoveryReq();
+          MsgCheckFlowReq original = result;
+          result = new MsgCheckFlowReq();
           resultIsReadOnly = false;
           MergeFrom(original);
         }
@@ -5511,7 +5353,7 @@ namespace cobaya {
         get { return result.IsInitialized; }
       }
       
-      protected override MsgDiscoveryReq MessageBeingBuilt {
+      protected override MsgCheckFlowReq MessageBeingBuilt {
         get { return PrepareBuilder(); }
       }
       
@@ -5530,14 +5372,14 @@ namespace cobaya {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::cobaya.MsgDiscoveryReq.Descriptor; }
+        get { return global::cobaya.MsgCheckFlowReq.Descriptor; }
       }
       
-      public override MsgDiscoveryReq DefaultInstanceForType {
-        get { return global::cobaya.MsgDiscoveryReq.DefaultInstance; }
+      public override MsgCheckFlowReq DefaultInstanceForType {
+        get { return global::cobaya.MsgCheckFlowReq.DefaultInstance; }
       }
       
-      public override MsgDiscoveryReq BuildPartial() {
+      public override MsgCheckFlowReq BuildPartial() {
         if (resultIsReadOnly) {
           return result;
         }
@@ -5546,16 +5388,16 @@ namespace cobaya {
       }
       
       public override Builder MergeFrom(pb::IMessage other) {
-        if (other is MsgDiscoveryReq) {
-          return MergeFrom((MsgDiscoveryReq) other);
+        if (other is MsgCheckFlowReq) {
+          return MergeFrom((MsgCheckFlowReq) other);
         } else {
           base.MergeFrom(other);
           return this;
         }
       }
       
-      public override Builder MergeFrom(MsgDiscoveryReq other) {
-        if (other == global::cobaya.MsgDiscoveryReq.DefaultInstance) return this;
+      public override Builder MergeFrom(MsgCheckFlowReq other) {
+        if (other == global::cobaya.MsgCheckFlowReq.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasHost) {
           Host = other.Host;
@@ -5565,9 +5407,6 @@ namespace cobaya {
         }
         if (other.HasUser) {
           User = other.User;
-        }
-        if (other.HasPerson) {
-          Person = other.Person;
         }
         if (other.HasId) {
           Id = other.Id;
@@ -5590,9 +5429,9 @@ namespace cobaya {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_msgDiscoveryReqFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_msgCheckFlowReqFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _msgDiscoveryReqFieldTags[field_ordinal];
+              tag = _msgCheckFlowReqFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -5631,14 +5470,10 @@ namespace cobaya {
               break;
             }
             case 32: {
-              result.hasPerson = input.ReadBool(ref result.person_);
-              break;
-            }
-            case 40: {
               result.hasId = input.ReadUInt64(ref result.id_);
               break;
             }
-            case 48: {
+            case 40: {
               result.hasPrevId = input.ReadUInt64(ref result.prevId_);
               break;
             }
@@ -5715,26 +5550,6 @@ namespace cobaya {
         return this;
       }
       
-      public bool HasPerson {
-        get { return result.hasPerson; }
-      }
-      public bool Person {
-        get { return result.Person; }
-        set { SetPerson(value); }
-      }
-      public Builder SetPerson(bool value) {
-        PrepareBuilder();
-        result.hasPerson = true;
-        result.person_ = value;
-        return this;
-      }
-      public Builder ClearPerson() {
-        PrepareBuilder();
-        result.hasPerson = false;
-        result.person_ = false;
-        return this;
-      }
-      
       public bool HasId {
         get { return result.hasId; }
       }
@@ -5779,7 +5594,7 @@ namespace cobaya {
         return this;
       }
     }
-    static MsgDiscoveryReq() {
+    static MsgCheckFlowReq() {
       object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
     }
   }
@@ -5787,29 +5602,29 @@ namespace cobaya {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-  public sealed partial class MsgDiscoveryRsp : pb::GeneratedMessage<MsgDiscoveryRsp, MsgDiscoveryRsp.Builder> {
-    private MsgDiscoveryRsp() { }
-    private static readonly MsgDiscoveryRsp defaultInstance = new MsgDiscoveryRsp().MakeReadOnly();
-    private static readonly string[] _msgDiscoveryRspFieldNames = new string[] { "grant" };
-    private static readonly uint[] _msgDiscoveryRspFieldTags = new uint[] { 8 };
-    public static MsgDiscoveryRsp DefaultInstance {
+  public sealed partial class MsgCheckFlowRsp : pb::GeneratedMessage<MsgCheckFlowRsp, MsgCheckFlowRsp.Builder> {
+    private MsgCheckFlowRsp() { }
+    private static readonly MsgCheckFlowRsp defaultInstance = new MsgCheckFlowRsp().MakeReadOnly();
+    private static readonly string[] _msgCheckFlowRspFieldNames = new string[] { "grant" };
+    private static readonly uint[] _msgCheckFlowRspFieldTags = new uint[] { 8 };
+    public static MsgCheckFlowRsp DefaultInstance {
       get { return defaultInstance; }
     }
     
-    public override MsgDiscoveryRsp DefaultInstanceForType {
+    public override MsgCheckFlowRsp DefaultInstanceForType {
       get { return DefaultInstance; }
     }
     
-    protected override MsgDiscoveryRsp ThisMessage {
+    protected override MsgCheckFlowRsp ThisMessage {
       get { return this; }
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgDiscoveryRsp__Descriptor; }
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgCheckFlowRsp__Descriptor; }
     }
     
-    protected override pb::FieldAccess.FieldAccessorTable<MsgDiscoveryRsp, MsgDiscoveryRsp.Builder> InternalFieldAccessors {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgDiscoveryRsp__FieldAccessorTable; }
+    protected override pb::FieldAccess.FieldAccessorTable<MsgCheckFlowRsp, MsgCheckFlowRsp.Builder> InternalFieldAccessors {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgCheckFlowRsp__FieldAccessorTable; }
     }
     
     public const int GrantFieldNumber = 1;
@@ -5830,7 +5645,7 @@ namespace cobaya {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _msgDiscoveryRspFieldNames;
+      string[] field_names = _msgCheckFlowRspFieldNames;
       if (hasGrant) {
         output.WriteBool(1, field_names[0], Grant);
       }
@@ -5853,51 +5668,51 @@ namespace cobaya {
       }
     }
     
-    public static MsgDiscoveryRsp ParseFrom(pb::ByteString data) {
+    public static MsgCheckFlowRsp ParseFrom(pb::ByteString data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgDiscoveryRsp ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowRsp ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgDiscoveryRsp ParseFrom(byte[] data) {
+    public static MsgCheckFlowRsp ParseFrom(byte[] data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgDiscoveryRsp ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowRsp ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgDiscoveryRsp ParseFrom(global::System.IO.Stream input) {
+    public static MsgCheckFlowRsp ParseFrom(global::System.IO.Stream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgDiscoveryRsp ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowRsp ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    public static MsgDiscoveryRsp ParseDelimitedFrom(global::System.IO.Stream input) {
+    public static MsgCheckFlowRsp ParseDelimitedFrom(global::System.IO.Stream input) {
       return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
     }
-    public static MsgDiscoveryRsp ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowRsp ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
     }
-    public static MsgDiscoveryRsp ParseFrom(pb::ICodedInputStream input) {
+    public static MsgCheckFlowRsp ParseFrom(pb::ICodedInputStream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgDiscoveryRsp ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgCheckFlowRsp ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    private MsgDiscoveryRsp MakeReadOnly() {
+    private MsgCheckFlowRsp MakeReadOnly() {
       return this;
     }
     
     public static Builder CreateBuilder() { return new Builder(); }
     public override Builder ToBuilder() { return CreateBuilder(this); }
     public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(MsgDiscoveryRsp prototype) {
+    public static Builder CreateBuilder(MsgCheckFlowRsp prototype) {
       return new Builder(prototype);
     }
     
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-    public sealed partial class Builder : pb::GeneratedBuilder<MsgDiscoveryRsp, Builder> {
+    public sealed partial class Builder : pb::GeneratedBuilder<MsgCheckFlowRsp, Builder> {
       protected override Builder ThisBuilder {
         get { return this; }
       }
@@ -5905,18 +5720,18 @@ namespace cobaya {
         result = DefaultInstance;
         resultIsReadOnly = true;
       }
-      internal Builder(MsgDiscoveryRsp cloneFrom) {
+      internal Builder(MsgCheckFlowRsp cloneFrom) {
         result = cloneFrom;
         resultIsReadOnly = true;
       }
       
       private bool resultIsReadOnly;
-      private MsgDiscoveryRsp result;
+      private MsgCheckFlowRsp result;
       
-      private MsgDiscoveryRsp PrepareBuilder() {
+      private MsgCheckFlowRsp PrepareBuilder() {
         if (resultIsReadOnly) {
-          MsgDiscoveryRsp original = result;
-          result = new MsgDiscoveryRsp();
+          MsgCheckFlowRsp original = result;
+          result = new MsgCheckFlowRsp();
           resultIsReadOnly = false;
           MergeFrom(original);
         }
@@ -5927,7 +5742,7 @@ namespace cobaya {
         get { return result.IsInitialized; }
       }
       
-      protected override MsgDiscoveryRsp MessageBeingBuilt {
+      protected override MsgCheckFlowRsp MessageBeingBuilt {
         get { return PrepareBuilder(); }
       }
       
@@ -5946,14 +5761,14 @@ namespace cobaya {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::cobaya.MsgDiscoveryRsp.Descriptor; }
+        get { return global::cobaya.MsgCheckFlowRsp.Descriptor; }
       }
       
-      public override MsgDiscoveryRsp DefaultInstanceForType {
-        get { return global::cobaya.MsgDiscoveryRsp.DefaultInstance; }
+      public override MsgCheckFlowRsp DefaultInstanceForType {
+        get { return global::cobaya.MsgCheckFlowRsp.DefaultInstance; }
       }
       
-      public override MsgDiscoveryRsp BuildPartial() {
+      public override MsgCheckFlowRsp BuildPartial() {
         if (resultIsReadOnly) {
           return result;
         }
@@ -5962,16 +5777,16 @@ namespace cobaya {
       }
       
       public override Builder MergeFrom(pb::IMessage other) {
-        if (other is MsgDiscoveryRsp) {
-          return MergeFrom((MsgDiscoveryRsp) other);
+        if (other is MsgCheckFlowRsp) {
+          return MergeFrom((MsgCheckFlowRsp) other);
         } else {
           base.MergeFrom(other);
           return this;
         }
       }
       
-      public override Builder MergeFrom(MsgDiscoveryRsp other) {
-        if (other == global::cobaya.MsgDiscoveryRsp.DefaultInstance) return this;
+      public override Builder MergeFrom(MsgCheckFlowRsp other) {
+        if (other == global::cobaya.MsgCheckFlowRsp.DefaultInstance) return this;
         PrepareBuilder();
         if (other.HasGrant) {
           Grant = other.Grant;
@@ -5991,9 +5806,9 @@ namespace cobaya {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_msgDiscoveryRspFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_msgCheckFlowRspFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _msgDiscoveryRspFieldTags[field_ordinal];
+              tag = _msgCheckFlowRspFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -6053,7 +5868,7 @@ namespace cobaya {
         return this;
       }
     }
-    static MsgDiscoveryRsp() {
+    static MsgCheckFlowRsp() {
       object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
     }
   }
@@ -6061,68 +5876,81 @@ namespace cobaya {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-  public sealed partial class MsgNewFlowReq : pb::GeneratedMessage<MsgNewFlowReq, MsgNewFlowReq.Builder> {
-    private MsgNewFlowReq() { }
-    private static readonly MsgNewFlowReq defaultInstance = new MsgNewFlowReq().MakeReadOnly();
-    private static readonly string[] _msgNewFlowReqFieldNames = new string[] { "hosts", "id" };
-    private static readonly uint[] _msgNewFlowReqFieldTags = new uint[] { 18, 10 };
-    public static MsgNewFlowReq DefaultInstance {
+  public sealed partial class MsgFriendFlowReq : pb::GeneratedMessage<MsgFriendFlowReq, MsgFriendFlowReq.Builder> {
+    private MsgFriendFlowReq() { }
+    private static readonly MsgFriendFlowReq defaultInstance = new MsgFriendFlowReq().MakeReadOnly();
+    private static readonly string[] _msgFriendFlowReqFieldNames = new string[] { "dev_code", "host", "info" };
+    private static readonly uint[] _msgFriendFlowReqFieldTags = new uint[] { 18, 10, 26 };
+    public static MsgFriendFlowReq DefaultInstance {
       get { return defaultInstance; }
     }
     
-    public override MsgNewFlowReq DefaultInstanceForType {
+    public override MsgFriendFlowReq DefaultInstanceForType {
       get { return DefaultInstance; }
     }
     
-    protected override MsgNewFlowReq ThisMessage {
+    protected override MsgFriendFlowReq ThisMessage {
       get { return this; }
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgNewFlowReq__Descriptor; }
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgFriendFlowReq__Descriptor; }
     }
     
-    protected override pb::FieldAccess.FieldAccessorTable<MsgNewFlowReq, MsgNewFlowReq.Builder> InternalFieldAccessors {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgNewFlowReq__FieldAccessorTable; }
+    protected override pb::FieldAccess.FieldAccessorTable<MsgFriendFlowReq, MsgFriendFlowReq.Builder> InternalFieldAccessors {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgFriendFlowReq__FieldAccessorTable; }
     }
     
-    public const int IdFieldNumber = 1;
-    private bool hasId;
-    private string id_ = "";
-    public bool HasId {
-      get { return hasId; }
+    public const int HostFieldNumber = 1;
+    private bool hasHost;
+    private string host_ = "";
+    public bool HasHost {
+      get { return hasHost; }
     }
-    public string Id {
-      get { return id_; }
+    public string Host {
+      get { return host_; }
     }
     
-    public const int HostsFieldNumber = 2;
-    private pbc::PopsicleList<string> hosts_ = new pbc::PopsicleList<string>();
-    public scg::IList<string> HostsList {
-      get { return pbc::Lists.AsReadOnly(hosts_); }
+    public const int DevCodeFieldNumber = 2;
+    private bool hasDevCode;
+    private string devCode_ = "";
+    public bool HasDevCode {
+      get { return hasDevCode; }
     }
-    public int HostsCount {
-      get { return hosts_.Count; }
+    public string DevCode {
+      get { return devCode_; }
     }
-    public string GetHosts(int index) {
-      return hosts_[index];
+    
+    public const int InfoFieldNumber = 3;
+    private bool hasInfo;
+    private string info_ = "";
+    public bool HasInfo {
+      get { return hasInfo; }
+    }
+    public string Info {
+      get { return info_; }
     }
     
     public override bool IsInitialized {
       get {
-        if (!hasId) return false;
+        if (!hasHost) return false;
+        if (!hasDevCode) return false;
+        if (!hasInfo) return false;
         return true;
       }
     }
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _msgNewFlowReqFieldNames;
-      if (hasId) {
-        output.WriteString(1, field_names[1], Id);
+      string[] field_names = _msgFriendFlowReqFieldNames;
+      if (hasHost) {
+        output.WriteString(1, field_names[1], Host);
       }
-      if (hosts_.Count > 0) {
-        output.WriteStringArray(2, field_names[0], hosts_);
+      if (hasDevCode) {
+        output.WriteString(2, field_names[0], DevCode);
+      }
+      if (hasInfo) {
+        output.WriteString(3, field_names[2], Info);
       }
       UnknownFields.WriteTo(output);
     }
@@ -6134,16 +5962,14 @@ namespace cobaya {
         if (size != -1) return size;
         
         size = 0;
-        if (hasId) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, Id);
+        if (hasHost) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Host);
         }
-        {
-          int dataSize = 0;
-          foreach (string element in HostsList) {
-            dataSize += pb::CodedOutputStream.ComputeStringSizeNoTag(element);
-          }
-          size += dataSize;
-          size += 1 * hosts_.Count;
+        if (hasDevCode) {
+          size += pb::CodedOutputStream.ComputeStringSize(2, DevCode);
+        }
+        if (hasInfo) {
+          size += pb::CodedOutputStream.ComputeStringSize(3, Info);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -6151,52 +5977,51 @@ namespace cobaya {
       }
     }
     
-    public static MsgNewFlowReq ParseFrom(pb::ByteString data) {
+    public static MsgFriendFlowReq ParseFrom(pb::ByteString data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgNewFlowReq ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowReq ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgNewFlowReq ParseFrom(byte[] data) {
+    public static MsgFriendFlowReq ParseFrom(byte[] data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgNewFlowReq ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowReq ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgNewFlowReq ParseFrom(global::System.IO.Stream input) {
+    public static MsgFriendFlowReq ParseFrom(global::System.IO.Stream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgNewFlowReq ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowReq ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    public static MsgNewFlowReq ParseDelimitedFrom(global::System.IO.Stream input) {
+    public static MsgFriendFlowReq ParseDelimitedFrom(global::System.IO.Stream input) {
       return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
     }
-    public static MsgNewFlowReq ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowReq ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
     }
-    public static MsgNewFlowReq ParseFrom(pb::ICodedInputStream input) {
+    public static MsgFriendFlowReq ParseFrom(pb::ICodedInputStream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgNewFlowReq ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowReq ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    private MsgNewFlowReq MakeReadOnly() {
-      hosts_.MakeReadOnly();
+    private MsgFriendFlowReq MakeReadOnly() {
       return this;
     }
     
     public static Builder CreateBuilder() { return new Builder(); }
     public override Builder ToBuilder() { return CreateBuilder(this); }
     public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(MsgNewFlowReq prototype) {
+    public static Builder CreateBuilder(MsgFriendFlowReq prototype) {
       return new Builder(prototype);
     }
     
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-    public sealed partial class Builder : pb::GeneratedBuilder<MsgNewFlowReq, Builder> {
+    public sealed partial class Builder : pb::GeneratedBuilder<MsgFriendFlowReq, Builder> {
       protected override Builder ThisBuilder {
         get { return this; }
       }
@@ -6204,18 +6029,18 @@ namespace cobaya {
         result = DefaultInstance;
         resultIsReadOnly = true;
       }
-      internal Builder(MsgNewFlowReq cloneFrom) {
+      internal Builder(MsgFriendFlowReq cloneFrom) {
         result = cloneFrom;
         resultIsReadOnly = true;
       }
       
       private bool resultIsReadOnly;
-      private MsgNewFlowReq result;
+      private MsgFriendFlowReq result;
       
-      private MsgNewFlowReq PrepareBuilder() {
+      private MsgFriendFlowReq PrepareBuilder() {
         if (resultIsReadOnly) {
-          MsgNewFlowReq original = result;
-          result = new MsgNewFlowReq();
+          MsgFriendFlowReq original = result;
+          result = new MsgFriendFlowReq();
           resultIsReadOnly = false;
           MergeFrom(original);
         }
@@ -6226,7 +6051,7 @@ namespace cobaya {
         get { return result.IsInitialized; }
       }
       
-      protected override MsgNewFlowReq MessageBeingBuilt {
+      protected override MsgFriendFlowReq MessageBeingBuilt {
         get { return PrepareBuilder(); }
       }
       
@@ -6245,14 +6070,14 @@ namespace cobaya {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::cobaya.MsgNewFlowReq.Descriptor; }
+        get { return global::cobaya.MsgFriendFlowReq.Descriptor; }
       }
       
-      public override MsgNewFlowReq DefaultInstanceForType {
-        get { return global::cobaya.MsgNewFlowReq.DefaultInstance; }
+      public override MsgFriendFlowReq DefaultInstanceForType {
+        get { return global::cobaya.MsgFriendFlowReq.DefaultInstance; }
       }
       
-      public override MsgNewFlowReq BuildPartial() {
+      public override MsgFriendFlowReq BuildPartial() {
         if (resultIsReadOnly) {
           return result;
         }
@@ -6261,22 +6086,25 @@ namespace cobaya {
       }
       
       public override Builder MergeFrom(pb::IMessage other) {
-        if (other is MsgNewFlowReq) {
-          return MergeFrom((MsgNewFlowReq) other);
+        if (other is MsgFriendFlowReq) {
+          return MergeFrom((MsgFriendFlowReq) other);
         } else {
           base.MergeFrom(other);
           return this;
         }
       }
       
-      public override Builder MergeFrom(MsgNewFlowReq other) {
-        if (other == global::cobaya.MsgNewFlowReq.DefaultInstance) return this;
+      public override Builder MergeFrom(MsgFriendFlowReq other) {
+        if (other == global::cobaya.MsgFriendFlowReq.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.HasId) {
-          Id = other.Id;
+        if (other.HasHost) {
+          Host = other.Host;
         }
-        if (other.hosts_.Count != 0) {
-          result.hosts_.Add(other.hosts_);
+        if (other.HasDevCode) {
+          DevCode = other.DevCode;
+        }
+        if (other.HasInfo) {
+          Info = other.Info;
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -6293,9 +6121,9 @@ namespace cobaya {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_msgNewFlowReqFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_msgFriendFlowReqFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _msgNewFlowReqFieldTags[field_ordinal];
+              tag = _msgFriendFlowReqFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -6322,11 +6150,15 @@ namespace cobaya {
               break;
             }
             case 10: {
-              result.hasId = input.ReadString(ref result.id_);
+              result.hasHost = input.ReadString(ref result.host_);
               break;
             }
             case 18: {
-              input.ReadStringArray(tag, field_name, result.hosts_);
+              result.hasDevCode = input.ReadString(ref result.devCode_);
+              break;
+            }
+            case 26: {
+              result.hasInfo = input.ReadString(ref result.info_);
               break;
             }
           }
@@ -6339,60 +6171,70 @@ namespace cobaya {
       }
       
       
-      public bool HasId {
-        get { return result.hasId; }
+      public bool HasHost {
+        get { return result.hasHost; }
       }
-      public string Id {
-        get { return result.Id; }
-        set { SetId(value); }
+      public string Host {
+        get { return result.Host; }
+        set { SetHost(value); }
       }
-      public Builder SetId(string value) {
+      public Builder SetHost(string value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hasId = true;
-        result.id_ = value;
+        result.hasHost = true;
+        result.host_ = value;
         return this;
       }
-      public Builder ClearId() {
+      public Builder ClearHost() {
         PrepareBuilder();
-        result.hasId = false;
-        result.id_ = "";
+        result.hasHost = false;
+        result.host_ = "";
         return this;
       }
       
-      public pbc::IPopsicleList<string> HostsList {
-        get { return PrepareBuilder().hosts_; }
+      public bool HasDevCode {
+        get { return result.hasDevCode; }
       }
-      public int HostsCount {
-        get { return result.HostsCount; }
+      public string DevCode {
+        get { return result.DevCode; }
+        set { SetDevCode(value); }
       }
-      public string GetHosts(int index) {
-        return result.GetHosts(index);
-      }
-      public Builder SetHosts(int index, string value) {
+      public Builder SetDevCode(string value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hosts_[index] = value;
+        result.hasDevCode = true;
+        result.devCode_ = value;
         return this;
       }
-      public Builder AddHosts(string value) {
+      public Builder ClearDevCode() {
+        PrepareBuilder();
+        result.hasDevCode = false;
+        result.devCode_ = "";
+        return this;
+      }
+      
+      public bool HasInfo {
+        get { return result.hasInfo; }
+      }
+      public string Info {
+        get { return result.Info; }
+        set { SetInfo(value); }
+      }
+      public Builder SetInfo(string value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hosts_.Add(value);
+        result.hasInfo = true;
+        result.info_ = value;
         return this;
       }
-      public Builder AddRangeHosts(scg::IEnumerable<string> values) {
+      public Builder ClearInfo() {
         PrepareBuilder();
-        result.hosts_.Add(values);
-        return this;
-      }
-      public Builder ClearHosts() {
-        PrepareBuilder();
-        result.hosts_.Clear();
+        result.hasInfo = false;
+        result.info_ = "";
         return this;
       }
     }
-    static MsgNewFlowReq() {
+    static MsgFriendFlowReq() {
       object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
     }
   }
@@ -6400,40 +6242,39 @@ namespace cobaya {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-  public sealed partial class MsgNewFlowRsp : pb::GeneratedMessage<MsgNewFlowRsp, MsgNewFlowRsp.Builder> {
-    private MsgNewFlowRsp() { }
-    private static readonly MsgNewFlowRsp defaultInstance = new MsgNewFlowRsp().MakeReadOnly();
-    private static readonly string[] _msgNewFlowRspFieldNames = new string[] { "status" };
-    private static readonly uint[] _msgNewFlowRspFieldTags = new uint[] { 8 };
-    public static MsgNewFlowRsp DefaultInstance {
+  public sealed partial class MsgFriendFlowRsp : pb::GeneratedMessage<MsgFriendFlowRsp, MsgFriendFlowRsp.Builder> {
+    private MsgFriendFlowRsp() { }
+    private static readonly MsgFriendFlowRsp defaultInstance = new MsgFriendFlowRsp().MakeReadOnly();
+    private static readonly string[] _msgFriendFlowRspFieldNames = new string[] { "grant" };
+    private static readonly uint[] _msgFriendFlowRspFieldTags = new uint[] { 8 };
+    public static MsgFriendFlowRsp DefaultInstance {
       get { return defaultInstance; }
     }
     
-    public override MsgNewFlowRsp DefaultInstanceForType {
+    public override MsgFriendFlowRsp DefaultInstanceForType {
       get { return DefaultInstance; }
     }
     
-    protected override MsgNewFlowRsp ThisMessage {
+    protected override MsgFriendFlowRsp ThisMessage {
       get { return this; }
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgNewFlowRsp__Descriptor; }
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgFriendFlowRsp__Descriptor; }
     }
     
-    protected override pb::FieldAccess.FieldAccessorTable<MsgNewFlowRsp, MsgNewFlowRsp.Builder> InternalFieldAccessors {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgNewFlowRsp__FieldAccessorTable; }
+    protected override pb::FieldAccess.FieldAccessorTable<MsgFriendFlowRsp, MsgFriendFlowRsp.Builder> InternalFieldAccessors {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgFriendFlowRsp__FieldAccessorTable; }
     }
     
-    public const int StatusFieldNumber = 1;
-    private bool hasStatus;
-    private uint status_;
-    public bool HasStatus {
-      get { return hasStatus; }
+    public const int GrantFieldNumber = 1;
+    private bool hasGrant;
+    private bool grant_;
+    public bool HasGrant {
+      get { return hasGrant; }
     }
-    [global::System.CLSCompliant(false)]
-    public uint Status {
-      get { return status_; }
+    public bool Grant {
+      get { return grant_; }
     }
     
     public override bool IsInitialized {
@@ -6444,9 +6285,9 @@ namespace cobaya {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _msgNewFlowRspFieldNames;
-      if (hasStatus) {
-        output.WriteUInt32(1, field_names[0], Status);
+      string[] field_names = _msgFriendFlowRspFieldNames;
+      if (hasGrant) {
+        output.WriteBool(1, field_names[0], Grant);
       }
       UnknownFields.WriteTo(output);
     }
@@ -6458,8 +6299,8 @@ namespace cobaya {
         if (size != -1) return size;
         
         size = 0;
-        if (hasStatus) {
-          size += pb::CodedOutputStream.ComputeUInt32Size(1, Status);
+        if (hasGrant) {
+          size += pb::CodedOutputStream.ComputeBoolSize(1, Grant);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -6467,51 +6308,51 @@ namespace cobaya {
       }
     }
     
-    public static MsgNewFlowRsp ParseFrom(pb::ByteString data) {
+    public static MsgFriendFlowRsp ParseFrom(pb::ByteString data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgNewFlowRsp ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowRsp ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgNewFlowRsp ParseFrom(byte[] data) {
+    public static MsgFriendFlowRsp ParseFrom(byte[] data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgNewFlowRsp ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowRsp ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgNewFlowRsp ParseFrom(global::System.IO.Stream input) {
+    public static MsgFriendFlowRsp ParseFrom(global::System.IO.Stream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgNewFlowRsp ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowRsp ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    public static MsgNewFlowRsp ParseDelimitedFrom(global::System.IO.Stream input) {
+    public static MsgFriendFlowRsp ParseDelimitedFrom(global::System.IO.Stream input) {
       return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
     }
-    public static MsgNewFlowRsp ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowRsp ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
     }
-    public static MsgNewFlowRsp ParseFrom(pb::ICodedInputStream input) {
+    public static MsgFriendFlowRsp ParseFrom(pb::ICodedInputStream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgNewFlowRsp ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgFriendFlowRsp ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    private MsgNewFlowRsp MakeReadOnly() {
+    private MsgFriendFlowRsp MakeReadOnly() {
       return this;
     }
     
     public static Builder CreateBuilder() { return new Builder(); }
     public override Builder ToBuilder() { return CreateBuilder(this); }
     public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(MsgNewFlowRsp prototype) {
+    public static Builder CreateBuilder(MsgFriendFlowRsp prototype) {
       return new Builder(prototype);
     }
     
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-    public sealed partial class Builder : pb::GeneratedBuilder<MsgNewFlowRsp, Builder> {
+    public sealed partial class Builder : pb::GeneratedBuilder<MsgFriendFlowRsp, Builder> {
       protected override Builder ThisBuilder {
         get { return this; }
       }
@@ -6519,18 +6360,18 @@ namespace cobaya {
         result = DefaultInstance;
         resultIsReadOnly = true;
       }
-      internal Builder(MsgNewFlowRsp cloneFrom) {
+      internal Builder(MsgFriendFlowRsp cloneFrom) {
         result = cloneFrom;
         resultIsReadOnly = true;
       }
       
       private bool resultIsReadOnly;
-      private MsgNewFlowRsp result;
+      private MsgFriendFlowRsp result;
       
-      private MsgNewFlowRsp PrepareBuilder() {
+      private MsgFriendFlowRsp PrepareBuilder() {
         if (resultIsReadOnly) {
-          MsgNewFlowRsp original = result;
-          result = new MsgNewFlowRsp();
+          MsgFriendFlowRsp original = result;
+          result = new MsgFriendFlowRsp();
           resultIsReadOnly = false;
           MergeFrom(original);
         }
@@ -6541,7 +6382,7 @@ namespace cobaya {
         get { return result.IsInitialized; }
       }
       
-      protected override MsgNewFlowRsp MessageBeingBuilt {
+      protected override MsgFriendFlowRsp MessageBeingBuilt {
         get { return PrepareBuilder(); }
       }
       
@@ -6560,14 +6401,14 @@ namespace cobaya {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::cobaya.MsgNewFlowRsp.Descriptor; }
+        get { return global::cobaya.MsgFriendFlowRsp.Descriptor; }
       }
       
-      public override MsgNewFlowRsp DefaultInstanceForType {
-        get { return global::cobaya.MsgNewFlowRsp.DefaultInstance; }
+      public override MsgFriendFlowRsp DefaultInstanceForType {
+        get { return global::cobaya.MsgFriendFlowRsp.DefaultInstance; }
       }
       
-      public override MsgNewFlowRsp BuildPartial() {
+      public override MsgFriendFlowRsp BuildPartial() {
         if (resultIsReadOnly) {
           return result;
         }
@@ -6576,19 +6417,19 @@ namespace cobaya {
       }
       
       public override Builder MergeFrom(pb::IMessage other) {
-        if (other is MsgNewFlowRsp) {
-          return MergeFrom((MsgNewFlowRsp) other);
+        if (other is MsgFriendFlowRsp) {
+          return MergeFrom((MsgFriendFlowRsp) other);
         } else {
           base.MergeFrom(other);
           return this;
         }
       }
       
-      public override Builder MergeFrom(MsgNewFlowRsp other) {
-        if (other == global::cobaya.MsgNewFlowRsp.DefaultInstance) return this;
+      public override Builder MergeFrom(MsgFriendFlowRsp other) {
+        if (other == global::cobaya.MsgFriendFlowRsp.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.HasStatus) {
-          Status = other.Status;
+        if (other.HasGrant) {
+          Grant = other.Grant;
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -6605,9 +6446,9 @@ namespace cobaya {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_msgNewFlowRspFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_msgFriendFlowRspFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _msgNewFlowRspFieldTags[field_ordinal];
+              tag = _msgFriendFlowRspFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -6634,7 +6475,7 @@ namespace cobaya {
               break;
             }
             case 8: {
-              result.hasStatus = input.ReadUInt32(ref result.status_);
+              result.hasGrant = input.ReadBool(ref result.grant_);
               break;
             }
           }
@@ -6647,29 +6488,27 @@ namespace cobaya {
       }
       
       
-      public bool HasStatus {
-        get { return result.hasStatus; }
+      public bool HasGrant {
+        get { return result.hasGrant; }
       }
-      [global::System.CLSCompliant(false)]
-      public uint Status {
-        get { return result.Status; }
-        set { SetStatus(value); }
+      public bool Grant {
+        get { return result.Grant; }
+        set { SetGrant(value); }
       }
-      [global::System.CLSCompliant(false)]
-      public Builder SetStatus(uint value) {
+      public Builder SetGrant(bool value) {
         PrepareBuilder();
-        result.hasStatus = true;
-        result.status_ = value;
+        result.hasGrant = true;
+        result.grant_ = value;
         return this;
       }
-      public Builder ClearStatus() {
+      public Builder ClearGrant() {
         PrepareBuilder();
-        result.hasStatus = false;
-        result.status_ = 0;
+        result.hasGrant = false;
+        result.grant_ = false;
         return this;
       }
     }
-    static MsgNewFlowRsp() {
+    static MsgFriendFlowRsp() {
       object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
     }
   }
@@ -6677,68 +6516,81 @@ namespace cobaya {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-  public sealed partial class MsgDelFlowReq : pb::GeneratedMessage<MsgDelFlowReq, MsgDelFlowReq.Builder> {
-    private MsgDelFlowReq() { }
-    private static readonly MsgDelFlowReq defaultInstance = new MsgDelFlowReq().MakeReadOnly();
-    private static readonly string[] _msgDelFlowReqFieldNames = new string[] { "hosts", "id" };
-    private static readonly uint[] _msgDelFlowReqFieldTags = new uint[] { 18, 10 };
-    public static MsgDelFlowReq DefaultInstance {
+  public sealed partial class MsgAheadFlowReq : pb::GeneratedMessage<MsgAheadFlowReq, MsgAheadFlowReq.Builder> {
+    private MsgAheadFlowReq() { }
+    private static readonly MsgAheadFlowReq defaultInstance = new MsgAheadFlowReq().MakeReadOnly();
+    private static readonly string[] _msgAheadFlowReqFieldNames = new string[] { "dev_code", "host", "info" };
+    private static readonly uint[] _msgAheadFlowReqFieldTags = new uint[] { 18, 10, 26 };
+    public static MsgAheadFlowReq DefaultInstance {
       get { return defaultInstance; }
     }
     
-    public override MsgDelFlowReq DefaultInstanceForType {
+    public override MsgAheadFlowReq DefaultInstanceForType {
       get { return DefaultInstance; }
     }
     
-    protected override MsgDelFlowReq ThisMessage {
+    protected override MsgAheadFlowReq ThisMessage {
       get { return this; }
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgDelFlowReq__Descriptor; }
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgAheadFlowReq__Descriptor; }
     }
     
-    protected override pb::FieldAccess.FieldAccessorTable<MsgDelFlowReq, MsgDelFlowReq.Builder> InternalFieldAccessors {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgDelFlowReq__FieldAccessorTable; }
+    protected override pb::FieldAccess.FieldAccessorTable<MsgAheadFlowReq, MsgAheadFlowReq.Builder> InternalFieldAccessors {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgAheadFlowReq__FieldAccessorTable; }
     }
     
-    public const int IdFieldNumber = 1;
-    private bool hasId;
-    private string id_ = "";
-    public bool HasId {
-      get { return hasId; }
+    public const int HostFieldNumber = 1;
+    private bool hasHost;
+    private string host_ = "";
+    public bool HasHost {
+      get { return hasHost; }
     }
-    public string Id {
-      get { return id_; }
+    public string Host {
+      get { return host_; }
     }
     
-    public const int HostsFieldNumber = 2;
-    private pbc::PopsicleList<string> hosts_ = new pbc::PopsicleList<string>();
-    public scg::IList<string> HostsList {
-      get { return pbc::Lists.AsReadOnly(hosts_); }
+    public const int DevCodeFieldNumber = 2;
+    private bool hasDevCode;
+    private string devCode_ = "";
+    public bool HasDevCode {
+      get { return hasDevCode; }
     }
-    public int HostsCount {
-      get { return hosts_.Count; }
+    public string DevCode {
+      get { return devCode_; }
     }
-    public string GetHosts(int index) {
-      return hosts_[index];
+    
+    public const int InfoFieldNumber = 3;
+    private bool hasInfo;
+    private string info_ = "";
+    public bool HasInfo {
+      get { return hasInfo; }
+    }
+    public string Info {
+      get { return info_; }
     }
     
     public override bool IsInitialized {
       get {
-        if (!hasId) return false;
+        if (!hasHost) return false;
+        if (!hasDevCode) return false;
+        if (!hasInfo) return false;
         return true;
       }
     }
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _msgDelFlowReqFieldNames;
-      if (hasId) {
-        output.WriteString(1, field_names[1], Id);
+      string[] field_names = _msgAheadFlowReqFieldNames;
+      if (hasHost) {
+        output.WriteString(1, field_names[1], Host);
       }
-      if (hosts_.Count > 0) {
-        output.WriteStringArray(2, field_names[0], hosts_);
+      if (hasDevCode) {
+        output.WriteString(2, field_names[0], DevCode);
+      }
+      if (hasInfo) {
+        output.WriteString(3, field_names[2], Info);
       }
       UnknownFields.WriteTo(output);
     }
@@ -6750,16 +6602,14 @@ namespace cobaya {
         if (size != -1) return size;
         
         size = 0;
-        if (hasId) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, Id);
+        if (hasHost) {
+          size += pb::CodedOutputStream.ComputeStringSize(1, Host);
         }
-        {
-          int dataSize = 0;
-          foreach (string element in HostsList) {
-            dataSize += pb::CodedOutputStream.ComputeStringSizeNoTag(element);
-          }
-          size += dataSize;
-          size += 1 * hosts_.Count;
+        if (hasDevCode) {
+          size += pb::CodedOutputStream.ComputeStringSize(2, DevCode);
+        }
+        if (hasInfo) {
+          size += pb::CodedOutputStream.ComputeStringSize(3, Info);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -6767,52 +6617,51 @@ namespace cobaya {
       }
     }
     
-    public static MsgDelFlowReq ParseFrom(pb::ByteString data) {
+    public static MsgAheadFlowReq ParseFrom(pb::ByteString data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgDelFlowReq ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowReq ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgDelFlowReq ParseFrom(byte[] data) {
+    public static MsgAheadFlowReq ParseFrom(byte[] data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgDelFlowReq ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowReq ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgDelFlowReq ParseFrom(global::System.IO.Stream input) {
+    public static MsgAheadFlowReq ParseFrom(global::System.IO.Stream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgDelFlowReq ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowReq ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    public static MsgDelFlowReq ParseDelimitedFrom(global::System.IO.Stream input) {
+    public static MsgAheadFlowReq ParseDelimitedFrom(global::System.IO.Stream input) {
       return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
     }
-    public static MsgDelFlowReq ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowReq ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
     }
-    public static MsgDelFlowReq ParseFrom(pb::ICodedInputStream input) {
+    public static MsgAheadFlowReq ParseFrom(pb::ICodedInputStream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgDelFlowReq ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowReq ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    private MsgDelFlowReq MakeReadOnly() {
-      hosts_.MakeReadOnly();
+    private MsgAheadFlowReq MakeReadOnly() {
       return this;
     }
     
     public static Builder CreateBuilder() { return new Builder(); }
     public override Builder ToBuilder() { return CreateBuilder(this); }
     public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(MsgDelFlowReq prototype) {
+    public static Builder CreateBuilder(MsgAheadFlowReq prototype) {
       return new Builder(prototype);
     }
     
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-    public sealed partial class Builder : pb::GeneratedBuilder<MsgDelFlowReq, Builder> {
+    public sealed partial class Builder : pb::GeneratedBuilder<MsgAheadFlowReq, Builder> {
       protected override Builder ThisBuilder {
         get { return this; }
       }
@@ -6820,18 +6669,18 @@ namespace cobaya {
         result = DefaultInstance;
         resultIsReadOnly = true;
       }
-      internal Builder(MsgDelFlowReq cloneFrom) {
+      internal Builder(MsgAheadFlowReq cloneFrom) {
         result = cloneFrom;
         resultIsReadOnly = true;
       }
       
       private bool resultIsReadOnly;
-      private MsgDelFlowReq result;
+      private MsgAheadFlowReq result;
       
-      private MsgDelFlowReq PrepareBuilder() {
+      private MsgAheadFlowReq PrepareBuilder() {
         if (resultIsReadOnly) {
-          MsgDelFlowReq original = result;
-          result = new MsgDelFlowReq();
+          MsgAheadFlowReq original = result;
+          result = new MsgAheadFlowReq();
           resultIsReadOnly = false;
           MergeFrom(original);
         }
@@ -6842,7 +6691,7 @@ namespace cobaya {
         get { return result.IsInitialized; }
       }
       
-      protected override MsgDelFlowReq MessageBeingBuilt {
+      protected override MsgAheadFlowReq MessageBeingBuilt {
         get { return PrepareBuilder(); }
       }
       
@@ -6861,14 +6710,14 @@ namespace cobaya {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::cobaya.MsgDelFlowReq.Descriptor; }
+        get { return global::cobaya.MsgAheadFlowReq.Descriptor; }
       }
       
-      public override MsgDelFlowReq DefaultInstanceForType {
-        get { return global::cobaya.MsgDelFlowReq.DefaultInstance; }
+      public override MsgAheadFlowReq DefaultInstanceForType {
+        get { return global::cobaya.MsgAheadFlowReq.DefaultInstance; }
       }
       
-      public override MsgDelFlowReq BuildPartial() {
+      public override MsgAheadFlowReq BuildPartial() {
         if (resultIsReadOnly) {
           return result;
         }
@@ -6877,22 +6726,25 @@ namespace cobaya {
       }
       
       public override Builder MergeFrom(pb::IMessage other) {
-        if (other is MsgDelFlowReq) {
-          return MergeFrom((MsgDelFlowReq) other);
+        if (other is MsgAheadFlowReq) {
+          return MergeFrom((MsgAheadFlowReq) other);
         } else {
           base.MergeFrom(other);
           return this;
         }
       }
       
-      public override Builder MergeFrom(MsgDelFlowReq other) {
-        if (other == global::cobaya.MsgDelFlowReq.DefaultInstance) return this;
+      public override Builder MergeFrom(MsgAheadFlowReq other) {
+        if (other == global::cobaya.MsgAheadFlowReq.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.HasId) {
-          Id = other.Id;
+        if (other.HasHost) {
+          Host = other.Host;
         }
-        if (other.hosts_.Count != 0) {
-          result.hosts_.Add(other.hosts_);
+        if (other.HasDevCode) {
+          DevCode = other.DevCode;
+        }
+        if (other.HasInfo) {
+          Info = other.Info;
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -6909,9 +6761,9 @@ namespace cobaya {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_msgDelFlowReqFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_msgAheadFlowReqFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _msgDelFlowReqFieldTags[field_ordinal];
+              tag = _msgAheadFlowReqFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -6938,11 +6790,15 @@ namespace cobaya {
               break;
             }
             case 10: {
-              result.hasId = input.ReadString(ref result.id_);
+              result.hasHost = input.ReadString(ref result.host_);
               break;
             }
             case 18: {
-              input.ReadStringArray(tag, field_name, result.hosts_);
+              result.hasDevCode = input.ReadString(ref result.devCode_);
+              break;
+            }
+            case 26: {
+              result.hasInfo = input.ReadString(ref result.info_);
               break;
             }
           }
@@ -6955,60 +6811,70 @@ namespace cobaya {
       }
       
       
-      public bool HasId {
-        get { return result.hasId; }
+      public bool HasHost {
+        get { return result.hasHost; }
       }
-      public string Id {
-        get { return result.Id; }
-        set { SetId(value); }
+      public string Host {
+        get { return result.Host; }
+        set { SetHost(value); }
       }
-      public Builder SetId(string value) {
+      public Builder SetHost(string value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hasId = true;
-        result.id_ = value;
+        result.hasHost = true;
+        result.host_ = value;
         return this;
       }
-      public Builder ClearId() {
+      public Builder ClearHost() {
         PrepareBuilder();
-        result.hasId = false;
-        result.id_ = "";
+        result.hasHost = false;
+        result.host_ = "";
         return this;
       }
       
-      public pbc::IPopsicleList<string> HostsList {
-        get { return PrepareBuilder().hosts_; }
+      public bool HasDevCode {
+        get { return result.hasDevCode; }
       }
-      public int HostsCount {
-        get { return result.HostsCount; }
+      public string DevCode {
+        get { return result.DevCode; }
+        set { SetDevCode(value); }
       }
-      public string GetHosts(int index) {
-        return result.GetHosts(index);
-      }
-      public Builder SetHosts(int index, string value) {
+      public Builder SetDevCode(string value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hosts_[index] = value;
+        result.hasDevCode = true;
+        result.devCode_ = value;
         return this;
       }
-      public Builder AddHosts(string value) {
+      public Builder ClearDevCode() {
+        PrepareBuilder();
+        result.hasDevCode = false;
+        result.devCode_ = "";
+        return this;
+      }
+      
+      public bool HasInfo {
+        get { return result.hasInfo; }
+      }
+      public string Info {
+        get { return result.Info; }
+        set { SetInfo(value); }
+      }
+      public Builder SetInfo(string value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hosts_.Add(value);
+        result.hasInfo = true;
+        result.info_ = value;
         return this;
       }
-      public Builder AddRangeHosts(scg::IEnumerable<string> values) {
+      public Builder ClearInfo() {
         PrepareBuilder();
-        result.hosts_.Add(values);
-        return this;
-      }
-      public Builder ClearHosts() {
-        PrepareBuilder();
-        result.hosts_.Clear();
+        result.hasInfo = false;
+        result.info_ = "";
         return this;
       }
     }
-    static MsgDelFlowReq() {
+    static MsgAheadFlowReq() {
       object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
     }
   }
@@ -7016,40 +6882,39 @@ namespace cobaya {
   [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
   [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
   [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-  public sealed partial class MsgDelFlowRsp : pb::GeneratedMessage<MsgDelFlowRsp, MsgDelFlowRsp.Builder> {
-    private MsgDelFlowRsp() { }
-    private static readonly MsgDelFlowRsp defaultInstance = new MsgDelFlowRsp().MakeReadOnly();
-    private static readonly string[] _msgDelFlowRspFieldNames = new string[] { "status" };
-    private static readonly uint[] _msgDelFlowRspFieldTags = new uint[] { 8 };
-    public static MsgDelFlowRsp DefaultInstance {
+  public sealed partial class MsgAheadFlowRsp : pb::GeneratedMessage<MsgAheadFlowRsp, MsgAheadFlowRsp.Builder> {
+    private MsgAheadFlowRsp() { }
+    private static readonly MsgAheadFlowRsp defaultInstance = new MsgAheadFlowRsp().MakeReadOnly();
+    private static readonly string[] _msgAheadFlowRspFieldNames = new string[] { "grant" };
+    private static readonly uint[] _msgAheadFlowRspFieldTags = new uint[] { 8 };
+    public static MsgAheadFlowRsp DefaultInstance {
       get { return defaultInstance; }
     }
     
-    public override MsgDelFlowRsp DefaultInstanceForType {
+    public override MsgAheadFlowRsp DefaultInstanceForType {
       get { return DefaultInstance; }
     }
     
-    protected override MsgDelFlowRsp ThisMessage {
+    protected override MsgAheadFlowRsp ThisMessage {
       get { return this; }
     }
     
     public static pbd::MessageDescriptor Descriptor {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgDelFlowRsp__Descriptor; }
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgAheadFlowRsp__Descriptor; }
     }
     
-    protected override pb::FieldAccess.FieldAccessorTable<MsgDelFlowRsp, MsgDelFlowRsp.Builder> InternalFieldAccessors {
-      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgDelFlowRsp__FieldAccessorTable; }
+    protected override pb::FieldAccess.FieldAccessorTable<MsgAheadFlowRsp, MsgAheadFlowRsp.Builder> InternalFieldAccessors {
+      get { return global::cobaya.Cobaya.internal__static_cobaya_MsgAheadFlowRsp__FieldAccessorTable; }
     }
     
-    public const int StatusFieldNumber = 1;
-    private bool hasStatus;
-    private uint status_;
-    public bool HasStatus {
-      get { return hasStatus; }
+    public const int GrantFieldNumber = 1;
+    private bool hasGrant;
+    private bool grant_;
+    public bool HasGrant {
+      get { return hasGrant; }
     }
-    [global::System.CLSCompliant(false)]
-    public uint Status {
-      get { return status_; }
+    public bool Grant {
+      get { return grant_; }
     }
     
     public override bool IsInitialized {
@@ -7060,9 +6925,9 @@ namespace cobaya {
     
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
-      string[] field_names = _msgDelFlowRspFieldNames;
-      if (hasStatus) {
-        output.WriteUInt32(1, field_names[0], Status);
+      string[] field_names = _msgAheadFlowRspFieldNames;
+      if (hasGrant) {
+        output.WriteBool(1, field_names[0], Grant);
       }
       UnknownFields.WriteTo(output);
     }
@@ -7074,8 +6939,8 @@ namespace cobaya {
         if (size != -1) return size;
         
         size = 0;
-        if (hasStatus) {
-          size += pb::CodedOutputStream.ComputeUInt32Size(1, Status);
+        if (hasGrant) {
+          size += pb::CodedOutputStream.ComputeBoolSize(1, Grant);
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -7083,51 +6948,51 @@ namespace cobaya {
       }
     }
     
-    public static MsgDelFlowRsp ParseFrom(pb::ByteString data) {
+    public static MsgAheadFlowRsp ParseFrom(pb::ByteString data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgDelFlowRsp ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowRsp ParseFrom(pb::ByteString data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgDelFlowRsp ParseFrom(byte[] data) {
+    public static MsgAheadFlowRsp ParseFrom(byte[] data) {
       return ((Builder) CreateBuilder().MergeFrom(data)).BuildParsed();
     }
-    public static MsgDelFlowRsp ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowRsp ParseFrom(byte[] data, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(data, extensionRegistry)).BuildParsed();
     }
-    public static MsgDelFlowRsp ParseFrom(global::System.IO.Stream input) {
+    public static MsgAheadFlowRsp ParseFrom(global::System.IO.Stream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgDelFlowRsp ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowRsp ParseFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    public static MsgDelFlowRsp ParseDelimitedFrom(global::System.IO.Stream input) {
+    public static MsgAheadFlowRsp ParseDelimitedFrom(global::System.IO.Stream input) {
       return CreateBuilder().MergeDelimitedFrom(input).BuildParsed();
     }
-    public static MsgDelFlowRsp ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowRsp ParseDelimitedFrom(global::System.IO.Stream input, pb::ExtensionRegistry extensionRegistry) {
       return CreateBuilder().MergeDelimitedFrom(input, extensionRegistry).BuildParsed();
     }
-    public static MsgDelFlowRsp ParseFrom(pb::ICodedInputStream input) {
+    public static MsgAheadFlowRsp ParseFrom(pb::ICodedInputStream input) {
       return ((Builder) CreateBuilder().MergeFrom(input)).BuildParsed();
     }
-    public static MsgDelFlowRsp ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
+    public static MsgAheadFlowRsp ParseFrom(pb::ICodedInputStream input, pb::ExtensionRegistry extensionRegistry) {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
-    private MsgDelFlowRsp MakeReadOnly() {
+    private MsgAheadFlowRsp MakeReadOnly() {
       return this;
     }
     
     public static Builder CreateBuilder() { return new Builder(); }
     public override Builder ToBuilder() { return CreateBuilder(this); }
     public override Builder CreateBuilderForType() { return new Builder(); }
-    public static Builder CreateBuilder(MsgDelFlowRsp prototype) {
+    public static Builder CreateBuilder(MsgAheadFlowRsp prototype) {
       return new Builder(prototype);
     }
     
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("ProtoGen", "2.4.1.473")]
-    public sealed partial class Builder : pb::GeneratedBuilder<MsgDelFlowRsp, Builder> {
+    public sealed partial class Builder : pb::GeneratedBuilder<MsgAheadFlowRsp, Builder> {
       protected override Builder ThisBuilder {
         get { return this; }
       }
@@ -7135,18 +7000,18 @@ namespace cobaya {
         result = DefaultInstance;
         resultIsReadOnly = true;
       }
-      internal Builder(MsgDelFlowRsp cloneFrom) {
+      internal Builder(MsgAheadFlowRsp cloneFrom) {
         result = cloneFrom;
         resultIsReadOnly = true;
       }
       
       private bool resultIsReadOnly;
-      private MsgDelFlowRsp result;
+      private MsgAheadFlowRsp result;
       
-      private MsgDelFlowRsp PrepareBuilder() {
+      private MsgAheadFlowRsp PrepareBuilder() {
         if (resultIsReadOnly) {
-          MsgDelFlowRsp original = result;
-          result = new MsgDelFlowRsp();
+          MsgAheadFlowRsp original = result;
+          result = new MsgAheadFlowRsp();
           resultIsReadOnly = false;
           MergeFrom(original);
         }
@@ -7157,7 +7022,7 @@ namespace cobaya {
         get { return result.IsInitialized; }
       }
       
-      protected override MsgDelFlowRsp MessageBeingBuilt {
+      protected override MsgAheadFlowRsp MessageBeingBuilt {
         get { return PrepareBuilder(); }
       }
       
@@ -7176,14 +7041,14 @@ namespace cobaya {
       }
       
       public override pbd::MessageDescriptor DescriptorForType {
-        get { return global::cobaya.MsgDelFlowRsp.Descriptor; }
+        get { return global::cobaya.MsgAheadFlowRsp.Descriptor; }
       }
       
-      public override MsgDelFlowRsp DefaultInstanceForType {
-        get { return global::cobaya.MsgDelFlowRsp.DefaultInstance; }
+      public override MsgAheadFlowRsp DefaultInstanceForType {
+        get { return global::cobaya.MsgAheadFlowRsp.DefaultInstance; }
       }
       
-      public override MsgDelFlowRsp BuildPartial() {
+      public override MsgAheadFlowRsp BuildPartial() {
         if (resultIsReadOnly) {
           return result;
         }
@@ -7192,19 +7057,19 @@ namespace cobaya {
       }
       
       public override Builder MergeFrom(pb::IMessage other) {
-        if (other is MsgDelFlowRsp) {
-          return MergeFrom((MsgDelFlowRsp) other);
+        if (other is MsgAheadFlowRsp) {
+          return MergeFrom((MsgAheadFlowRsp) other);
         } else {
           base.MergeFrom(other);
           return this;
         }
       }
       
-      public override Builder MergeFrom(MsgDelFlowRsp other) {
-        if (other == global::cobaya.MsgDelFlowRsp.DefaultInstance) return this;
+      public override Builder MergeFrom(MsgAheadFlowRsp other) {
+        if (other == global::cobaya.MsgAheadFlowRsp.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.HasStatus) {
-          Status = other.Status;
+        if (other.HasGrant) {
+          Grant = other.Grant;
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -7221,9 +7086,9 @@ namespace cobaya {
         string field_name;
         while (input.ReadTag(out tag, out field_name)) {
           if(tag == 0 && field_name != null) {
-            int field_ordinal = global::System.Array.BinarySearch(_msgDelFlowRspFieldNames, field_name, global::System.StringComparer.Ordinal);
+            int field_ordinal = global::System.Array.BinarySearch(_msgAheadFlowRspFieldNames, field_name, global::System.StringComparer.Ordinal);
             if(field_ordinal >= 0)
-              tag = _msgDelFlowRspFieldTags[field_ordinal];
+              tag = _msgAheadFlowRspFieldTags[field_ordinal];
             else {
               if (unknownFields == null) {
                 unknownFields = pb::UnknownFieldSet.CreateBuilder(this.UnknownFields);
@@ -7250,7 +7115,7 @@ namespace cobaya {
               break;
             }
             case 8: {
-              result.hasStatus = input.ReadUInt32(ref result.status_);
+              result.hasGrant = input.ReadBool(ref result.grant_);
               break;
             }
           }
@@ -7263,29 +7128,27 @@ namespace cobaya {
       }
       
       
-      public bool HasStatus {
-        get { return result.hasStatus; }
+      public bool HasGrant {
+        get { return result.hasGrant; }
       }
-      [global::System.CLSCompliant(false)]
-      public uint Status {
-        get { return result.Status; }
-        set { SetStatus(value); }
+      public bool Grant {
+        get { return result.Grant; }
+        set { SetGrant(value); }
       }
-      [global::System.CLSCompliant(false)]
-      public Builder SetStatus(uint value) {
+      public Builder SetGrant(bool value) {
         PrepareBuilder();
-        result.hasStatus = true;
-        result.status_ = value;
+        result.hasGrant = true;
+        result.grant_ = value;
         return this;
       }
-      public Builder ClearStatus() {
+      public Builder ClearGrant() {
         PrepareBuilder();
-        result.hasStatus = false;
-        result.status_ = 0;
+        result.hasGrant = false;
+        result.grant_ = false;
         return this;
       }
     }
-    static MsgDelFlowRsp() {
+    static MsgAheadFlowRsp() {
       object.ReferenceEquals(global::cobaya.Cobaya.Descriptor, null);
     }
   }
@@ -7858,14 +7721,6 @@ namespace cobaya {
         pb::IRpcController controller,
         global::cobaya.MsgMonitorReq request,
         global::System.Action<global::cobaya.MsgMonitorRsp> done);
-    public abstract void GetClientInfo(
-        pb::IRpcController controller,
-        global::cobaya.MsgClientReq request,
-        global::System.Action<global::cobaya.MsgClientRsp> done);
-    public abstract void UpdateUser(
-        pb::IRpcController controller,
-        global::cobaya.MsgUpdateUserReq request,
-        global::System.Action<global::cobaya.MsgUpdateUserRsp> done);
     public abstract void LoginSystem(
         pb::IRpcController controller,
         global::cobaya.MsgLoginReq request,
@@ -7874,22 +7729,30 @@ namespace cobaya {
         pb::IRpcController controller,
         global::cobaya.MsgLogoutReq request,
         global::System.Action<global::cobaya.MsgLogoutRsp> done);
-    public abstract void AppendInfo(
+    public abstract void UpdateUser(
         pb::IRpcController controller,
-        global::cobaya.MsgDiscoveryReq request,
-        global::System.Action<global::cobaya.MsgDiscoveryRsp> done);
+        global::cobaya.MsgUpdateUserReq request,
+        global::System.Action<global::cobaya.MsgUpdateUserRsp> done);
+    public abstract void GetClientInfo(
+        pb::IRpcController controller,
+        global::cobaya.MsgClientReq request,
+        global::System.Action<global::cobaya.MsgClientRsp> done);
     public abstract void FetchFlow(
         pb::IRpcController controller,
         global::cobaya.MsgFetchFlowReq request,
         global::System.Action<global::cobaya.MsgFetchFlowRsp> done);
-    public abstract void AppendFlow(
+    public abstract void CheckFlow(
         pb::IRpcController controller,
-        global::cobaya.MsgNewFlowReq request,
-        global::System.Action<global::cobaya.MsgNewFlowRsp> done);
-    public abstract void RemoveFlow(
+        global::cobaya.MsgCheckFlowReq request,
+        global::System.Action<global::cobaya.MsgCheckFlowRsp> done);
+    public abstract void FriendFlow(
         pb::IRpcController controller,
-        global::cobaya.MsgDelFlowReq request,
-        global::System.Action<global::cobaya.MsgDelFlowRsp> done);
+        global::cobaya.MsgFriendFlowReq request,
+        global::System.Action<global::cobaya.MsgFriendFlowRsp> done);
+    public abstract void AheadFlow(
+        pb::IRpcController controller,
+        global::cobaya.MsgAheadFlowReq request,
+        global::System.Action<global::cobaya.MsgAheadFlowRsp> done);
     public abstract void SetOrgFlow(
         pb::IRpcController controller,
         global::cobaya.MsgOrgFlowReq request,
@@ -7923,43 +7786,43 @@ namespace cobaya {
               done));
           return;
         case 2:
-          this.GetClientInfo(controller, (global::cobaya.MsgClientReq) request,
-              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgClientRsp>(
-              done));
-          return;
-        case 3:
-          this.UpdateUser(controller, (global::cobaya.MsgUpdateUserReq) request,
-              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgUpdateUserRsp>(
-              done));
-          return;
-        case 4:
           this.LoginSystem(controller, (global::cobaya.MsgLoginReq) request,
               pb::RpcUtil.SpecializeCallback<global::cobaya.MsgLoginRsp>(
               done));
           return;
-        case 5:
+        case 3:
           this.LogoutSystem(controller, (global::cobaya.MsgLogoutReq) request,
               pb::RpcUtil.SpecializeCallback<global::cobaya.MsgLogoutRsp>(
               done));
           return;
-        case 6:
-          this.AppendInfo(controller, (global::cobaya.MsgDiscoveryReq) request,
-              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgDiscoveryRsp>(
+        case 4:
+          this.UpdateUser(controller, (global::cobaya.MsgUpdateUserReq) request,
+              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgUpdateUserRsp>(
               done));
           return;
-        case 7:
+        case 5:
+          this.GetClientInfo(controller, (global::cobaya.MsgClientReq) request,
+              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgClientRsp>(
+              done));
+          return;
+        case 6:
           this.FetchFlow(controller, (global::cobaya.MsgFetchFlowReq) request,
               pb::RpcUtil.SpecializeCallback<global::cobaya.MsgFetchFlowRsp>(
               done));
           return;
+        case 7:
+          this.CheckFlow(controller, (global::cobaya.MsgCheckFlowReq) request,
+              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgCheckFlowRsp>(
+              done));
+          return;
         case 8:
-          this.AppendFlow(controller, (global::cobaya.MsgNewFlowReq) request,
-              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgNewFlowRsp>(
+          this.FriendFlow(controller, (global::cobaya.MsgFriendFlowReq) request,
+              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgFriendFlowRsp>(
               done));
           return;
         case 9:
-          this.RemoveFlow(controller, (global::cobaya.MsgDelFlowReq) request,
-              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgDelFlowRsp>(
+          this.AheadFlow(controller, (global::cobaya.MsgAheadFlowReq) request,
+              pb::RpcUtil.SpecializeCallback<global::cobaya.MsgAheadFlowRsp>(
               done));
           return;
         case 10:
@@ -7983,21 +7846,21 @@ namespace cobaya {
         case 1:
           return global::cobaya.MsgMonitorReq.DefaultInstance;
         case 2:
-          return global::cobaya.MsgClientReq.DefaultInstance;
-        case 3:
-          return global::cobaya.MsgUpdateUserReq.DefaultInstance;
-        case 4:
           return global::cobaya.MsgLoginReq.DefaultInstance;
-        case 5:
+        case 3:
           return global::cobaya.MsgLogoutReq.DefaultInstance;
+        case 4:
+          return global::cobaya.MsgUpdateUserReq.DefaultInstance;
+        case 5:
+          return global::cobaya.MsgClientReq.DefaultInstance;
         case 6:
-          return global::cobaya.MsgDiscoveryReq.DefaultInstance;
-        case 7:
           return global::cobaya.MsgFetchFlowReq.DefaultInstance;
+        case 7:
+          return global::cobaya.MsgCheckFlowReq.DefaultInstance;
         case 8:
-          return global::cobaya.MsgNewFlowReq.DefaultInstance;
+          return global::cobaya.MsgFriendFlowReq.DefaultInstance;
         case 9:
-          return global::cobaya.MsgDelFlowReq.DefaultInstance;
+          return global::cobaya.MsgAheadFlowReq.DefaultInstance;
         case 10:
           return global::cobaya.MsgOrgFlowReq.DefaultInstance;
         default:
@@ -8016,21 +7879,21 @@ namespace cobaya {
         case 1:
           return global::cobaya.MsgMonitorRsp.DefaultInstance;
         case 2:
-          return global::cobaya.MsgClientRsp.DefaultInstance;
-        case 3:
-          return global::cobaya.MsgUpdateUserRsp.DefaultInstance;
-        case 4:
           return global::cobaya.MsgLoginRsp.DefaultInstance;
-        case 5:
+        case 3:
           return global::cobaya.MsgLogoutRsp.DefaultInstance;
+        case 4:
+          return global::cobaya.MsgUpdateUserRsp.DefaultInstance;
+        case 5:
+          return global::cobaya.MsgClientRsp.DefaultInstance;
         case 6:
-          return global::cobaya.MsgDiscoveryRsp.DefaultInstance;
-        case 7:
           return global::cobaya.MsgFetchFlowRsp.DefaultInstance;
+        case 7:
+          return global::cobaya.MsgCheckFlowRsp.DefaultInstance;
         case 8:
-          return global::cobaya.MsgNewFlowRsp.DefaultInstance;
+          return global::cobaya.MsgFriendFlowRsp.DefaultInstance;
         case 9:
-          return global::cobaya.MsgDelFlowRsp.DefaultInstance;
+          return global::cobaya.MsgAheadFlowRsp.DefaultInstance;
         case 10:
           return global::cobaya.MsgOrgFlowRsp.DefaultInstance;
         default:
@@ -8074,29 +7937,11 @@ namespace cobaya {
             pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgMonitorRsp, global::cobaya.MsgMonitorRsp.Builder>(done, global::cobaya.MsgMonitorRsp.DefaultInstance));
       }
       
-      public override void GetClientInfo(
-          pb::IRpcController controller,
-          global::cobaya.MsgClientReq request,
-          global::System.Action<global::cobaya.MsgClientRsp> done) {
-        channel.CallMethod(Descriptor.Methods[2],
-            controller, request, global::cobaya.MsgClientRsp.DefaultInstance,
-            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgClientRsp, global::cobaya.MsgClientRsp.Builder>(done, global::cobaya.MsgClientRsp.DefaultInstance));
-      }
-      
-      public override void UpdateUser(
-          pb::IRpcController controller,
-          global::cobaya.MsgUpdateUserReq request,
-          global::System.Action<global::cobaya.MsgUpdateUserRsp> done) {
-        channel.CallMethod(Descriptor.Methods[3],
-            controller, request, global::cobaya.MsgUpdateUserRsp.DefaultInstance,
-            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgUpdateUserRsp, global::cobaya.MsgUpdateUserRsp.Builder>(done, global::cobaya.MsgUpdateUserRsp.DefaultInstance));
-      }
-      
       public override void LoginSystem(
           pb::IRpcController controller,
           global::cobaya.MsgLoginReq request,
           global::System.Action<global::cobaya.MsgLoginRsp> done) {
-        channel.CallMethod(Descriptor.Methods[4],
+        channel.CallMethod(Descriptor.Methods[2],
             controller, request, global::cobaya.MsgLoginRsp.DefaultInstance,
             pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgLoginRsp, global::cobaya.MsgLoginRsp.Builder>(done, global::cobaya.MsgLoginRsp.DefaultInstance));
       }
@@ -8105,45 +7950,63 @@ namespace cobaya {
           pb::IRpcController controller,
           global::cobaya.MsgLogoutReq request,
           global::System.Action<global::cobaya.MsgLogoutRsp> done) {
-        channel.CallMethod(Descriptor.Methods[5],
+        channel.CallMethod(Descriptor.Methods[3],
             controller, request, global::cobaya.MsgLogoutRsp.DefaultInstance,
             pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgLogoutRsp, global::cobaya.MsgLogoutRsp.Builder>(done, global::cobaya.MsgLogoutRsp.DefaultInstance));
       }
       
-      public override void AppendInfo(
+      public override void UpdateUser(
           pb::IRpcController controller,
-          global::cobaya.MsgDiscoveryReq request,
-          global::System.Action<global::cobaya.MsgDiscoveryRsp> done) {
-        channel.CallMethod(Descriptor.Methods[6],
-            controller, request, global::cobaya.MsgDiscoveryRsp.DefaultInstance,
-            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgDiscoveryRsp, global::cobaya.MsgDiscoveryRsp.Builder>(done, global::cobaya.MsgDiscoveryRsp.DefaultInstance));
+          global::cobaya.MsgUpdateUserReq request,
+          global::System.Action<global::cobaya.MsgUpdateUserRsp> done) {
+        channel.CallMethod(Descriptor.Methods[4],
+            controller, request, global::cobaya.MsgUpdateUserRsp.DefaultInstance,
+            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgUpdateUserRsp, global::cobaya.MsgUpdateUserRsp.Builder>(done, global::cobaya.MsgUpdateUserRsp.DefaultInstance));
+      }
+      
+      public override void GetClientInfo(
+          pb::IRpcController controller,
+          global::cobaya.MsgClientReq request,
+          global::System.Action<global::cobaya.MsgClientRsp> done) {
+        channel.CallMethod(Descriptor.Methods[5],
+            controller, request, global::cobaya.MsgClientRsp.DefaultInstance,
+            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgClientRsp, global::cobaya.MsgClientRsp.Builder>(done, global::cobaya.MsgClientRsp.DefaultInstance));
       }
       
       public override void FetchFlow(
           pb::IRpcController controller,
           global::cobaya.MsgFetchFlowReq request,
           global::System.Action<global::cobaya.MsgFetchFlowRsp> done) {
-        channel.CallMethod(Descriptor.Methods[7],
+        channel.CallMethod(Descriptor.Methods[6],
             controller, request, global::cobaya.MsgFetchFlowRsp.DefaultInstance,
             pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgFetchFlowRsp, global::cobaya.MsgFetchFlowRsp.Builder>(done, global::cobaya.MsgFetchFlowRsp.DefaultInstance));
       }
       
-      public override void AppendFlow(
+      public override void CheckFlow(
           pb::IRpcController controller,
-          global::cobaya.MsgNewFlowReq request,
-          global::System.Action<global::cobaya.MsgNewFlowRsp> done) {
-        channel.CallMethod(Descriptor.Methods[8],
-            controller, request, global::cobaya.MsgNewFlowRsp.DefaultInstance,
-            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgNewFlowRsp, global::cobaya.MsgNewFlowRsp.Builder>(done, global::cobaya.MsgNewFlowRsp.DefaultInstance));
+          global::cobaya.MsgCheckFlowReq request,
+          global::System.Action<global::cobaya.MsgCheckFlowRsp> done) {
+        channel.CallMethod(Descriptor.Methods[7],
+            controller, request, global::cobaya.MsgCheckFlowRsp.DefaultInstance,
+            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgCheckFlowRsp, global::cobaya.MsgCheckFlowRsp.Builder>(done, global::cobaya.MsgCheckFlowRsp.DefaultInstance));
       }
       
-      public override void RemoveFlow(
+      public override void FriendFlow(
           pb::IRpcController controller,
-          global::cobaya.MsgDelFlowReq request,
-          global::System.Action<global::cobaya.MsgDelFlowRsp> done) {
+          global::cobaya.MsgFriendFlowReq request,
+          global::System.Action<global::cobaya.MsgFriendFlowRsp> done) {
+        channel.CallMethod(Descriptor.Methods[8],
+            controller, request, global::cobaya.MsgFriendFlowRsp.DefaultInstance,
+            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgFriendFlowRsp, global::cobaya.MsgFriendFlowRsp.Builder>(done, global::cobaya.MsgFriendFlowRsp.DefaultInstance));
+      }
+      
+      public override void AheadFlow(
+          pb::IRpcController controller,
+          global::cobaya.MsgAheadFlowReq request,
+          global::System.Action<global::cobaya.MsgAheadFlowRsp> done) {
         channel.CallMethod(Descriptor.Methods[9],
-            controller, request, global::cobaya.MsgDelFlowRsp.DefaultInstance,
-            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgDelFlowRsp, global::cobaya.MsgDelFlowRsp.Builder>(done, global::cobaya.MsgDelFlowRsp.DefaultInstance));
+            controller, request, global::cobaya.MsgAheadFlowRsp.DefaultInstance,
+            pb::RpcUtil.GeneralizeCallback<global::cobaya.MsgAheadFlowRsp, global::cobaya.MsgAheadFlowRsp.Builder>(done, global::cobaya.MsgAheadFlowRsp.DefaultInstance));
       }
       
       public override void SetOrgFlow(

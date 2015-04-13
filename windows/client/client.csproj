@@ -95,7 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cobaya.cs" />
-    <Compile Include="com_worker.cs" />
     <Compile Include="Config.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -105,14 +104,6 @@
     <Compile Include="FlowForm.Designer.cs">
       <DependentUpon>FlowForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="PortForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="PortForm.Designer.cs">
-      <DependentUpon>PortForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="rpc_worker.cs" />
-    <Compile Include="sync.cs" />
     <Compile Include="WaitForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -142,12 +133,6 @@
     <Compile Include="UpdateForm.Designer.cs">
       <DependentUpon>UpdateForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="CheckForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="CheckForm.Designer.cs">
-      <DependentUpon>CheckForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="ui_worker.cs" />
     <Compile Include="OKForm.cs">
       <SubType>Form</SubType>
@@ -157,9 +142,6 @@
     </Compile>
     <EmbeddedResource Include="FlowForm.resx">
       <DependentUpon>FlowForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="PortForm.resx">
-      <DependentUpon>PortForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\licenses.licx" />
     <EmbeddedResource Include="WaitForm.resx">
@@ -189,12 +171,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UpdateForm.sq.resx">
       <DependentUpon>UpdateForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CheckForm.resx">
-      <DependentUpon>CheckForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="CheckForm.sq.resx">
-      <DependentUpon>CheckForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OKForm.resx">
       <DependentUpon>OKForm.cs</DependentUpon>

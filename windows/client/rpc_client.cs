@@ -95,10 +95,7 @@ namespace cobaya
 
                 Info.host = rsp.Host;
                 Info.dev_code = rsp.DevCode;
-                Info.heartbeat = rsp.Heartbeat;
-                Info.sensor = rsp.Sensor;
                 Info.fetch = rsp.Fetch;
-                Info.person = rsp.Person;
 
                 return true;
             }
@@ -227,21 +224,21 @@ namespace cobaya
             }
         }
 
-        public static bool AppendInfo(ref MsgDiscoveryReq req)
+        public static bool CheckFlow(ref MsgCheckFlowReq req)
         {
             try
             {
                 // Make a synchronous remote call to server.
-                _stub.AppendInfo(null, req, null);
-                MsgDiscoveryRsp rsp = (MsgDiscoveryRsp)_channel.GetResponse();
+                _stub.CheckFlow(null, req, null);
+                MsgCheckFlowRsp rsp = (MsgCheckFlowRsp)_channel.GetResponse();
 
                 return rsp.Grant;
             }
-            catch (Exception)
+            catch (Exception e)
             {
-                //string err = "请联系管理员\n" + e.ToString();
+                string err = "请联系管理员\n" + e.ToString();
 
-                //MessageBox.Show(err);
+                MessageBox.Show(err);
                 return false;
             }
         }

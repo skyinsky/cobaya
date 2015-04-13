@@ -38,6 +38,7 @@ int load_config(const char *path)
 	config.client_timeout = iniparser_getint(ini, "client:timeout", 60);
 	config.client_check = iniparser_getint(ini, "client:check", 15);
 	config.client_sensor = iniparser_getint(ini, "client:sensor", 1);
+	config.client_fetch = iniparser_getint(ini, "client:fetch", 20);
 
 	config.compact_allow = iniparser_getboolean(ini, "compact:allow", true);
 	config.compact_mysql = iniparser_getint(ini, "compact:mysql", 90);
