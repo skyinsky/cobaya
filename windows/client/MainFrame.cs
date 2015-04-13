@@ -157,5 +157,14 @@ namespace cobaya
             //Info.check_form.ShowDialog();
         }
 
+        private void 亲属通道ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void 紧急通道ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
