@@ -159,12 +159,16 @@ namespace cobaya
 
         private void 亲属通道ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FriendForm form = new FriendForm();
 
+            form.ShowDialog();
         }
 
         private void 紧急通道ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            AheadForm form = new AheadForm();
 
+            form.ShowDialog();
         }
     }
 }

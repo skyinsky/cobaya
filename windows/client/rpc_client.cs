@@ -265,5 +265,85 @@ namespace cobaya
                 return false;
             }
         }
+
+        public static bool FriendFlow(string info)
+        {
+            try
+            {
+                // Create request object.
+                MsgFriendFlowReq req;
+                MsgFriendFlowReq.Builder req_build;
+                req_build = MsgFriendFlowReq.CreateBuilder();
+                req_build.SetHost(Info.host);
+                req_build.SetDevCode(Info.dev_code);
+                req_build.SetInfo(info);
+                req = req_build.Build();
+
+                // Create channel.
+                RcfProtoChannel channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
+
+                // 5s connect timeout.
+                channel.SetConnectTimeoutMs(5 * 1000);
+
+                // 10s remote call timeout.
+                channel.SetRemoteCallTimeoutMs(10 * 1000);
+
+                // Create service stub.
+                RpcService.Stub stub = new RpcService.Stub(channel);
+
+                // Make a synchronous remote call to server.
+                stub.FriendFlow(null, req, null);
+                MsgFriendFlowRsp rsp = (MsgFriendFlowRsp)channel.GetResponse();
+
+                return rsp.Grant;
+            }
+            catch (Exception e)
+            {
+                string err = "请联系管理员\n" + e.ToString();
+
+                MessageBox.Show(err);
+                return false;
+            }
+        }
+
+        public static bool AheadFlow(string info)
+        {
+            try
+            {
+                // Create request object.
+                MsgAheadFlowReq req;
+                MsgAheadFlowReq.Builder req_build;
+                req_build = MsgAheadFlowReq.CreateBuilder();
+                req_build.SetHost(Info.host);
+                req_build.SetDevCode(Info.dev_code);
+                req_build.SetInfo(info);
+                req = req_build.Build();
+
+                // Create channel.
+                RcfProtoChannel channel = new RcfProtoChannel(new TcpEndpoint(Config.ip, int.Parse(Config.port)));
+
+                // 5s connect timeout.
+                channel.SetConnectTimeoutMs(5 * 1000);
+
+                // 10s remote call timeout.
+                channel.SetRemoteCallTimeoutMs(10 * 1000);
+
+                // Create service stub.
+                RpcService.Stub stub = new RpcService.Stub(channel);
+
+                // Make a synchronous remote call to server.
+                stub.AheadFlow(null, req, null);
+                MsgAheadFlowRsp rsp = (MsgAheadFlowRsp)channel.GetResponse();
+
+                return rsp.Grant;
+            }
+            catch (Exception e)
+            {
+                string err = "请联系管理员\n" + e.ToString();
+
+                MessageBox.Show(err);
+                return false;
+            }
+        }
     }
 }

@@ -140,6 +140,18 @@
     <Compile Include="OKForm.Designer.cs">
       <DependentUpon>OKForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="FriendForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FriendForm.Designer.cs">
+      <DependentUpon>FriendForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AheadForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AheadForm.Designer.cs">
+      <DependentUpon>AheadForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FlowForm.resx">
       <DependentUpon>FlowForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -177,6 +189,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OKForm.sq.resx">
       <DependentUpon>OKForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FriendForm.resx">
+      <DependentUpon>FriendForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FriendForm.sq.resx">
+      <DependentUpon>FriendForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AheadForm.resx">
+      <DependentUpon>AheadForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AheadForm.sq.resx">
+      <DependentUpon>AheadForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
