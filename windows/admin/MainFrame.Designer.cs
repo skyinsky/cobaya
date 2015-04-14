@@ -53,6 +53,8 @@
             this.splitContainerControl1 = new DevExpress.XtraEditors.SplitContainerControl();
             this.splitContainerControl2 = new DevExpress.XtraEditors.SplitContainerControl();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
+            this.紧急通道 = new DevExpress.XtraEditors.SimpleButton();
+            this.家属通道 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton1 = new DevExpress.XtraEditors.SimpleButton();
             this.devs = new System.Windows.Forms.TreeView();
             this.users = new System.Windows.Forms.TreeView();
@@ -335,6 +337,8 @@
             this.splitContainerControl2.Name = "splitContainerControl2";
             this.splitContainerControl2.Panel1.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.Style3D;
             this.splitContainerControl2.Panel1.Controls.Add(this.simpleButton2);
+            this.splitContainerControl2.Panel1.Controls.Add(this.紧急通道);
+            this.splitContainerControl2.Panel1.Controls.Add(this.家属通道);
             this.splitContainerControl2.Panel1.Controls.Add(this.simpleButton1);
             this.splitContainerControl2.Panel1.ShowCaption = true;
             this.splitContainerControl2.Panel1.Text = "其他操作";
@@ -343,24 +347,44 @@
             this.splitContainerControl2.Panel2.ShowCaption = true;
             this.splitContainerControl2.Panel2.Text = "设备列表";
             this.splitContainerControl2.Size = new System.Drawing.Size(179, 405);
-            this.splitContainerControl2.SplitterPosition = 142;
+            this.splitContainerControl2.SplitterPosition = 232;
             this.splitContainerControl2.TabIndex = 0;
             this.splitContainerControl2.Text = "splitContainerControl2";
             // 
             // simpleButton2
             // 
             this.simpleButton2.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton2.Image")));
-            this.simpleButton2.Location = new System.Drawing.Point(15, 70);
+            this.simpleButton2.Location = new System.Drawing.Point(15, 162);
             this.simpleButton2.Name = "simpleButton2";
             this.simpleButton2.Size = new System.Drawing.Size(146, 37);
             this.simpleButton2.TabIndex = 0;
             this.simpleButton2.Text = "管理用户";
             this.simpleButton2.Click += new System.EventHandler(this.simpleButton2_Click);
             // 
+            // 紧急通道
+            // 
+            this.紧急通道.Image = ((System.Drawing.Image)(resources.GetObject("紧急通道.Image")));
+            this.紧急通道.Location = new System.Drawing.Point(15, 114);
+            this.紧急通道.Name = "紧急通道";
+            this.紧急通道.Size = new System.Drawing.Size(146, 37);
+            this.紧急通道.TabIndex = 0;
+            this.紧急通道.Text = "紧急通道";
+            this.紧急通道.Click += new System.EventHandler(this.紧急通道_Click);
+            // 
+            // 家属通道
+            // 
+            this.家属通道.Image = ((System.Drawing.Image)(resources.GetObject("家属通道.Image")));
+            this.家属通道.Location = new System.Drawing.Point(15, 62);
+            this.家属通道.Name = "家属通道";
+            this.家属通道.Size = new System.Drawing.Size(146, 37);
+            this.家属通道.TabIndex = 0;
+            this.家属通道.Text = "家属通道";
+            this.家属通道.Click += new System.EventHandler(this.家属通道_Click);
+            // 
             // simpleButton1
             // 
             this.simpleButton1.Image = ((System.Drawing.Image)(resources.GetObject("simpleButton1.Image")));
-            this.simpleButton1.Location = new System.Drawing.Point(15, 14);
+            this.simpleButton1.Location = new System.Drawing.Point(15, 12);
             this.simpleButton1.Name = "simpleButton1";
             this.simpleButton1.Size = new System.Drawing.Size(146, 37);
             this.simpleButton1.TabIndex = 0;
@@ -376,7 +400,7 @@
             this.devs.Location = new System.Drawing.Point(0, 0);
             this.devs.Name = "devs";
             this.devs.SelectedImageIndex = 0;
-            this.devs.Size = new System.Drawing.Size(175, 234);
+            this.devs.Size = new System.Drawing.Size(175, 144);
             this.devs.TabIndex = 3;
             this.devs.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.devs_MouseDoubleClick);
             // 
@@ -567,6 +591,8 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton1;
         private System.Windows.Forms.TreeView devs;
         private System.Windows.Forms.TreeView users;
+        private DevExpress.XtraEditors.SimpleButton 紧急通道;
+        private DevExpress.XtraEditors.SimpleButton 家属通道;
         public DevExpress.XtraSplashScreen.SplashScreenManager splashScreenManager1;
     }
 }

@@ -329,5 +329,71 @@ namespace cobaya
             }
             splashScreenManager1.CloseWaitForm();
         }
+
+        private void 家属通道_Click(object sender, EventArgs e)
+        {
+            DataTable dt = null;
+
+            splashScreenManager1.ShowWaitForm();
+
+            string time_begin = "'" + this.dateTimeBegin.Value.ToString() + "'";
+            string time_end = "'" + this.dateTimeEnd.Value.ToString() + "'";
+
+            string sql = "SELECT `亲属`.`时间`,`亲属`.`操作医生`,`亲属`.`器械名称`, `亲属`.`科室名称`, `亲属`.`院区`, `亲属`.`备注` "
+                + "FROM `亲属` WHERE `亲属`.`时间` >= " + time_begin
+                + " AND `亲属`.`时间` <= " + time_end
+                + " ORDER BY `亲属`.`时间` ASC";
+
+            try
+            {
+
+                dt = libMySQL.db_query(sql);
+            }
+            catch (Exception ex)
+            {
+                splashScreenManager1.CloseWaitForm();
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            this.gridControl1.DataSource = dt;
+            this.gridView1.PopulateColumns();
+            this.gridView1.Columns["时间"].DisplayFormat.FormatType = FormatType.DateTime;
+            this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-MM-dd hh:mm:ss";
+            splashScreenManager1.CloseWaitForm();
+        }
+
+        private void 紧急通道_Click(object sender, EventArgs e)
+        {
+            DataTable dt = null;
+
+            splashScreenManager1.ShowWaitForm();
+
+            string time_begin = "'" + this.dateTimeBegin.Value.ToString() + "'";
+            string time_end = "'" + this.dateTimeEnd.Value.ToString() + "'";
+
+            string sql = "SELECT `紧急`.`时间`,`紧急`.`操作医生`,`紧急`.`器械名称`, `紧急`.`科室名称`, `紧急`.`院区`, `紧急`.`备注` "
+                + "FROM `紧急` WHERE `紧急`.`时间` >= " + time_begin
+                + " AND `紧急`.`时间` <= " + time_end
+                + " ORDER BY `紧急`.`时间` ASC";
+
+            try
+            {
+
+                dt = libMySQL.db_query(sql);
+            }
+            catch (Exception ex)
+            {
+                splashScreenManager1.CloseWaitForm();
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
+            this.gridControl1.DataSource = dt;
+            this.gridView1.PopulateColumns();
+            this.gridView1.Columns["时间"].DisplayFormat.FormatType = FormatType.DateTime;
+            this.gridView1.Columns["时间"].DisplayFormat.FormatString = "yyyy-MM-dd hh:mm:ss";
+            splashScreenManager1.CloseWaitForm();
+        }
     }
 }
