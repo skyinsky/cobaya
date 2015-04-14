@@ -162,6 +162,26 @@ static void store_doubt_flow(DevDesc *dev)
 	}
 }
 
+static bool is_ct(char *code)
+{
+	char *p = code;
+
+	if (*p != 'C' || *(++p) != 'T') {
+		return false;
+	}
+	return true;
+}
+
+static bool is_cs(char *code)
+{
+	char *p = code;
+
+	if (*p != 'C' || *(++p) != 'S') {
+		return false;
+	}
+	return true;
+}
+
 void hit_person_from_sensor(DevDesc *dev)
 {
 	timespec cur_time;
@@ -182,7 +202,8 @@ void hit_person_from_sensor(DevDesc *dev)
 		return;
 	}
 
-	if (cur_time.tv_sec - dev->sensor_last > 60 * g_config.client_sensor) {
+	if (!is_cs(dev->code) &&
+	    cur_time.tv_sec - dev->sensor_last > 60 * g_config.client_sensor) {
 		store_doubt_flow(dev);
 	}
 
