@@ -1,5 +1,4 @@
 #include <ESP8266.h>
-#include <NewPing.h>
 #include <SoftwareSerial.h>
 
 //----------------------------------------------
@@ -7,37 +6,72 @@
 //----------------------------------------------
 #define SERIAL_BAUD	9600
 
+// RX:D3, TX:D2
 #define WIFI_TX_PORT	2	//d-pin
 #define WIFI_RX_PORT	3	//d-pin
 
-#define SR_TRIG_PORT	5	//d-pin
-#define SR_ECHO_PORT	6	//d-pin
+// x:A1, y:A4, z:A7
+#define ADXL_X_PORT	1	//a-pin
+#define ADXL_Y_PORT	4	//a-pin
+#define ADXL_Z_PORT	7	//a-pin
 
-#define SR_INIT_DIST	40	//没有人时，探头探测的距离
-#define SR_HAS_PERSON	5	//人躺下的平均厚度
-#define SR_MAX_DIST	400	// Maximum sensor distance is rated at 400-500cm.
+#define ADXL_X_DIFF	10	//DEC
+#define ADXL_Y_DIFF	10	//DEC
+#define ADXL_Z_DIFF	10	//DEC
 
 #define SSID        "ubuntu"
 #define PASSWORD    "flywith9476"
 #define HOST_NAME   "192.168.1.103"
 #define HOST_PORT   (11612)
 
-#define MSG_HAS_PERSON	"CT_001:1"
-#define MSG_NOT_PERSON	"CT_001:0"
+#define MSG_HAS_PERSON	"FS_001:1"
+#define MSG_NOT_PERSON	"FS_001:0"
 #define MSG_LENGTH	8
 
 //----------------------------------------------
-// SR04
+// adxl335
 //----------------------------------------------
-NewPing sonar(SR_TRIG_PORT, SR_ECHO_PORT, SR_MAX_DIST);
+#define SAMPLE_TIMES	10
 
-unsigned int read_sonar()
+int last_x;	// x axis variable
+int last_y;	// y axis variable
+int last_z;	// z axis variable
+
+int read_axis(int pin)
 {
-	unsigned int us = sonar.ping();
+	long reading = 0;
 
-	us /= US_ROUNDTRIP_CM;
+	analogRead(pin);
+	delay(1);
 
-	return us;
+	for (int i = 0; i < SAMPLE_TIMES; i++) {
+		reading += analogRead(pin);
+	}
+	return reading / SAMPLE_TIMES;
+}
+
+void setup_adxl335()
+{
+	Serial.print("************* begin setup adxl335 module *************\n");
+	
+	last_x = 0;
+	last_y = 0;
+	last_z = 0;
+
+	last_x = read_axis(ADXL_X_PORT);
+	last_y = read_axis(ADXL_Y_PORT);
+	last_z = read_axis(ADXL_Z_PORT);
+
+	Serial.print("training x-y-z as follow\n");
+	Serial.print("X: ");
+	Serial.print(last_x);
+	Serial.print("Y: ");
+	Serial.print(last_y);
+	Serial.print("Z: ");
+	Serial.print(last_z);
+	Serial.print("\n");
+
+	Serial.print("************** end setup adxl335 module **************\n");
 }
 
 //----------------------------------------------
@@ -116,28 +150,57 @@ void setup()
 	Serial.print("setup begin\n");
 
 	setup_wifi();
+	setup_adxl335();
 
 	Serial.print("setup end\n");
 }
 
+int abs(int v)
+{
+	return ((v >= 0) ? v : -v);
+}
+
 void loop()
 {
-	unsigned int diff_dist;
-	unsigned int cur_dist;
+	bool find_x = false;
+	bool find_y = false;
+	bool find_z = false;
 
-	cur_dist = read_sonar();
-	if (cur_dist >= SR_INIT_DIST) {
-		send_server(false);
-		goto wait;
+	int this_x;
+	int this_y;
+	int this_z;
+
+	int diff_x;
+	int diff_y;
+	int diff_z;
+
+	this_x = analogRead(ADXL_X_PORT);
+	this_y = analogRead(ADXL_Y_PORT);
+	this_z = analogRead(ADXL_Z_PORT);
+
+	diff_x = this_x - last_x;
+	diff_y = this_y - last_y;
+	diff_z = this_z - last_z;
+
+	last_x = this_x;
+	last_y = this_y;
+	last_z = this_z;
+
+	if (abs(diff_x) > ADXL_X_DIFF) {
+		find_x = true;
 	}
-	
-	diff_dist = SR_INIT_DIST - cur_dist;
-	if (diff_dist >= SR_HAS_PERSON) {
-		send_server(true);
+	if (abs(diff_y) > ADXL_Y_DIFF) {
+		find_y = true;
+	}
+	if (abs(diff_z) > ADXL_Z_DIFF) {
+		find_z = true;
+	}
+
+	if (find_x || find_y || find_z) {
+		Serial.print("+++++++++++++++++++++++\n");
 	} else {
-		send_server(false);
+		Serial.print("\n");
 	}
 
-wait:
-	delay(3000);
+	delay(1000);
 }
