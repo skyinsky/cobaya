@@ -7,8 +7,8 @@
 #define SERIAL_BAUD	9600
 
 // RX:D3, TX:D2
-#define WIFI_TX_PORT	2	//d-pin
-#define WIFI_RX_PORT	3	//d-pin
+#define WIFI_TX_PORT	4	//d-pin
+#define WIFI_RX_PORT	7	//d-pin
 
 // x:A1, y:A4, z:A7
 #define ADXL_X_PORT	1	//a-pin
@@ -58,9 +58,9 @@ void setup_adxl335()
 	last_y = 0;
 	last_z = 0;
 
-	last_x = read_axis(ADXL_X_PORT);
-	last_y = read_axis(ADXL_Y_PORT);
-	last_z = read_axis(ADXL_Z_PORT);
+//	last_x = read_axis(ADXL_X_PORT);
+//	last_y = read_axis(ADXL_Y_PORT);
+//	last_z = read_axis(ADXL_Z_PORT);
 
 	Serial.print("training x-y-z as follow\n");
 	Serial.print("X: ");
@@ -197,9 +197,9 @@ void loop()
 	}
 
 	if (find_x || find_y || find_z) {
-		Serial.print("+++++++++++++++++++++++\n");
+                send_server(true);
 	} else {
-		Serial.print("\n");
+                send_server(false);
 	}
 
 	delay(1000);

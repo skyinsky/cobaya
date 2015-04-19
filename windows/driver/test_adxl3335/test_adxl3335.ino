@@ -42,6 +42,8 @@ void setup_adxl335()
 	last_y = 0;
 	last_z = 0;
 
+	delay(2000);
+
 	last_x = read_axis(ADXL_X_PORT);
 	last_y = read_axis(ADXL_Y_PORT);
 	last_z = read_axis(ADXL_Z_PORT);
@@ -49,9 +51,9 @@ void setup_adxl335()
 	Serial.print("training x-y-z as follow\n");
 	Serial.print("X: ");
 	Serial.print(last_x);
-	Serial.print("Y: ");
+	Serial.print("  Y: ");
 	Serial.print(last_y);
-	Serial.print("Z: ");
+	Serial.print("  Z: ");
 	Serial.print(last_z);
 	Serial.print("\n");
 
@@ -108,10 +110,10 @@ void loop()
 	}
 
 	if (find_x || find_y || find_z) {
-		Serial.print("+++++++++++++++++++++++");
+		Serial.print("++++++++++\n");
 	} else {
-		Serial.print("\n");
+		Serial.print("-----------------------\n");
 	}
 
-	delay(1000);
+	delay(100);
 }

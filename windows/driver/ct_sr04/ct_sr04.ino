@@ -7,8 +7,8 @@
 //----------------------------------------------
 #define SERIAL_BAUD	9600
 
-#define WIFI_TX_PORT	2	//d-pin
-#define WIFI_RX_PORT	3	//d-pin
+#define WIFI_TX_PORT	4	//d-pin
+#define WIFI_RX_PORT	7	//d-pin
 
 #define SR_TRIG_PORT	5	//d-pin
 #define SR_ECHO_PORT	6	//d-pin
