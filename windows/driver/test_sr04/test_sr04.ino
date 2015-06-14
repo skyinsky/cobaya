@@ -6,7 +6,7 @@
 #define SERIAL_BAUD	9600
 #define SR_TRIG_PORT	5	//d-pin
 #define SR_ECHO_PORT	6	//d-pin
-#define SR_MAX_DIST	400	// Maximum sensor distance is rated at 400-500cm.
+#define SR_MAX_DIST	500	// Maximum sensor distance is rated at 400-500cm.
 
 NewPing sonar(SR_TRIG_PORT, SR_ECHO_PORT, SR_MAX_DIST);
 
