@@ -1,0 +1,43 @@
+1.   超声波测距模块
+https://code.google.com/p/arduino-new-ping/
+
+http://detail.tmall.com/item.htm?id=41248598447&spm=a1z09.2.9.69.OwHfV0&_u=6ppn3k3d3ae&mt=
+
+接线：
+module- NANO
+GND - GND
+VCC - 5V
+Trig - D12
+Echo - D11
+
+2. 三轴加速度模块
+
+https://www.rhydolabz.com/wiki/?p=1417
+
+接线：
+module- NANO
+GND - GND
+VCC - 3.3V
+x-OUT - A1
+y-OUT - A4
+z-OUT - A7
+
+3. esp8266-01网络模块
+http://yunpan.taobao.com/s/1JXGDKrHu47
+
+接线：
+module- NANO
+GND - GND
+VCC - 3.3V
+CH_PD - 3.3V
+RX （vcc对应）- D4
+TX(gnd对应） - D7
+
+4. 人体红外感应模块
+http://item.taobao.com/item.htm?spm=a1z09.2.9.79.DA97ti&id=14677005094&_u=6ppn3k3ae6a
+
+接线：
+module- NANO
+GND - GND
+VCC - 5V
+OUT - Dx
