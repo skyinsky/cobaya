@@ -106,6 +106,24 @@ out:
 	return err;
 }
 
+bool find_dev_by_host(const char *host, MsgClientRsp *rsp)
+{
+    bool find = false;
+
+	for (DevDesc *desc = dev_head.next;
+	     desc != &dev_head; desc = desc->next) {
+		if (!strcmp(desc->host, host)) {
+            rsp->set_host(host);
+            rsp->add_dev_code(desc->code);
+            rsp->set_fetch(g_config.client_fetch);
+
+            find = true;
+		}
+	}
+
+    return find;
+}
+
 DevDesc* find_dev_by_host(const char *host)
 {
 	DevDesc * dev = NULL;
@@ -134,6 +152,18 @@ DevDesc* find_dev_by_code(const char *code)
 	}
 
 	return dev;
+}
+
+void update_dev_doct(const char *host, const char *doct)
+{
+	for (DevDesc *desc = dev_head.next;
+	     desc != &dev_head; desc = desc->next) {
+		if (strcmp(desc->host, host)) {
+            continue;
+		}
+
+        strcpy(desc->doct_name, doct);
+	}
 }
 
 static void store_doubt_flow(DevDesc *dev)

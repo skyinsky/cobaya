@@ -65,24 +65,19 @@ void RpcServiceImpl::GetClientInfo(RpcController *ctl,
 				   const MsgClientReq *req,
 				   MsgClientRsp *rsp, Closure *done)
 {
-	DevDesc *dev = NULL;
+    bool find = false;
 
 	int sz = req->hosts_size();
 	for (int i = 0; i < sz; i++) {
-		dev = find_dev_by_host(req->hosts(i).c_str());
-		if (dev != NULL) {
-			break;
-		}
+        if (find_dev_by_host(req->hosts(i).c_str(), rsp)) {
+            find = true;
+        }
 	}
 
-	if (dev == NULL) {
+	if (!find) {
 		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
 
 		rcfctl->SetFailed("host not register");
-	} else {
-		rsp->set_host(dev->host);
-		rsp->set_dev_code(dev->code);
-		rsp->set_fetch(g_config.client_fetch);
 	}
 
 	done->Run();
@@ -107,8 +102,6 @@ void RpcServiceImpl::LoginSystem(RpcController *ctl,
 				 const MsgLoginReq *req,
 				 MsgLoginRsp *rsp, Closure *done)
 {
-	DevDesc *dev;
-
 	if (logon_client(req->user().c_str(),
 			 req->passwd().c_str(),
 			 req->host().c_str())) {
@@ -118,14 +111,7 @@ void RpcServiceImpl::LoginSystem(RpcController *ctl,
 		rsp->set_grant(true);
 	}
 
-	dev = find_dev_by_host(req->host().c_str());
-	if (dev == NULL) {
-		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
-
-		rcfctl->SetFailed("host not register");
-		goto out;
-	}
-	strcpy(dev->doct_name, req->user().c_str());
+    update_dev_doct(req->host().c_str(), req->user().c_str());
 
 out:
 	done->Run();
@@ -135,8 +121,6 @@ void RpcServiceImpl::LogoutSystem(RpcController *ctl,
 				  const MsgLogoutReq *req,
 				  MsgLogoutRsp *rsp, Closure *done)
 {
-	DevDesc *dev;
-
 	if (logout_client(req->user().c_str())) {
 		rsp->set_grant(false);
 		goto out;
@@ -144,17 +128,9 @@ void RpcServiceImpl::LogoutSystem(RpcController *ctl,
 		rsp->set_grant(true);
 	}
 
-	dev = find_dev_by_host(req->host().c_str());
-	if (dev == NULL) {
-		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
-
-		rcfctl->SetFailed("host not register");
-		goto out;
-	}
-	strcpy(dev->doct_name, "AA_匿名");
+    update_dev_doct(req->host().c_str(), "AA_匿名");
 
 out:
-
 	done->Run();
 }
 
@@ -309,17 +285,27 @@ void RpcServiceImpl::FetchFlow(RpcController *ctl,
 			       const MsgFetchFlowReq *req,
 			       MsgFetchFlowRsp *rsp, Closure *done)
 {
-	DevDesc *dev;
+    bool find = false;
 
-	dev = find_dev_by_code(req->dev_code().c_str());
-	if (dev == NULL) {
+	int sz = req->dev_code_size();
+	for (int i = 0; i < sz; i++) {
+        DevDesc *dev;
+        
+        dev  = find_dev_by_code(req->dev_code(i).c_str());
+        if (dev == NULL) {
+            continue;
+        }
+        
+        find = true;
+        get_flow(dev->head, rsp);
+	}
+
+	if (!find) {
 		RcfProtoController *rcfctl = (RcfProtoController *)ctl;
 
 		rcfctl->SetFailed("host not register");
 		goto out;
 	}
-
-	get_flow(dev->head, rsp);
 
 out:	done->Run();
 }

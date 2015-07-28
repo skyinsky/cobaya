@@ -4,6 +4,7 @@
 #include <event.h>
 #include "timer.h"
 #include "common.h"
+#include "protocol/cobaya.pb.h"
 
 namespace cobaya {
 
@@ -40,8 +41,9 @@ extern DevDesc dev_head;
 
 int load_dev_list();
 
-DevDesc* find_dev_by_host(const char *host);
 DevDesc* find_dev_by_code(const char *code);
+bool     find_dev_by_host(const char *host, MsgClientRsp *rsp);
+void     update_dev_doct(const char *host, const char *doct);
 
 void hit_person_from_sensor(DevDesc *dev);
 
