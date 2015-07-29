@@ -84,9 +84,9 @@ namespace cobaya {
           "CCI+ChBNc2dVcGRhdGVVc2VyUmVxEgwKBGhvc3QYASACKAkSDAoEdXNlchgC" + 
           "IAIoCRIOCgZwYXNzd2QYAyACKAkiIQoQTXNnVXBkYXRlVXNlclJzcBINCgVn" + 
           "cmFudBgBIAIoCCIdCgxNc2dDbGllbnRSZXESDQoFaG9zdHMYASADKAkiPQoM" + 
-          "TXNnQ2xpZW50UnNwEgwKBGhvc3QYASACKAkSEAoIZGV2X2NvZGUYAiACKAkS" + 
+          "TXNnQ2xpZW50UnNwEgwKBGhvc3QYASACKAkSEAoIZGV2X2NvZGUYAiADKAkS" + 
           "DQoFZmV0Y2gYAyACKA0iIwoPTXNnRmV0Y2hGbG93UmVxEhAKCGRldl9jb2Rl" + 
-          "GAEgAigJImoKCFVzZXJGbG93Eg8KB3VzZXJfaWQYASACKAQSEAoIYXBwbHlf" + 
+          "GAEgAygJImoKCFVzZXJGbG93Eg8KB3VzZXJfaWQYASACKAQSEAoIYXBwbHlf" + 
           "aWQYAiACKAkSDAoEdXNlchgDIAIoCRIOCgZvZmZpY2UYBCACKAkSDgoGZG9j" + 
           "dG9yGAUgAigJEg0KBWl0ZW1zGAYgAygJIjIKD01zZ0ZldGNoRmxvd1JzcBIf" + 
           "CgVmbG93cxgBIAMoCzIQLmNvYmF5YS5Vc2VyRmxvdyJcCg9Nc2dDaGVja0Zs" + 
@@ -3710,13 +3710,15 @@ namespace cobaya {
     }
     
     public const int DevCodeFieldNumber = 2;
-    private bool hasDevCode;
-    private string devCode_ = "";
-    public bool HasDevCode {
-      get { return hasDevCode; }
+    private pbc::PopsicleList<string> devCode_ = new pbc::PopsicleList<string>();
+    public scg::IList<string> DevCodeList {
+      get { return pbc::Lists.AsReadOnly(devCode_); }
     }
-    public string DevCode {
-      get { return devCode_; }
+    public int DevCodeCount {
+      get { return devCode_.Count; }
+    }
+    public string GetDevCode(int index) {
+      return devCode_[index];
     }
     
     public const int FetchFieldNumber = 3;
@@ -3733,7 +3735,6 @@ namespace cobaya {
     public override bool IsInitialized {
       get {
         if (!hasHost) return false;
-        if (!hasDevCode) return false;
         if (!hasFetch) return false;
         return true;
       }
@@ -3745,8 +3746,8 @@ namespace cobaya {
       if (hasHost) {
         output.WriteString(1, field_names[2], Host);
       }
-      if (hasDevCode) {
-        output.WriteString(2, field_names[0], DevCode);
+      if (devCode_.Count > 0) {
+        output.WriteStringArray(2, field_names[0], devCode_);
       }
       if (hasFetch) {
         output.WriteUInt32(3, field_names[1], Fetch);
@@ -3764,8 +3765,13 @@ namespace cobaya {
         if (hasHost) {
           size += pb::CodedOutputStream.ComputeStringSize(1, Host);
         }
-        if (hasDevCode) {
-          size += pb::CodedOutputStream.ComputeStringSize(2, DevCode);
+        {
+          int dataSize = 0;
+          foreach (string element in DevCodeList) {
+            dataSize += pb::CodedOutputStream.ComputeStringSizeNoTag(element);
+          }
+          size += dataSize;
+          size += 1 * devCode_.Count;
         }
         if (hasFetch) {
           size += pb::CodedOutputStream.ComputeUInt32Size(3, Fetch);
@@ -3807,6 +3813,7 @@ namespace cobaya {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private MsgClientRsp MakeReadOnly() {
+      devCode_.MakeReadOnly();
       return this;
     }
     
@@ -3899,8 +3906,8 @@ namespace cobaya {
         if (other.HasHost) {
           Host = other.Host;
         }
-        if (other.HasDevCode) {
-          DevCode = other.DevCode;
+        if (other.devCode_.Count != 0) {
+          result.devCode_.Add(other.devCode_);
         }
         if (other.HasFetch) {
           Fetch = other.Fetch;
@@ -3953,7 +3960,7 @@ namespace cobaya {
               break;
             }
             case 18: {
-              result.hasDevCode = input.ReadString(ref result.devCode_);
+              input.ReadStringArray(tag, field_name, result.devCode_);
               break;
             }
             case 24: {
@@ -3991,24 +3998,35 @@ namespace cobaya {
         return this;
       }
       
-      public bool HasDevCode {
-        get { return result.hasDevCode; }
+      public pbc::IPopsicleList<string> DevCodeList {
+        get { return PrepareBuilder().devCode_; }
       }
-      public string DevCode {
-        get { return result.DevCode; }
-        set { SetDevCode(value); }
+      public int DevCodeCount {
+        get { return result.DevCodeCount; }
       }
-      public Builder SetDevCode(string value) {
+      public string GetDevCode(int index) {
+        return result.GetDevCode(index);
+      }
+      public Builder SetDevCode(int index, string value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hasDevCode = true;
-        result.devCode_ = value;
+        result.devCode_[index] = value;
+        return this;
+      }
+      public Builder AddDevCode(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.devCode_.Add(value);
+        return this;
+      }
+      public Builder AddRangeDevCode(scg::IEnumerable<string> values) {
+        PrepareBuilder();
+        result.devCode_.Add(values);
         return this;
       }
       public Builder ClearDevCode() {
         PrepareBuilder();
-        result.hasDevCode = false;
-        result.devCode_ = "";
+        result.devCode_.Clear();
         return this;
       }
       
@@ -4068,18 +4086,19 @@ namespace cobaya {
     }
     
     public const int DevCodeFieldNumber = 1;
-    private bool hasDevCode;
-    private string devCode_ = "";
-    public bool HasDevCode {
-      get { return hasDevCode; }
+    private pbc::PopsicleList<string> devCode_ = new pbc::PopsicleList<string>();
+    public scg::IList<string> DevCodeList {
+      get { return pbc::Lists.AsReadOnly(devCode_); }
     }
-    public string DevCode {
-      get { return devCode_; }
+    public int DevCodeCount {
+      get { return devCode_.Count; }
+    }
+    public string GetDevCode(int index) {
+      return devCode_[index];
     }
     
     public override bool IsInitialized {
       get {
-        if (!hasDevCode) return false;
         return true;
       }
     }
@@ -4087,8 +4106,8 @@ namespace cobaya {
     public override void WriteTo(pb::ICodedOutputStream output) {
       int size = SerializedSize;
       string[] field_names = _msgFetchFlowReqFieldNames;
-      if (hasDevCode) {
-        output.WriteString(1, field_names[0], DevCode);
+      if (devCode_.Count > 0) {
+        output.WriteStringArray(1, field_names[0], devCode_);
       }
       UnknownFields.WriteTo(output);
     }
@@ -4100,8 +4119,13 @@ namespace cobaya {
         if (size != -1) return size;
         
         size = 0;
-        if (hasDevCode) {
-          size += pb::CodedOutputStream.ComputeStringSize(1, DevCode);
+        {
+          int dataSize = 0;
+          foreach (string element in DevCodeList) {
+            dataSize += pb::CodedOutputStream.ComputeStringSizeNoTag(element);
+          }
+          size += dataSize;
+          size += 1 * devCode_.Count;
         }
         size += UnknownFields.SerializedSize;
         memoizedSerializedSize = size;
@@ -4140,6 +4164,7 @@ namespace cobaya {
       return ((Builder) CreateBuilder().MergeFrom(input, extensionRegistry)).BuildParsed();
     }
     private MsgFetchFlowReq MakeReadOnly() {
+      devCode_.MakeReadOnly();
       return this;
     }
     
@@ -4229,8 +4254,8 @@ namespace cobaya {
       public override Builder MergeFrom(MsgFetchFlowReq other) {
         if (other == global::cobaya.MsgFetchFlowReq.DefaultInstance) return this;
         PrepareBuilder();
-        if (other.HasDevCode) {
-          DevCode = other.DevCode;
+        if (other.devCode_.Count != 0) {
+          result.devCode_.Add(other.devCode_);
         }
         this.MergeUnknownFields(other.UnknownFields);
         return this;
@@ -4276,7 +4301,7 @@ namespace cobaya {
               break;
             }
             case 10: {
-              result.hasDevCode = input.ReadString(ref result.devCode_);
+              input.ReadStringArray(tag, field_name, result.devCode_);
               break;
             }
           }
@@ -4289,24 +4314,35 @@ namespace cobaya {
       }
       
       
-      public bool HasDevCode {
-        get { return result.hasDevCode; }
+      public pbc::IPopsicleList<string> DevCodeList {
+        get { return PrepareBuilder().devCode_; }
       }
-      public string DevCode {
-        get { return result.DevCode; }
-        set { SetDevCode(value); }
+      public int DevCodeCount {
+        get { return result.DevCodeCount; }
       }
-      public Builder SetDevCode(string value) {
+      public string GetDevCode(int index) {
+        return result.GetDevCode(index);
+      }
+      public Builder SetDevCode(int index, string value) {
         pb::ThrowHelper.ThrowIfNull(value, "value");
         PrepareBuilder();
-        result.hasDevCode = true;
-        result.devCode_ = value;
+        result.devCode_[index] = value;
+        return this;
+      }
+      public Builder AddDevCode(string value) {
+        pb::ThrowHelper.ThrowIfNull(value, "value");
+        PrepareBuilder();
+        result.devCode_.Add(value);
+        return this;
+      }
+      public Builder AddRangeDevCode(scg::IEnumerable<string> values) {
+        PrepareBuilder();
+        result.devCode_.Add(values);
         return this;
       }
       public Builder ClearDevCode() {
         PrepareBuilder();
-        result.hasDevCode = false;
-        result.devCode_ = "";
+        result.devCode_.Clear();
         return this;
       }
     }

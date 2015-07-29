@@ -94,8 +94,12 @@ namespace cobaya
                 MsgClientRsp rsp = (MsgClientRsp)channel.GetResponse();
 
                 Info.host = rsp.Host;
-                Info.dev_code = rsp.DevCode;
                 Info.fetch = rsp.Fetch;
+                Info.dev_codes = new string[rsp.DevCodeCount];
+                for (int i = 0; i < rsp.DevCodeCount; i++)
+                {
+                    Info.dev_codes[i] = rsp.GetDevCode(i);
+                }
 
                 return true;
             }
@@ -250,7 +254,10 @@ namespace cobaya
                 // Create request object.
                 MsgFetchFlowReq.Builder req_build;
                 req_build = MsgFetchFlowReq.CreateBuilder();
-                req_build.SetDevCode(Info.dev_code);
+                for (int i = 0; i < Info.dev_codes.Length; i++)
+                {
+                    req_build.AddDevCode(Info.dev_codes[i]);
+                }
                 MsgFetchFlowReq req = req_build.Build();
 
                 // Make a synchronous remote call to server.
@@ -275,7 +282,7 @@ namespace cobaya
                 MsgFriendFlowReq.Builder req_build;
                 req_build = MsgFriendFlowReq.CreateBuilder();
                 req_build.SetHost(Info.host);
-                req_build.SetDevCode(Info.dev_code);
+                req_build.SetDevCode(Info.dev_codes[0]);
                 req_build.SetInfo(info);
                 req = req_build.Build();
 
@@ -315,7 +322,7 @@ namespace cobaya
                 MsgAheadFlowReq.Builder req_build;
                 req_build = MsgAheadFlowReq.CreateBuilder();
                 req_build.SetHost(Info.host);
-                req_build.SetDevCode(Info.dev_code);
+                req_build.SetDevCode(Info.dev_codes[0]);
                 req_build.SetInfo(info);
                 req = req_build.Build();
 

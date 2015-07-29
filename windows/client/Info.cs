@@ -11,7 +11,7 @@ namespace cobaya
         public static string passwd;
 
         public static string host;
-        public static string dev_code;
+        public static string[] dev_codes;
         public static uint fetch;
 
         public static LoginForm login_form;

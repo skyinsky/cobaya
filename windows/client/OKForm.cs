@@ -39,7 +39,7 @@ namespace cobaya
             MsgCheckFlowReq.Builder req_build;
             req_build = MsgCheckFlowReq.CreateBuilder();
             req_build.SetHost(Info.host);
-            req_build.SetDevCode(Info.dev_code);
+            req_build.SetDevCode(Info.dev_codes[0]);
             req_build.SetUser(Info.user);
             if (prev_id != 0)
             {
